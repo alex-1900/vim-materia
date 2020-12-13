@@ -1,0 +1,6 @@
+
+{
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "coc.source.around.firstMatch": false,
+    "coc.source.buffer.firstMatch": false
+}
