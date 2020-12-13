@@ -46,14 +46,3 @@ function! automemories#util#get_username()
   endif
   return 'my friend'
 endfunction
-
-const s:get_id_by_key_ids = {}
-
-" get id by key
-function! automemories#util#key_id(key)
-  if !has_key(s:get_id_by_key_ids, a:key)
-    let s:get_id_by_key_ids[a:key] = 0
-  endif
-  let s:get_id_by_key_ids[a:key] += 1
-  return a:key . s:get_id_by_key_ids[a:key]
-endfunction

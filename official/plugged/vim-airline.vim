@@ -20,15 +20,17 @@ if !exists('g:airline_symbols')
   let g:airline_symbols={}
 endif
 
-function! PluggedAirLineAutoMemoriesAddition(...)
-  call a:1.add_section_spaced('TabLine', 'Auto Memories')
+function PluggedAirLineAutoMemoriesAddition(...)
+  highlight UserStatusLine guifg=#EEEEEE ctermfg=7 guibg=#4169E1 ctermbg=24 gui=NONE cterm=NONE
+  let s:username = automemories#util#get_username()
+  call a:1.add_section_spaced('UserStatusLine', s:username)
 endfunction
 
-function! ListenerPlugLoadedAirline(info = {})
+function ListenerPlugLoadedAirline(info = {})
   call airline#add_statusline_func('PluggedAirLineAutoMemoriesAddition')
 endfunction
 
-function! ListenerPlugLoadedAirLineThemes(info = {})
+function ListenerPlugLoadedAirLineThemes(info = {})
   let g:airline_theme='deus'
   call airline#switch_theme('deus')
 endfunction
