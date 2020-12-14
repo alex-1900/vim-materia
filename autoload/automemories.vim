@@ -19,6 +19,8 @@ function! automemories#init(homepath) abort
   " global variables
   const g:automemories#path#home = a:homepath
 
+  const g:automemories#path#bundles = g:automemories#path#home . '/bundles'
+
   " load system env
   const s:env_file = g:automemories#path#home . '/.env'
   if filereadable(s:env_file)
@@ -33,20 +35,21 @@ endfunction
 
 function! automemories#begin() abort
   " load configs
-  call automemories#util#loaddir(g:automemories#path#home . '/official/config/setting')
+  call automemories#util#loaddir(g:automemories#path#home . '/default/config/setting')
+  call automemories#util#loaddir(g:automemories#path#home . '/default/config/function')
 endfunction
 
 " load plugs
 function! automemories#loadplugs() abort
   " Run PlugInstall if there are missing plugins
   autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \| PlugInstall --sync
+    \| PlugInstall
   \| endif
 
   " Specify a directory for plugins
-  call plug#begin(g:automemories#path#home . '/bundles')
+  call plug#begin(g:automemories#path#bundles)
   " load plug configures
-  call automemories#util#loaddir(g:automemories#path#home . '/official/plugged')
+  call automemories#util#loaddir(g:automemories#path#home . '/default/plugin')
   " Initialize plugin system
   call plug#end()
 endfunction
@@ -54,7 +57,7 @@ endfunction
 " end of loading
 function! automemories#end() abort
   " tragger event listeners
-  call automemories#util#loaddir(g:automemories#path#home . '/official/config/event')
+  call automemories#util#loaddir(g:automemories#path#home . '/default/config/event')
   " disptach events
   doautocmd User AutomemoriesPlugLoaded
 endfunction

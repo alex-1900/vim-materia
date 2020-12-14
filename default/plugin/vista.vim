@@ -16,9 +16,11 @@ let g:vista_executive_for = {
 \ }
 
 function! ListenerPlugLoadedVista()
-  nnoremap <leader>v :Vista!!<CR>
+  if HasPlug('vista.vim')
+    nnoremap <leader>v :Vista!!<CR>
+  endif
 endfunction
 
-Plug 'liuchengxu/vista.vim', { 'for': ['php', 'html', 'css'] }
+Plug 'liuchengxu/vista.vim'
 
-autocmd! User coc.nvim call ListenerPlugLoadedVista()
+" autocmd User coc.nvim call ListenerPlugLoadedVista()

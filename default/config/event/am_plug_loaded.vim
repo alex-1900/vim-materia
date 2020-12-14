@@ -7,8 +7,10 @@
 augroup plug_loaded
     autocmd!
     autocmd User AutomemoriesPlugLoaded
-        \ call ListenerLoadedPlugStartify()
+        \  call ListenerLoadedPlugStartify()
         \| call ListenerPlugLoadedNerdtree()
         \| call ListenerPlugLoadedAirline()
         \| call ListenerPlugLoadedAirLineThemes()
+        \| call ListenerPlugLoadedCoc()
+        \| call ListenerPlugLoadedVista()
 augroup end

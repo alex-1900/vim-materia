@@ -11,16 +11,10 @@
 " https://github.com/neoclide/coc-git
 "=============================================================================
 
-Plug 'marlonfan/coc-phpls', { 'for': ['php'], 'do': 'yarn install --frozen-lockfile' }
+Plug 'marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile' }
 
-Plug 'neoclide/coc-html', { 'for': ['html'], 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' }
 
-
-function! ListenerPlugLoadedCocCss(info = {})
-  set iskeyword+=@
-  autocmd FileType scss setl iskeyword+=@-@
-endfunction
-Plug 'neoclide/coc-css', { 'for': ['css', 'scss'], 'do': 'yarn install --frozen-lockfile' }
-autocmd! User coc-css call ListenerPlugLoadedCocCss()
+Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' }
 
 Plug 'neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' }

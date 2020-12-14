@@ -12,8 +12,14 @@ if !automemories#util#gui()
 endif
 let g:startify_change_to_vcs_root = 1
 
-function! ListenerLoadedPlugStartify(info = {})
-  autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+function! ListenerLoadedPlugStartify()
+  if HasPlug('vim-startify')
+    autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+  endif
 endfunction
 
-Plug 'mhinz/vim-startify'
+function! PlugOptionDoStartify(info = {})
+  call ListenerLoadedPlugStartify() | q | Startify
+endfunction
+
+Plug 'mhinz/vim-startify', { 'do': function('PlugOptionDoStartify') }

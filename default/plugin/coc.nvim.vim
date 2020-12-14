@@ -11,7 +11,13 @@
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => listener
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ListenerPlugLoadedCoc()
+  if !HasPlug('coc.nvim')
+    return 0
+  endif
   " GoTo code navigation.
   nmap <silent> <leader>ld <Plug>(coc-definition)
   nmap <silent> <leader>lt <Plug>(coc-type-definition)
@@ -74,10 +80,14 @@ function! ListenerPlugLoadedCoc()
   nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => trigger
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PlugOptionDoCocNvim(info = {})
+  call ListenerPlugLoadedCoc()
+endfunction
+
 Plug 'neoclide/coc.nvim', {
   \ 'branch': 'release',
-  \ 'do': 'yarn install --frozen-lockfile',
-  \ 'for': ['php', 'html', 'css', 'json']
+  \ 'do': function('PlugOptionDoCocNvim')
 \ }
-
-autocmd! User coc.nvim call ListenerPlugLoadedCoc()

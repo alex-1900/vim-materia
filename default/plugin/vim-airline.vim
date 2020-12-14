@@ -26,14 +26,32 @@ function PluggedAirLineAutoMemoriesAddition(...)
   call a:1.add_section_spaced('UserStatusLine', s:username)
 endfunction
 
-function ListenerPlugLoadedAirline(info = {})
-  call airline#add_statusline_func('PluggedAirLineAutoMemoriesAddition')
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => listener
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function ListenerPlugLoadedAirline()
+  if HasPlug('vim-airline')
+    call airline#add_statusline_func('PluggedAirLineAutoMemoriesAddition')
+  endif
 endfunction
 
-function ListenerPlugLoadedAirLineThemes(info = {})
-  let g:airline_theme='deus'
-  call airline#switch_theme('deus')
+function ListenerPlugLoadedAirLineThemes()
+  if HasPlug('vim-airline-themes') && HasPlug('vim-airline')
+    let g:airline_theme='deus'
+    call airline#switch_theme('deus')
+  endif
 endfunction
 
-Plug 'vim-airline/vim-airline', { 'do': function('ListenerPlugLoadedAirline') }
-\| Plug 'vim-airline/vim-airline-themes', { 'do': function('ListenerPlugLoadedAirLineThemes') }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => trigger
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PlugOptionDoAirlineThemes(info = {})
+  call ListenerPlugLoadedAirLineThemes()
+endfunction
+
+function! PlugOptionDoAirline(info = {})
+  call ListenerPlugLoadedAirline()
+endfunction
+
+Plug 'vim-airline/vim-airline-themes', { 'do': function('PlugOptionDoAirlineThemes') }
+Plug 'vim-airline/vim-airline', { 'do': function('PlugOptionDoAirline') }
