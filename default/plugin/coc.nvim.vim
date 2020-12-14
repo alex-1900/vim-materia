@@ -19,10 +19,8 @@ function! ListenerPlugLoadedCoc()
     return 0
   endif
   " GoTo code navigation.
-  nmap <silent> <leader>ld <Plug>(coc-definition)
-  nmap <silent> <leader>lt <Plug>(coc-type-definition)
-  nmap <silent> <leader>li <Plug>(coc-implementation)
-  nmap <silent> <leader>lr <Plug>(coc-references)
+  nmap <silent> <leader>cd <Plug>(coc-definition)
+  nmap <silent> <leader>cr <Plug>(coc-references)
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -44,7 +42,7 @@ function! ListenerPlugLoadedCoc()
 
   " Make <CR> auto-select the first completion item and notify coc.nvim to
   " format on enter, <cr> could be remapped by other vim plugin
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+  inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
     \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
   " Use `[g` and `]g` to navigate diagnostics
@@ -53,8 +51,8 @@ function! ListenerPlugLoadedCoc()
   nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
   " Formatting selected code.
-  xmap <leader>f  <Plug>(coc-format-selected)
-  nmap <leader>f  <Plug>(coc-format-selected)
+  xmap <leader>cf  <Plug>(coc-format-selected)
+  nmap <leader>cf  <Plug>(coc-format-selected)
 
   " Apply AutoFix to problem on the current line.
   nmap <leader>qf  <Plug>(coc-fix-current)

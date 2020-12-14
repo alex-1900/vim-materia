@@ -7,13 +7,12 @@
 " https://github.com/voldikss/vim-floaterm
 "=============================================================================
 
-let g:floaterm_keymap_new = '<Leader>ff'
-let g:floaterm_keymap_prev = '<Leader>fp'
-let g:floaterm_keymap_next = '<Leader>fn'
-let g:floaterm_keymap_last = '<Leader>fl'
-let g:floaterm_keymap_toggle = '<F12>'
+let g:floaterm_keymap_new = '<Leader>tn'
+let g:floaterm_keymap_prev = '<Leader>fh'
+let g:floaterm_keymap_next = '<Leader>fl'
+let g:floaterm_keymap_toggle = '<leader>tt'
 
-tnoremap <silent> <F11> <C-\><C-n>:FloatermKill<CR>
+tnoremap <silent> <leader>tk <C-\><C-n>:FloatermKill<CR>
 
 " Set floaterm window's background to black
 hi Floaterm guibg=black

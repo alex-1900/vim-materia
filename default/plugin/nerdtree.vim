@@ -9,7 +9,7 @@
 
 let g:NERDTreeAutoCenter=1
 let g:NERDTreeShowBookmarks=1
-let g:NERDTreeWinPos="dark"
+" let g:NERDTreeWinPos="dark"
 let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeAutoCenter=1
 let g:NERDTreeHighlightCursorline = 1
@@ -22,7 +22,7 @@ let g:plug_window = 'noautocmd vertical topleft new'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ListenerPlugLoadedNerdtree(info = {})
   if HasPlug('nerdtree')
-    nnoremap <leader>n :NERDTreeToggle<CR>
+    nnoremap <leader>b :NERDTreeToggle<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   endif
 endfunction

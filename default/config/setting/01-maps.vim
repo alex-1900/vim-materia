@@ -7,15 +7,22 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => features
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap vv <ESC>
+
 " goto or remove buffer
 nnoremap <C-h> :bp!<CR>
 nnoremap <C-l> :bn!<CR>
-nnoremap <C-k> :bd<CR>
+nnoremap <C-d> :bd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" <leader>h to toggle hlsearch
-nnoremap <leader>h :set hlsearch! hlsearch?<CR>
-" pressing F8 will highlight all occurrences of the current word
-nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hlsearch<CR>
+" toggle hlsearch
+nnoremap <F8> :set hlsearch! hlsearch?<CR>
+" pressing meta-f will highlight all occurrences of the current word
+nnoremap <leader>hf :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hlsearch<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+

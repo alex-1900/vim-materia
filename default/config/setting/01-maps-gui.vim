@@ -11,7 +11,7 @@ if automemories#util#gui()
 " => features
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " toggle menu bar and tabbar
-map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+map <silent> <leader><F2> :if &guioptions =~# 'T' <Bar>
     \set guioptions-=T <Bar>
     \set guioptions-=m <bar>
   \else <Bar>
@@ -30,7 +30,7 @@ function! MakePattern(text)
   let pat = substitute(pat, '\_s\+',  '\\_s\\+', 'g')
   return '\\V' . escape(pat, '\"')
 endfunction
-vnoremap <F8> :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hlsearch<CR>
+vnoremap <leader>hf :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hlsearch<CR>
 
 " end of gui settings
 endif

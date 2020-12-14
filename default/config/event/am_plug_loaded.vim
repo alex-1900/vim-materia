@@ -15,6 +15,6 @@ augroup plug_loaded
     \| call ListenerPlugLoadedVista()
     \| call ListenerPlugLoadedFugitive()
     \| call ListenerPlugLoadedUndotree()
-    \| call ListenerPlugLoadedVimPhpNamespace()
+    \| call ListenerPlugLoadedFzf()
     \| call ListenerPlugLoadedOnehalf()
 augroup end

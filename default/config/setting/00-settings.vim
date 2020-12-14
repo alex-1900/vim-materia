@@ -53,18 +53,17 @@ set updatetime=100
 syntax on
 syntax enable
 " default theme
-" set background=dark
-set background=light
+set background=dark
 " default colorscheme
-" colorscheme janah
-" autocmd ColorScheme janah highlight Normal ctermbg=235
-colorscheme PaperColor
-autocmd ColorScheme PaperColor highlight Normal ctermbg=235
+colorscheme janah
 " the maximum number of colors
 if &term == "screen"
   set t_Co=256
 endif
-set guifont=DroidSansMono_Nerd_Font:h10
+set guifont=DroidSansMono_Nerd_Font:h14
+if automemories#util#platform() == g:automemories#platform#win
+  set guifont=DroidSansMono_Nerd_Font:h10
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search
