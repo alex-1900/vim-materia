@@ -14,13 +14,15 @@ let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeAutoCenter=1
 let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeShowFiles = 1
+" avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window
+let g:plug_window = 'noautocmd vertical topleft new'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ListenerPlugLoadedNerdtree(info = {})
   if HasPlug('nerdtree')
-    nnoremap <leader>t :NERDTreeToggle<CR>
+    nnoremap <leader>n :NERDTreeToggle<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   endif
 endfunction

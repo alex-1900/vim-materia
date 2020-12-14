@@ -53,14 +53,18 @@ set updatetime=100
 syntax on
 syntax enable
 " default theme
-set background=dark
+" set background=dark
+set background=light
 " default colorscheme
-colorscheme janah
-autocmd ColorScheme janah highlight Normal ctermbg=235
+" colorscheme janah
+" autocmd ColorScheme janah highlight Normal ctermbg=235
+colorscheme PaperColor
+autocmd ColorScheme PaperColor highlight Normal ctermbg=235
 " the maximum number of colors
 if &term == "screen"
   set t_Co=256
 endif
+set guifont=DroidSansMono_Nerd_Font:h10
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search
@@ -116,6 +120,8 @@ set autoindent
 set smartindent
 " sets how many lines of history VIM has to remember
 set history=500
+" some plugin will use it
+set modifiable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => mouse

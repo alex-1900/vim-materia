@@ -15,7 +15,7 @@ let g:airline#extensions#whitespace#enabled=0
 let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#hunks#coc_git = 1
-let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#branch#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols={}
 endif
@@ -37,8 +37,8 @@ endfunction
 
 function ListenerPlugLoadedAirLineThemes()
   if HasPlug('vim-airline-themes') && HasPlug('vim-airline')
-    let g:airline_theme='deus'
-    call airline#switch_theme('deus')
+    " let g:airline_theme='deus'
+    " call airline#switch_theme('deus')
   endif
 endfunction
 

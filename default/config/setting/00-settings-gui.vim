@@ -30,10 +30,9 @@ set guioptions-=T
 " => colors and fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " no toolbar
-set lines=35
-set columns=120
+set lines=45
+set columns=175
 " set linespace=0
-set guifont=DroidSansMono_Nerd_Font:h15
 
 " end of gui settings
 endif

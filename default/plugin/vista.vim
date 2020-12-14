@@ -7,7 +7,7 @@
 " https://github.com/liuchengxu/vista.vim
 "=============================================================================
 
-let g:vista_sidebar_width = 60
+let g:vista_sidebar_width = 35
 let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#executives = ['coc']
