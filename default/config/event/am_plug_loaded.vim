@@ -16,5 +16,8 @@ augroup plug_loaded
     \| call ListenerPlugLoadedFugitive()
     \| call ListenerPlugLoadedUndotree()
     \| call ListenerPlugLoadedFzf()
+    \| call ListenerPlugLoadedEmmetVim()
+    \| call ListenerPlugLoadedLimelight()
+    \| call ListenerPlugLoadedVimEasyAlign()
     \| call ListenerPlugLoadedOnehalf()
 augroup end
