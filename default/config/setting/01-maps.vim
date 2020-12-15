@@ -12,17 +12,19 @@ inoremap vv <ESC>
 " goto or remove buffer
 nnoremap <C-h> :bp!<CR>
 nnoremap <C-l> :bn!<CR>
-nnoremap <C-d> :bd<CR>
+nnoremap <C-0> :bd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " toggle hlsearch
-nnoremap <F8> :set hlsearch! hlsearch?<CR>
-" pressing meta-f will highlight all occurrences of the current word
-nnoremap <leader>hf :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hlsearch<CR>
+nnoremap <leader>al :set hlsearch! hlsearch?<CR>
+" highlight all occurrences of the current word
+nnoremap <leader>ah :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hlsearch<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => files
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" save current buffer
+inoremap <M-w> <ESC>:w<CR>:startinsert<CR>
+nnoremap<M-w> :w<CR>

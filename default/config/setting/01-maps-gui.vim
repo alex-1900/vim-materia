@@ -11,7 +11,7 @@ if automemories#util#gui()
 " => features
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " toggle menu bar and tabbar
-map <silent> <leader><F2> :if &guioptions =~# 'T' <Bar>
+map <silent> <F6> :if &guioptions =~# 'T' <Bar>
     \set guioptions-=T <Bar>
     \set guioptions-=m <bar>
   \else <Bar>
@@ -22,7 +22,7 @@ map <silent> <leader><F2> :if &guioptions =~# 'T' <Bar>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pressing F8 will highlight all occurrences of the visually selected text
+" highlight all occurrences of the visually selected text
 function! MakePattern(text)
   let pat = escape(a:text, '\')
   let pat = substitute(pat, '\_s\+$', '\\s\\*', '')
@@ -30,7 +30,7 @@ function! MakePattern(text)
   let pat = substitute(pat, '\_s\+',  '\\_s\\+', 'g')
   return '\\V' . escape(pat, '\"')
 endfunction
-vnoremap <leader>hf :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hlsearch<CR>
+vnoremap <leader>ah :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hlsearch<CR>
 
 " end of gui settings
 endif

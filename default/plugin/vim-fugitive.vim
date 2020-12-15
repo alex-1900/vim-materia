@@ -12,6 +12,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function ListenerPlugLoadedFugitive()
   if HasPlug('vim-fugitive')
+    nnoremap <leader>gg :Git --paginate<CR>
     nnoremap <leader>gd :Git diff<CR>
     nnoremap <leader>gl :Git log<CR>
     nnoremap <leader>grl :Git reflog<CR>

@@ -20,17 +20,15 @@ let g:fzf_buffers_jump = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function ListenerPlugLoadedFzf()
   if HasPlug('fzf.vim') && HasPlug('fzf')
-    nnoremap <leader><tab> <plug>(fzf-maps-n)
+    nnoremap <leader>fm <plug>(fzf-maps-n)
     " Files (runs $FZF_DEFAULT_COMMAND if defined)
-    nnoremap <leader>sf :Files<CR>
+    nnoremap <leader>ff :Files<CR>
     " Git files (git status)
-    nnoremap <leader>sg :GFiles?<CR>
+    nnoremap <leader>fg :GFiles?<CR>
     " Open buffers
-    nnoremap <leader>sb :Buffers<CR>
+    nnoremap <leader>fb :Buffers<CR>
     " ag search result (ALT-A to select all, ALT-D to deselect all)
-    nnoremap <leader>sa :Ag<CR>
-    " Git commits (requires fugitive.vim)
-    nnoremap <leader>sc :Commits<CR>
+    nnoremap <leader>fa :Ag<CR>
   endif
 endfunction
 
@@ -38,7 +36,7 @@ endfunction
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! PlugOptionDoFzf(info = {})
-  fzf#install()
+  call fzf#install()
   call ListenerPlugLoadedFzf()
 endfunction
 

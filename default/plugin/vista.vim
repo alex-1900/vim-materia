@@ -18,6 +18,7 @@ let g:vista_executive_for = {
 function! ListenerPlugLoadedVista()
   if HasPlug('vista.vim')
     nnoremap <leader>v :Vista!!<CR>
+    nnoremap <leader>fv :Vista finder<CR>
   endif
 endfunction
 

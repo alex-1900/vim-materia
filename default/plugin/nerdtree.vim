@@ -22,7 +22,7 @@ let g:plug_window = 'noautocmd vertical topleft new'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ListenerPlugLoadedNerdtree(info = {})
   if HasPlug('nerdtree')
-    nnoremap <leader>b :NERDTreeToggle<CR>
+    nnoremap <leader>n :NERDTreeToggle<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   endif
 endfunction

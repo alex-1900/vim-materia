@@ -9,7 +9,7 @@
 
 let g:gitgutter_max_signs = -1
 highlight! link SignColumn LineNr
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+" nmap ]h <Plug>(GitGutterNextHunk)
+" nmap [h <Plug>(GitGutterPrevHunk)
 
 Plug 'airblade/vim-gitgutter'

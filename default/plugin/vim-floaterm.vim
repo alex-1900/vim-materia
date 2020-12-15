@@ -8,8 +8,8 @@
 "=============================================================================
 
 let g:floaterm_keymap_new = '<Leader>tn'
-let g:floaterm_keymap_prev = '<Leader>fh'
-let g:floaterm_keymap_next = '<Leader>fl'
+let g:floaterm_keymap_prev = '<Leader>th'
+let g:floaterm_keymap_next = '<Leader>tl'
 let g:floaterm_keymap_toggle = '<leader>tt'
 
 tnoremap <silent> <leader>tk <C-\><C-n>:FloatermKill<CR>
