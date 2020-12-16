@@ -4,7 +4,7 @@
 " License: MIT license
 "=============================================================================
 
-if automemories#util#gui()
+if automemories#platform#gui()
 " begin of gui settings
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

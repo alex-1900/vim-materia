@@ -46,6 +46,17 @@ set bsdir=buffer
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 set updatetime=100
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => sessions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" If you don't want help windows to be restored:
+set sessionoptions-=help
+" Don't persist options and mappings because it can corrupt sessions.
+set sessionoptions-=options
+set sessionoptions-=blank
+set sessionoptions+=tabpages
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => colors and fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -61,7 +72,7 @@ if &term == "screen"
   set t_Co=256
 endif
 set guifont=DroidSansMono_Nerd_Font:h14
-if automemories#util#platform() == g:automemories#platform#win
+if automemories#platform#is_windows()
   set guifont=DroidSansMono_Nerd_Font:h10
 endif
 

@@ -9,7 +9,7 @@
 
 let g:webdevicons_enable = 1
 
-if !automemories#util#gui()
+if !automemories#platform#gui()
   let g:webdevicons_enable = 0
 endif
 

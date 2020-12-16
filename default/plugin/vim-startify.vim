@@ -7,7 +7,7 @@
 " https://github.com/mhinz/vim-startify
 "=============================================================================
 
-if !automemories#util#gui()
+if !automemories#platform#gui()
   let g:webdevicons_enable_startify = 0
 endif
 let g:startify_change_to_vcs_root = 1

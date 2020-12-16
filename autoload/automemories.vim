@@ -18,9 +18,7 @@ let s:envs = {}
 function! automemories#init(homepath) abort
   " global variables
   let g:automemories#path#home = a:homepath
-
   let g:automemories#path#default = g:automemories#path#home . '/default'
-
   let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
 
   " load system env
@@ -37,8 +35,8 @@ endfunction
 
 function! automemories#begin() abort
   " load configs
-  call automemories#util#loaddir(g:automemories#path#default . '/setting')
-  call automemories#util#loaddir(g:automemories#path#default . '/function')
+  call s:loaddir(g:automemories#path#default . '/setting')
+  call s:loaddir(g:automemories#path#default . '/function')
 endfunction
 
 " load plugs
@@ -51,7 +49,7 @@ function! automemories#loadplugs() abort
   " Specify a directory for plugins
   call plug#begin(g:automemories#path#bundles)
   " load plug configures
-  call automemories#util#loaddir(g:automemories#path#default . '/plugin')
+  call s:loaddir(g:automemories#path#default . '/plugin')
   " Initialize plugin system
   call plug#end()
 endfunction
@@ -59,7 +57,7 @@ endfunction
 " end of loading
 function! automemories#end() abort
   " tragger event listeners
-  call automemories#util#loaddir(g:automemories#path#default . '/event')
+  call s:loaddir(g:automemories#path#default . '/event')
   " disptach events
   doautocmd User AutomemoriesPlugLoaded
 endfunction
@@ -79,3 +77,10 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => private
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" load all vim files from dir
+function! s:loaddir(dirpath)
+  for path in split(glob(a:dirpath . '/*.vim'), '\n')
+    execute 'source' path
+  endfor
+endfunction

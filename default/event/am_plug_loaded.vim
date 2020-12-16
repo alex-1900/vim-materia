@@ -19,6 +19,5 @@ augroup am_plug_loaded
     \| call ListenerPlugLoadedEmmetVim()
     \| call ListenerPlugLoadedLimelight()
     \| call ListenerPlugLoadedVimEasyAlign()
-    \| call ListenerPlugLoadVimSession()
     \| call ListenerPlugLoadedOnehalf()
 augroup end

@@ -17,7 +17,7 @@ autocmd FileType scss setl iskeyword+=@-@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if automemories#util#gui()
+if automemories#platform#gui()
 " begin of gui settings
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
