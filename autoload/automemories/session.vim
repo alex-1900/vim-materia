@@ -2,6 +2,7 @@
 " FILE: session.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
+" https://github.com/xolox/vim-session
 " https://github.com/tpope/vim-obsession/blob/master/plugin/obsession.vim
 "=============================================================================
 
