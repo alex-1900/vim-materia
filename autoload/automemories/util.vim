@@ -15,9 +15,9 @@ function! automemories#util#loaddir(dirpath)
   endfor
 endfunction
 
-const g:automemories#platform#win = 1
-const g:automemories#platform#mac = 2
-const g:automemories#platform#linux = 3
+let g:automemories#platform#win = 1
+let g:automemories#platform#mac = 2
+let g:automemories#platform#linux = 3
 
 function! automemories#util#platform()
   if has('win32') || has('win64') || has('win95') || has('win16')

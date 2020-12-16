@@ -17,12 +17,14 @@ let s:envs = {}
 
 function! automemories#init(homepath) abort
   " global variables
-  const g:automemories#path#home = a:homepath
+  let g:automemories#path#home = a:homepath
 
-  const g:automemories#path#bundles = g:automemories#path#home . '/bundles'
+  let g:automemories#path#default = g:automemories#path#home . '/default'
+
+  let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
 
   " load system env
-  const s:env_file = g:automemories#path#home . '/.env'
+  let s:env_file = g:automemories#path#home . '/.env'
   if filereadable(s:env_file)
     let s:envs = automemories#util#dotenv#load(s:env_file)
   endif
@@ -35,8 +37,8 @@ endfunction
 
 function! automemories#begin() abort
   " load configs
-  call automemories#util#loaddir(g:automemories#path#home . '/default/config/setting')
-  call automemories#util#loaddir(g:automemories#path#home . '/default/config/function')
+  call automemories#util#loaddir(g:automemories#path#default . '/setting')
+  call automemories#util#loaddir(g:automemories#path#default . '/function')
 endfunction
 
 " load plugs
@@ -49,7 +51,7 @@ function! automemories#loadplugs() abort
   " Specify a directory for plugins
   call plug#begin(g:automemories#path#bundles)
   " load plug configures
-  call automemories#util#loaddir(g:automemories#path#home . '/default/plugin')
+  call automemories#util#loaddir(g:automemories#path#default . '/plugin')
   " Initialize plugin system
   call plug#end()
 endfunction
@@ -57,7 +59,7 @@ endfunction
 " end of loading
 function! automemories#end() abort
   " tragger event listeners
-  call automemories#util#loaddir(g:automemories#path#home . '/default/config/event')
+  call automemories#util#loaddir(g:automemories#path#default . '/event')
   " disptach events
   doautocmd User AutomemoriesPlugLoaded
 endfunction
@@ -71,7 +73,7 @@ function! automemories#getenv(key) abort
 endfunction
 
 function! automemories#homepath(path = '') abort
-  return g:automemories#path#home . path
+  return g:automemories#path#home . a:path
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

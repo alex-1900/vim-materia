@@ -23,5 +23,3 @@ function! ListenerPlugLoadedVista()
 endfunction
 
 Plug 'liuchengxu/vista.vim'
-
-" autocmd User coc.nvim call ListenerPlugLoadedVista()

@@ -5,3 +5,4 @@
 .netrwhist
 node_modules
 /.undodir
+/sessions

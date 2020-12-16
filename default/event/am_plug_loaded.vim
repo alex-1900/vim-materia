@@ -1,10 +1,10 @@
 "=============================================================================
-" FILE: plug_loaded.vim
+" FILE: am_plug_loaded.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "=============================================================================
 
-augroup plug_loaded
+augroup am_plug_loaded
   autocmd!
   autocmd User AutomemoriesPlugLoaded
     \  call ListenerLoadedPlugStartify()
@@ -19,5 +19,6 @@ augroup plug_loaded
     \| call ListenerPlugLoadedEmmetVim()
     \| call ListenerPlugLoadedLimelight()
     \| call ListenerPlugLoadedVimEasyAlign()
+    \| call ListenerPlugLoadVimSession()
     \| call ListenerPlugLoadedOnehalf()
 augroup end
