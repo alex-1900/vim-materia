@@ -42,3 +42,5 @@ endfunction
 
 Plug 'junegunn/fzf', { 'do': function('PlugOptionDoFzf') }
 Plug 'junegunn/fzf.vim'
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedFzf')

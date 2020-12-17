@@ -37,3 +37,5 @@ endfunction
 
 Plug 'mattn/webapi-vim'
 \| Plug 'mattn/emmet-vim', { 'do': function('PlugOptionDoEmmetVim') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedEmmetVim')

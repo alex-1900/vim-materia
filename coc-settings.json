@@ -2,5 +2,11 @@
 {
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.source.around.firstMatch": false,
-    "coc.source.buffer.firstMatch": false
+    "coc.source.buffer.firstMatch": false,
+    "coc.preferences.rootPatterns": [ "composer.json", "wp-content", ".git" ],
+    "coc.source.buffer.enable": true,
+    "coc.source.around.enable": false,
+    "coc.source.tag.enable": false,
+    "coc.preferences.jumpCommand": "tabe",
+    "coc.preferences.colorSupport": true
 }

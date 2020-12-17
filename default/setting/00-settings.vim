@@ -18,6 +18,8 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set ruler
 set number
+set relativenumber
+set numberwidth=5
 " always show statusline
 set laststatus=2
 " don't redraw while executing macros
@@ -106,7 +108,7 @@ set autoread
 " => command line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cmdheight=1
-set shortmess=a
+set shortmess=at
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => edit

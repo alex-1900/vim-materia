@@ -31,9 +31,10 @@ endfunction
 
 function! automemories#session#save_custom(name)
   if !isdirectory(s:session_custom_directory)
-    mkdir(s:session_custom_directory, 'p')
+    call mkdir(s:session_custom_directory, 'p')
   endif
-  execute 'mksession!' s:session_custom(s:name)
+  execute 'mksession!' s:session_custom(a:name)
+  call automemories#dispatch('AutomemoriesSessionChangeed')
 endfunction
 
 function! automemories#session#load_hash(name)
@@ -44,13 +45,23 @@ function! automemories#session#load_custom(name)
   call automemories#session#load(s:session_custom(a:name))
 endfunction
 
+function! automemories#session#delete_custom(name)
+  let s:filename = s:session_custom(a:name)
+  if filereadable(s:filename)
+    setlocal modifiable
+    call delete(s:filename)
+    call automemories#dispatch('AutomemoriesSessionChangeed')
+    call automemories#dispatch('AutomemoriesSessionDeleted')
+  endif
+endfunction
+
 function s:session_hash(name)
   let s:filename = md5#md5(a:name)
   return s:session_hash_directory . '/' . s:filename . g:automemories_session_extension
 endfunction
 
 function s:session_custom(name)
-  return s:session_custom_directory . '/' . a:name . 'g:automemories_session_extension
+  return s:session_custom_directory . '/' . a:name . g:automemories_session_extension
 endfunction
 
 function! automemories#session#get_hash_filepath(name)
@@ -70,9 +81,7 @@ function! automemories#session#get_custom_filepath(name)
 endfunction
 
 function! automemories#session#load(name)
-  if !filereadable(a:name)
-    echom 'session file not found!'
-  else
+  if filereadable(a:name)
     execute 'source' a:name
     if bufexists(1)
       for l in range(1, bufnr('$'))

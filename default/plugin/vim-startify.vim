@@ -12,7 +12,7 @@ if !automemories#platform#gui()
 endif
 let g:startify_change_to_vcs_root = 1
 " sessions path
-let g:startify_session_dir = automemories#homepath('/sessions')
+let g:startify_session_dir = automemories#homepath('/sessions/custom')
 
 let g:startify_lists = [
   \ { 'type': 'files',     'header': ['   Files']            },
@@ -37,7 +37,7 @@ function! ListenerLoadedPlugStartify()
         \   Startify |
         \ endif
 
-    autocmd BufEnter *
+      autocmd BufEnter *
         \ if !exists('t:startify_new_tab') && empty(expand('%')) && !exists('t:goyo_master') | 
         \   let t:startify_new_tab = 1 |
         \   Startify |
@@ -51,3 +51,5 @@ function! PlugOptionDoStartify(info = {})
 endfunction
 
 Plug 'mhinz/vim-startify', { 'do': function('PlugOptionDoStartify') }
+
+call AutocmdAmPlugLoaded('ListenerLoadedPlugStartify')

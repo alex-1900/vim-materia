@@ -22,4 +22,10 @@ function! ListenerPlugLoadedVista()
   endif
 endfunction
 
-Plug 'liuchengxu/vista.vim'
+function! PlugOptionDoVista(info = {})
+  call ListenerPlugLoadedVista()
+endfunction
+
+Plug 'liuchengxu/vista.vim', { 'do': function('PlugOptionDoVista') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedVista')

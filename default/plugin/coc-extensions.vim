@@ -14,6 +14,9 @@
 " https://github.com/neoclide/coc-git
 " https://github.com/iamcco/coc-vimlsp
 " https://github.com/neoclide/coc-python
+"
+" Intelephense autoindex: `:CocCommand intelephense.index.workspace`
+" https://github.com/marlonfan/coc-phpls/issues/46
 "=============================================================================
 
 Plug 'marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile' }

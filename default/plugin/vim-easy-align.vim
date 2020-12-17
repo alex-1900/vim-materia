@@ -27,3 +27,5 @@ function! PlugOptionDoVimEasyAlign(info = {})
 endfunction
 
 Plug 'junegunn/vim-easy-align', { 'do': function('PlugOptionDoVimEasyAlign') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedVimEasyAlign')

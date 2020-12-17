@@ -1,10 +1,14 @@
 "=============================================================================
-" FILE: webapi-vim.vim
+" FILE: blamer.nvim.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" An Interface to WEB APIs.
-" https://github.com/mattn/webapi-vim
+" A git blame plugin for (neo)vim inspired by VS Code's GitLens plugin.
+" https://github.com/APZelos/blamer.nvim
 "=============================================================================
 
-Plug 'mattn/webapi-vim'
+highlight Blamer guifg=lightgrey
+
+let g:blamer_enabled = 1
+
+Plug 'APZelos/blamer.nvim'

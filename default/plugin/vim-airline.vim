@@ -55,3 +55,6 @@ endfunction
 
 Plug 'vim-airline/vim-airline-themes', { 'do': function('PlugOptionDoAirlineThemes') }
 Plug 'vim-airline/vim-airline', { 'do': function('PlugOptionDoAirline') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedAirLineThemes')
+call AutocmdAmPlugLoaded('ListenerPlugLoadedAirline')

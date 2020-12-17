@@ -46,3 +46,5 @@ function! PlugOptionDoLimelight(info = {})
 endfunction
 
 Plug 'junegunn/limelight.vim', { 'do': function('PlugOptionDoLimelight') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedLimelight')

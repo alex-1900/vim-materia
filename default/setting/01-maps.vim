@@ -24,14 +24,6 @@ nnoremap <leader>ww <C-w>w
 nnoremap <leader>wq :close<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => search
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" toggle hlsearch
-nnoremap <leader>al :set hlsearch! hlsearch?<CR>
-" highlight all occurrences of the current word
-nnoremap <leader>ah :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hlsearch<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => files
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " save current buffer

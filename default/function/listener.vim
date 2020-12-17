@@ -4,12 +4,12 @@
 " License: MIT license
 "=============================================================================
 
-function! ListenerSessionLoadPre()
+function! ListenerSessionLoad()
   " Load session for current path.
   call automemories#session#load_hash(getcwd())
 endfunction
 
-function! ListenerSessionSavePre()
+function! ListenerSessionSave()
   " Make session for current path.
   call automemories#session#save_hash(getcwd())
   echom 'Session saved.'

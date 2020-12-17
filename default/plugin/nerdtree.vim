@@ -35,3 +35,5 @@ function! PlugOptionDoNerdtree(info = {})
 endfunction
 
 Plug 'preservim/nerdtree', { 'do': function('PlugOptionDoNerdtree') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedNerdtree')

@@ -45,7 +45,9 @@ function! ListenerPlugLoadedCoc()
   " Resume latest coc list.
   nnoremap <silent><nowait> <space>cp  :<C-u>CocListResume<CR>
 
+  " let g:coc_global_extensions = ['coc-phpls', 'coc-git', 'coc-html', 'coc-css', 'coc-vimlsp', 'coc-python']
 
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -90,3 +92,5 @@ Plug 'neoclide/coc.nvim', {
   \ 'branch': 'release',
   \ 'do': function('PlugOptionDoCocNvim')
 \ }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedCoc')

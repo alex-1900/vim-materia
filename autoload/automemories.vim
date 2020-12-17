@@ -37,6 +37,8 @@ function! automemories#begin() abort
   " load configs
   call s:loaddir(g:automemories#path#default . '/setting')
   call s:loaddir(g:automemories#path#default . '/function')
+  " dispatch event for automemories starting
+  call automemories#dispatch('AutomemoriesStarting')
 endfunction
 
 " load plugs
@@ -52,14 +54,12 @@ function! automemories#loadplugs() abort
   call s:loaddir(g:automemories#path#default . '/plugin')
   " Initialize plugin system
   call plug#end()
+  " dispatch event for plugs loaded
+  call automemories#dispatch('AutomemoriesPlugLoaded')
 endfunction
 
 " end of loading
 function! automemories#end() abort
-  " tragger event listeners
-  call s:loaddir(g:automemories#path#default . '/event')
-  " disptach events
-  doautocmd User AutomemoriesPlugLoaded
 endfunction
 
 " get system env from .env file
@@ -83,4 +83,15 @@ function! s:loaddir(dirpath)
   for path in split(glob(a:dirpath . '/*.vim'), '\n')
     execute 'source' path
   endfor
+endfunction
+
+" dispatch user event
+function! automemories#dispatch(eventname)
+  augroup am_mock
+    execute 'autocmd User' a:eventname 'call s:emptyFunc()'
+  augroup end
+  execute 'doautocmd User' a:eventname
+endfunction
+
+function s:emptyFunc()
 endfunction

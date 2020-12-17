@@ -27,3 +27,5 @@ function! PlugOptionDoFugitive(info = {})
 endfunction
 
 Plug 'tpope/vim-fugitive', { 'do': function('PlugOptionDoFugitive') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedFugitive')

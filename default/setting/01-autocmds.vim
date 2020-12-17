@@ -4,31 +4,18 @@
 " License: MIT license
 "=============================================================================
 
-augroup automemories
-autocmd!
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim enter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup am_vim_enter
+  autocmd!
+  autocmd VimEnter * nested call ListenerSessionLoad()
+augroup end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => edit
+" => vim leave pre
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" for scss files
-autocmd FileType scss setl iskeyword+=@-@
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => GUI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if automemories#platform#gui()
-" begin of gui settings
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => features
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Properly disable sound on errors on MacVim
-if has("gui_macvim")
-  autocmd GUIEnter * set vb t_vb=
-endif
-
-" end of gui settings
-endif
-
-augroup EN
+augroup am_vim_leave_pre
+  autocmd!
+  autocmd VimLeavePre * nested call ListenerSessionSave()
+augroup end

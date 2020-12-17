@@ -29,3 +29,5 @@ function! PlugOptionDoUndotree(info = {})
 endfunction
 
 Plug 'mbbill/undotree', { 'do': function('PlugOptionDoUndotree') }
+
+call AutocmdAmPlugLoaded('ListenerPlugLoadedUndotree')
