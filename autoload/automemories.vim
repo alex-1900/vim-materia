@@ -2,6 +2,8 @@
 " FILE: automemories.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
+
+" https://github.com/vim-scripts/L9
 "=============================================================================
 
 if exists('g:automemories_loaded')

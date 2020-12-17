@@ -77,6 +77,8 @@ set guifont=DroidSansMono_Nerd_Font:h14
 if automemories#platform#is_windows()
   set guifont=DroidSansMono_Nerd_Font:h10
 endif
+" highlight the current line
+set cursorline!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search

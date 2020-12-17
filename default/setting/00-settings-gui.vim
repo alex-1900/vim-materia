@@ -31,7 +31,7 @@ set guioptions-=T
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " no toolbar
 set lines=45
-set columns=175
+set columns=160
 " set linespace=0
 
 " end of gui settings

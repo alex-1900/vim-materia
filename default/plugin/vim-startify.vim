@@ -5,6 +5,7 @@
 "
 " This plugin provides a start screen for Vim and Neovim.
 " https://github.com/mhinz/vim-startify
+" https://github.com/dylanaraps/neofetch/blob/master/neofetch
 "=============================================================================
 
 if !automemories#platform#gui()
@@ -13,6 +14,23 @@ endif
 let g:startify_change_to_vcs_root = 1
 " sessions path
 let g:startify_session_dir = automemories#homepath('/sessions/custom')
+
+let g:startify_ascii = [
+\ '                    \',
+\ '         , - ~ ^ ~ - \        /',
+\ "     , '              \\ ' ,  /",
+\ "   ,                   \\   '/",
+\ '  ,                     \  / ,',
+\ ' ,___,                   \/   ,',
+\ ' /   |   _  _  _|_ o     /\   ,',
+\ '|,   |  / |/ |  |  |    /  \  ,',
+\ ' \,_/\_/  |  |_/|_/|_/_/    \,',
+\ "   ,                  /     ,\\",
+\ "     ,               /  , '   \\",
+\ "      ' - , _ _ _ ,  '"
+  \]
+
+let g:startify_custom_header = map(g:startify_ascii, '"     ".v:val')
 
 let g:startify_lists = [
   \ { 'type': 'files',     'header': ['   Files']            },

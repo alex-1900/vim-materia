@@ -37,8 +37,8 @@ endfunction
 
 function ListenerPlugLoadedAirLineThemes()
   if HasPlug('vim-airline-themes') && HasPlug('vim-airline')
-    " let g:airline_theme='deus'
-    " call airline#switch_theme('deus')
+    let g:airline_theme='deus'
+    call airline#switch_theme('deus')
   endif
 endfunction
 

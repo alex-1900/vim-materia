@@ -10,9 +10,9 @@
 inoremap vv <ESC>
 
 " goto or remove buffer
-nnoremap <C-h> :bp!<CR>
-nnoremap <C-l> :bn!<CR>
-nnoremap <C-0> :bd<CR>
+nnoremap <C-[> :bp!<CR>
+nnoremap <C-]> :bn!<CR>
+nnoremap <C-x> :bd<CR>
 " move to another window
 nnoremap <leader>ws :sp<CR>
 nnoremap <leader>wv :vsp<CR>

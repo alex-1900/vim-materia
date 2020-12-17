@@ -25,6 +25,6 @@ function! PlugOptionDoOnehalf(info = {})
   call ListenerPlugLoadedOnehalf()
 endfunction
 
-Plug 'sonph/onehalf', { 'rtp': 'vim', 'do': function('PlugOptionDoOnehalf') }
+" Plug 'sonph/onehalf', { 'rtp': 'vim', 'do': function('PlugOptionDoOnehalf') }
 
-call AutocmdAmPlugLoaded('ListenerPlugLoadedOnehalf')
+" call AutocmdAmPlugLoaded('ListenerPlugLoadedOnehalf')
