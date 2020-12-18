@@ -44,10 +44,10 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
 set bsdir=buffer
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 set updatetime=100
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => sessions
@@ -73,9 +73,17 @@ colorscheme janah
 if &term == "screen"
   set t_Co=256
 endif
-set guifont=DroidSansMono_Nerd_Font:h14
-if automemories#platform#is_windows()
-  set guifont=DroidSansMono_Nerd_Font:h10
+
+if automemories#platform#nvim()
+  set guifont=DroidSansMono\ Nerd\ Font:h14
+  if automemories#platform#is_windows()
+    set guifont=DroidSansMono\ Nerd\ Font:h10
+  endif
+else
+  set guifont=DroidSansMono_Nerd_Font:h14
+  if automemories#platform#is_windows()
+    set guifont=DroidSansMono_Nerd_Font:h10
+  endif
 endif
 " highlight the current line
 set cursorline!
