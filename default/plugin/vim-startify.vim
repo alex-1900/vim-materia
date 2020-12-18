@@ -64,7 +64,7 @@ function! ListenerLoadedPlugStartify()
   endif
 endfunction
 
-function! PlugOptionDoStartify(info = {})
+function! PlugOptionDoStartify(...)
   call ListenerLoadedPlugStartify() | q | Startify
 endfunction
 

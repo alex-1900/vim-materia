@@ -72,8 +72,8 @@ function! automemories#getenv(key) abort
   return 0
 endfunction
 
-function! automemories#homepath(path = '') abort
-  return g:automemories#path#home . a:path
+function! automemories#homepath(...) abort
+  return g:automemories#path#home . get(a:, 'path', '')
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

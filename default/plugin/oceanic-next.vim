@@ -23,7 +23,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoOceanicNext(info = {})
+function! PlugOptionDoOceanicNext(...)
   call ListenerPlugLoadedOceanicNext()
 endfunction
 

@@ -73,7 +73,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoCocNvim(info = {})
+function! PlugOptionDoCocNvim(...)
   call ListenerPlugLoadedCoc()
 endfunction
 

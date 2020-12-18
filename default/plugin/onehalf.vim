@@ -21,7 +21,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoOnehalf(info = {})
+function! PlugOptionDoOnehalf(...)
   call ListenerPlugLoadedOnehalf()
 endfunction
 

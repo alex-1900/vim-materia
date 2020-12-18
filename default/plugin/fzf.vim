@@ -35,7 +35,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoFzf(info = {})
+function! PlugOptionDoFzf(...)
   call fzf#install()
   call ListenerPlugLoadedFzf()
 endfunction

@@ -22,7 +22,7 @@ function! ListenerPlugLoadedVista()
   endif
 endfunction
 
-function! PlugOptionDoVista(info = {})
+function! PlugOptionDoVista(...)
   call ListenerPlugLoadedVista()
 endfunction
 

@@ -49,11 +49,11 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoAirlineThemes(info = {})
+function! PlugOptionDoAirlineThemes(...)
   call ListenerPlugLoadedAirLineThemes()
 endfunction
 
-function! PlugOptionDoAirline(info = {})
+function! PlugOptionDoAirline(...)
   call ListenerPlugLoadedAirline()
 endfunction
 

@@ -41,7 +41,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoLimelight(info = {})
+function! PlugOptionDoLimelight(...)
   call ListenerPlugLoadedLimelight()
 endfunction
 

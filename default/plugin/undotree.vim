@@ -24,7 +24,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoUndotree(info = {})
+function! PlugOptionDoUndotree(...)
   call ListenerPlugLoadedUndotree()
 endfunction
 

@@ -22,7 +22,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoFugitive(info = {})
+function! PlugOptionDoFugitive(...)
   call ListenerPlugLoadedFugitive()
 endfunction
 

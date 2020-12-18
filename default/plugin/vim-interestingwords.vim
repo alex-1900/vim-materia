@@ -26,7 +26,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoInterestingwords(info = {})
+function! PlugOptionDoInterestingwords(...)
   call ListenerPlugLoadedInterestingwords()
 endfunction
 

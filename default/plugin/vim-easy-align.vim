@@ -22,7 +22,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoVimEasyAlign(info = {})
+function! PlugOptionDoVimEasyAlign(...)
   call ListenerPlugLoadedVimEasyAlign()
 endfunction
 

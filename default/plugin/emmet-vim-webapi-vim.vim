@@ -31,7 +31,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => trigger
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PlugOptionDoEmmetVim(info = {})
+function! PlugOptionDoEmmetVim(...)
   call ListenerPlugLoadedEmmetVim()
 endfunction
 
