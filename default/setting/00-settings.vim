@@ -79,6 +79,7 @@ if automemories#platform#is_windows()
 endif
 " highlight the current line
 set cursorline!
+set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search
