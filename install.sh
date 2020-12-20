@@ -20,7 +20,7 @@ fi
 
 # make vimfile dir and fetch automemories
 echo "Begin fetching automemories..."
-git clone --depth=1 --branch stable https://github.com/speed-sonic/automemories-vim.git "$install_path"
+git clone --depth=1 --branch master https://github.com/speed-sonic/vim-automemories.git "$install_path"
 echo "Done."
 echo ""
 
