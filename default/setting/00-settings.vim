@@ -74,14 +74,14 @@ if &term == "screen"
   set t_Co=256
 endif
 
-if automemories#platform#nvim()
+if has('nvim')
   set guifont=DroidSansMono\ Nerd\ Font:h14
-  if automemories#platform#is_windows()
+  if automemories#util#is_windows()
     set guifont=DroidSansMono\ Nerd\ Font:h10
   endif
 else
   set guifont=DroidSansMono_Nerd_Font:h14
-  if automemories#platform#is_windows()
+  if automemories#util#is_windows()
     set guifont=DroidSansMono_Nerd_Font:h10
   endif
 endif

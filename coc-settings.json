@@ -7,6 +7,19 @@
     "coc.source.buffer.enable": true,
     "coc.source.around.enable": false,
     "coc.source.tag.enable": false,
-    "coc.preferences.jumpCommand": "tabe",
-    "coc.preferences.colorSupport": true
+    "coc.preferences.colorSupport": true,
+    "intelephense.licenceKey": "00A06Y6SRSREAD4",
+    "eslint.packageManager": "yarn",
+    "eslint.nodePath": ".yarn/sdks",
+    "tsserver.tsdk": ".yarn/sdks/typescript/lib",
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        }
+    }
 }

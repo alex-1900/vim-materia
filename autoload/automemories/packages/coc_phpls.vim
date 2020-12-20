@@ -1,38 +1,36 @@
 "=============================================================================
-" FILE: 00-settings-gui.vim
+" FILE: coc_phpls.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
+"
+" https://github.com/marlonfan/coc-phpls
 "=============================================================================
 
-if automemories#util#is_gui()
-" begin of gui settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! automemories#packages#coc_phpls#options()
+
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => basic
+" => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" visually selecting text automatically places the text in the clipboard (register *) 
-set guioptions+=a
+function! automemories#packages#coc_phpls#config()
+
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => features
+" => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" close error bells
-set noerrorbells
-set novisualbell
-set vb t_vb=
-au GUIEnter * set t_vb=
-" remove menu bar
-set guioptions-=m
-" remove toolbar
-set guioptions-=T
+function! automemories#packages#coc_phpls#listener()
+
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => colors and fonts
+" => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" no toolbar
-set lines=45
-set columns=160
-" set linespace=0
+function! automemories#packages#coc_phpls#install(install)
+  call a:install('marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile' })
 
-" end of gui settings
-endif
+endfunction

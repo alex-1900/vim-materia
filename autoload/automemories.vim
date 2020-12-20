@@ -2,9 +2,8 @@
 " FILE: automemories.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
-
-" https://github.com/vim-scripts/L9
 "=============================================================================
+scriptencoding utf-8
 
 if exists('g:automemories_loaded')
   finish
@@ -14,20 +13,15 @@ let g:automemories_loaded = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => public
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let s:envs = {}
-
 function! automemories#init(homepath) abort
   " global variables
   let g:automemories#path#home = a:homepath
   let g:automemories#path#default = g:automemories#path#home . '/default'
   let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
 
-  " load system env
-  let s:env_file = g:automemories#path#home . '/.env'
-  if filereadable(s:env_file)
-    let s:envs = automemories#util#dotenv#load(s:env_file)
-  endif
+  " load config from default json file
+  let s:json_parser = automemories#dependence#get('coding#json')
+  let g:automemories#config = s:json_parser.json_decode(join(readfile(g:automemories#path#home . '/config.json'), "\n"))
 
   " enter the life cycle
   call automemories#begin()
@@ -39,21 +33,35 @@ function! automemories#begin() abort
   " load configs
   call s:loaddir(g:automemories#path#default . '/setting')
   call s:loaddir(g:automemories#path#default . '/function')
-  " dispatch event for automemories starting
-  call automemories#dispatch('AutomemoriesStarting')
 endfunction
 
 " load plugs
 function! automemories#loadplugs() abort
-  " Run PlugInstall if there are missing plugins
-  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \| PlugInstall
-  \| endif
+  call s:refresh_plugs()
 
+  let s:packages = {}
+  function! AutomemoriesPlugInstall(repo, ...)
+    if !has_key(s:packages, a:repo)
+      let s:opt = get(a:, 1, {})
+      call plug#(a:repo, s:opt)
+      let s:packages[a:repo] = 1
+    endif
+  endfunction
+
+  let s:modules = automemories#modules#get()
   " Specify a directory for plugins
   call plug#begin(g:automemories#path#bundles)
   " load plug configures
-  call s:loaddir(g:automemories#path#default . '/plugin')
+  for s:name in g:automemories#config.modules
+    if has_key(s:modules, s:name)
+      for s:package in s:modules[s:name]
+        execute 'call automemories#packages#'.s:package.'#options()'
+        execute 'call automemories#packages#'.s:package.'#config()'
+        execute 'call automemories#packages#'.s:package."#install(function('AutomemoriesPlugInstall'))"
+        execute 'autocmd User AutomemoriesPlugLoaded nested call automemories#packages#'.s:package.'#listener()'
+      endfor
+    endif
+  endfor
   " Initialize plugin system
   call plug#end()
   " dispatch event for plugs loaded
@@ -64,16 +72,15 @@ endfunction
 function! automemories#end() abort
 endfunction
 
-" get system env from .env file
-function! automemories#getenv(key) abort
-  if has_key(s:envs, a:key)
-    return s:envs[a:key]
-  endif
-  return 0
-endfunction
-
 function! automemories#homepath(...) abort
   return g:automemories#path#home . get(a:, 1, '')
+endfunction
+
+function! automemories#has_plug(name)
+  if exists('g:loaded_plug')
+    return isdirectory(g:automemories#path#bundles . '/' . a:name)
+  endif
+  return 0
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -96,4 +103,11 @@ function! automemories#dispatch(eventname)
 endfunction
 
 function s:emptyFunc()
+endfunction
+
+function! s:refresh_plugs()
+  " Run PlugInstall if there are missing plugins
+  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \| PlugInstall
+  \| endif
 endfunction

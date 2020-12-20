@@ -1,0 +1,27 @@
+{
+  "modules": [
+    "file.explorer",
+    "file.search",
+    "decoration.home",
+    "decoration.airline",
+    "decoration.theme",
+    "code.completion",
+    "code.check",
+    "code.comment",
+    "code.convenience",
+    "code.format",
+    "code.search",
+    "aux.panel",
+    "aux.git",
+    "aux.terminal",
+    "lang.html",
+    "lang.php",
+    "lang.vim",
+    "lang.javascript",
+    "lang.golang",
+    "lang.markdown"
+  ],
+  "language": {
+
+  }
+}
