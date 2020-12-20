@@ -8,6 +8,7 @@ function! automemories#core#autocmds#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => vim enter
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " " call automemories#session#load_hash(getcwd())
   " augroup am_vim_enter
   "   autocmd!
   "   autocmd VimEnter * nested call ListenerSessionLoad()

@@ -10,27 +10,27 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#frame#____#options()
+function! automemories#modules#____#____#options()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#frame#____#config()
+function! automemories#modules#____#____#config()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#frame#____#listener()
+function! automemories#modules#____#____#listener()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#frame#____#install(install)
+function! automemories#modules#____#____#install(install)
   call a:install('____')
 endfunction

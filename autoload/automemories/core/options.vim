@@ -4,13 +4,16 @@
 " License: MIT license
 "=============================================================================
 
-function! automemories#core#settings#get()
+function! automemories#core#options#get()
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => basic
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
-  let mapleader = ";"
+  let g:mapleader = '\'
+  if exists('g:automemories#config.default.key_leader')
+    let g:mapleader = g:automemories#config.default.key_leader
+  endif
   set nocompatible
   set encoding=utf-8
   set termencoding=utf-8

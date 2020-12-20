@@ -16,10 +16,9 @@ let g:automemories_loaded = 1
 function! automemories#init(homepath) abort
   " global variables
   let g:automemories#path#home = a:homepath
-  let g:automemories#path#default = g:automemories#path#home . '/default'
   let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
 
-  " load config from default json file
+  " load config from config json file
   let s:json_parser = automemories#dependence#get('coding#json')
   let g:automemories#config = s:json_parser.json_decode(join(readfile(g:automemories#path#home . '/config.json'), "\n"))
 
@@ -29,13 +28,21 @@ function! automemories#init(homepath) abort
   call automemories#end()
 endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Begin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#begin() abort
   " load configs
-  call s:loaddir(g:automemories#path#default . '/setting')
-  call s:loaddir(g:automemories#path#default . '/function')
+  call automemories#core#options#get()
+  call automemories#core#commands#get()
+  call automemories#core#maps#get()
+  call automemories#core#functions#get()
+  call automemories#core#autocmds#get()
 endfunction
 
-" load plugs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Load plugs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#loadplugs() abort
   call s:refresh_plugs()
 
@@ -68,7 +75,9 @@ function! automemories#loadplugs() abort
   call automemories#dispatch('AutomemoriesPlugLoaded')
 endfunction
 
-" end of loading
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => End
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#end() abort
 endfunction
 

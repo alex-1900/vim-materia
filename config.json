@@ -1,4 +1,7 @@
 {
+  "default": {
+    "key_leader": ";"
+  },
   "modules": [
     "file.explorer",
     "file.search",
