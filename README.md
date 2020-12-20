@@ -1,7 +1,7 @@
 # automemories-vim
 The automemories vim configure
 
-![E96DB16C-1CA9-40AB-B091-6E1E14CE2562](https://user-images.githubusercontent.com/49949411/102719208-bf778a00-4327-11eb-863a-3dbe01216be0.png)
+![1B99064E-6DF3-41E8-9B02-98AC15E932D2](https://user-images.githubusercontent.com/49949411/102719343-82f85e00-4328-11eb-8bde-88151bdc5d0a.png)
 
 ## proxies
 - node/npm
