@@ -1,4 +1,4 @@
-if automemories#util#is_windows()
+if has('win16') || has('win32') || has('win64')
     if has('nvim')
         call automemories#init($HOME . '/AppData/Local/nvim')
     else
