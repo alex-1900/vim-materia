@@ -1,36 +1,37 @@
 "=============================================================================
-" FILE: oceanic_next.vim
+" FILE: editorconfig_vim.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" Oceanic-Next.vim is a neovim theme inspired by Oceanic Next for Sublime.
-" https://github.com/mhartington/oceanic-next
+" This is an EditorConfig plugin for Vim. This plugin can be found on both GitHub and Vim online.
+" https://github.com/editorconfig/editorconfig-vim
+" https://editorconfig.org/
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#options()
+function! automemories#packages#editorconfig_vim#options()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#config()
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+function! automemories#packages#editorconfig_vim#config()
+  let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#listener()
-  " colorscheme OceanicNext
+function! automemories#packages#editorconfig_vim#listener()
+  autocmd FileType gitcommit let b:EditorConfig_disable = 1
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => options
+" => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#install(install)
-  call a:install('mhartington/oceanic-next')
+function! automemories#packages#editorconfig_vim#install(install)
+  call a:install('editorconfig/editorconfig-vim')
 endfunction

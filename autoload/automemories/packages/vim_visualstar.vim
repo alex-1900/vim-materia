@@ -16,7 +16,7 @@ function! automemories#packages#vim_visualstar#options()
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => options
+" => config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#vim_visualstar#config()
 

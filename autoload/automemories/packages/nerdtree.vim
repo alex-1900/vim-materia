@@ -5,6 +5,7 @@
 "
 " The NERDTree is a file system explorer for the Vim editor.
 " https://github.com/preservim/nerdtree
+" https://github.com/PhilRunninger/nerdtree-visual-selection
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -27,13 +28,18 @@ function! automemories#packages#nerdtree#config()
   let g:NERDTreeShowFiles = 1
   " avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window
   let g:plug_window = 'noautocmd vertical topleft new'
+
+  let g:NERDTreeDirArrowExpandable = '▸'
+  let g:NERDTreeDirArrowCollapsible = '▾'
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#nerdtree#listener()
-  nnoremap <silent> <F3> :<C-u>:NERDTreeToggle<CR>
+  nnoremap <silent> <leader>b :NERDTreeToggle<CR>
+  " nnoremap <silent> <leader>bf <C-u>:NERDTreeFind<CR>
+  " nnoremap <silent> <leader>bn <C-u>:NERDTreeFocus<CR>
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -41,4 +47,5 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#nerdtree#install(install)
   call a:install('preservim/nerdtree')
+  call a:install('PhilRunninger/nerdtree-visual-selection')
 endfunction

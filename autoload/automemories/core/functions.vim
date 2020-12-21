@@ -15,6 +15,6 @@ function! automemories#core#functions#get()
 
   " AutomemoriesPlugLoaded handler
   function! AutocmdAmPlugLoaded(func)
-    execute 'autocmd User AutomemoriesPlugLoaded nested call' a:func . '()'
+    autocmd User AutomemoriesPlugLoaded nested call a:fun
   endfunction
 endfunction

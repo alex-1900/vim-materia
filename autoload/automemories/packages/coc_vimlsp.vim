@@ -14,7 +14,7 @@ function! automemories#packages#coc_vimlsp#options()
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => options
+" => config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#coc_vimlsp#config()
 

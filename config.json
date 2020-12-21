@@ -5,6 +5,7 @@
   "modules": [
     "file.explorer",
     "file.search",
+    "file.config",
     "decoration.home",
     "decoration.airline",
     "decoration.theme",
@@ -21,6 +22,7 @@
     "lang.php",
     "lang.vim",
     "lang.javascript",
+    "lang.jsx",
     "lang.golang",
     "lang.markdown"
   ],

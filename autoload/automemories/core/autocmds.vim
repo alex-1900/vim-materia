@@ -21,4 +21,8 @@ function! automemories#core#autocmds#get()
   "   autocmd!
   "   autocmd VimLeavePre * nested call ListenerSessionSave()
   " augroup end
+
+   if exists('g:automemories#config.default.colorscheme')
+    autocmd User AutomemoriesPlugLoaded nested execute 'colorscheme' g:automemories#config.default.colorscheme
+  endif
 endfunction

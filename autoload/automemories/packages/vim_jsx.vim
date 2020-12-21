@@ -1,36 +1,36 @@
 "=============================================================================
-" FILE: oceanic_next.vim
+" FILE: vim_jsx.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" Oceanic-Next.vim is a neovim theme inspired by Oceanic Next for Sublime.
-" https://github.com/mhartington/oceanic-next
+" React JSX syntax highlighting and indenting for vim.
+" https://github.com/mxw/vim-jsx
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#options()
+function! automemories#packages#vim_jsx#options()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => options
+" => config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#config()
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+function! automemories#packages#vim_jsx#config()
+
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#listener()
-  " colorscheme OceanicNext
+function! automemories#packages#vim_jsx#listener()
+
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => options
+" => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#install(install)
-  call a:install('mhartington/oceanic-next')
+function! automemories#packages#vim_jsx#install(install)
+  call a:install('mxw/vim-jsx')
 endfunction

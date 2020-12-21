@@ -1,36 +1,36 @@
 "=============================================================================
-" FILE: oceanic_next.vim
+" FILE: iceberg.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" Oceanic-Next.vim is a neovim theme inspired by Oceanic Next for Sublime.
-" https://github.com/mhartington/oceanic-next
+" 🇦🇶 Bluish color scheme for Vim and Neovim
+" https://github.com/cocopon/iceberg.vim
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#options()
+function! automemories#packages#iceberg#options()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => options
+" => config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#config()
+function! automemories#packages#iceberg#config()
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#listener()
-  " colorscheme OceanicNext
+function! automemories#packages#iceberg#listener()
+
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => options
+" => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#oceanic_next#install(install)
-  call a:install('mhartington/oceanic-next')
+function! automemories#packages#iceberg#install(install)
+  call a:install('cocopon/iceberg.vim')
 endfunction
