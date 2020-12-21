@@ -68,8 +68,9 @@ function! automemories#core#options#get()
   " => colors and fonts
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " enable syntax highlighting
-  syntax on
-  syntax enable
+  if &t_Co > 1
+    syntax enable
+  endif
   " default theme
   set background=dark
   " default colorscheme
