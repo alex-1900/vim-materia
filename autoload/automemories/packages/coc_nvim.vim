@@ -14,7 +14,6 @@
 function! automemories#packages#coc_nvim#options()
   set shortmess+=c
   set updatetime=300
-  set hidden
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

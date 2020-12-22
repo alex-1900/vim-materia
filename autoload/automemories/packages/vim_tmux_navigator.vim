@@ -1,36 +1,36 @@
 "=============================================================================
-" FILE: vim_surround.vim
+" FILE: vim_tmux_navigator.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" The plugin provides mappings to easily delete, change and add such surroundings in pairs.
-" https://github.com/tpope/vim-surround
+" Seamless navigation between tmux panes and vim splits
+" https://github.com/christoomey/vim-tmux-navigator
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#options()
+function! automemories#packages#vim_tmux_navigator#options()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#config()
+function! automemories#packages#vim_tmux_navigator#config()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#listener()
+function! automemories#packages#vim_tmux_navigator#listener()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#install(install)
-  call a:install('tpope/vim-surround')
+function! automemories#packages#vim_tmux_navigator#install(install)
+  call a:install('christoomey/vim-tmux-navigator')
 endfunction

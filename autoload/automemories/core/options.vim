@@ -53,6 +53,7 @@ function! automemories#core#options#get()
   set bsdir=buffer
   set cscopequickfix=s-,c-,d-,i-,t-,e-
   set updatetime=100
+  set conceallevel=0
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => sessions

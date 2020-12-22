@@ -10,14 +10,14 @@
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#coc_json#options()
-
+  set conceallevel=0
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#coc_json#config()
-
+  let g:vim_json_syntax_conceal = 0
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

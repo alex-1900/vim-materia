@@ -1,36 +1,36 @@
 "=============================================================================
-" FILE: vim_surround.vim
+" FILE: vim_json.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" The plugin provides mappings to easily delete, change and add such surroundings in pairs.
-" https://github.com/tpope/vim-surround
+" A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
+" https://github.com/elzr/vim-json
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#options()
-
+function! automemories#packages#vim_json#options()
+  set conceallevel=0
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#config()
-
+function! automemories#packages#vim_json#config()
+  let g:vim_json_syntax_conceal = 0
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#listener()
+function! automemories#packages#vim_json#listener()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#vim_surround#install(install)
-  call a:install('tpope/vim-surround')
+function! automemories#packages#vim_json#install(install)
+  call a:install('elzr/vim-json')
 endfunction

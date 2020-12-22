@@ -9,6 +9,7 @@ let s:modules = {
   \ 'aux.panel': ['vista_vim', 'vim_peekaboo', 'undotree'],
   \ 'aux.terminal': ['vim_floaterm'],
   \ 'aux.view': ['goyo', 'limelight_vim', 'vim_interestingwords'],
+  \ 'aux.tmux': ['vim_tmux_navigator'],
   \ 'code.completion': ['coc_nvim', 'supertab', 'auto_pairs', 'vim_smooth_scroll', 'vim_indentguides'],
   \ 'code.check': ['vim_better_whitespace'],
   \ 'code.comment': ['nerdcommenter'],
@@ -25,10 +26,10 @@ let s:modules = {
   \ 'lang.php': ['coc_nvim', 'coc_phpls', 'coc_html', 'supertab'],
   \ 'lang.vim': ['coc_nvim', 'coc_vimlsp', 'syntastic', 'supertab'],
   \ 'lang.javascript': ['vim_javascript', 'coc_nvim', 'coc_tsserver', 'coc_json', 'supertab'],
-  \ 'lang.jsx': ['vim_javascript', 'vim_jsx', 'coc_nvim', 'coc_tsserver', 'supertab'],
+  \ 'lang.jsx': ['vim_javascript', 'vim_jsx', 'vim_json', 'coc_nvim', 'coc_tsserver', 'supertab'],
   \ 'lang.golang': ['coc_nvim', 'coc_go', 'vim_go', 'supertab'],
   \ 'lang.markdown': ['vim_markdown', 'vim_livedown'],
-  \ 'system.operation': ['nginx', 'coc_nvim', 'coc_yaml', 'coc_json']
+  \ 'system.operation': ['nginx', 'coc_nvim', 'coc_yaml', 'coc_json', 'vim_json']
 \ }
 
 let s:custom_modules = {}
