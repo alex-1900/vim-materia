@@ -39,6 +39,7 @@ endfunction
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#vim_airline#listener()
+  call airline#remove_statusline_func('ModuleAirLineAutoMemoriesAddition')
   call airline#add_statusline_func('ModuleAirLineAutoMemoriesAddition')
 endfunction
 

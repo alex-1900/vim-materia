@@ -1,7 +1,7 @@
 {
   "options": {
     "maps": {
-      "leader": ";"
+      "leader": ""
     },
     "session": {
       "enable": false,
@@ -9,6 +9,8 @@
       "autosave": true
     },
     "undo_persistent": true
+  },
+  "environment": {
   },
   "modules": [
     "file.explorer",

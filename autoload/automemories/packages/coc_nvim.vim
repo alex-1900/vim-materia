@@ -124,9 +124,7 @@ function! automemories#packages#coc_nvim#listener()
   augroup end
 
   " Use K to show documentation in preview window.
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+  nnoremap <silent> KK :call <SID>show_documentation()<CR>
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

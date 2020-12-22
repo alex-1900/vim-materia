@@ -3,6 +3,11 @@ The automemories vim configuration
 
 ![1608634495(1)](https://user-images.githubusercontent.com/49949411/102881131-5dce3180-4487-11eb-8394-eeccdd99fc3b.png)
 
+## First Run
+If you're using vim, link or copy the `init.vim` to `~/.vimrc`
+
+If you want to include all the plugins (more than 50), just open your vim/neovim
+
 ## proxies
 - node/npm
 ```sh

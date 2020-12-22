@@ -13,10 +13,10 @@ let g:automemories_loaded = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => public
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 function! automemories#init(homepath) abort
   " global variables
   let g:automemories#path#home = a:homepath
-  let g:automemories#path#custom = a:homepath . '/custom'
   let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
 
   " load config from config json file
@@ -40,9 +40,11 @@ function! automemories#begin() abort
   call automemories#core#functions#get()
   call automemories#core#autocmds#get()
 
+  call s:process_environments()
+
   " load custom settings
-  if isdirectory(g:automemories#path#custom)
-    call s:loaddir(g:automemories#path#custom)
+  if isdirectory(g:automemories#path#home . '/custom')
+    call s:loaddir(g:automemories#path#home . '/custom')
   endif
 endfunction
 
@@ -50,7 +52,10 @@ endfunction
 " => Load plugs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#loadplugs() abort
-  call s:refresh_plugs()
+  " Run PlugInstall if there are missing plugins
+  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \| PlugInstall
+  \| endif
 
   let s:packages = {}
   function! AutomemoriesPlugInstall(repo, ...)
@@ -135,12 +140,15 @@ function! automemories#dispatch(eventname)
   execute 'doautocmd User' a:eventname
 endfunction
 
-function s:emptyFunc()
+function! s:emptyFunc()
 endfunction
 
-function! s:refresh_plugs()
-  " Run PlugInstall if there are missing plugins
-  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \| PlugInstall
-  \| endif
+" process environments
+function! s:process_environments()
+  if exists('g:automemories#config.environment') &&
+    \ type(g:automemories#config.environment) == type({})
+    for s:env in keys(g:automemories#config.environment)
+      execute 'let $'. s:env . '=' . g:automemories#config.environment[s:env]
+    endfor
+  endif
 endfunction
