@@ -6,7 +6,7 @@ The automemories vim configuration
 ## First Run
 If you're using vim, link or copy the `init.vim` to `~/.vimrc`
 
-If you want to include all the plugins (more than 50), just open your vim/neovim
+and then, just open your vim/neovim, there will be install all the plugins (more than 50) in `bundles` dir.
 
 ## proxies
 - node/npm
