@@ -33,5 +33,4 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#supertab#install(install)
   call a:install('ervandew/supertab')
-
 endfunction

@@ -32,5 +32,4 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! automemories#packages#coc_phpls#install(install)
   call a:install('marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile' })
-
 endfunction

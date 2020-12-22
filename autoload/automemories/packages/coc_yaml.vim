@@ -1,36 +1,36 @@
 "=============================================================================
-" FILE: ____.vim
+" FILE: coc_yaml.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" descripion
-" https://github.com/URL
+" Yaml language server extension for coc.nvim
+" https://github.com/neoclide/coc-yaml
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#____#____#options()
+function! automemories#packages#coc_yaml#options()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => config
+" => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#____#____#config()
+function! automemories#packages#coc_yaml#config()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#____#____#listener()
+function! automemories#packages#coc_yaml#listener()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#modules#____#____#install(install)
-  call a:install('____')
+function! automemories#packages#coc_yaml#install(install)
+  call a:install('neoclide/coc-yaml', { 'do': 'yarn install --frozen-lockfile' })
 endfunction

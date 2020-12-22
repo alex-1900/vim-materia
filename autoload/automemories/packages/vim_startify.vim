@@ -20,34 +20,17 @@ endfunction
 function! automemories#packages#vim_startify#config()
   let g:startify_change_to_vcs_root = 1
   let g:startify_session_dir = automemories#homepath('/sessions/custom')
-  let g:startify_ascii = [
-\ "    _-`````-,           ,- '- .",
-\ "  .'   .- - |          | - -.  `.",
-\ " /.'  /                     `.   \\",
-\ ":/   :      _...   ..._      ``   :",
-\ "::   :     /._ .`:'_.._\\.    ||   :",
-\ "::    `._ ./  ,`  :    \\ . _.''   .",
-\ "`:.      /   |  -.  \\-. \\\\_      /",
-\ "  \\:._ _/  .'   .@)  \\@) ` `\\ ,.'",
-\ "     _/,--'       .- .\\,-.`--`.",
-\ "       ,'/''     (( \\ `  )",
-\ "        /'/'  \\    `-'  (",
-\ "         '/''  `._,-----'",
-\ "          ''/'    .,---'",
-\ "           ''/'      ;:",
-\ "             ''/''  ''/",
-\ "               ''/''/''",
-\ "                 '/'/'",
-\ "                  `;",
-\]
 
-  let g:startify_custom_header = map(g:startify_ascii, '"     ".v:val')
   let g:startify_lists = [
     \ { 'type': 'files',     'header': ['   Files']            },
     \ { 'type': 'dir',       'header': ['   Dirs '. getcwd()] },
     \ { 'type': 'sessions',  'header': ['   Sessions']       },
     \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
     \ { 'type': 'commands',  'header': ['   Commands']       },
+  \ ]
+
+  let g:startify_custom_header_quotes = [
+    \ ['The Automemories vim configuration is on the way...']
   \ ]
 endfunction
 

@@ -1,36 +1,36 @@
 "=============================================================================
-" FILE: panel.vim
+" FILE: nginx.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "
-" The plug-in visualizes undo history and makes it easier to browse and switch between different undo branches
-" https://github.com/mbbill/undotree
+" Improved nginx vim plugin (incl. syntax highlighting)
+" https://github.com/chr4/nginx.vim
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#undotree#options()
+function! automemories#packages#nginx#options()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => config
+" => options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#undotree#config()
+function! automemories#packages#nginx#config()
 
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => listener
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#undotree#listener()
-  nnoremap <leader>u :UndotreeToggle<CR>
+function! automemories#packages#nginx#listener()
+
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#packages#undotree#install(install)
-  call a:install('mbbill/undotree')
+function! automemories#packages#nginx#install(install)
+  call a:install('chr4/nginx.vim')
 endfunction

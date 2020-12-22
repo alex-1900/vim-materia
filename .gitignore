@@ -7,4 +7,7 @@ node_modules
 /.undodir
 /sessions
 /trance
-/.undodir
+/temp/*
+!/temp/.gitkeep
+/custom/*
+!/custom/.gitkeep

@@ -11,8 +11,8 @@ function! automemories#core#options#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
   let g:mapleader = '\'
-  if exists('g:automemories#config.default.key_leader')
-    let g:mapleader = g:automemories#config.default.key_leader
+  if exists('g:automemories#config.options.maps.leader')
+    let g:mapleader = g:automemories#config.options.maps.leader
   endif
   set nocompatible
   set encoding=utf-8
@@ -110,7 +110,15 @@ function! automemories#core#options#get()
   set nobackup
   set nowritebackup
   set noswapfile
-  set noundofile 
+  if exists('g:automemories#config.options.undo_persistent')
+    " persistent undo
+    let s:undodir = automemories#homepath("/temp/undodir")
+    execute 'set undodir=' . s:undodir
+    set undofile
+  else
+    set noundofile
+  endif
+
   " fileformat options
   set ffs=unix,dos,mac
   " files encoding

@@ -16,6 +16,7 @@ let g:automemories_loaded = 1
 function! automemories#init(homepath) abort
   " global variables
   let g:automemories#path#home = a:homepath
+  let g:automemories#path#custom = a:homepath . '/custom'
   let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
 
   " load config from config json file
@@ -38,6 +39,11 @@ function! automemories#begin() abort
   call automemories#core#maps#get()
   call automemories#core#functions#get()
   call automemories#core#autocmds#get()
+
+  " load custom settings
+  if isdirectory(g:automemories#path#custom)
+    call s:loaddir(g:automemories#path#custom)
+  endif
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,17 +61,31 @@ function! automemories#loadplugs() abort
     endif
   endfunction
 
-  let s:modules = automemories#modules#get()
+  let s:modules = automemories#modules#get_modules()
   " Specify a directory for plugins
   call plug#begin(g:automemories#path#bundles)
   " load plug configures
   for s:name in g:automemories#config.modules
     if has_key(s:modules, s:name)
-      for s:package in s:modules[s:name]
-        execute 'call automemories#packages#'.s:package.'#options()'
-        execute 'call automemories#packages#'.s:package.'#config()'
-        execute 'call automemories#packages#'.s:package."#install(function('AutomemoriesPlugInstall'))"
-        execute 'autocmd User AutomemoriesPlugLoaded nested call automemories#packages#'.s:package.'#listener()'
+      let s:custom_packages = automemories#modules#get_packages()
+      for s:package_name in s:modules[s:name]
+        try
+          execute 'call automemories#packages#'.s:package_name.'#options()'
+          execute 'call automemories#packages#'.s:package_name.'#config()'
+          execute 'call automemories#packages#'.s:package_name."#install(function('AutomemoriesPlugInstall'))"
+          execute 'autocmd User AutomemoriesPlugLoaded nested call automemories#packages#'.s:package_name.'#listener()'
+        catch
+          if has_key(s:custom_packages, s:package_name)
+            let s:package = s:custom_packages[s:package_name]
+            call s:package.options()
+            call s:package.config()
+            call s:package.install(function('AutomemoriesPlugInstall'))
+            autocmd User AutomemoriesPlugLoaded nested call s:package.listener()
+          else
+            let s:app_message = automemories#dependence#get('app#message')
+            call s:app_message.warn('Custom package `'. s:package_name . '` not found.')
+          endif
+        endtry
       endfor
     endif
   endfor
@@ -98,8 +118,12 @@ endfunction
 
 " load all vim files from dir
 function! s:loaddir(dirpath)
-  for path in split(glob(a:dirpath . '/*.vim'), '\n')
-    execute 'source' path
+  for path in split(glob(a:dirpath . '/*'), '\n')
+    if path =~ '.vim$'
+      execute 'source' path
+    elseif isdirectory(path)
+      s:loaddir(path)
+    endif
   endfor
 endfunction
 

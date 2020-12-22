@@ -6,23 +6,26 @@
 
 function! automemories#core#autocmds#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => vim enter
+  " => session
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " " call automemories#session#load_hash(getcwd())
-  " augroup am_vim_enter
-  "   autocmd!
-  "   autocmd VimEnter * nested call ListenerSessionLoad()
-  " augroup end
+  if exists('g:automemories#config.options.session.enable') &&
+    \ g:automemories#config.options.session.enable
+    augroup am_session
+      autocmd!
+      if get(g:automemories#config.options.session, 'autoload', 0)
+        autocmd User AutomemoriesPlugLoaded nested call automemories#session#load_hash(getcwd())
+      endif
 
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " " => vim leave pre
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " augroup am_vim_leave_pre
-  "   autocmd!
-  "   autocmd VimLeavePre * nested call ListenerSessionSave()
-  " augroup end
+      if get(g:automemories#config.options.session, 'autosave', 0)
+        autocmd VimLeavePre * nested call automemories#session#save_hash(getcwd())
+      endif
+    augroup end
+  endif
 
-   if exists('g:automemories#config.default.colorscheme')
-    autocmd User AutomemoriesPlugLoaded nested execute 'colorscheme' g:automemories#config.default.colorscheme
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " => color
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  if exists('g:automemories#config.options.colorscheme')
+    autocmd User AutomemoriesPlugLoaded nested execute 'colorscheme' g:automemories#config.options.colorscheme
   endif
 endfunction

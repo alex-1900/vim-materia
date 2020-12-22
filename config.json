@@ -1,6 +1,14 @@
 {
-  "default": {
-    "key_leader": ";"
+  "options": {
+    "maps": {
+      "leader": ";"
+    },
+    "session": {
+      "enable": false,
+      "autoload": true,
+      "autosave": true
+    },
+    "undo_persistent": true
   },
   "modules": [
     "file.explorer",
@@ -24,7 +32,8 @@
     "lang.javascript",
     "lang.jsx",
     "lang.golang",
-    "lang.markdown"
+    "lang.markdown",
+    "system.operation"
   ],
   "language": {
 
