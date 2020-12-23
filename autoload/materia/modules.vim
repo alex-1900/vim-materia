@@ -36,22 +36,22 @@ let s:custom_modules = {}
 
 let s:custom_packages = {}
 
-function! automemories#modules#get_modules() abort
+function! materia#modules#get_modules() abort
   return extend(s:modules, s:custom_modules)
 endfunction
 
-function! automemories#modules#add_module(name, options) abort
+function! materia#modules#add_module(name, options) abort
   let s:custom_modules[a:name] = a:options
 endfunction
 
-function! automemories#modules#add_package(name, package) abort
+function! materia#modules#add_package(name, package) abort
   let s:custom_packages[a:name] = a:package
 endfunction
 
-function! automemories#modules#get_packages() abort
+function! materia#modules#get_packages() abort
   return s:custom_packages
 endfunction
 
-function! automemories#modules#get_package(name) abort
+function! materia#modules#get_package(name) abort
   return s:custom_packages[a:name]
 endfunction

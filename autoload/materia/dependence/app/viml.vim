@@ -54,6 +54,6 @@ function! SpaceVim#api#vim#get() abort
   return s:self
 endfunction
 
-function! automemories#dependence#app#viml#instance() abort
+function! materia#dependence#app#viml#instance() abort
   return s:self
 endfunction

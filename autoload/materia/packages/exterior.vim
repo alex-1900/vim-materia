@@ -16,7 +16,7 @@ endfunction
 function! s:goyo.install(install)
   call a:install('junegunn/goyo.vim')
 endfunction
-call automemories#modules#add_package('goyo', s:goyo)
+call materia#modules#add_package('goyo', s:goyo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => limelight_vim
@@ -50,7 +50,7 @@ endfunction
 function! s:limelight_vim.install(install)
   call a:install('junegunn/limelight.vim')
 endfunction
-call automemories#modules#add_package('limelight_vim', s:limelight_vim)
+call materia#modules#add_package('limelight_vim', s:limelight_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_airline
@@ -60,8 +60,8 @@ call automemories#modules#add_package('limelight_vim', s:limelight_vim)
 " https://github.com/vim-airline/vim-airline/wiki/FAQ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_airline = {}
-function ModuleAirLineAutoMemoriesAddition(...)
-  let system_serv = automemories#dependence#get('app#system')
+function ModuleAirLineMateriaAddition(...)
+  let system_serv = materia#dependence#get('app#system')
   highlight UserStatusLine guifg=#EEEEEE ctermfg=7 guibg=#4169E1 ctermbg=24 gui=NONE cterm=NONE
   call a:1.add_section_spaced('UserStatusLine', system_serv.username)
   let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
@@ -83,13 +83,13 @@ function! s:vim_airline.config()
   endif
 endfunction
 function! s:vim_airline.listener()
-  call airline#remove_statusline_func('ModuleAirLineAutoMemoriesAddition')
-  call airline#add_statusline_func('ModuleAirLineAutoMemoriesAddition')
+  call airline#remove_statusline_func('ModuleAirLineMateriaAddition')
+  call airline#add_statusline_func('ModuleAirLineMateriaAddition')
 endfunction
 function! s:vim_airline.install(install)
   call a:install('vim-airline/vim-airline')
 endfunction
-call automemories#modules#add_package('vim_airline', s:vim_airline)
+call materia#modules#add_package('vim_airline', s:vim_airline)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_airline_themes
@@ -103,7 +103,7 @@ endfunction
 function! s:vim_airline_themes.install(install)
   call a:install('vim-airline/vim-airline-themes')
 endfunction
-call automemories#modules#add_package('vim_airline_themes', s:vim_airline_themes)
+call materia#modules#add_package('vim_airline_themes', s:vim_airline_themes)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_devicons
@@ -112,7 +112,7 @@ call automemories#modules#add_package('vim_airline_themes', s:vim_airline_themes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_devicons = {}
 function! s:vim_devicons.config()
-  let app_system = automemories#dependence#get('app#system')
+  let app_system = materia#dependence#get('app#system')
   let g:webdevicons_enable = 1
   if !app_system.is_gui
     let g:webdevicons_enable = 0
@@ -121,7 +121,7 @@ endfunction
 function! s:vim_devicons.install(install)
   call a:install('ryanoasis/vim-devicons')
 endfunction
-call automemories#modules#add_package('vim_devicons', s:vim_devicons)
+call materia#modules#add_package('vim_devicons', s:vim_devicons)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_nerdtree_syntax_highlight
@@ -139,7 +139,7 @@ endfunction
 function! s:vim_nerdtree_syntax_highlight.install(install)
   call a:install('tiagofumo/vim-nerdtree-syntax-highlight')
 endfunction
-call automemories#modules#add_package('vim_nerdtree_syntax_highlight', s:vim_nerdtree_syntax_highlight)
+call materia#modules#add_package('vim_nerdtree_syntax_highlight', s:vim_nerdtree_syntax_highlight)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_startify
@@ -148,7 +148,7 @@ call automemories#modules#add_package('vim_nerdtree_syntax_highlight', s:vim_ner
 let s:vim_startify = {}
 function! s:vim_startify.config()
   let g:startify_change_to_vcs_root = 1
-  let g:startify_session_dir = automemories#homepath('/sessions/custom')
+  let g:startify_session_dir = materia#homepath('/sessions/custom')
 
   let g:startify_lists = [
     \ { 'type': 'files',     'header': ['   Files']            },
@@ -159,7 +159,7 @@ function! s:vim_startify.config()
   \ ]
 
   let g:startify_custom_header_quotes = [
-    \ ['The Automemories vim configuration is on the way...']
+    \ ['The Materia vim configuration is on the way...']
   \ ]
 endfunction
 
@@ -188,4 +188,4 @@ endfunction
 function! s:vim_startify.install(install)
   call a:install('mhinz/vim-startify')
 endfunction
-call automemories#modules#add_package('vim_startify', s:vim_startify)
+call materia#modules#add_package('vim_startify', s:vim_startify)

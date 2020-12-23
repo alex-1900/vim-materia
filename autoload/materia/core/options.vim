@@ -4,15 +4,17 @@
 " License: MIT license
 "=============================================================================
 
-function! automemories#core#options#get()
+let s:app_system = materia#dependence#get('app#system')
+
+function! materia#core#options#get()
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => basic
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
   let g:mapleader = '\'
-  if exists('g:automemories#config.options.maps.leader')
-    let g:mapleader = g:automemories#config.options.maps.leader
+  if exists('g:materia#config.options.maps.leader')
+    let g:mapleader = g:materia#config.options.maps.leader
   endif
   set nocompatible
   set encoding=utf-8
@@ -83,12 +85,12 @@ function! automemories#core#options#get()
 
   if has('nvim')
     set guifont=DroidSansMono\ Nerd\ Font:h14
-    if automemories#util#is_windows()
+    if s:app_system.is_windows
       set guifont=DroidSansMono\ Nerd\ Font:h10
     endif
   else
     set guifont=DroidSansMono_Nerd_Font:h14
-    if automemories#util#is_windows()
+    if s:app_system.is_windows
       set guifont=DroidSansMono_Nerd_Font:h10
     endif
   endif
@@ -111,9 +113,9 @@ function! automemories#core#options#get()
   set nobackup
   set nowritebackup
   set noswapfile
-  if exists('g:automemories#config.options.undo_persistent')
+  if exists('g:materia#config.options.undo_persistent')
     " persistent undo
-    let s:undodir = automemories#homepath("/temp/undodir")
+    let s:undodir = materia#homepath("/temp/undodir")
     execute 'set undodir=' . s:undodir
     set undofile
   else
@@ -168,7 +170,7 @@ function! automemories#core#options#get()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  if automemories#util#is_gui()
+  if s:app_system.is_gui
     " begin of gui settings
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

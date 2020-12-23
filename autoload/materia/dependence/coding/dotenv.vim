@@ -33,6 +33,6 @@ function! self.parse_file(filename, ...) abort
 endfunction
 
 
-function! automemories#dependence#coding#dotenv#instance() abort
+function! materia#dependence#coding#dotenv#instance() abort
   return s:self
 endfunction

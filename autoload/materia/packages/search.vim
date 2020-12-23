@@ -33,7 +33,7 @@ function! s:fzf_vim.install(install)
   call a:install('junegunn/fzf', { 'do': 'call fzf#install()' })
   call a:install('junegunn/fzf.vim')
 endfunction
-call automemories#modules#add_package('fzf_vim', s:fzf_vim)
+call materia#modules#add_package('fzf_vim', s:fzf_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_interestingwords
@@ -52,7 +52,7 @@ endfunction
 function! s:vim_interestingwords.install(install)
   call a:install('lfv89/vim-interestingwords')
 endfunction
-call automemories#modules#add_package('vim_interestingwords', s:vim_interestingwords)
+call materia#modules#add_package('vim_interestingwords', s:vim_interestingwords)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_visualstar
@@ -64,4 +64,4 @@ let s:vim_visualstar = {}
 function! s:vim_visualstar.install(install)
   call a:install('thinca/vim-visualstar')
 endfunction
-call automemories#modules#add_package('vim_visualstar', s:vim_visualstar)
+call materia#modules#add_package('vim_visualstar', s:vim_visualstar)

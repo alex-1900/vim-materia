@@ -1,68 +1,68 @@
 "=============================================================================
-" FILE: automemories.vim
+" FILE: materia.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "=============================================================================
 scriptencoding utf-8
 
-if exists('g:automemories_loaded')
+if exists('g:materia_loaded')
   finish
 endif
-let g:automemories_loaded = 1
+let g:materia_loaded = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => public
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! automemories#init(homepath) abort
+function! materia#init(homepath) abort
   " global variables
-  let g:automemories#path#home = a:homepath
-  let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
+  let g:materia#path#home = a:homepath
+  let g:materia#path#bundles = g:materia#path#home . '/bundles'
 
   " load config from config json file
-  let g:automemories#config = {}
-  let s:json_parser = automemories#dependence#get('coding#json')
-  if filereadable(g:automemories#path#home . '/config.json')
-    let g:automemories#config = s:json_parser.json_decode(join(readfile(g:automemories#path#home . '/config.json'), "\n"))
+  let g:materia#config = {}
+  let s:json_parser = materia#dependence#get('coding#json')
+  if filereadable(g:materia#path#home . '/config.json')
+    let g:materia#config = s:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
   endif
 
   " enter the life cycle
-  call automemories#begin()
-  call automemories#loadplugs()
-  call automemories#end()
+  call materia#begin()
+  call materia#loadplugs()
+  call materia#end()
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Begin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#begin() abort
+function! materia#begin() abort
   " load configs
-  call automemories#core#options#get()
-  call automemories#core#commands#get()
-  call automemories#core#maps#get()
-  call automemories#core#functions#get()
-  call automemories#core#autocmds#get()
+  call materia#core#options#get()
+  call materia#core#commands#get()
+  call materia#core#maps#get()
+  call materia#core#functions#get()
+  call materia#core#autocmds#get()
 
   call s:process_environments()
 
-  call s:loaddir(g:automemories#path#home . '/autoload/automemories/packages')
+  call s:loaddir(g:materia#path#home . '/autoload/materia/packages')
   " load custom settings
-  if isdirectory(g:automemories#path#home . '/custom')
-    call s:loaddir(g:automemories#path#home . '/custom')
+  if isdirectory(g:materia#path#home . '/custom')
+    call s:loaddir(g:materia#path#home . '/custom')
   endif
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load plugs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#loadplugs() abort
+function! materia#loadplugs() abort
   " Run PlugInstall if there are missing plugins
   autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     \| PlugInstall
   \| endif
 
   let s:packages = {}
-  function! AutomemoriesPlugInstall(repo, ...)
+  function! MateriaPlugInstall(repo, ...)
     if !has_key(s:packages, a:repo)
       let s:opt = get(a:, 1, {})
       call plug#(a:repo, s:opt)
@@ -70,13 +70,13 @@ function! automemories#loadplugs() abort
     endif
   endfunction
 
-  let s:modules = automemories#modules#get_modules()
+  let s:modules = materia#modules#get_modules()
   " Specify a directory for plugins
-  call plug#begin(g:automemories#path#bundles)
+  call plug#begin(g:materia#path#bundles)
   " load plug configures
-  for s:name in get(g:automemories#config, 'modules', [])
+  for s:name in get(g:materia#config, 'modules', [])
     if has_key(s:modules, s:name)
-      let s:custom_packages = automemories#modules#get_packages()
+      let s:custom_packages = materia#modules#get_packages()
       for s:package_name in s:modules[s:name]
         if has_key(s:custom_packages, s:package_name)
           let s:package = s:custom_packages[s:package_name]
@@ -87,13 +87,13 @@ function! automemories#loadplugs() abort
             call s:package.config()
           endif
           if has_key(s:package, 'install')
-            call s:package.install(function('AutomemoriesPlugInstall'))
+            call s:package.install(function('MateriaPlugInstall'))
           endif
           if has_key(s:package, 'listener')
-            execute 'autocmd User AutomemoriesPlugLoaded nested call automemories#modules#get_package("'. s:package_name .'").listener()'
+            execute 'autocmd User MateriaPlugLoaded nested call materia#modules#get_package("'. s:package_name .'").listener()'
           endif
         else
-          let s:app_message = automemories#dependence#get('app#message')
+          let s:app_message = materia#dependence#get('app#message')
           call s:app_message.warn('Custom package `'. s:package_name . '` not found.')
         endif
       endfor
@@ -102,22 +102,22 @@ function! automemories#loadplugs() abort
   " Initialize plugin system
   call plug#end()
   " dispatch event for plugs loaded
-  call automemories#dispatch('AutomemoriesPlugLoaded')
+  call materia#dispatch('MateriaPlugLoaded')
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => End
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! automemories#end() abort
+function! materia#end() abort
 endfunction
 
-function! automemories#homepath(...) abort
-  return g:automemories#path#home . get(a:, 1, '')
+function! materia#homepath(...) abort
+  return g:materia#path#home . get(a:, 1, '')
 endfunction
 
-function! automemories#has_plug(name)
+function! materia#has_plug(name)
   if exists('g:loaded_plug')
-    return isdirectory(g:automemories#path#bundles . '/' . a:name)
+    return isdirectory(g:materia#path#bundles . '/' . a:name)
   endif
   return 0
 endfunction
@@ -138,7 +138,7 @@ function! s:loaddir(dirpath)
 endfunction
 
 " dispatch user event
-function! automemories#dispatch(eventname)
+function! materia#dispatch(eventname)
   augroup am_mock
     execute 'autocmd User' a:eventname 'call s:emptyFunc()'
   augroup end
@@ -150,10 +150,10 @@ endfunction
 
 " process environments
 function! s:process_environments()
-  if exists('g:automemories#config.environment') &&
-    \ type(g:automemories#config.environment) == type({})
-    for s:env in keys(g:automemories#config.environment)
-      execute 'let $'. s:env . '=' . g:automemories#config.environment[s:env]
+  if exists('g:materia#config.environment') &&
+    \ type(g:materia#config.environment) == type({})
+    for s:env in keys(g:materia#config.environment)
+      execute 'let $'. s:env . '=' . g:materia#config.environment[s:env]
     endfor
   endif
 endfunction

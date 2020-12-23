@@ -137,6 +137,6 @@ else
   endfunction
 endif
 
-function! automemories#dependence#app#system#instance() abort
+function! materia#dependence#app#system#instance() abort
   return s:system
 endfunction

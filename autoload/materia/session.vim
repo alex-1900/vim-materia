@@ -6,65 +6,65 @@
 " https://github.com/tpope/vim-obsession/blob/master/plugin/obsession.vim
 "=============================================================================
 
-if exists("g:automemories_session_loaded")
+if exists("g:materia_session_loaded")
   finish
 endif
-let g:automemories_session_loaded = 1
+let g:materia_session_loaded = 1
 
-if !exists("g:automemories_session_directory")
-  let g:automemories_session_directory = automemories#homepath('/temp/sessions')
+if !exists("g:materia_session_directory")
+  let g:materia_session_directory = materia#homepath('/temp/sessions')
 endif
 
-if !exists("g:automemories_session_extension")
-  let g:automemories_session_extension = '.vim'
+if !exists("g:materia_session_extension")
+  let g:materia_session_extension = '.vim'
 endif
 
-let s:session_hash_directory = g:automemories_session_directory . '/hash'
-let s:session_custom_directory = g:automemories_session_directory . '/custom'
+let s:session_hash_directory = g:materia_session_directory . '/hash'
+let s:session_custom_directory = g:materia_session_directory . '/custom'
 
-function! automemories#session#save_hash(name)
+function! materia#session#save_hash(name)
   if !isdirectory(s:session_hash_directory)
     call mkdir(s:session_hash_directory, 'p')
   endif
   execute 'mksession!' s:session_hash(a:name)
 endfunction
 
-function! automemories#session#save_custom(name)
+function! materia#session#save_custom(name)
   if !isdirectory(s:session_custom_directory)
     call mkdir(s:session_custom_directory, 'p')
   endif
   execute 'mksession!' s:session_custom(a:name)
-  call automemories#dispatch('AutomemoriesSessionChangeed')
+  call materia#dispatch('MateriaSessionChangeed')
 endfunction
 
-function! automemories#session#load_hash(name)
-  call automemories#session#load(s:session_hash(a:name))
+function! materia#session#load_hash(name)
+  call materia#session#load(s:session_hash(a:name))
 endfunction
 
-function! automemories#session#load_custom(name)
-  call automemories#session#load(s:session_custom(a:name))
+function! materia#session#load_custom(name)
+  call materia#session#load(s:session_custom(a:name))
 endfunction
 
-function! automemories#session#delete_custom(name)
+function! materia#session#delete_custom(name)
   let s:filename = s:session_custom(a:name)
   if filereadable(s:filename)
     setlocal modifiable
     call delete(s:filename)
-    call automemories#dispatch('AutomemoriesSessionChangeed')
-    call automemories#dispatch('AutomemoriesSessionDeleted')
+    call materia#dispatch('MateriaSessionChangeed')
+    call materia#dispatch('MateriaSessionDeleted')
   endif
 endfunction
 
 function s:session_hash(name)
   let s:filename = substitute(a:name, '[.:/\\#$-]', '_', 'g')[0:200]
-  return s:session_hash_directory . '/' . s:filename . g:automemories_session_extension
+  return s:session_hash_directory . '/' . s:filename . g:materia_session_extension
 endfunction
 
 function s:session_custom(name)
-  return s:session_custom_directory . '/' . a:name . g:automemories_session_extension
+  return s:session_custom_directory . '/' . a:name . g:materia_session_extension
 endfunction
 
-function! automemories#session#get_hash_filepath(name)
+function! materia#session#get_hash_filepath(name)
   let s:filename = s:session_hash(a:name)
   if filereadable(s:filename)
     return s:filename
@@ -72,7 +72,7 @@ function! automemories#session#get_hash_filepath(name)
   return 0
 endfunction
 
-function! automemories#session#get_custom_filepath(name)
+function! materia#session#get_custom_filepath(name)
   let s:filename = s:session_custom(a:name)
   if filereadable(s:filename)
     return s:filename
@@ -80,7 +80,7 @@ function! automemories#session#get_custom_filepath(name)
   return 0
 endfunction
 
-function! automemories#session#load(name)
+function! materia#session#load(name)
   if filereadable(a:name)
     execute 'source' a:name
     if bufexists(1)

@@ -4,17 +4,19 @@
 " License: MIT license
 "=============================================================================
 
-function! automemories#core#functions#get()
+function! materia#core#functions#get()
   " return 1 if plug exist
   function! HasPlug(name)
     if exists('g:loaded_plug')
-      return isdirectory(g:automemories#path#bundles . '/' . a:name)
+      return isdirectory(g:materia#path#bundles . '/' . a:name)
     endif
     return 0
   endfunction
 
-  " AutomemoriesPlugLoaded handler
+  " MateriaPlugLoaded handler
   function! AutocmdAmPlugLoaded(func)
-    autocmd User AutomemoriesPlugLoaded nested call a:fun
+    autocmd User MateriaPlugLoaded nested call a:fun
   endfunction
+
+  " Load
 endfunction

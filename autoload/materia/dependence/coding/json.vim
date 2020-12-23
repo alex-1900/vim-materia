@@ -7,8 +7,8 @@
 "=============================================================================
 
 let s:self = {}
-let s:self._vim = automemories#dependence#get('app#viml')
-let s:self._iconv = automemories#dependence#get('app#iconv') 
+let s:self._vim = materia#dependence#get('app#viml')
+let s:self._iconv = materia#dependence#get('app#iconv') 
 
 function! s:self._json_null() abort
   return 0
@@ -110,6 +110,6 @@ else
   endfunction
 endif
 
-function! automemories#dependence#coding#json#instance() abort
+function! materia#dependence#coding#json#instance() abort
   return s:self
 endfunction

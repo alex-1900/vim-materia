@@ -34,7 +34,7 @@ function! s:nerdtree.install(install)
   call a:install('preservim/nerdtree')
   call a:install('PhilRunninger/nerdtree-visual-selection')
 endfunction
-call automemories#modules#add_package('nerdtree', s:nerdtree)
+call materia#modules#add_package('nerdtree', s:nerdtree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => undotree
@@ -48,7 +48,7 @@ endfunction
 function! s:undotree.install(install)
   call a:install('mbbill/undotree')
 endfunction
-call automemories#modules#add_package('undotree', s:undotree)
+call materia#modules#add_package('undotree', s:undotree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_tmux_navigator
@@ -59,7 +59,7 @@ let s:vim_tmux_navigator = {}
 function! s:vim_tmux_navigator.install(install)
   call a:install('christoomey/vim-tmux-navigator')
 endfunction
-call automemories#modules#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
+call materia#modules#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vista_vim
@@ -83,7 +83,7 @@ endfunction
 function! s:vista_vim.install(install)
   call a:install('liuchengxu/vista.vim')
 endfunction
-call automemories#modules#add_package('vista_vim', s:vista_vim)
+call materia#modules#add_package('vista_vim', s:vista_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_fugitive
@@ -100,7 +100,7 @@ endfunction
 function! s:vim_fugitive.install(install)
   call a:install('tpope/vim-fugitive')
 endfunction
-call automemories#modules#add_package('vim_fugitive', s:vim_fugitive)
+call materia#modules#add_package('vim_fugitive', s:vim_fugitive)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_gitgutter
@@ -119,4 +119,4 @@ endfunction
 function! s:vim_gitgutter.install(install)
   call a:install('airblade/vim-gitgutter')
 endfunction
-call automemories#modules#add_package('vim_gitgutter', s:vim_gitgutter)
+call materia#modules#add_package('vim_gitgutter', s:vim_gitgutter)

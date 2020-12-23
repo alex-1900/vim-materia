@@ -4,20 +4,20 @@
 " License: MIT license
 "=============================================================================
 
-function! automemories#core#autocmds#get()
+function! materia#core#autocmds#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => session
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  if exists('g:automemories#config.options.session.enable') &&
-    \ g:automemories#config.options.session.enable
+  if exists('g:materia#config.options.session.enable') &&
+    \ g:materia#config.options.session.enable
     augroup am_session
       autocmd!
-      if get(g:automemories#config.options.session, 'autoload', 0)
-        autocmd User AutomemoriesPlugLoaded nested call automemories#session#load_hash(getcwd())
+      if get(g:materia#config.options.session, 'autoload', 0)
+        autocmd User MateriaPlugLoaded nested call materia#session#load_hash(getcwd())
       endif
 
-      if get(g:automemories#config.options.session, 'autosave', 0)
-        autocmd VimLeavePre * nested call automemories#session#save_hash(getcwd())
+      if get(g:materia#config.options.session, 'autosave', 0)
+        autocmd VimLeavePre * nested call materia#session#save_hash(getcwd())
       endif
     augroup end
   endif
@@ -25,7 +25,7 @@ function! automemories#core#autocmds#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => color
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  if exists('g:automemories#config.options.colorscheme')
-    autocmd User AutomemoriesPlugLoaded nested execute 'colorscheme' g:automemories#config.options.colorscheme
+  if exists('g:materia#config.options.colorscheme')
+    autocmd User MateriaPlugLoaded nested execute 'colorscheme' g:materia#config.options.colorscheme
   endif
 endfunction

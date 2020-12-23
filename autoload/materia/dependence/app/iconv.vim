@@ -130,6 +130,6 @@ let s:iconv.codecs = {
       \ "euc-jp": function(s:ns."codecs#_euc_jp#import"),
       \ }
 
-function! automemories#dependence#app#iconv#instance()
+function! materia#dependence#app#iconv#instance()
   return s:self
 endfunction

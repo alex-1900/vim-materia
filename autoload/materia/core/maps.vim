@@ -4,7 +4,9 @@
 " License: MIT license
 "=============================================================================
 
-function! automemories#core#maps#get()
+let s:app_system = materia#dependence#get('app#system')
+
+function! materia#core#maps#get()
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => features
@@ -39,7 +41,7 @@ function! automemories#core#maps#get()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  if automemories#util#is_gui()
+  if s:app_system.is_gui
     " begin of gui settings
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

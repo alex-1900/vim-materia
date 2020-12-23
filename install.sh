@@ -18,9 +18,9 @@ if [ ! -f "$vimrc_file" ]; then
     mv $vimrc_file "$HOME/.vimrc_back"
 fi
 
-# make vimfile dir and fetch automemories
-echo "Begin fetching automemories..."
-git clone --depth=1 --branch master https://github.com/speed-sonic/vim-automemories.git "$install_path"
+# make vimfile dir and fetch materia
+echo "Begin fetching materia..."
+git clone --depth=1 --branch master https://github.com/speed-sonic/vim-materia.git "$install_path"
 echo "Done."
 echo ""
 

@@ -13,7 +13,7 @@ let s:auto_pairs = {}
 function! s:auto_pairs.install(install)
   call a:install('jiangmiao/auto-pairs')
 endfunction
-call automemories#modules#add_package('auto_pairs', s:auto_pairs)
+call materia#modules#add_package('auto_pairs', s:auto_pairs)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => nerdcommenter
@@ -40,7 +40,7 @@ endfunction
 function! s:nerdcommenter.install(install)
   call a:install('preservim/nerdcommenter')
 endfunction
-call automemories#modules#add_package('nerdcommenter', s:nerdcommenter)
+call materia#modules#add_package('nerdcommenter', s:nerdcommenter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => supertab
@@ -54,7 +54,7 @@ endfunction
 function! s:supertab.install(install)
   call a:install('ervandew/supertab')
 endfunction
-call automemories#modules#add_package('supertab', s:supertab)
+call materia#modules#add_package('supertab', s:supertab)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_easy_align
@@ -71,7 +71,7 @@ endfunction
 function! s:vim_easy_align.install(install)
   call a:install('junegunn/vim-easy-align')
 endfunction
-call automemories#modules#add_package('vim_easy_align', s:vim_easy_align)
+call materia#modules#add_package('vim_easy_align', s:vim_easy_align)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_surround
@@ -82,7 +82,7 @@ let s:vim_surround = {}
 function! s:vim_surround.install(install)
   call a:install('tpope/vim-surround')
 endfunction
-call automemories#modules#add_package('vim_surround', s:vim_surround)
+call materia#modules#add_package('vim_surround', s:vim_surround)
 
 " => vim_visual_multi
 " It's called vim-visual-multi in analogy with visual-block, but the plugin works mostly from normal mode.
@@ -102,7 +102,7 @@ endfunction
 function! s:vim_visual_multi.install(install)
   call a:install('mg979/vim-visual-multi')
 endfunction
-call automemories#modules#add_package('vim_visual_multi', s:vim_visual_multi)
+call materia#modules#add_package('vim_visual_multi', s:vim_visual_multi)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_better_whitespace
@@ -119,4 +119,4 @@ endfunction
 function! s:vim_better_whitespace.install(install)
   call a:install('ntpeters/vim-better-whitespace')
 endfunction
-call automemories#modules#add_package('vim_better_whitespace', s:vim_better_whitespace)
+call materia#modules#add_package('vim_better_whitespace', s:vim_better_whitespace)
