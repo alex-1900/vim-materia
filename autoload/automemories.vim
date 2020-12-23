@@ -20,8 +20,11 @@ function! automemories#init(homepath) abort
   let g:automemories#path#bundles = g:automemories#path#home . '/bundles'
 
   " load config from config json file
+  let g:automemories#config = {}
   let s:json_parser = automemories#dependence#get('coding#json')
-  let g:automemories#config = s:json_parser.json_decode(join(readfile(g:automemories#path#home . '/config.json'), "\n"))
+  if filereadable(g:automemories#path#home . '/config.json')
+    let g:automemories#config = s:json_parser.json_decode(join(readfile(g:automemories#path#home . '/config.json'), "\n"))
+  endif
 
   " enter the life cycle
   call automemories#begin()
@@ -70,7 +73,7 @@ function! automemories#loadplugs() abort
   " Specify a directory for plugins
   call plug#begin(g:automemories#path#bundles)
   " load plug configures
-  for s:name in g:automemories#config.modules
+  for s:name in get(g:automemories#config, 'modules', [])
     if has_key(s:modules, s:name)
       let s:custom_packages = automemories#modules#get_packages()
       for s:package_name in s:modules[s:name]

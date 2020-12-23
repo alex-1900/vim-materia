@@ -56,7 +56,7 @@ function! automemories#session#delete_custom(name)
 endfunction
 
 function s:session_hash(name)
-  let s:filename = md5#md5(a:name)
+  let s:filename = substitute(a:name, '[.:/\\#$-]', '_', 'g')[0:200]
   return s:session_hash_directory . '/' . s:filename . g:automemories_session_extension
 endfunction
 
