@@ -12,7 +12,7 @@ endif
 let g:automemories_session_loaded = 1
 
 if !exists("g:automemories_session_directory")
-  let g:automemories_session_directory = automemories#homepath('/sessions')
+  let g:automemories_session_directory = automemories#homepath('/temp/sessions')
 endif
 
 if !exists("g:automemories_session_extension")

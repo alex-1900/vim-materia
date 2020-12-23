@@ -45,6 +45,7 @@ function! automemories#begin() abort
 
   call s:process_environments()
 
+  call s:loaddir(g:automemories#path#home . '/autoload/automemories/packages')
   " load custom settings
   if isdirectory(g:automemories#path#home . '/custom')
     call s:loaddir(g:automemories#path#home . '/custom')
@@ -77,23 +78,24 @@ function! automemories#loadplugs() abort
     if has_key(s:modules, s:name)
       let s:custom_packages = automemories#modules#get_packages()
       for s:package_name in s:modules[s:name]
-        try
-          execute 'call automemories#packages#'.s:package_name.'#options()'
-          execute 'call automemories#packages#'.s:package_name.'#config()'
-          execute 'call automemories#packages#'.s:package_name."#install(function('AutomemoriesPlugInstall'))"
-          execute 'autocmd User AutomemoriesPlugLoaded nested call automemories#packages#'.s:package_name.'#listener()'
-        catch
-          if has_key(s:custom_packages, s:package_name)
-            let s:package = s:custom_packages[s:package_name]
+        if has_key(s:custom_packages, s:package_name)
+          let s:package = s:custom_packages[s:package_name]
+          if has_key(s:package, 'options')
             call s:package.options()
-            call s:package.config()
-            call s:package.install(function('AutomemoriesPlugInstall'))
-            autocmd User AutomemoriesPlugLoaded nested call s:package.listener()
-          else
-            let s:app_message = automemories#dependence#get('app#message')
-            call s:app_message.warn('Custom package `'. s:package_name . '` not found.')
           endif
-        endtry
+          if has_key(s:package, 'config')
+            call s:package.config()
+          endif
+          if has_key(s:package, 'install')
+            call s:package.install(function('AutomemoriesPlugInstall'))
+          endif
+          if has_key(s:package, 'listener')
+            execute 'autocmd User AutomemoriesPlugLoaded nested call automemories#modules#get_package("'. s:package_name .'").listener()'
+          endif
+        else
+          let s:app_message = automemories#dependence#get('app#message')
+          call s:app_message.warn('Custom package `'. s:package_name . '` not found.')
+        endif
       endfor
     endif
   endfor
@@ -130,7 +132,7 @@ function! s:loaddir(dirpath)
     if path =~ '.vim$'
       execute 'source' path
     elseif isdirectory(path)
-      s:loaddir(path)
+      call s:loaddir(path)
     endif
   endfor
 endfunction
@@ -154,4 +156,11 @@ function! s:process_environments()
       execute 'let $'. s:env . '=' . g:automemories#config.environment[s:env]
     endfor
   endif
+endfunction
+
+" process packages
+function! s:process_packages()
+  for path in split(glob(a:dirpath . '/*'), '\n')
+
+  endfor
 endfunction

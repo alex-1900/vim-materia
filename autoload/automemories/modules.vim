@@ -1,5 +1,5 @@
 "=============================================================================
-" FILE: automemories.vim
+" FILE: modules.vim
 " AUTHOR:  Alex Layton <omytty.alex@126.com>
 " License: MIT license
 "=============================================================================
@@ -10,7 +10,7 @@ let s:modules = {
   \ 'aux.terminal': ['vim_floaterm'],
   \ 'aux.view': ['goyo', 'limelight_vim', 'vim_interestingwords'],
   \ 'aux.tmux': ['vim_tmux_navigator'],
-  \ 'code.completion': ['coc_nvim', 'supertab', 'auto_pairs', 'vim_smooth_scroll', 'vim_indentguides'],
+  \ 'code.completion': ['coc_nvim', 'supertab', 'auto_pairs', 'vim_smooth_scroll'],
   \ 'code.check': ['vim_better_whitespace'],
   \ 'code.comment': ['nerdcommenter'],
   \ 'code.convenience': ['vim_surround', 'vim_visual_multi', 'supertab'],
@@ -18,9 +18,9 @@ let s:modules = {
   \ 'code.search': ['vim_visualstar', 'vim_interestingwords'],
   \ 'decoration.airline': ['vim_airline', 'vim_airline_themes', 'vim_devicons'],
   \ 'decoration.home': ['vim_startify'],
-  \ 'decoration.theme': ['oceanic_next', 'iceberg'],
+  \ 'decoration.theme': [],
   \ 'file.explorer': ['nerdtree', 'vim_nerdtree_syntax_highlight', 'vim_devicons'],
-  \ 'file.search': ['fzf', 'fzf_vim'],
+  \ 'file.search': ['fzf_vim'],
   \ 'file.config': ['editorconfig_vim'],
   \ 'lang.html': ['html5_vim', 'coc_nvim', 'coc_html', 'coc_css', 'webapi_vim', 'emmet_vim', 'supertab'],
   \ 'lang.php': ['coc_nvim', 'coc_phpls', 'coc_html', 'supertab'],
@@ -50,4 +50,8 @@ endfunction
 
 function! automemories#modules#get_packages() abort
   return s:custom_packages
+endfunction
+
+function! automemories#modules#get_package(name) abort
+  return s:custom_packages[a:name]
 endfunction

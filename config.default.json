@@ -1,14 +1,14 @@
 {
   "options": {
     "maps": {
-      "leader": ";"
+      "leader": "\\"
     },
     "session": {
-      "enable": true,
+      "enable": false,
       "autoload": true,
       "autosave": true
     },
-    "undo_persistent": true
+    "undo_persistent": false
   },
   "environment": {
   },
@@ -36,8 +36,7 @@
     "lang.jsx",
     "lang.golang",
     "lang.markdown",
-    "system.operation",
-    "custom.docker"
+    "system.operation"
   ],
   "language": {
 
