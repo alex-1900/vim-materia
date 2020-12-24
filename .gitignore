@@ -11,3 +11,4 @@ node_modules
 !/temp/.gitkeep
 /custom/*
 !/custom/.gitkeep
+Session.vim
