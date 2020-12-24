@@ -4,7 +4,7 @@
       "leader": ";"
     },
     "session": {
-      "enable": true,
+      "enable": false,
       "autoload": true,
       "autosave": true
     },

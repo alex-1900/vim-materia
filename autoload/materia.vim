@@ -90,7 +90,7 @@ function! materia#loadplugs() abort
             call s:package.install(function('MateriaPlugInstall'))
           endif
           if has_key(s:package, 'listener')
-            execute 'autocmd User MateriaPlugLoaded nested call materia#modules#get_package("'. s:package_name .'").listener()'
+            execute 'autocmd VimEnter * nested call materia#modules#get_package("'. s:package_name .'").listener()'
           endif
         else
           let s:app_message = materia#dependence#get('app#message')
