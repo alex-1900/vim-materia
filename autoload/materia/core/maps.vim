@@ -28,8 +28,8 @@ function! materia#core#maps#get()
   nnoremap <leader>wq :close<CR>
 
   " mutiple lines
-  nnoremap <C-e> 4<C-e>
-  nnoremap <C-y> 4<C-y>
+  nnoremap <nowait> <C-e> 4<C-e>
+  nnoremap <nowait> <C-y> 4<C-y>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => files
