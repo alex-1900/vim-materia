@@ -8,7 +8,10 @@
       "autoload": true,
       "autosave": true
     },
-    "undo_persistent": false
+    "undo_persistent": false,
+    "python2_path": "/usr/bin/python",
+    "python3_path": "/usr/bin/python3",
+    "colorscheme": "janah"
   },
   "environment": {
   },

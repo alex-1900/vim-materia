@@ -20,12 +20,7 @@ function! materia#init(homepath) abort
   let g:materia#path#bundles = g:materia#path#home . '/bundles'
 
   " load config from config json file
-  let g:materia#config = {}
-  let s:json_parser = materia#dependence#get('coding#json')
-  if filereadable(g:materia#path#home . '/config.json')
-    let g:materia#config = s:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
-  endif
-
+  call s:process_json_configure()
   " enter the life cycle
   call materia#begin()
   call materia#loadplugs()
@@ -62,47 +57,38 @@ function! materia#loadplugs() abort
   \| endif
 
   let s:packages = {}
-  function! MateriaPlugInstall(repo, ...)
+  function! s:materia_plug_install(repo, ...)
     if !has_key(s:packages, a:repo)
-      let s:opt = get(a:, 1, {})
-      call plug#(a:repo, s:opt)
+      let l:opt = get(a:, 1, {})
+      call plug#(a:repo, l:opt)
       let s:packages[a:repo] = 1
     endif
   endfunction
 
-  let s:modules = materia#modules#get_modules()
+  let l:modules = materia#modules#get_modules()
   " Specify a directory for plugins
   call plug#begin(g:materia#path#bundles)
   " load plug configures
-  for s:name in get(g:materia#config, 'modules', [])
-    if has_key(s:modules, s:name)
-      let s:custom_packages = materia#modules#get_packages()
-      for s:package_name in s:modules[s:name]
-        if has_key(s:custom_packages, s:package_name)
-          let s:package = s:custom_packages[s:package_name]
-          if has_key(s:package, 'options')
-            call s:package.options()
-          endif
-          if has_key(s:package, 'config')
-            call s:package.config()
-          endif
-          if has_key(s:package, 'install')
-            call s:package.install(function('MateriaPlugInstall'))
-          endif
-          if has_key(s:package, 'listener')
-            execute 'autocmd VimEnter * nested call materia#modules#get_package("'. s:package_name .'").listener()'
-          endif
+  for l:name in materia#conf('modules')
+    if has_key(l:modules, l:name)
+      let l:custom_packages = materia#modules#get_packages()
+      for l:package_name in l:modules[l:name]
+        if has_key(l:custom_packages, l:package_name)
+          let l:package      =  l:custom_packages[l:package_name]
+          let l:execute_code =  'autocmd VimEnter * nested call materia#modules#get_package("'. l:package_name .'").listener()'
+          if has_key(l:package, 'options')  | call l:package.options() | endif
+          if has_key(l:package, 'config')   | call l:package.config() | endif
+          if has_key(l:package, 'install')  | call l:package.install(function('s:materia_plug_install')) | endif
+          if has_key(l:package, 'listener') | execute l:execute_code | endif
         else
-          let s:app_message = materia#dependence#get('app#message')
-          call s:app_message.warn('Custom package `'. s:package_name . '` not found.')
+          let  l:app_message = materia#dependence#get('app#message')
+          call l:app_message.warn('Custom package `'. l:package_name . '` not found.')
         endif
       endfor
     endif
   endfor
   " Initialize plugin system
   call plug#end()
-  " dispatch event for plugs loaded
-  call materia#dispatch('MateriaPlugLoaded')
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -122,6 +108,19 @@ function! materia#has_plug(name)
   return 0
 endfunction
 
+" Get configure
+function! materia#conf(name)
+  if exists('g:materia#config.' . a:name)
+    execute 'let result = g:materia#config.' . a:name
+    return result
+  endif
+  if exists('g:materia#default_config.' . a:name)
+    execute 'let result = g:materia#default_config.' . a:name
+    return result
+  endif
+  return 0
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => private
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -137,30 +136,22 @@ function! s:loaddir(dirpath)
   endfor
 endfunction
 
-" dispatch user event
-function! materia#dispatch(eventname)
-  augroup am_mock
-    execute 'autocmd User' a:eventname 'call s:emptyFunc()'
-  augroup end
-  execute 'doautocmd User' a:eventname
-endfunction
-
-function! s:emptyFunc()
-endfunction
-
 " process environments
 function! s:process_environments()
   if exists('g:materia#config.environment') &&
     \ type(g:materia#config.environment) == type({})
-    for s:env in keys(g:materia#config.environment)
-      execute 'let $'. s:env . '=' . g:materia#config.environment[s:env]
+    for l:env in keys(g:materia#config.environment)
+      execute 'let $'. l:env . '=' . g:materia#config.environment[s:env]
     endfor
   endif
 endfunction
 
-" process packages
-function! s:process_packages()
-  for path in split(glob(a:dirpath . '/*'), '\n')
-
-  endfor
+" load config from json file
+function! s:process_json_configure()
+  let l:json_parser = materia#dependence#get('coding#json')
+  let g:materia#config = {}
+  let g:materia#default_config = l:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.default.json'), "\n"))
+  if filereadable(g:materia#path#home . '/config.json')
+    let g:materia#config = l:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
+  endif
 endfunction

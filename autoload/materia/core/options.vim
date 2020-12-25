@@ -12,13 +12,13 @@ function! materia#core#options#get()
   " => basic
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
-  let g:mapleader = '\'
-  if exists('g:materia#config.options.maps.leader')
-    let g:mapleader = g:materia#config.options.maps.leader
-  endif
+  let g:mapleader = materia#conf('options.maps.leader')
   set nocompatible
   set encoding=utf-8
   set termencoding=utf-8
+
+  let g:python_host_prog = materia#conf('options.python2_path')
+  let g:python3_host_prog = materia#conf('options.python3_path')
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => features
@@ -77,7 +77,7 @@ function! materia#core#options#get()
   " default theme
   set background=dark
   " default colorscheme
-  colorscheme janah
+  execute 'colorscheme ' . materia#conf('options.colorscheme')
   " the maximum number of colors
   if &term == "screen"
     set t_Co=256
@@ -85,6 +85,7 @@ function! materia#core#options#get()
 
   if has('nvim')
     set guifont=DroidSansMono\ Nerd\ Font:h14
+    " https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
     if s:app_system.is_windows
       set guifont=DroidSansMono\ Nerd\ Font:h10
     endif
@@ -113,7 +114,7 @@ function! materia#core#options#get()
   set nobackup
   set nowritebackup
   set noswapfile
-  if exists('g:materia#config.options.undo_persistent')
+  if materia#conf('options.undo_persistent')
     " persistent undo
     let s:undodir = materia#homepath("/temp/undodir")
     execute 'set undodir=' . s:undodir

@@ -26,7 +26,8 @@ function! s:nerdtree.config()
   let g:NERDTreeDirArrowCollapsible = '▾'
 endfunction
 function! s:nerdtree.listener()
-  nnoremap <silent> <leader>b :NERDTreeToggle<CR>
+  map! <F3> <Nop>
+  nnoremap <silent> <F3> :NERDTreeToggle<CR>
   " nnoremap <silent> <leader>bf <C-u>:NERDTreeFind<CR>
   " nnoremap <silent> <leader>bn <C-u>:NERDTreeFocus<CR>
 endfunction
@@ -134,8 +135,10 @@ function! s:materia_session.config()
 endfunction
 
 function! s:materia_session.listener()
-  call MateriaSessionLoad()
-  autocmd VimLeavePre * :MateriaSessionSave<CR>
+  if g:loaded_materia_session
+    call MateriaSessionLoad()
+    autocmd VimLeavePre * :MateriaSessionSave<CR>
+  endif
 endfunction
 
 function! s:materia_session.install(install)

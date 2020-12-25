@@ -15,7 +15,7 @@ let s:modules = {
   \ 'code.comment': ['nerdcommenter'],
   \ 'code.convenience': ['vim_surround', 'vim_visual_multi', 'supertab'],
   \ 'code.format': ['vim_easy_align', 'editorconfig_vim'],
-  \ 'code.search': ['vim_visualstar', 'vim_interestingwords'],
+  \ 'code.search': ['vim_visualstar', 'vim_interestingwords', 'far'],
   \ 'decoration.airline': ['vim_airline', 'vim_airline_themes', 'vim_devicons'],
   \ 'decoration.home': ['vim_startify'],
   \ 'decoration.theme': [],
@@ -35,7 +35,7 @@ let s:modules = {
 
 let s:custom_modules = {}
 
-let s:custom_packages = {}
+let s:packages = {}
 
 function! materia#modules#get_modules() abort
   return extend(s:modules, s:custom_modules)
@@ -46,13 +46,13 @@ function! materia#modules#add_module(name, options) abort
 endfunction
 
 function! materia#modules#add_package(name, package) abort
-  let s:custom_packages[a:name] = a:package
+  let s:packages[a:name] = a:package
 endfunction
 
 function! materia#modules#get_packages() abort
-  return s:custom_packages
+  return s:packages
 endfunction
 
 function! materia#modules#get_package(name) abort
-  return s:custom_packages[a:name]
+  return s:packages[a:name]
 endfunction

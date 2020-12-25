@@ -12,11 +12,5 @@ function! materia#core#functions#get()
     endif
     return 0
   endfunction
-
-  " MateriaPlugLoaded handler
-  function! AutocmdAmPlugLoaded(func)
-    autocmd User MateriaPlugLoaded nested call a:fun
-  endfunction
-
   " Load
 endfunction

@@ -65,3 +65,28 @@ function! s:vim_visualstar.install(install)
   call a:install('thinca/vim-visualstar')
 endfunction
 call materia#modules#add_package('vim_visualstar', s:vim_visualstar)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => far
+" Find And Replace Vim plugin
+" https://github.com/brooth/far.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:far = {}
+function! s:far.option()
+  " improve scrolling performance when navigating through large results
+  set lazyredraw
+  " ignore case only when the pattern contains no capital letters
+  set ignorecase smartcase
+endfunction
+function! s:far.listener()
+  " shortcut for far.vim find
+  nnoremap <silent> <Find-Shortcut>  :Farf<cr>
+  vnoremap <silent> <Find-Shortcut>  :Farf<cr>
+  " shortcut for far.vim replace
+  nnoremap <silent> <Replace-Shortcut>  :Farr<cr>
+  vnoremap <silent> <Replace-Shortcut>  :Farr<cr>
+endfunction
+function! s:far.install(install)
+  call a:install('brooth/far.vim')
+endfunction
+call materia#modules#add_package('far', s:far)

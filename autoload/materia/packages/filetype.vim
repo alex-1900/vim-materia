@@ -27,8 +27,8 @@ call materia#modules#add_package('html5_vim', s:html5_vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:emmet_vim = {}
 function! s:emmet_vim.config()
-  if exists('g:materia#config.html.snippet_path')
-    let s:snippet_path = g:materia#config.html.snippet_path
+  if materia#conf('html.snippet_path')
+    let s:snippet_path = materia#conf('html.snippet_path')
     let g:user_emmet_settings = webapi#json#decode(join(readfile(expand(s:snippet_path)), "\n"))
   endif
 endfunction
