@@ -120,3 +120,26 @@ function! s:vim_gitgutter.install(install)
   call a:install('airblade/vim-gitgutter')
 endfunction
 call materia#modules#add_package('vim_gitgutter', s:vim_gitgutter)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim_gitgutter
+" A Vim plugin which shows a git diff in the sign column.
+" https://github.com/airblade/vim-gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:materia_session = {}
+function! s:materia_session.config()
+  let g:materia_session_mode = 'dir'
+  let g:materia_session_directory = materia#homepath('/temp/sessions')
+  let g:session_autosave_on_actions = 1
+endfunction
+
+function! s:materia_session.listener()
+  call MateriaSessionLoad()
+  autocmd VimLeavePre * :MateriaSessionSave<CR>
+endfunction
+
+function! s:materia_session.install(install)
+  call a:install('speed-sonic/vim-materia-session')
+endfunction
+
+call materia#modules#add_package('materia_session', s:materia_session)

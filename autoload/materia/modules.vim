@@ -29,7 +29,8 @@ let s:modules = {
   \ 'lang.jsx': ['vim_javascript', 'vim_jsx', 'vim_json', 'coc_nvim', 'coc_tsserver', 'supertab'],
   \ 'lang.golang': ['coc_nvim', 'coc_go', 'vim_go', 'supertab'],
   \ 'lang.markdown': ['vim_markdown', 'vim_livedown'],
-  \ 'system.operation': ['nginx', 'coc_nvim', 'coc_yaml', 'coc_json', 'vim_json']
+  \ 'system.operation': ['nginx', 'coc_nvim', 'coc_yaml', 'coc_json', 'vim_json'],
+  \ 'app.session': ['materia_session']
 \ }
 
 let s:custom_modules = {}

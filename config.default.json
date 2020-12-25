@@ -36,7 +36,8 @@
     "lang.jsx",
     "lang.golang",
     "lang.markdown",
-    "system.operation"
+    "system.operation",
+    "app.session"
   ],
   "language": {
 

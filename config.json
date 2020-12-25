@@ -37,7 +37,8 @@
     "lang.golang",
     "lang.markdown",
     "system.operation",
-    "custom.docker"
+    "custom.docker",
+    "app.session"
   ],
   "language": {
 
