@@ -27,9 +27,6 @@ function! materia#init(homepath) abort
   call materia#end()
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Begin
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! materia#begin() abort
   " load configs
   call materia#core#options#get()
@@ -39,7 +36,6 @@ function! materia#begin() abort
   call materia#core#autocmds#get()
 
   call s:process_environments()
-
   call s:loaddir(g:materia#path#home . '/autoload/materia/packages')
   " load custom settings
   if isdirectory(g:materia#path#home . '/custom')
@@ -47,53 +43,29 @@ function! materia#begin() abort
   endif
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load plugs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! materia#loadplugs() abort
-  " Run PlugInstall if there are missing plugins
-  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \| PlugInstall
-  \| endif
-
-  let s:packages = {}
-  function! s:materia_plug_install(repo, ...)
-    if !has_key(s:packages, a:repo)
-      let l:opt = get(a:, 1, {})
-      call plug#(a:repo, l:opt)
-      let s:packages[a:repo] = 1
-    endif
-  endfunction
-
-  let l:modules = materia#modules#get_modules()
+  let s:plug_installer = s:get_materia_plug_install_func()
   " Specify a directory for plugins
   call plug#begin(g:materia#path#bundles)
   " load plug configures
-  for l:name in materia#conf('modules')
-    if has_key(l:modules, l:name)
-      let l:custom_packages = materia#modules#get_packages()
-      for l:package_name in l:modules[l:name]
-        if has_key(l:custom_packages, l:package_name)
-          let l:package      =  l:custom_packages[l:package_name]
-          let l:execute_code =  'autocmd VimEnter * nested call materia#modules#get_package("'. l:package_name .'").listener()'
-          if has_key(l:package, 'options')  | call l:package.options() | endif
-          if has_key(l:package, 'config')   | call l:package.config() | endif
-          if has_key(l:package, 'install')  | call l:package.install(function('s:materia_plug_install')) | endif
-          if has_key(l:package, 'listener') | execute l:execute_code | endif
-        else
-          let  l:app_message = materia#dependence#get('app#message')
-          call l:app_message.warn('Custom package `'. l:package_name . '` not found.')
-        endif
-      endfor
+  let l:custom_packages = materia#packages#get_packages()
+  for l:package_name in keys(materia#conf('packages'))
+    if has_key(l:custom_packages, l:package_name)
+      let l:package           =  l:custom_packages[l:package_name]
+      let l:execute_vim_enter =  'autocmd VimEnter * nested call materia#packages#get_package("'. l:package_name .'").listener()'
+      if has_key(l:package, 'options')  | call l:package.options() | endif
+      if has_key(l:package, 'config')   | call l:package.config() | endif
+      if has_key(l:package, 'install')  | call l:package.install(s:plug_installer) | endif
+      if has_key(l:package, 'listener') | execute l:execute_vim_enter | endif
+    else
+      let  l:app_message = materia#dependence#get('app#message')
+      call l:app_message.warn('Custom package `'. l:package_name . '` not found.')
     endif
   endfor
   " Initialize plugin system
   call plug#end()
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => End
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! materia#end() abort
 endfunction
 
@@ -125,17 +97,6 @@ endfunction
 " => private
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" load all vim files from dir
-function! s:loaddir(dirpath)
-  for path in split(glob(a:dirpath . '/*'), '\n')
-    if path =~ '.vim$'
-      execute 'source' path
-    elseif isdirectory(path)
-      call s:loaddir(path)
-    endif
-  endfor
-endfunction
-
 " process environments
 function! s:process_environments()
   if exists('g:materia#config.environment') &&
@@ -154,4 +115,27 @@ function! s:process_json_configure()
   if filereadable(g:materia#path#home . '/config.json')
     let g:materia#config = l:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
   endif
+endfunction
+
+" get the plug installer.
+function! s:get_materia_plug_install_func()
+  let s:packages = {}
+  function! s:materia_plug_install(repo, ...)
+    if !has_key(s:packages, a:repo)
+      call plug#(a:repo, get(a:, 1, {}))
+      let s:packages[a:repo] = 1
+    endif
+  endfunction
+  return function('s:materia_plug_install')
+endfunction
+
+" load all vim files from dir
+function! s:loaddir(dirpath)
+  for path in split(glob(a:dirpath . '/*'), '\n')
+    if path =~ '.vim$'
+      execute 'source' path
+    elseif isdirectory(path)
+      call s:loaddir(path)
+    endif
+  endfor
 endfunction

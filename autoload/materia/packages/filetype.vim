@@ -16,7 +16,7 @@ endfunction
 function! s:html5_vim.install(install)
   call a:install('othree/html5.vim')
 endfunction
-call materia#modules#add_package('html5_vim', s:html5_vim)
+call materia#packages#add_package('html5_vim', s:html5_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => emmet_vim
@@ -28,14 +28,24 @@ call materia#modules#add_package('html5_vim', s:html5_vim)
 let s:emmet_vim = {}
 function! s:emmet_vim.config()
   if materia#conf('html.snippet_path')
-    let s:snippet_path = materia#conf('html.snippet_path')
-    let g:user_emmet_settings = webapi#json#decode(join(readfile(expand(s:snippet_path)), "\n"))
+    let g:user_emmet_install_global = 0
+    let g:user_emmet_leader_key = materia#conf('packages.emmet_vim.leader_key')
+    let snippet_path = materia#conf('packages.emmet_vim.snippet_path')
+    if snippet_path
+      let g:user_emmet_settings = webapi#json#decode(join(readfile(expand(s:snippet_path)), "\n"))
+    endif
+  endif
+endfunction
+function! s:emmet_vim.listener()
+  if (exists('g:loaded_emmet_vim') && g:loaded_emmet_vim)
+    let filetypes = materia#conf('packages.emmet_vim.filetypes')
+    execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
   endif
 endfunction
 function! s:emmet_vim.install(install)
   call a:install('mattn/emmet-vim')
 endfunction
-call materia#modules#add_package('emmet_vim', s:emmet_vim)
+call materia#packages#add_package('emmet_vim', s:emmet_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => syntastic
@@ -58,7 +68,7 @@ endfunction
 function! s:syntastic.install(install)
   call a:install('vim-syntastic/syntastic')
 endfunction
-call materia#modules#add_package('syntastic', s:syntastic)
+call materia#packages#add_package('syntastic', s:syntastic)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => nginx
@@ -69,7 +79,7 @@ let s:nginx = {}
 function! s:nginx.install(install)
   call a:install('chr4/nginx.vim')
 endfunction
-call materia#modules#add_package('nginx', s:nginx)
+call materia#packages#add_package('nginx', s:nginx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_go
@@ -105,7 +115,7 @@ endfunction
 function! s:vim_go.install(install)
   call a:install('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
 endfunction
-call materia#modules#add_package('vim_go', s:vim_go)
+call materia#packages#add_package('vim_go', s:vim_go)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_javascript
@@ -119,7 +129,7 @@ endfunction
 function! s:vim_javascript.install(install)
   call a:install('pangloss/vim-javascript')
 endfunction
-call materia#modules#add_package('vim_javascript', s:vim_javascript)
+call materia#packages#add_package('vim_javascript', s:vim_javascript)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_json
@@ -136,7 +146,7 @@ endfunction
 function! s:vim_json.install(install)
   call a:install('elzr/vim-json')
 endfunction
-call materia#modules#add_package('vim_json', s:vim_json)
+call materia#packages#add_package('vim_json', s:vim_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_jsx
@@ -147,7 +157,7 @@ let s:vim_jsx = {}
 function! s:vim_jsx.install(install)
   call a:install('mxw/vim-jsx')
 endfunction
-call materia#modules#add_package('vim_jsx', s:vim_jsx)
+call materia#packages#add_package('vim_jsx', s:vim_jsx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_markdown
@@ -161,7 +171,7 @@ endfunction
 function! s:vim_markdown.install(install)
   call a:install('tpope/vim-markdown')
 endfunction
-call materia#modules#add_package('vim_markdown', s:vim_markdown)
+call materia#packages#add_package('vim_markdown', s:vim_markdown)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_livedown
@@ -174,7 +184,7 @@ endfunction
 function! s:vim_livedown.install(install)
   call a:install('shime/vim-livedown', { 'do': 'yarn global add livedown' })
 endfunction
-call materia#modules#add_package('vim_livedown', s:vim_livedown)
+call materia#packages#add_package('vim_livedown', s:vim_livedown)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_peekaboo
@@ -187,7 +197,7 @@ let s:vim_peekaboo = {}
 function! s:vim_peekaboo.install(install)
   call a:install('junegunn/vim-peekaboo')
 endfunction
-call materia#modules#add_package('vim_peekaboo', s:vim_peekaboo)
+call materia#packages#add_package('vim_peekaboo', s:vim_peekaboo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_floaterm
@@ -204,18 +214,27 @@ function! s:vim_floaterm.options()
   hi FloatermNC guibg=gray
 endfunction
 function! s:vim_floaterm.config()
-  let g:floaterm_keymap_new = '<Leader>tn'
-  let g:floaterm_keymap_prev = '<Leader>th'
-  let g:floaterm_keymap_next = '<Leader>tl'
-  let g:floaterm_keymap_toggle = '<leader>tt'
+  let okey = materia#conf('packages.vim_floaterm.basekey')
+  let gkey = materia#conf('options.maps.navigation')
+  let key_prefix = GetConfigMapPrefix(okey)
+  let g:floaterm_keymap_new = key_prefix.edge . 'n'
+  let g:floaterm_keymap_prev = gkey . 'p'
+  let g:floaterm_keymap_next = gkey . 'n'
+  let g:floaterm_keymap_toggle = key_prefix.edge . okey
+  let g:floaterm_keymap_kill = '<C-d>'
+  let g:floaterm_title = materia#conf('packages.vim_floaterm.title')
+  let g:floaterm_width = materia#conf('packages.vim_floaterm.width')
+  let g:floaterm_height = materia#conf('packages.vim_floaterm.height')
+  let g:floaterm_rootmarkers = materia#conf('packages.vim_floaterm.rootmarkers')
+  " Close window if the job exits normally, otherwise stay it with messages like [Process exited 101]
+  let g:floaterm_autoclose = 0
 endfunction
 function! s:vim_floaterm.listener()
-  tnoremap <silent> <leader>tk <C-\><C-n>:FloatermKill<CR>
 endfunction
 function! s:vim_floaterm.install(install)
   call a:install('voldikss/vim-floaterm')
 endfunction
-call materia#modules#add_package('vim_floaterm', s:vim_floaterm)
+call materia#packages#add_package('vim_floaterm', s:vim_floaterm)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_smooth_scroll
@@ -232,7 +251,7 @@ endfunction
 function! s:vim_smooth_scroll.install(install)
   call a:install('terryma/vim-smooth-scroll')
 endfunction
-call materia#modules#add_package('vim_smooth_scroll', s:vim_smooth_scroll)
+call materia#packages#add_package('vim_smooth_scroll', s:vim_smooth_scroll)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => editorconfig_vim
@@ -242,15 +261,17 @@ call materia#modules#add_package('vim_smooth_scroll', s:vim_smooth_scroll)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:editorconfig_vim = {}
 function! s:editorconfig_vim.config()
-  let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+  let g:EditorConfig_exclude_patterns = materia#conf('packages.editorconfig_vim.exclude_patterns')
 endfunction
 function! s:editorconfig_vim.listener()
-  autocmd FileType gitcommit let b:EditorConfig_disable = 1
+  " disable this plugin for a specific buffer
+  let types = materia#conf('packages.editorconfig_vim.disable_types')
+  execute 'autocmd FileType '. join(types, ',') .' let b:EditorConfig_disable = 1'
 endfunction
 function! s:editorconfig_vim.install(install)
   call a:install('editorconfig/editorconfig-vim')
 endfunction
-call materia#modules#add_package('editorconfig_vim', s:editorconfig_vim)
+call materia#packages#add_package('editorconfig_vim', s:editorconfig_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => webapi_vim
@@ -261,4 +282,4 @@ let s:webapi_vim = {}
 function! s:webapi_vim.install(install)
   call a:install('mattn/webapi-vim')
 endfunction
-call materia#modules#add_package('webapi_vim', s:webapi_vim)
+call materia#packages#add_package('webapi_vim', s:webapi_vim)

@@ -1,47 +1,120 @@
 {
   "options": {
     "maps": {
-      "leader": "\\"
-    },
-    "session": {
-      "enable": false,
-      "autoload": true,
-      "autosave": true
+      "leader": "'",
+      "navigation": "g",
+      "action": "<space>",
+      "tap": "t",
+      "edge": "\\"
     },
     "undo_persistent": false,
     "python2_path": "/usr/bin/python",
     "python3_path": "/usr/bin/python3",
-    "colorscheme": "janah"
+    "colorscheme": "janah",
+    "scroll_multiple": 4
   },
   "environment": {
   },
-  "modules": [
-    "file.explorer",
-    "file.search",
-    "file.config",
-    "decoration.home",
-    "decoration.airline",
-    "decoration.theme",
-    "code.completion",
-    "code.check",
-    "code.comment",
-    "code.convenience",
-    "code.format",
-    "code.search",
-    "aux.panel",
-    "aux.git",
-    "aux.terminal",
-    "aux.tmux",
-    "lang.html",
-    "lang.php",
-    "lang.vim",
-    "lang.javascript",
-    "lang.jsx",
-    "lang.golang",
-    "lang.markdown",
-    "system.operation",
-    "app.session"
-  ],
+  "packages": {
+    "auto_pairs": {},
+    "coc_css": {},
+    "coc_git": {},
+    "coc_go": {},
+    "coc_html": {},
+    "coc_json": {},
+    "coc_nvim": {
+      "basekey": "l"
+    },
+    "coc_phpls": {},
+    "coc_tsserver": {},
+    "coc_yaml": {},
+    "editorconfig_vim": {
+      "exclude_patterns": ["fugitive://.*", "scp://.*"],
+      "disable_types": ["gitcommit", "startify"]
+    },
+    "emmet_vim": {
+      "leader_key": "<C-z>",
+      "snippet_path": false,
+      "filetypes": ["html", "css"]
+    },
+    "far": {},
+    "fzf_vim": {
+      "basekey": "f",
+      "preview_window": ["right:50%", "ctrl-/"],
+      "preview_options": {"options": ["--layout=reverse", "--info=inline"]},
+      "command_prefix": "Fzf"
+    },
+    "goyo": {
+      "basekey": "v"
+    },
+    "html5_vim": {},
+    "limelight_vim": {
+      "basekey": "v",
+      "conceal_guifg": "#777777",
+      "conceal_ctermfg": "gray",
+      "default_coefficient": 0.8,
+      "paragraph_span": 1,
+      "priority": -1
+    },
+    "materia_session": {},
+    "nerdcommenter": {},
+    "nerdtree": {
+      "basekey": "d",
+      "visual_selection": true,
+      "buffer_ops": true,
+      "bookmarks": false,
+      "show_line_numbers": true
+    },
+    "nginx": {},
+    "supertab": {
+      "scroll": "<c-n>"
+    },
+    "undotree": {
+      "basekey": "a",
+      "key_toggle": "<C-u>"
+    },
+    "vim_airline": {
+      "with_username": true,
+      "with_branch": true,
+      "with_hunks": true,
+      "with_tabline": true,
+      "tabline_formatter": "unique_tail",
+      "theme": "deus"
+    },
+    "vim_better_whitespace": {
+      "strip_on_save": true,
+      "ctermcolor": "yellow",
+      "guicolor": "yellow"
+    },
+    "vim_devicons": null,
+    "vim_easy_align": null,
+    "vim_floaterm": {
+      "basekey": "t",
+      "title": "Terminal [$1|$2]",
+      "width": 0.8,
+      "height": 0.8,
+      "rootmarkers": [".project", ".git", ".svn", ".hg", ".root"]
+    },
+    "vim_fugitive": {},
+    "vim_gitgutter": {},
+    "vim_go": {},
+    "vim_interestingwords": {},
+    "vim_javascript": {},
+    "vim_json": {},
+    "vim_jsx": {},
+    "vim_livedown": {},
+    "vim_markdown": {},
+    "vim_nerdtree_syntax_highlight": {},
+    "vim_peekaboo": {},
+    "vim_smooth_scroll": {},
+    "vim_startify": {},
+    "vim_surround": {},
+    "vim_tmux_navigator": {},
+    "vim_visual_multi": {},
+    "vim_visualstar": {},
+    "vista_vim": {},
+    "webapi_vim": {}
+  },
   "language": {
 
   }

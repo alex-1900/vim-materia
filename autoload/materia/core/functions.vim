@@ -4,7 +4,7 @@
 " License: MIT license
 "=============================================================================
 
-function! materia#core#functions#get()
+function! materia#core#functions#get() abort
   " return 1 if plug exist
   function! HasPlug(name)
     if exists('g:loaded_plug')
@@ -12,5 +12,19 @@ function! materia#core#functions#get()
     endif
     return 0
   endfunction
-  " Load
+  
+  let s:lkey = '<leader>'
+  let s:akey = materia#conf('options.maps.action')
+  let s:gkey = materia#conf('options.maps.navigation')
+  let s:tkey = materia#conf('options.maps.tap')
+  let s:ekey = materia#conf('options.maps.edge')
+  function! GetConfigMapPrefix(okey) abort
+    return {
+      \ 'view': s:lkey . a:okey,
+      \ 'action': s:akey . a:okey,
+      \ 'nav': s:gkey . a:okey,
+      \ 'win': '<C-' . a:okey. '>',
+      \ 'edge': s:ekey . a:okey,
+    \ }
+  endfunction
 endfunction

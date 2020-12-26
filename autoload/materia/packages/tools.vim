@@ -12,30 +12,38 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:nerdtree = {}
 function! s:nerdtree.config()
-  let g:NERDTreeAutoCenter=1
-  let g:NERDTreeShowBookmarks=1
+  let g:NERDTreeShowBookmarks = materia#conf('packages.nerdtree.bookmarks')
   " let g:NERDTreeWinPos="dark"
-  let g:NERDTreeShowLineNumbers=1
-  let g:NERDTreeAutoCenter=1
+  let g:NERDTreeShowLineNumbers = materia#conf('packages.nerdtree.show_line_numbers')
+  let g:NERDTreeAutoCenter=0
   let g:NERDTreeHighlightCursorline = 1
   let g:NERDTreeShowFiles = 1
   " avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window
   let g:plug_window = 'noautocmd vertical topleft new'
+  " hide the boring brackets([ ])
+  let g:NERDTreeGitStatusConcealBrackets = 1
 
-  let g:NERDTreeDirArrowExpandable = '▸'
-  let g:NERDTreeDirArrowCollapsible = '▾'
+  let g:NERDTreeDirArrowExpandable = '▷'
+  let g:NERDTreeDirArrowCollapsible = '▽'
 endfunction
 function! s:nerdtree.listener()
-  map! <F3> <Nop>
-  nnoremap <silent> <F3> :NERDTreeToggle<CR>
-  " nnoremap <silent> <leader>bf <C-u>:NERDTreeFind<CR>
-  " nnoremap <silent> <leader>bn <C-u>:NERDTreeFocus<CR>
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdtree.basekey'))
+  let key_toggle = materia#conf('packages.nerdtree.key_toggle')
+  let key_focus = materia#conf('packages.nerdtree.key_focus')
+  execute 'nnoremap <silent> '. key_prefix.edge .'o :<C-u>NERDTreeToggle<CR>'
+  execute 'nnoremap <silent> '. key_prefix.edge .'f :<C-u>NERDTreeFocus<CR>'
 endfunction
 function! s:nerdtree.install(install)
   call a:install('preservim/nerdtree')
-  call a:install('PhilRunninger/nerdtree-visual-selection')
+  if materia#conf('packages.nerdtree.visual_selection')
+    call a:install('PhilRunninger/nerdtree-visual-selection')
+  endif
+  if materia#conf('packages.nerdtree.buffer_ops')
+    call a:install('PhilRunninger/nerdtree-buffer-ops')
+  endif
+  \| call a:install('Xuyuanp/nerdtree-git-plugin')
 endfunction
-call materia#modules#add_package('nerdtree', s:nerdtree)
+call materia#packages#add_package('nerdtree', s:nerdtree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => undotree
@@ -44,12 +52,13 @@ call materia#modules#add_package('nerdtree', s:nerdtree)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:undotree = {}
 function! s:undotree.listener()
-  nnoremap <leader>u :UndotreeToggle<CR>
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdtree.basekey'))
+  execute 'nnoremap <silent> '. key_prefix.edge .'u :<C-u>UndotreeToggle<CR>'
 endfunction
 function! s:undotree.install(install)
   call a:install('mbbill/undotree')
 endfunction
-call materia#modules#add_package('undotree', s:undotree)
+call materia#packages#add_package('undotree', s:undotree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_tmux_navigator
@@ -60,7 +69,7 @@ let s:vim_tmux_navigator = {}
 function! s:vim_tmux_navigator.install(install)
   call a:install('christoomey/vim-tmux-navigator')
 endfunction
-call materia#modules#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
+call materia#packages#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vista_vim
@@ -84,7 +93,7 @@ endfunction
 function! s:vista_vim.install(install)
   call a:install('liuchengxu/vista.vim')
 endfunction
-call materia#modules#add_package('vista_vim', s:vista_vim)
+call materia#packages#add_package('vista_vim', s:vista_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_fugitive
@@ -101,7 +110,7 @@ endfunction
 function! s:vim_fugitive.install(install)
   call a:install('tpope/vim-fugitive')
 endfunction
-call materia#modules#add_package('vim_fugitive', s:vim_fugitive)
+call materia#packages#add_package('vim_fugitive', s:vim_fugitive)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_gitgutter
@@ -120,7 +129,7 @@ endfunction
 function! s:vim_gitgutter.install(install)
   call a:install('airblade/vim-gitgutter')
 endfunction
-call materia#modules#add_package('vim_gitgutter', s:vim_gitgutter)
+call materia#packages#add_package('vim_gitgutter', s:vim_gitgutter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_gitgutter
@@ -145,4 +154,4 @@ function! s:materia_session.install(install)
   call a:install('speed-sonic/vim-materia-session')
 endfunction
 
-call materia#modules#add_package('materia_session', s:materia_session)
+call materia#packages#add_package('materia_session', s:materia_session)
