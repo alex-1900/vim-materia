@@ -20,8 +20,8 @@ function! materia#core#maps#get()
   noremap gh <C-w>h
 
   " goto or remove buffer
-  nnoremap gp :bp!<CR>
-  nnoremap gn :bn!<CR>
+  nnoremap [b :bp!<CR>
+  nnoremap ]b :bn!<CR>
   nnoremap <C-x>b :bd<CR>
 
   " mutiple lines

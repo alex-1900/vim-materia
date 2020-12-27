@@ -11,7 +11,7 @@
     "undo_persistent": false,
     "python2_path": "/usr/bin/python",
     "python3_path": "/usr/bin/python3",
-    "colorscheme": "janah",
+    "colorscheme": "gruvbox",
     "scroll_multiple": 4
   },
   "environment": {
@@ -47,6 +47,7 @@
     "goyo": {
       "basekey": "v"
     },
+    "gruvbox": {},
     "ctrlsf": {
       "basekey": "r",
       "attr_auto_preview": true,

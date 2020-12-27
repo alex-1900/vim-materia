@@ -78,7 +78,7 @@ function! materia#core#options#get()
   " default theme
   set background=dark
   " default colorscheme
-  execute 'colorscheme ' . materia#conf('options.colorscheme')
+  colorscheme janah
   " the maximum number of colors
   if &term == "screen"
     set t_Co=256

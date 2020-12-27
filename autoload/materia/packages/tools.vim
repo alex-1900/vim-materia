@@ -10,7 +10,7 @@
 " https://github.com/preservim/nerdtree
 " https://github.com/PhilRunninger/nerdtree-visual-selection
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:nerdtree = {}
+let s:nerdtree = {'name': 'nerdtree'}
 function! s:nerdtree.config()
   let g:NERDTreeShowBookmarks = materia#conf('packages.nerdtree.bookmarks')
   " let g:NERDTreeWinPos="dark"
@@ -50,7 +50,7 @@ call materia#packages#add_package('nerdtree', s:nerdtree)
 " The plug-in visualizes undo history and makes it easier to browse and switch between different undo branches
 " https://github.com/mbbill/undotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:undotree = {}
+let s:undotree = {'name': 'undotree'}
 function! s:undotree.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdtree.basekey'))
   execute 'nnoremap <silent> '. key_prefix.edge .'u :<C-u>UndotreeToggle<CR>'
@@ -65,7 +65,7 @@ call materia#packages#add_package('undotree', s:undotree)
 " Seamless navigation between tmux panes and vim splits
 " https://github.com/christoomey/vim-tmux-navigator
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_tmux_navigator = {}
+let s:vim_tmux_navigator = {'name': 'vim-tmux-navigator'}
 function! s:vim_tmux_navigator.install(install)
   call a:install('christoomey/vim-tmux-navigator')
 endfunction
@@ -76,7 +76,7 @@ call materia#packages#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
 " View and search LSP symbols, tags in Vim/NeoVim.
 " https://github.com/liuchengxu/vista.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vista_vim = {}
+let s:vista_vim = {'name': 'vista.vim'}
 function! s:vista_vim.config()
   let g:vista_sidebar_width = materia#conf('packages.vista_vim.attr_sidebar_width')
   let g:vista#renderer#enable_icon = materia#conf('packages.vista_vim.attr_enable_icon')
@@ -115,7 +115,7 @@ call materia#packages#add_package('vista_vim', s:vista_vim)
 " Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
 " https://github.com/tpope/vim-fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_fugitive = {}
+let s:vim_fugitive = {'name': 'vim-fugitive'}
 function! s:undotree.option()
   if HasPlug('vim-fugitive')
     set statusline+=%{FugitiveStatusline()}
@@ -145,7 +145,7 @@ call materia#packages#add_package('vim_fugitive', s:vim_fugitive)
 " A Vim plugin which shows a git diff in the sign column.
 " https://github.com/airblade/vim-gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_gitgutter = {}
+let s:vim_gitgutter = {'name': 'vim-gitgutter'}
 function! s:vim_gitgutter.option()
   set foldtext=gitgutter#fold#foldtext()
 endfunction
@@ -188,9 +188,9 @@ call materia#packages#add_package('vim_gitgutter', s:vim_gitgutter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_gitgutter
 " A Vim plugin which shows a git diff in the sign column.
-" https://github.com/airblade/vim-gitgutter
+" https://github.com/speed-sonic/vim-materia-session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:materia_session = {}
+let s:materia_session = {'name': 'vim-materia-session'}
 function! s:materia_session.config()
   let g:materia_session_mode = materia#conf('packages.materia_session.mode')
   let g:materia_session_directory = materia#homepath('/temp/sessions')

@@ -9,7 +9,7 @@
 " Distraction-free writing in Vim.
 " https://github.com/junegunn/goyo.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:goyo = {}
+let s:goyo = {'name': 'goyo.vim'}
 function! s:goyo.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.goyo.basekey'))
   execute 'nnoremap <silent> '. key_prefix.view .'g :<C-u>Goyo<CR>'
@@ -27,7 +27,7 @@ call materia#packages#add_package('goyo', s:goyo)
 " Error: `Cannot calculate background color`:
 " https://github.com/junegunn/limelight.vim/issues/39
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:limelight_vim = {}
+let s:limelight_vim = {'name': 'limelight.vim'}
 function! s:limelight_vim.config()
   " Color name (:help cterm-colors) or ANSI code
   let g:limelight_conceal_ctermfg = materia#conf('packages.limelight_vim.conceal_ctermfg')
@@ -62,7 +62,7 @@ call materia#packages#add_package('limelight_vim', s:limelight_vim)
 " https://github.com/vim-airline/vim-airline-themes
 " https://github.com/vim-airline/vim-airline/wiki/FAQ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_airline = {}
+let s:vim_airline = {'name': 'vim-airline'}
 function ModuleAirLineMateriaAddition(...)
   let system_serv = materia#dependence#get('app#system')
   highlight UserStatusLine guifg=#EEEEEE ctermfg=7 guibg=#4169E1 ctermbg=24 gui=NONE cterm=NONE
@@ -107,7 +107,7 @@ call materia#packages#add_package('vim_airline', s:vim_airline)
 " Adds filetype glyphs (icons) to various vim plugins.
 " https://github.com/ryanoasis/vim-devicons
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_devicons = {}
+let s:vim_devicons = {'name': 'vim-devicons'}
 function! s:vim_devicons.config()
   let app_system = materia#dependence#get('app#system')
   let g:webdevicons_enable = 1
@@ -125,7 +125,7 @@ call materia#packages#add_package('vim_devicons', s:vim_devicons)
 " This adds syntax for nerdtree on most common file extensions.
 " https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_nerdtree_syntax_highlight = {}
+let s:vim_nerdtree_syntax_highlight = {'name': 'vim-nerdtree-syntax-highlight'}
 function! s:vim_nerdtree_syntax_highlight.config()
   " Disable unmatched folder and file icons having the same color as their labels
   let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
@@ -142,7 +142,7 @@ call materia#packages#add_package('vim_nerdtree_syntax_highlight', s:vim_nerdtre
 " => vim_startify
 " https://github.com/mhinz/vim-startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_startify = {}
+let s:vim_startify = {'name': 'vim-startify'}
 function! s:vim_startify.config()
   let g:startify_change_to_vcs_root = 1
   let g:startify_session_dir = materia#homepath('/sessions/custom')
@@ -173,7 +173,7 @@ function! s:vim_startify.listener()
       \ endif
 
     autocmd BufEnter *
-      \ if !exists('t:startify_new_tab') && empty(expand('%')) && !exists('t:goyo_master') | 
+      \ if !exists('t:startify_new_tab') && empty(expand('%')) && !exists('t:goyo_master') |
       \   let t:startify_new_tab = 1 |
       \   Startify |
       \ endif
@@ -184,3 +184,21 @@ function! s:vim_startify.install(install)
   call a:install('mhinz/vim-startify')
 endfunction
 call materia#packages#add_package('vim_startify', s:vim_startify)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => gruvbox
+" https://github.com/morhetz/gruvbox
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:gruvbox= {'name': 'gruvbox'}
+function! s:gruvbox.config()
+  let g:gruvbox_italic=1
+endfunction
+function! s:gruvbox.listener()
+  if materia#conf('options.colorscheme') == 'gruvbox'
+    colorscheme gruvbox
+  endif
+endfunction
+function! s:gruvbox.install(install)
+  call a:install('morhetz/gruvbox')
+endfunction
+call materia#packages#add_package('gruvbox', s:gruvbox)

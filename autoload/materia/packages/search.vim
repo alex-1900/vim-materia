@@ -15,7 +15,7 @@
 " https://github.com/BurntSushi/ripgrep
 " https://github.com/sharkdp/bat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:fzf_vim = {}
+let s:fzf_vim = {'name': 'fzf.vim'}
 function! s:fzf_vim.config()
   " give the same prefix to the commands
   let g:fzf_command_prefix = materia#conf('packages.fzf_vim.command_prefix')
@@ -94,7 +94,7 @@ call materia#packages#add_package('fzf_vim', s:fzf_vim)
 " A vim plugin for highlighting and navigating through different words in a buffer.
 " https://github.com/lfv89/vim-interestingwords
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_interestingwords = {}
+let s:vim_interestingwords = {'name': 'vim-interestingwords'}
 function! s:vim_interestingwords.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_interestingwords.basekey'))
   " vim-interestingwords
@@ -115,7 +115,7 @@ call materia#packages#add_package('vim_interestingwords', s:vim_interestingwords
 " In other words, you can search your selection text in |Visual-mode|.
 " https://github.com/thinca/vim-visualstar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_visualstar = {}
+let s:vim_visualstar = {'name': 'vim-visualstar'}
 function! s:vim_visualstar.install(install)
   call a:install('thinca/vim-visualstar')
 endfunction
@@ -130,7 +130,7 @@ call materia#packages#add_package('vim_visualstar', s:vim_visualstar)
 " how to change highlight color in result windows
 " https://github.com/dyng/ctrlsf.vim/issues/272
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:ctrlsf = {}
+let s:ctrlsf = {'name': 'ctrlsf.vim'}
 function! s:ctrlsf.config()
   let g:ctrlsf_debug_mode = 0
   let g:ctrlsf_auto_preview = materia#conf('packages.ctrlsf.attr_auto_preview')

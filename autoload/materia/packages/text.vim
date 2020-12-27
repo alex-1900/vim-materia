@@ -9,7 +9,7 @@
 " Insert or delete brackets, parens, quotes in pair.
 " https://github.com/jiangmiao/auto-pairs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:auto_pairs = {}
+let s:auto_pairs = {'name': 'auto-pairs'}
 function! s:auto_pairs.install(install)
   call a:install('jiangmiao/auto-pairs')
 endfunction
@@ -20,7 +20,7 @@ call materia#packages#add_package('auto_pairs', s:auto_pairs)
 " Comment functions so powerful—no comment necessary.
 " https://github.com/preservim/nerdcommenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:nerdcommenter = {}
+let s:nerdcommenter = {'name': 'nerdcommenter'}
 function! s:nerdcommenter.config()
   " Create default mappings
   let g:NERDCreateDefaultMappings = 1
@@ -47,7 +47,7 @@ call materia#packages#add_package('nerdcommenter', s:nerdcommenter)
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:supertab = {}
+let s:supertab = {'name': 'supertab'}
 function! s:supertab.config()
   let g:SuperTabDefaultCompletionType = materia#conf('packages.supertab.scroll')
 endfunction
@@ -61,7 +61,7 @@ call materia#packages#add_package('supertab', s:supertab)
 " A simple, easy-to-use Vim alignment plugin.
 " https://github.com/junegunn/vim-easy-align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_easy_align = {}
+let s:vim_easy_align = {'name': 'vim-easy-align'}
 function! s:vim_easy_align.listener()
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   xmap ga <Plug>(EasyAlign)
@@ -78,7 +78,7 @@ call materia#packages#add_package('vim_easy_align', s:vim_easy_align)
 " The plugin provides mappings to easily delete, change and add such surroundings in pairs.
 " https://github.com/tpope/vim-surround
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_surround = {}
+let s:vim_surround = {'name': 'vim-surround'}
 function! s:vim_surround.install(install)
   call a:install('tpope/vim-surround')
 endfunction
@@ -89,7 +89,7 @@ call materia#packages#add_package('vim_surround', s:vim_surround)
 " https://github.com/mg979/vim-visual-multi
 " https://github.com/mg979/vim-visual-multi/wiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_visual_multi = {}
+let s:vim_visual_multi = {'name': 'vim-visual-multi'}
 function! s:vim_visual_multi.config()
   " vim-visual-multi
   let g:VM_leader = "'"
@@ -109,7 +109,7 @@ call materia#packages#add_package('vim_visual_multi', s:vim_visual_multi)
 " This plugin causes all trailing whitespace characters to be highlighted. 
 " https://github.com/ntpeters/vim-better-whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_better_whitespace = {}
+let s:vim_better_whitespace = {'name': 'vim-better-whitespace'}
 function! s:vim_better_whitespace.config()
   let g:better_whitespace_enabled = 1
   let g:strip_whitespace_on_save = materia#conf('packages.vim_better_whitespace.strip_on_save')

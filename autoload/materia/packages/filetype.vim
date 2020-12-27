@@ -9,7 +9,7 @@
 " HTML5 + inline SVG omnicomplete function, indent and syntax for Vim. Based on the default htmlcomplete.vim.
 " https://github.com/othree/html5.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:html5_vim = {}
+let s:html5_vim = {'name': 'html5.vim'}
 function! s:html5_vim.config()
   let g:html5_event_handler_attributes_complete = materia#conf('packages.html5_vim.attr_event_handler')
   let g:html5_rdfa_attributes_complete = materia#conf('packages.html5_vim.attr_rdfa')
@@ -32,7 +32,7 @@ call materia#packages#add_package('html5_vim', s:html5_vim)
 " snippets.json Doc:
 " https://docs.emmet.io/customization/snippets/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:emmet_vim = {}
+let s:emmet_vim = {'name': 'emmet-vim'}
 function! s:emmet_vim.config()
   if materia#conf('html.snippet_path')
     let g:user_emmet_install_global = 0
@@ -60,7 +60,7 @@ call materia#packages#add_package('emmet_vim', s:emmet_vim)
 " It runs files through external syntax checkers and displays any resulting errors to the user.
 " https://github.com/vim-syntastic/syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:syntastic = {}
+let s:syntastic = {'name': 'syntastic'}
 function! s:syntastic.options()
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
@@ -82,7 +82,7 @@ call materia#packages#add_package('syntastic', s:syntastic)
 " Improved nginx vim plugin (incl. syntax highlighting)
 " https://github.com/chr4/nginx.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:nginx = {}
+let s:nginx = {'name': 'nginx.vim'}
 function! s:nginx.install(install)
   call a:install('chr4/nginx.vim')
 endfunction
@@ -93,7 +93,7 @@ call materia#packages#add_package('nginx', s:nginx)
 " Go development plugin for Vim
 " https://github.com/fatih/vim-go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_go = {}
+let s:vim_go = {'name': 'vim-go'}
 function! s:vim_go.config()
   let g:go_def_mode='gopls'
   let g:go_info_mode='gopls'
@@ -136,7 +136,7 @@ call materia#packages#add_package('vim_go', s:vim_go)
 " JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
 " https://github.com/pangloss/vim-javascript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_javascript = {}
+let s:vim_javascript = {'name': 'vim-javascript'}
 function! s:vim_javascript.config()
   let g:javascript_plugin_jsdoc = materia#conf('packages.vim_javascript.attr_plugin_jsdoc')
   let g:javascript_plugin_ngdoc = materia#conf('packages.vim_javascript.attr_plugin_ngdoc')
@@ -157,7 +157,7 @@ call materia#packages#add_package('vim_javascript', s:vim_javascript)
 " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
 " https://github.com/elzr/vim-json
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_json = {}
+let s:vim_json = {'name': 'vim-json'}
 function! s:vim_json.options()
   set conceallevel=0
 endfunction
@@ -174,7 +174,7 @@ call materia#packages#add_package('vim_json', s:vim_json)
 " React JSX syntax highlighting and indenting for vim.
 " https://github.com/mxw/vim-jsx
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_jsx = {}
+let s:vim_jsx = {'name': 'vim-jsx'}
 function! s:vim_jsx.install(install)
   call a:install('mxw/vim-jsx')
 endfunction
@@ -185,7 +185,7 @@ call materia#packages#add_package('vim_jsx', s:vim_jsx)
 " This is the development version of Vim's included syntax highlighting and filetype plugins for Markdown.
 " https://github.com/tpope/vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_markdown = {}
+let s:vim_markdown = {'name': 'vim-markdown'}
 function! s:vim_markdown.config()
   let g:markdown_fenced_languages = materia#conf('packages.vim_markdown.attr_fenced_languages')
   let g:markdown_minlines = materia#conf('packages.vim_markdown.attr_minlines')
@@ -199,7 +199,7 @@ call materia#packages#add_package('vim_markdown', s:vim_markdown)
 " => vim_livedown
 " https://github.com/shime/vim-livedown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_livedown = {}
+let s:vim_livedown = {'name': 'vim-livedown'}
 function! s:vim_livedown.config()
 endfunction
 function! s:vim_livedown.listener()
@@ -218,7 +218,7 @@ call materia#packages#add_package('vim_livedown', s:vim_livedown)
 " You can toggle fullscreen mode by pressing spacebar.
 " https://github.com/junegunn/vim-peekaboo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_peekaboo = {}
+let s:vim_peekaboo = {'name': 'vim-peekaboo'}
 function! s:vim_peekaboo.config()
   let g:peekaboo_delay = materia#conf('packages.vim_peekaboo.attr_delay')
   let g:peekaboo_compact = materia#conf('packages.vim_peekaboo.attr_compact')
@@ -235,7 +235,7 @@ call materia#packages#add_package('vim_peekaboo', s:vim_peekaboo)
 " Use (neo)vim terminal in the floating/popup window.
 " https://github.com/voldikss/vim-floaterm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_floaterm = {}
+let s:vim_floaterm = {'name': 'vim-floaterm'}
 function! s:vim_floaterm.options()
   " Set floaterm window's background to black
   hi Floaterm guibg=black
@@ -273,7 +273,7 @@ call materia#packages#add_package('vim_floaterm', s:vim_floaterm)
 " Use (neo)vim terminal in the floating/popup window.
 " https://github.com/voldikss/vim-floaterm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_smooth_scroll = {}
+let s:vim_smooth_scroll = {'name': 'vim-smooth-scroll'}
 function! s:vim_smooth_scroll.listener()
   let speed = materia#conf('packages.vim_smooth_scroll.speed')
   execute 'noremap <silent> <c-u> :call smooth_scroll#up(&scroll, '. speed .', 1)<CR>'
@@ -292,7 +292,7 @@ call materia#packages#add_package('vim_smooth_scroll', s:vim_smooth_scroll)
 " https://github.com/editorconfig/editorconfig-vim
 " https://editorconfig.org/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:editorconfig_vim = {}
+let s:editorconfig_vim = {'name': 'editorconfig-vim'}
 function! s:editorconfig_vim.config()
   let g:EditorConfig_exclude_patterns = materia#conf('packages.editorconfig_vim.exclude_patterns')
 endfunction
@@ -311,7 +311,7 @@ call materia#packages#add_package('editorconfig_vim', s:editorconfig_vim)
 " An Interface to WEB APIs.
 " https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:webapi_vim = {}
+let s:webapi_vim = {'name': 'webapi-vim'}
 function! s:webapi_vim.install(install)
   call a:install('mattn/webapi-vim')
 endfunction
