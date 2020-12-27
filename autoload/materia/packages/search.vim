@@ -66,9 +66,6 @@ function! s:fzf_vim.listener()
     execute 'nnoremap <silent> '. key_prefix.view . 'c :<C-u>'.command_prefix.'Commits<CR>'
   endif
 
-  autocmd! FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
   " Override statusline as you like
   function! s:fzf_statusline()
     highlight fzf1 ctermfg=161 ctermbg=251
@@ -124,26 +121,56 @@ endfunction
 call materia#packages#add_package('vim_visualstar', s:vim_visualstar)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => far
-" Find And Replace Vim plugin
-" https://github.com/brooth/far.vim
+" => ctrlsf
+" An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
+" https://github.com/dyng/ctrlsf.vim
+" https://github.com/gabesoft/vim-ags
+"
+" how to change highlight color in result windows
+" https://github.com/dyng/ctrlsf.vim/issues/272
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:far = {}
-function! s:far.option()
-  " improve scrolling performance when navigating through large results
-  set lazyredraw
-  " ignore case only when the pattern contains no capital letters
-  set ignorecase smartcase
+let s:ctrlsf = {}
+function! s:ctrlsf.config()
+  let g:ctrlsf_debug_mode = 0
+  let g:ctrlsf_auto_preview = materia#conf('packages.ctrlsf.attr_auto_preview')
+  " defines default case-sensitivity in search (yes/no/smart)
+  let g:ctrlsf_case_sensitive = materia#conf('packages.ctrlsf.attr_case_sensitive')
+  let g:ctrlsf_ackprg = materia#conf('packages.ctrlsf.attr_ackprg')
+  " defines how many context lines will be printed
+  let g:ctrlsf_context = materia#conf('packages.ctrlsf.attr_context')
+  " defines how CtrlSF find search root when no explicit path is given. (cwd/project)
+  let g:ctrlsf_default_root = materia#conf('packages.ctrlsf.attr_default_root')
+  " defines default view mode which CtrlSF will use. (compact/normal)
+  let g:ctrlsf_default_view_mode = materia#conf('packages.ctrlsf.attr_default_view_mode')
+  " a list contains custom root markers.
+  let g:ctrlsf_extra_root_markers = materia#conf('packages.ctrlsf.attr_root_markers')
+  " defines if CtrlSF will also feed quickfix and location list with search result.
+  let g:ctrlsf_populate_qflist = materia#conf('packages.ctrlsf.attr_populate_qflist')
+  " defines CtrlSF using literal pattern or regular expression pattern as default.
+  let g:ctrlsf_regex_pattern = materia#conf('packages.ctrlsf.attr_regex_pattern')
+  " defines whether CtrlSF works in synchronous or asynchronous way.
+  let g:ctrlsf_search_mode = 'async'
+  " defines where CtrlSf places its window. Possible values are left (default), right, top and bottom.
+  let g:ctrlsf_position = materia#conf('packages.ctrlsf.attr_position')
+  " defines how CtrlSF focuses result pane when working in async search mode.
+  if materia#conf('packages.ctrlsf.attr_auto_focus')
+    let g:ctrlsf_auto_focus = {
+      \ "at": "start"
+    \ }
+  endif
+  let g:ctrlsf_ignore_dir = materia#conf('packages.ctrlsf.attr_ignore_dir')
 endfunction
-function! s:far.listener()
-  " shortcut for far.vim find
-  nnoremap <silent> <Find-Shortcut>  :Farf<cr>
-  vnoremap <silent> <Find-Shortcut>  :Farf<cr>
-  " shortcut for far.vim replace
-  nnoremap <silent> <Replace-Shortcut>  :Farr<cr>
-  vnoremap <silent> <Replace-Shortcut>  :Farr<cr>
+function! s:ctrlsf.listener()
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlsf.basekey'))
+  execute 'nmap '. key_prefix.view .'f <Plug>CtrlSFPrompt'
+  execute 'nmap '. key_prefix.view .'o :<C-u>CtrlSFToggle<CR>'
+  execute 'nmap '. key_prefix.view .'s <Plug>CtrlSFPrompt'
+  execute 'vmap '. key_prefix.view .'s <Plug>CtrlSFVwordPath'
+  execute 'nmap '. key_prefix.view .'w <Plug>CtrlSFCwordPath'
+  execute 'nmap '. key_prefix.view .'c <Plug>CtrlSFCCwordPath'
+  execute 'nmap '. key_prefix.view .'l <Plug>CtrlSFPwordPath'
 endfunction
-function! s:far.install(install)
-  call a:install('brooth/far.vim')
+function! s:ctrlsf.install(install)
+  call a:install('dyng/ctrlsf.vim')
 endfunction
-call materia#packages#add_package('far', s:far)
+call materia#packages#add_package('ctrlsf', s:ctrlsf)

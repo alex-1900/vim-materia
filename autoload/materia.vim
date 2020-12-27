@@ -55,8 +55,8 @@ function! materia#loadplugs() abort
       let l:execute_vim_enter =  'autocmd VimEnter * nested call materia#packages#get_package("'. l:package_name .'").listener()'
       if has_key(l:package, 'options')  | call l:package.options() | endif
       if has_key(l:package, 'config')   | call l:package.config() | endif
-      if has_key(l:package, 'install')  | call l:package.install(s:plug_installer) | endif
       if has_key(l:package, 'listener') | execute l:execute_vim_enter | endif
+      if has_key(l:package, 'install')  | call l:package.install(s:plug_installer) | endif
     else
       let  l:app_message = materia#dependence#get('app#message')
       call l:app_message.warn('Custom package `'. l:package_name . '` not found.')

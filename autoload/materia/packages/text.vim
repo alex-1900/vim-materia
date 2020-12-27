@@ -92,7 +92,7 @@ call materia#packages#add_package('vim_surround', s:vim_surround)
 let s:vim_visual_multi = {}
 function! s:vim_visual_multi.config()
   " vim-visual-multi
-  let g:VM_leader = ';'
+  let g:VM_leader = "'"
   let g:VM_maps = {}
   let g:VM_maps["Add Cursor Down"] = '<C-j>'
   let g:VM_maps["Add Cursor Up"] = '<C-k>'

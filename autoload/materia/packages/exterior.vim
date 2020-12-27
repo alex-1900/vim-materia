@@ -161,7 +161,7 @@ function! s:vim_startify.config()
 endfunction
 
 function! s:vim_startify.listener()
-  autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+  " autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
   if has('nvim')
     autocmd TabNewEntered * Startify
   else

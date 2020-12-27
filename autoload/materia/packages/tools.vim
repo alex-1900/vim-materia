@@ -101,11 +101,24 @@ call materia#packages#add_package('vista_vim', s:vista_vim)
 " https://github.com/tpope/vim-fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_fugitive = {}
+function! s:undotree.option()
+  if HasPlug('vim-fugitive')
+    set statusline+=%{FugitiveStatusline()}
+  endif
+endfunction
 function! s:vim_fugitive.listener()
-  nnoremap <leader>gg :Git --paginate<CR>
-  nnoremap <leader>gd :Git diff<CR>
-  nnoremap <leader>gl :Git log<CR>
-  nnoremap <leader>grl :Git reflog<CR>
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_fugitive.basekey'))
+  execute 'nnoremap <silent> '. key_prefix.view .'g :<C-u>Git --paginate<CR>'
+  execute 'nnoremap <silent> '. key_prefix.view .'d :<C-u>Git diff<CR>'
+  execute 'nnoremap <silent> '. key_prefix.view .'l :<C-u>Git log<CR>'
+  execute 'nnoremap <silent> '. key_prefix.view .'r :<C-u>Git reflog<CR>'
+  execute 'nnoremap <silent> '. key_prefix.view .'b :<C-u>Git blame<CR>'
+  execute 'nnoremap <silent> '. key_prefix.win .'m :<C-u>Git mergetool<CR>'
+  execute 'nnoremap <silent> '. key_prefix.win .'d :<C-u>Git difftool<CR>'
+  execute 'nnoremap <silent> '. key_prefix.win .'s :<C-u>Gdiffsplit<CR>'
+  execute 'nnoremap <silent> '. key_prefix.win .'o :<C-u>GBrowse<CR>'
+  execute 'nnoremap <silent> '. key_prefix.action .'r :<C-u>Gread<CR>'
+  execute 'nnoremap <silent> '. key_prefix.action .'w :<C-u>Gwrite<CR>'
 endfunction
 function! s:vim_fugitive.install(install)
   call a:install('tpope/vim-fugitive')
@@ -118,13 +131,39 @@ call materia#packages#add_package('vim_fugitive', s:vim_fugitive)
 " https://github.com/airblade/vim-gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_gitgutter = {}
+function! s:vim_gitgutter.option()
+  set foldtext=gitgutter#fold#foldtext()
+endfunction
 function! s:vim_gitgutter.config()
   let g:gitgutter_max_signs = -1
+  let g:gitgutter_map_keys = 0
+  let g:gitgutter_preview_win_floating = 1
 endfunction
 function! s:vim_gitgutter.listener()
+  let okey = materia#conf('packages.vim_gitgutter.basekey')
+  let nkey = materia#conf('options.maps.next')
+  let pkey = materia#conf('options.maps.prev')
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_gitgutter.basekey'))
   highlight! link SignColumn LineNr 
-  " nmap ]h <Plug>(GitGutterNextHunk)
-  " nmap [h <Plug>(GitGutterPrevHunk)
+  " Jump to hunks
+  execute 'nmap '. key_prefix.next .' <Plug>(GitGutterNextHunk)'
+  execute 'nmap '. key_prefix.prev .' <Plug>(GitGutterPrevHunk)'
+
+  execute 'nmap '. key_prefix.view .'h :<C-u>GitGutterToggle<CR>'
+  execute 'nmap '. key_prefix.view .'b :<C-u>GitGutterBufferToggle<CR>'
+  execute 'nmap '. key_prefix.view .'i :<C-u>GitGutterSignsToggle<CR>'
+  execute 'nmap '. key_prefix.view .'l :<C-u>GitGutterLineHighlightsToggle<CR>'
+  execute 'nmap '. key_prefix.view .'n :<C-u>GitGutterLineNrHighlightsToggle<CR>'
+  execute 'nmap '. key_prefix.view .'f :<C-u>GitGutterFold<CR>'
+  execute 'nmap '. key_prefix.view .'p :<C-u>GitGutterPreviewHunk<CR>'
+  execute 'nmap '. key_prefix.action .'s <Plug>(GitGutterStageHunk)'
+  execute 'nmap '. key_prefix.action .'u <Plug>(GitGutterUndoHunk)'
+
+  function! GitStatus()
+    let [a,m,r] = GitGutterGetHunkSummary()
+    return printf('+%d ~%d -%d', a, m, r)
+  endfunction
+  set statusline+=%{GitStatus()}
 endfunction
 function! s:vim_gitgutter.install(install)
   call a:install('airblade/vim-gitgutter')
@@ -138,15 +177,19 @@ call materia#packages#add_package('vim_gitgutter', s:vim_gitgutter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:materia_session = {}
 function! s:materia_session.config()
-  let g:materia_session_mode = 'dir'
+  let g:materia_session_mode = materia#conf('packages.materia_session.mode')
   let g:materia_session_directory = materia#homepath('/temp/sessions')
-  let g:session_autosave_on_actions = 1
+  let g:session_autosave_on_actions = materia#conf('packages.materia_session.autosave_on_actions')
 endfunction
 
 function! s:materia_session.listener()
   if g:loaded_materia_session
-    call MateriaSessionLoad()
-    autocmd VimLeavePre * :MateriaSessionSave<CR>
+    if materia#conf('packages.materia_session.autoload')
+      call MateriaSessionLoad()
+    endif
+    if materia#conf('packages.materia_session.autosave')
+      autocmd VimLeavePre * :<C-u>MateriaSessionSave<CR>
+    endif
   endif
 endfunction
 

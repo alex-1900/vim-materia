@@ -18,6 +18,8 @@ function! materia#core#functions#get() abort
   let s:gkey = materia#conf('options.maps.navigation')
   let s:tkey = materia#conf('options.maps.tap')
   let s:ekey = materia#conf('options.maps.edge')
+  let s:nkey = materia#conf('options.maps.next')
+  let s:pkey = materia#conf('options.maps.prev')
   function! GetConfigMapPrefix(okey) abort
     return {
       \ 'view': s:lkey . a:okey,
@@ -25,6 +27,8 @@ function! materia#core#functions#get() abort
       \ 'nav': s:gkey . a:okey,
       \ 'win': '<C-' . a:okey. '>',
       \ 'edge': s:ekey . a:okey,
+      \ 'next': s:nkey . a:okey,
+      \ 'prev': s:pkey . a:okey
     \ }
   endfunction
 endfunction

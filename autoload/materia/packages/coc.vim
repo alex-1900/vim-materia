@@ -65,9 +65,9 @@ function! s:coc_nvim.listener()
   " Search workspace symbols.
   execute 'nnoremap <silent><nowait> '. key_prefix.view .'s :<C-u>CocList -I symbols<cr>'
   " Do default action for next item.
-  execute 'nnoremap <silent><nowait> '. key_prefix.nav .'n :<C-u>CocNext<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.next .'c :<C-u>CocNext<cr>'
   " Do default action for previous item.
-  execute 'nnoremap <silent><nowait> '. key_prefix.nav .'p :<C-u>CocPrev<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.prev .'c :<C-u>CocPrev<cr>'
   " Resume latest coc list.
   execute 'nnoremap <silent><nowait> '. key_prefix.view .'m :<C-u>CocListResume<cr>'
 
@@ -112,8 +112,8 @@ function! s:coc_nvim.listener()
 
   " Use `[g` and `]g` to navigate diagnostics
   " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-  execute 'nmap <silent> '. key_prefix.nav .'[ <Plug>(coc-diagnostic-prev)'
-  execute 'nmap <silent> '. key_prefix.nav .'] <Plug>(coc-diagnostic-next)'
+  execute 'nmap <silent> '. key_prefix.prev .'d <Plug>(coc-diagnostic-prev)'
+  execute 'nmap <silent> '. key_prefix.next .'d <Plug>(coc-diagnostic-next)'
 
   " Add `:Format` command to format current buffer.
   command! -nargs=0 Format :call CocAction('format')

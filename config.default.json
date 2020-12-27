@@ -5,7 +5,9 @@
       "navigation": "g",
       "action": "<space>",
       "tap": "t",
-      "edge": "\\"
+      "edge": "\\",
+      "next": "]",
+      "prev": "["
     },
     "undo_persistent": false,
     "python2_path": "/usr/bin/python",
@@ -37,7 +39,6 @@
       "snippet_path": false,
       "filetypes": ["html", "css"]
     },
-    "far": {},
     "fzf_vim": {
       "basekey": "f",
       "preview_window": ["right:50%", "ctrl-/"],
@@ -47,7 +48,28 @@
     "goyo": {
       "basekey": "v"
     },
-    "html5_vim": {},
+    "ctrlsf": {
+      "basekey": "r",
+      "attr_auto_preview": true,
+      "attr_case_sensitive": "smart",
+      "attr_ackprg": "ag",
+      "attr_context": "-B 4 -A 4",
+      "attr_default_root": "project",
+      "attr_default_view_mode": "normal",
+      "attr_root_markers": [],
+      "attr_populate_qflist": 0,
+      "attr_regex_pattern": 0,
+      "attr_position": "left",
+      "attr_ignore_dir": [],
+      "attr_auto_focus": true
+    },
+    "html5_vim": {
+      "filetypes": ["html", "css"],
+      "attr_event_handler": true,
+      "attr_rdfa": true,
+      "attr_microdata": true,
+      "attr_aria": true
+    },
     "limelight_vim": {
       "basekey": "v",
       "conceal_guifg": "#777777",
@@ -56,22 +78,28 @@
       "paragraph_span": 1,
       "priority": -1
     },
-    "materia_session": {},
-    "nerdcommenter": {},
+    "materia_session": {
+      "mode": "dir",
+      "autoload": true,
+      "autosave": true,
+      "autosave_on_actions": true
+    },
+    "nerdcommenter": {
+      "basekey": "c"
+    },
     "nerdtree": {
       "basekey": "d",
       "visual_selection": true,
       "buffer_ops": true,
       "bookmarks": false,
-      "show_line_numbers": true
+      "show_line_numbers": false
     },
     "nginx": {},
     "supertab": {
       "scroll": "<c-n>"
     },
     "undotree": {
-      "basekey": "a",
-      "key_toggle": "<C-u>"
+      "basekey": "d"
     },
     "vim_airline": {
       "with_username": true,
@@ -95,8 +123,12 @@
       "height": 0.8,
       "rootmarkers": [".project", ".git", ".svn", ".hg", ".root"]
     },
-    "vim_fugitive": {},
-    "vim_gitgutter": {},
+    "vim_fugitive": {
+      "basekey": "g"
+    },
+    "vim_gitgutter": {
+      "basekey": "h"
+    },
     "vim_go": {},
     "vim_interestingwords": {},
     "vim_javascript": {},

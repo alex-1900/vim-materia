@@ -10,8 +10,15 @@
 " https://github.com/othree/html5.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:html5_vim = {}
+function! s:html5_vim.config()
+  let g:html5_event_handler_attributes_complete = materia#conf('packages.html5_vim.attr_event_handler')
+  let g:html5_rdfa_attributes_complete = materia#conf('packages.html5_vim.attr_rdfa')
+  let g:html5_microdata_attributes_complete = materia#conf('packages.html5_vim.attr_microdata')
+  let g:html5_aria_attributes_complete = materia#conf('packages.html5_vim.attr_aria')
+endfunction
 function! s:html5_vim.listener()
-  autocmd FileType html,css EmmetInstall
+  let filetypes = materia#conf('packages.html5_vim.filetypes')
+  execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
 endfunction
 function! s:html5_vim.install(install)
   call a:install('othree/html5.vim')
@@ -215,11 +222,12 @@ function! s:vim_floaterm.options()
 endfunction
 function! s:vim_floaterm.config()
   let okey = materia#conf('packages.vim_floaterm.basekey')
-  let gkey = materia#conf('options.maps.navigation')
+  let nkey = materia#conf('options.maps.next')
+  let pkey = materia#conf('options.maps.prev')
   let key_prefix = GetConfigMapPrefix(okey)
   let g:floaterm_keymap_new = key_prefix.edge . 'n'
-  let g:floaterm_keymap_prev = gkey . 'p'
-  let g:floaterm_keymap_next = gkey . 'n'
+  let g:floaterm_keymap_prev = pkey . okey
+  let g:floaterm_keymap_next = nkey . okey
   let g:floaterm_keymap_toggle = key_prefix.edge . okey
   let g:floaterm_keymap_kill = '<C-d>'
   let g:floaterm_title = materia#conf('packages.vim_floaterm.title')

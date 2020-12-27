@@ -65,7 +65,8 @@ function! materia#core#options#get()
   " Don't persist options and mappings because it can corrupt sessions.
   set sessionoptions-=options
   set sessionoptions-=blank
-  set sessionoptions+=tabpages
+  set sessionoptions-=globals
+  set sessionoptions-=tabpages
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => colors and fonts
