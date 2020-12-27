@@ -155,9 +155,7 @@ function! s:vim_startify.config()
     \ { 'type': 'commands',  'header': ['   Commands']       },
   \ ]
 
-  let g:startify_custom_header_quotes = [
-    \ ['The Materia vim configuration is on the way...']
-  \ ]
+  let g:startify_custom_header_quotes = materia#conf('packages.vim_startify.header_quotes')
 endfunction
 
 function! s:vim_startify.listener()

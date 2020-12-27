@@ -4,7 +4,6 @@
       "leader": "'",
       "navigation": "g",
       "action": "<space>",
-      "tap": "t",
       "edge": "\\",
       "next": "]",
       "prev": "["
@@ -25,7 +24,7 @@
     "coc_html": {},
     "coc_json": {},
     "coc_nvim": {
-      "basekey": "l"
+      "basekey": "a"
     },
     "coc_phpls": {},
     "coc_tsserver": {},
@@ -40,7 +39,7 @@
       "filetypes": ["html", "css"]
     },
     "fzf_vim": {
-      "basekey": "f",
+      "basekey": "s",
       "preview_window": ["right:50%", "ctrl-/"],
       "preview_options": {"options": ["--layout=reverse", "--info=inline"]},
       "command_prefix": "Fzf"
@@ -124,28 +123,67 @@
       "rootmarkers": [".project", ".git", ".svn", ".hg", ".root"]
     },
     "vim_fugitive": {
-      "basekey": "g"
+      "basekey": "f"
     },
     "vim_gitgutter": {
       "basekey": "h"
     },
-    "vim_go": {},
-    "vim_interestingwords": {},
-    "vim_javascript": {},
-    "vim_json": {},
+    "vim_go": {
+      "basekey": "g"
+    },
+    "vim_interestingwords": {
+      "basekey": "k"
+    },
+    "vim_javascript": {
+      "attr_plugin_jsdoc": 1,
+      "attr_plugin_ngdoc": 0,
+      "attr_plugin_flow": 0
+    },
+    "vim_json": {
+      "syntax_conceal": 0
+    },
     "vim_jsx": {},
-    "vim_livedown": {},
-    "vim_markdown": {},
+    "vim_livedown": {
+      "basekey": "m",
+      "attr_autorun": 0,
+      "attr_open": 1,
+      "attr_port": 1337
+    },
+    "vim_markdown": {
+      "attr_fenced_languages": ["bash=sh"],
+      "attr_minlines": 60
+    },
     "vim_nerdtree_syntax_highlight": {},
-    "vim_peekaboo": {},
-    "vim_smooth_scroll": {},
-    "vim_startify": {},
-    "vim_surround": {},
-    "vim_tmux_navigator": {},
-    "vim_visual_multi": {},
-    "vim_visualstar": {},
-    "vista_vim": {},
-    "webapi_vim": {}
+    "vim_peekaboo": {
+      "attr_delay": 0,
+      "attr_compact": 0,
+      "attr_prefix": "",
+      "attr_ins_prefix": ""
+    },
+    "vim_smooth_scroll": {
+      "speed": 6
+    },
+    "vim_startify": {
+      "header_quotes": [
+        ["The Materia vim configuration is on the way..."]
+      ]
+    },
+    "vim_surround": null,
+    "vim_tmux_navigator": null,
+    "vim_visual_multi": null,
+    "vim_visualstar": null,
+    "vista_vim": {
+      "basekey": "v",
+      "attr_sidebar_width": 35,
+      "attr_enable_icon": 1,
+      "attr_icon_indent": ["╰─▸ ", "├─▸ "],
+      "attr_executives": ["coc"],
+      "attr_default_executive": "coc",
+      "attr_executive_for": {},
+      "attr_finders": ["fzf"],
+      "fold_toggle_icons": ["▼", "▶"]
+    },
+    "webapi_vim": null
   },
   "language": {
 

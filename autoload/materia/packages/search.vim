@@ -96,12 +96,13 @@ call materia#packages#add_package('fzf_vim', s:fzf_vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_interestingwords = {}
 function! s:vim_interestingwords.listener()
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_interestingwords.basekey'))
   " vim-interestingwords
-  nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
-  vnoremap <silent> <leader>k :call InterestingWords('v')<cr>
-  nnoremap <silent> <leader>K :call UncolorAllWords()<cr>
-  nnoremap <silent> n :call WordNavigation(1)<cr>
-  nnoremap <silent> N :call WordNavigation(0)<cr>
+  execute 'nnoremap <silent> '. key_prefix.view ." :<C-u>call InterestingWords('n')<CR>"
+  execute 'vnoremap <silent> '. key_prefix.view ." :<C-u>call InterestingWords('v')<CR>"
+  execute 'nnoremap <silent> '. key_prefix.edge .' :<C-u>call UncolorAllWords()<CR>'
+  execute 'nnoremap <silent> '. key_prefix.prev .' :<C-u>call WordNavigation(0)<CR>'
+  execute 'nnoremap <silent> '. key_prefix.next .' :<C-u>call WordNavigation(1)<CR>'
 endfunction
 function! s:vim_interestingwords.install(install)
   call a:install('lfv89/vim-interestingwords')

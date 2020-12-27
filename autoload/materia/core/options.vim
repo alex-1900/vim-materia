@@ -98,6 +98,7 @@ function! materia#core#options#get()
   endif
   " highlight the current line
   set cursorline!
+  highlight Comment cterm=italic
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => search

@@ -112,12 +112,19 @@ function! s:vim_go.config()
   let g:go_highlight_structs = 1
   let g:go_highlight_types = 1
   " let g:go_highlight_function_calls = 1
-endfunction
-function! s:vim_go.listener()
+
   autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
   autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
   autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
   autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+  " Quickly execute your current file(s)
+  autocmd FileType go nmap gr :<C-u>GoRun<cr>
+  autocmd FileType go nmap gb :<C-u>GoBuild<cr>
+  autocmd FileType go nmap gi :<C-u>GoInstall<cr>
+  autocmd FileType go nmap gd :<C-u>GoDebugStart<cr>
+  autocmd FileType go nmap gte :<C-u>GoInstall<cr>
+endfunction
+function! s:vim_go.listener()
 endfunction
 function! s:vim_go.install(install)
   call a:install('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
@@ -131,7 +138,14 @@ call materia#packages#add_package('vim_go', s:vim_go)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_javascript = {}
 function! s:vim_javascript.config()
-  let g:javascript_plugin_jsdoc = 1
+  let g:javascript_plugin_jsdoc = materia#conf('packages.vim_javascript.attr_plugin_jsdoc')
+  let g:javascript_plugin_ngdoc = materia#conf('packages.vim_javascript.attr_plugin_ngdoc')
+  let g:javascript_plugin_flow = materia#conf('packages.vim_javascript.attr_plugin_flow')
+
+  augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+  augroup END
 endfunction
 function! s:vim_javascript.install(install)
   call a:install('pangloss/vim-javascript')
@@ -148,7 +162,7 @@ function! s:vim_json.options()
   set conceallevel=0
 endfunction
 function! s:vim_json.config()
-  let g:vim_json_syntax_conceal = 0
+  let g:vim_json_syntax_conceal = materia#conf('packages.vim_json.syntax_conceal')
 endfunction
 function! s:vim_json.install(install)
   call a:install('elzr/vim-json')
@@ -173,7 +187,8 @@ call materia#packages#add_package('vim_jsx', s:vim_jsx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_markdown = {}
 function! s:vim_markdown.config()
-  let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+  let g:markdown_fenced_languages = materia#conf('packages.vim_markdown.attr_fenced_languages')
+  let g:markdown_minlines = materia#conf('packages.vim_markdown.attr_minlines')
 endfunction
 function! s:vim_markdown.install(install)
   call a:install('tpope/vim-markdown')
@@ -185,8 +200,11 @@ call materia#packages#add_package('vim_markdown', s:vim_markdown)
 " https://github.com/shime/vim-livedown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_livedown = {}
+function! s:vim_livedown.config()
+endfunction
 function! s:vim_livedown.listener()
-  nnoremap <silent> <leader>ml <C-u>:LivedownToggle<CR>
+  let okey = materia#conf('packages.vim_livedown.basekey')
+  execute 'nnoremap <silent> <C-'. okey .'> :<C-u>LivedownToggle<CR>'
 endfunction
 function! s:vim_livedown.install(install)
   call a:install('shime/vim-livedown', { 'do': 'yarn global add livedown' })
@@ -201,6 +219,12 @@ call materia#packages#add_package('vim_livedown', s:vim_livedown)
 " https://github.com/junegunn/vim-peekaboo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_peekaboo = {}
+function! s:vim_peekaboo.config()
+  let g:peekaboo_delay = materia#conf('packages.vim_peekaboo.attr_delay')
+  let g:peekaboo_compact = materia#conf('packages.vim_peekaboo.attr_compact')
+  let g:peekaboo_prefix = materia#conf('packages.vim_peekaboo.attr_prefix')
+  let g:peekaboo_ins_prefix = materia#conf('packages.vim_peekaboo.attr_ins_prefix')
+endfunction
 function! s:vim_peekaboo.install(install)
   call a:install('junegunn/vim-peekaboo')
 endfunction
@@ -251,10 +275,11 @@ call materia#packages#add_package('vim_floaterm', s:vim_floaterm)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_smooth_scroll = {}
 function! s:vim_smooth_scroll.listener()
-  noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 6, 1)<CR>
-  noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 6, 1)<CR>
-  noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 6, 1)<CR>
-  noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 6, 1)<CR>
+  let speed = materia#conf('packages.vim_smooth_scroll.speed')
+  execute 'noremap <silent> <c-u> :call smooth_scroll#up(&scroll, '. speed .', 1)<CR>'
+  execute 'noremap <silent> <c-d> :call smooth_scroll#down(&scroll, '. speed .', 1)<CR>'
+  execute 'noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, '. speed .', 1)<CR>'
+  execute 'noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, '. speed .', 1)<CR>'
 endfunction
 function! s:vim_smooth_scroll.install(install)
   call a:install('terryma/vim-smooth-scroll')

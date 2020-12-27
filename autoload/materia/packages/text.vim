@@ -93,11 +93,11 @@ let s:vim_visual_multi = {}
 function! s:vim_visual_multi.config()
   " vim-visual-multi
   let g:VM_leader = "'"
-  let g:VM_maps = {}
-  let g:VM_maps["Add Cursor Down"] = '<C-j>'
-  let g:VM_maps["Add Cursor Up"] = '<C-k>'
-  let g:VM_maps["Select l"] = '<C-l>'
-  let g:VM_maps["Select h"] = '<C-h>'
+  " let g:VM_maps = {}
+  " let g:VM_maps["Add Cursor Down"] = '<C-j>'
+  " let g:VM_maps["Add Cursor Up"] = '<C-k>'
+  " let g:VM_maps["Select l"] = '<C-l>'
+  " let g:VM_maps["Select h"] = '<C-h>'
 endfunction
 function! s:vim_visual_multi.install(install)
   call a:install('mg979/vim-visual-multi')

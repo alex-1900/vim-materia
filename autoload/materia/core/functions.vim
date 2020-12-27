@@ -16,7 +16,6 @@ function! materia#core#functions#get() abort
   let s:lkey = '<leader>'
   let s:akey = materia#conf('options.maps.action')
   let s:gkey = materia#conf('options.maps.navigation')
-  let s:tkey = materia#conf('options.maps.tap')
   let s:ekey = materia#conf('options.maps.edge')
   let s:nkey = materia#conf('options.maps.next')
   let s:pkey = materia#conf('options.maps.prev')

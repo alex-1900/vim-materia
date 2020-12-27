@@ -78,17 +78,32 @@ call materia#packages#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vista_vim = {}
 function! s:vista_vim.config()
-  let g:vista_sidebar_width = 35
-  let g:vista#renderer#enable_icon = 1
-  let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-  let g:vista#executives = ['coc']
-  let g:vista_executive_for = {
-  \ 'php': 'coc', 'html': 'coc', 'css': 'coc'
-  \ }
+  let g:vista_sidebar_width = materia#conf('packages.vista_vim.attr_sidebar_width')
+  let g:vista#renderer#enable_icon = materia#conf('packages.vista_vim.attr_enable_icon')
+  let g:vista_icon_indent = materia#conf('packages.vista_vim.attr_icon_indent')
+  let g:vista_default_executive = materia#conf('packages.vista_vim.attr_default_executive')
+  let g:vista#executives = materia#conf('packages.vista_vim.attr_executives')
+  let g:vista_executive_for = materia#conf('packages.vista_vim.attr_executive_for')
+  let g:vista_fold_toggle_icons = materia#conf('packages.vista_vim.fold_toggle_icons')
+  let g:vista#finders = materia#conf('packages.vista_vim.attr_finders')
+  let g:vista_echo_cursor_strategy = 'floating_win'
+  " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+  let g:vista#renderer#icons = {
+  \   "function": "\uf794",
+  \   "variable": "\uf71b",
+  \  }
+
+  autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 endfunction
 function! s:vista_vim.listener()
-  nnoremap <silent> <leader>vv :Vista!!<CR>
-  nnoremap <silent> <leader>vf :Vista finder<CR>
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vista_vim.basekey'))
+  execute 'nnoremap <silent> '. key_prefix.view .'v :<C-u>Vista!!<CR>'
+  execute 'nnoremap <silent> '. key_prefix.view .'f :<C-u>Vista finder<CR>'
+
+  function! NearestMethodOrFunction() abort
+    return get(b:, 'vista_nearest_method_or_function', '')
+  endfunction
+  set statusline+=%{NearestMethodOrFunction()}
 endfunction
 function! s:vista_vim.install(install)
   call a:install('liuchengxu/vista.vim')
