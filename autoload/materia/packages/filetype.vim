@@ -31,6 +31,9 @@ call materia#packages#add_package('html5_vim', s:html5_vim)
 " https://github.com/mattn/emmet-vim
 " snippets.json Doc:
 " https://docs.emmet.io/customization/snippets/
+"
+" An Interface to WEB APIs.
+" https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:emmet_vim = {'name': 'emmet-vim'}
 function! s:emmet_vim.config()
@@ -51,6 +54,7 @@ function! s:emmet_vim.listener()
 endfunction
 function! s:emmet_vim.install(install)
   call a:install('mattn/emmet-vim')
+  call a:install('mattn/webapi-vim')
 endfunction
 call materia#packages#add_package('emmet_vim', s:emmet_vim)
 
@@ -305,14 +309,3 @@ function! s:editorconfig_vim.install(install)
   call a:install('editorconfig/editorconfig-vim')
 endfunction
 call materia#packages#add_package('editorconfig_vim', s:editorconfig_vim)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => webapi_vim
-" An Interface to WEB APIs.
-" https://github.com/mattn/webapi-vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:webapi_vim = {'name': 'webapi-vim'}
-function! s:webapi_vim.install(install)
-  call a:install('mattn/webapi-vim')
-endfunction
-call materia#packages#add_package('webapi_vim', s:webapi_vim)

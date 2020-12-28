@@ -46,6 +46,25 @@ endfunction
 call materia#packages#add_package('nerdtree', s:nerdtree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => defx
+" The dark powered file explorer implementation
+" https://github.com/Shougo/defx.nvim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:defx = {'name': 'defx.nvim'}
+function! s:defx.listener()
+endfunction
+function! s:defx.install(install)
+  if has('nvim')
+    call a:install('Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' })
+  else
+    call a:install('Shougo/defx.nvim')
+    call a:install('roxma/nvim-yarp')
+    call a:install('roxma/vim-hug-neovim-rpc')
+  endif
+endfunction
+call materia#packages#add_package('defx', s:defx)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => undotree
 " The plug-in visualizes undo history and makes it easier to browse and switch between different undo branches
 " https://github.com/mbbill/undotree

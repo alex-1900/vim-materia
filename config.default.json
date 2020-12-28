@@ -30,6 +30,7 @@
     "coc_phpls": {},
     "coc_tsserver": {},
     "coc_yaml": {},
+    "defx": {},
     "editorconfig_vim": {
       "exclude_patterns": ["fugitive://.*", "scp://.*"],
       "disable_types": ["gitcommit", "startify"]
@@ -184,8 +185,7 @@
       "attr_executive_for": {},
       "attr_finders": ["fzf"],
       "fold_toggle_icons": ["▼", "▶"]
-    },
-    "webapi_vim": null
+    }
   },
   "language": {
 
