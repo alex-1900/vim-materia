@@ -51,7 +51,7 @@ function! materia#loadplugs() abort
   let l:custom_packages = materia#packages#get_packages()
   for l:package_name in keys(materia#conf('packages'))
     if has_key(l:custom_packages, l:package_name)
-      let l:package           =  l:custom_packages[l:package_name]
+      let l:package = l:custom_packages[l:package_name]
       if HasPlug(l:package.name)
         let l:execute_vim_enter =  'autocmd VimEnter * nested call materia#packages#get_package("'. l:package_name .'").listener()'
         if has_key(l:package, 'options')  | call l:package.options() | endif

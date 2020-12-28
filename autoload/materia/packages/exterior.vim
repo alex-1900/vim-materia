@@ -44,7 +44,7 @@ endfunction
 
 function! s:limelight_vim.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.limelight_vim.basekey'))
-  execute 'nnoremap <silent> '. key_prefix.view .'l :<C-u>Limelight!! 1<CR>'
+  execute 'nnoremap <silent> '. key_prefix.view .'l :<C-u>Limelight!!<CR>'
   for n in range(0, 9)
     execute 'nnoremap <silent> '. key_prefix.view . n .' :<C-u>Limelight 0.'. n .'<CR>'
   endfor
@@ -94,7 +94,11 @@ function! s:vim_airline.listener()
     call airline#remove_statusline_func('ModuleAirLineMateriaAddition')
     call airline#add_statusline_func('ModuleAirLineMateriaAddition')
   endif
-  call airline#switch_theme(materia#conf('packages.vim_airline.theme'))
+  let theme = materia#conf('packages.vim_airline.theme')
+  if theme
+    " deus
+    call airline#switch_theme(theme)
+  endif
 endfunction
 function! s:vim_airline.install(install)
   call a:install('vim-airline/vim-airline')
@@ -192,10 +196,12 @@ call materia#packages#add_package('vim_startify', s:vim_startify)
 let s:gruvbox= {'name': 'gruvbox'}
 function! s:gruvbox.config()
   let g:gruvbox_italic=1
+  g:gruvbox_contrast_light
 endfunction
 function! s:gruvbox.listener()
   if materia#conf('options.colorscheme') == 'gruvbox'
     colorscheme gruvbox
+    call airline#switch_theme('gruvbox')
   endif
 endfunction
 function! s:gruvbox.install(install)

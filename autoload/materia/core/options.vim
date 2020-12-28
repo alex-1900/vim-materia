@@ -67,6 +67,9 @@ function! materia#core#options#get()
   set sessionoptions-=blank
   set sessionoptions-=globals
   set sessionoptions-=tabpages
+  set sessionoptions-=resize
+  set sessionoptions-=winpos
+  set sessionoptions-=winsize
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => colors and fonts
@@ -76,7 +79,7 @@ function! materia#core#options#get()
     syntax enable
   endif
   " default theme
-  set background=dark
+  execute 'set background='. materia#conf('options.background')
   " default colorscheme
   colorscheme janah
   " the maximum number of colors

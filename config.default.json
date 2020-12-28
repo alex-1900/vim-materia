@@ -8,10 +8,11 @@
       "next": "]",
       "prev": "["
     },
-    "undo_persistent": false,
+    "undo_persistent": 0,
     "python2_path": "/usr/bin/python",
     "python3_path": "/usr/bin/python3",
     "colorscheme": "gruvbox",
+    "background": "dark",
     "scroll_multiple": 4
   },
   "environment": {
@@ -35,7 +36,7 @@
     },
     "emmet_vim": {
       "leader_key": "<C-z>",
-      "snippet_path": false,
+      "snippet_path": 0,
       "filetypes": ["html", "css"]
     },
     "fzf_vim": {
@@ -50,7 +51,7 @@
     "gruvbox": {},
     "ctrlsf": {
       "basekey": "r",
-      "attr_auto_preview": true,
+      "attr_auto_preview": 1,
       "attr_case_sensitive": "smart",
       "attr_ackprg": "ag",
       "attr_context": "-B 4 -A 4",
@@ -59,16 +60,16 @@
       "attr_root_markers": [],
       "attr_populate_qflist": 0,
       "attr_regex_pattern": 0,
-      "attr_position": "left",
+      "attr_position": "bottom",
       "attr_ignore_dir": [],
-      "attr_auto_focus": true
+      "attr_auto_focus": 1
     },
     "html5_vim": {
       "filetypes": ["html", "css"],
-      "attr_event_handler": true,
-      "attr_rdfa": true,
-      "attr_microdata": true,
-      "attr_aria": true
+      "attr_event_handler": 1,
+      "attr_rdfa": 1,
+      "attr_microdata": 1,
+      "attr_aria": 1
     },
     "limelight_vim": {
       "basekey": "v",
@@ -80,19 +81,19 @@
     },
     "materia_session": {
       "mode": "dir",
-      "autoload": true,
-      "autosave": true,
-      "autosave_on_actions": true
+      "autoload": 1,
+      "autosave": 1,
+      "autosave_on_actions": 1
     },
     "nerdcommenter": {
       "basekey": "c"
     },
     "nerdtree": {
       "basekey": "d",
-      "visual_selection": true,
-      "buffer_ops": true,
-      "bookmarks": false,
-      "show_line_numbers": false
+      "visual_selection": 1,
+      "buffer_ops": 1,
+      "bookmarks": 0,
+      "show_line_numbers": 0
     },
     "nginx": {},
     "supertab": {
@@ -102,15 +103,15 @@
       "basekey": "d"
     },
     "vim_airline": {
-      "with_username": true,
-      "with_branch": true,
-      "with_hunks": true,
-      "with_tabline": true,
+      "with_username": 1,
+      "with_branch": 1,
+      "with_hunks": 1,
+      "with_tabline": 1,
       "tabline_formatter": "unique_tail",
-      "theme": "deus"
+      "theme": 0
     },
     "vim_better_whitespace": {
-      "strip_on_save": true,
+      "strip_on_save": 1,
       "ctermcolor": "yellow",
       "guicolor": "yellow"
     },
