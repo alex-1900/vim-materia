@@ -129,18 +129,18 @@ call materia#packages#add_package('vim_devicons', s:vim_devicons)
 " This adds syntax for nerdtree on most common file extensions.
 " https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_nerdtree_syntax_highlight = {'name': 'vim-nerdtree-syntax-highlight'}
-function! s:vim_nerdtree_syntax_highlight.config()
-  " Disable unmatched folder and file icons having the same color as their labels
-  let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
-  let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-  " Disable uncommon file extensions highlighting (this is a good idea if you are experiencing lag when scrolling. Find more about lag on next session.)
-  let g:NERDTreeLimitedSyntax = 1
-endfunction
-function! s:vim_nerdtree_syntax_highlight.install(install)
-  call a:install('tiagofumo/vim-nerdtree-syntax-highlight')
-endfunction
-call materia#packages#add_package('vim_nerdtree_syntax_highlight', s:vim_nerdtree_syntax_highlight)
+" let s:vim_nerdtree_syntax_highlight = {'name': 'vim-nerdtree-syntax-highlight'}
+" function! s:vim_nerdtree_syntax_highlight.config()
+"   " Disable unmatched folder and file icons having the same color as their labels
+"   let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+"   let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+"   " Disable uncommon file extensions highlighting (this is a good idea if you are experiencing lag when scrolling. Find more about lag on next session.)
+"   let g:NERDTreeLimitedSyntax = 1
+" endfunction
+" function! s:vim_nerdtree_syntax_highlight.install(install)
+"   call a:install('tiagofumo/vim-nerdtree-syntax-highlight')
+" endfunction
+" call materia#packages#add_package('vim_nerdtree_syntax_highlight', s:vim_nerdtree_syntax_highlight)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_startify

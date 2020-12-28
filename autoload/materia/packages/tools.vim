@@ -9,41 +9,48 @@
 " The NERDTree is a file system explorer for the Vim editor.
 " https://github.com/preservim/nerdtree
 " https://github.com/PhilRunninger/nerdtree-visual-selection
+"    "nerdtree": {
+"      "basekey": "d",
+"      "visual_selection": 1,
+"      "buffer_ops": 1,
+"      "bookmarks": 0,
+"      "show_line_numbers": 0
+"    },
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:nerdtree = {'name': 'nerdtree'}
-function! s:nerdtree.config()
-  let g:NERDTreeShowBookmarks = materia#conf('packages.nerdtree.bookmarks')
-  " let g:NERDTreeWinPos="dark"
-  let g:NERDTreeShowLineNumbers = materia#conf('packages.nerdtree.show_line_numbers')
-  let g:NERDTreeAutoCenter=0
-  let g:NERDTreeHighlightCursorline = 1
-  let g:NERDTreeShowFiles = 1
-  " avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window
-  let g:plug_window = 'noautocmd vertical topleft new'
-  " hide the boring brackets([ ])
-  let g:NERDTreeGitStatusConcealBrackets = 1
+" let s:nerdtree = {'name': 'nerdtree'}
+" function! s:nerdtree.config()
+"   let g:NERDTreeShowBookmarks = materia#conf('packages.nerdtree.bookmarks')
+"   " let g:NERDTreeWinPos="dark"
+"   let g:NERDTreeShowLineNumbers = materia#conf('packages.nerdtree.show_line_numbers')
+"   let g:NERDTreeAutoCenter=0
+"   let g:NERDTreeHighlightCursorline = 1
+"   let g:NERDTreeShowFiles = 1
+"   " avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window
+"   let g:plug_window = 'noautocmd vertical topleft new'
+"   " hide the boring brackets([ ])
+"   let g:NERDTreeGitStatusConcealBrackets = 1
 
-  let g:NERDTreeDirArrowExpandable = '▷'
-  let g:NERDTreeDirArrowCollapsible = '▽'
-endfunction
-function! s:nerdtree.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdtree.basekey'))
-  let key_toggle = materia#conf('packages.nerdtree.key_toggle')
-  let key_focus = materia#conf('packages.nerdtree.key_focus')
-  execute 'nnoremap <silent> '. key_prefix.edge .'o :<C-u>NERDTreeToggle<CR>'
-  execute 'nnoremap <silent> '. key_prefix.edge .'f :<C-u>NERDTreeFocus<CR>'
-endfunction
-function! s:nerdtree.install(install)
-  call a:install('preservim/nerdtree')
-  if materia#conf('packages.nerdtree.visual_selection')
-    call a:install('PhilRunninger/nerdtree-visual-selection')
-  endif
-  if materia#conf('packages.nerdtree.buffer_ops')
-    call a:install('PhilRunninger/nerdtree-buffer-ops')
-  endif
-  \| call a:install('Xuyuanp/nerdtree-git-plugin')
-endfunction
-call materia#packages#add_package('nerdtree', s:nerdtree)
+"   let g:NERDTreeDirArrowExpandable = '▷'
+"   let g:NERDTreeDirArrowCollapsible = '▽'
+" endfunction
+" function! s:nerdtree.listener()
+"   let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdtree.basekey'))
+"   let key_toggle = materia#conf('packages.nerdtree.key_toggle')
+"   let key_focus = materia#conf('packages.nerdtree.key_focus')
+"   execute 'nnoremap <silent> '. key_prefix.edge .'o :<C-u>NERDTreeToggle<CR>'
+"   execute 'nnoremap <silent> '. key_prefix.edge .'f :<C-u>NERDTreeFocus<CR>'
+" endfunction
+" function! s:nerdtree.install(install)
+"   call a:install('preservim/nerdtree')
+"   if materia#conf('packages.nerdtree.visual_selection')
+"     call a:install('PhilRunninger/nerdtree-visual-selection')
+"   endif
+"   if materia#conf('packages.nerdtree.buffer_ops')
+"     call a:install('PhilRunninger/nerdtree-buffer-ops')
+"   endif
+"   \| call a:install('Xuyuanp/nerdtree-git-plugin')
+" endfunction
+" call materia#packages#add_package('nerdtree', s:nerdtree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => defx
@@ -52,6 +59,91 @@ call materia#packages#add_package('nerdtree', s:nerdtree)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:defx = {'name': 'defx.nvim'}
 function! s:defx.listener()
+  let g:defx_icons_enable_syntax_highlight = 1
+  let g:defx_icons_column_length = 1
+  call defx#custom#option('_', {
+    \ 'columns': 'mark:indent:git:icon:filename:size',
+    \ 'winwidth': 40,
+    \ 'split': 'vertical',
+    \ 'direction': "topleft",
+    \ 'ignored_files': '*.swp,.git,.svn,.DS_Store',
+    \ 'show_ignored_files': 0,
+    \ 'toggle': 1,
+    \ 'resume': 1
+  \ })
+
+  call defx#custom#column('mark', {
+    \ 'readonly_icon': '✗',
+    \ 'selected_icon': '✓',
+  \ })
+
+  call defx#custom#column('icon', {
+    \ 'directory_icon': '▷',
+    \ 'opened_icon': '▽',
+    \ 'root_icon': ' ',
+  \ })
+
+  call defx#custom#column('filename', {
+    \ 'max_width': 1000,
+  \ })
+
+  let key_toggle = materia#conf('packages.defx.key_toggle')
+  execute 'nnoremap <silent> '. key_toggle .' :<C-u>Defx -buffer-name=tab`tabpagenr()` `getcwd()`<CR>'
+
+  function! s:defx_mappings() abort
+      nnoremap <silent><buffer><expr> o
+        \ defx#is_directory() ?
+        \ defx#do_action('open_tree', 'toggle') :
+        \ defx#do_action('drop')
+
+      nnoremap <silent><buffer><expr> P defx#do_action('search',
+	      \ fnamemodify(defx#get_candidate().action__path, ':h'))
+      nnoremap <silent><buffer><expr> i defx#do_action('drop', 'vsplit')
+      nnoremap <silent><buffer><expr> I defx#do_action('toggle_ignored_files')
+      nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+      nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+      nnoremap <silent><buffer><expr> C defx#do_action('cd', defx#get_candidate().action__path)
+      nnoremap <silent><buffer><expr> U defx#do_action('cd', ['..'])
+      nnoremap <silent><buffer><expr> v defx#do_action('preview')
+      nnoremap <silent><buffer><expr> > defx#do_action('resize', defx#get_context().winwidth + 4)
+      nnoremap <silent><buffer><expr> < defx#do_action('resize', defx#get_context().winwidth - 4)
+      nnoremap <silent><buffer><expr> cp defx#do_action('copy')
+      nnoremap <silent><buffer><expr> p defx#do_action('paste')
+      nnoremap <silent><buffer><expr> mv defx#do_action('move')
+      nnoremap <silent><buffer><expr> r! defx#do_action('remove')
+      nnoremap <silent><buffer><expr> rm defx#do_action('remove_trash')
+      nnoremap <silent><buffer><expr> rn defx#do_action('rename')
+      nnoremap <silent><buffer><expr> nf defx#do_action('new_file')
+      nnoremap <silent><buffer><expr> nd defx#do_action('new_directory')
+      nnoremap <silent><buffer><expr> py defx#do_action('yank_path')
+      nnoremap <silent><buffer><expr> se defx#do_action('execute_command', 'open .')
+      nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
+      nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
+      nnoremap <silent><buffer><expr> <C-n> defx#do_action('toggle_select') . 'j'
+      nnoremap <silent><buffer><expr> <C-p> defx#do_action('toggle_select') . 'k'
+      nnoremap <silent><buffer><expr> <C-o> defx#do_action('toggle_select')
+      nnoremap <silent><buffer><expr> <ESC> defx#do_action('clear_select_all')
+      "nnoremap <silent><buffer><expr> se defx#do_action('save_session')
+      "nnoremap <silent><buffer><expr> sl defx#do_action('load_session')
+      nnoremap <silent><buffer><expr> q defx#do_action('quit')
+  endfunction
+
+  " https://github.com/Shougo/defx.nvim/issues/175
+  function! s:open_defx_if_directory()
+      try
+        let l:full_path = expand(expand('%:p'))
+      catch
+        return
+      endtry
+      if isdirectory(l:full_path)
+        execute "Defx -split=no -search=`expand('%:p')` | bd " . expand('%:r')
+      endif
+  endfunction
+
+  autocmd FileType defx setlocal number
+  autocmd FileType defx setlocal relativenumber
+  autocmd FileType defx call s:defx_mappings()
+  autocmd BufEnter * call s:open_defx_if_directory()
 endfunction
 function! s:defx.install(install)
   if has('nvim')
@@ -71,7 +163,7 @@ call materia#packages#add_package('defx', s:defx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:undotree = {'name': 'undotree'}
 function! s:undotree.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdtree.basekey'))
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.undotree.basekey'))
   execute 'nnoremap <silent> '. key_prefix.edge .'u :<C-u>UndotreeToggle<CR>'
 endfunction
 function! s:undotree.install(install)

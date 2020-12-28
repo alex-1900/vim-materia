@@ -30,7 +30,9 @@
     "coc_phpls": {},
     "coc_tsserver": {},
     "coc_yaml": {},
-    "defx": {},
+    "defx": {
+      "key_toggle": "<C-e>"
+    },
     "editorconfig_vim": {
       "exclude_patterns": ["fugitive://.*", "scp://.*"],
       "disable_types": ["gitcommit", "startify"]
@@ -88,13 +90,6 @@
     },
     "nerdcommenter": {
       "basekey": "c"
-    },
-    "nerdtree": {
-      "basekey": "d",
-      "visual_selection": 1,
-      "buffer_ops": 1,
-      "bookmarks": 0,
-      "show_line_numbers": 0
     },
     "nginx": {},
     "supertab": {
@@ -156,7 +151,6 @@
       "attr_fenced_languages": ["bash=sh"],
       "attr_minlines": 60
     },
-    "vim_nerdtree_syntax_highlight": {},
     "vim_peekaboo": {
       "attr_delay": 0,
       "attr_compact": 0,

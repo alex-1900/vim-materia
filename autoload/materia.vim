@@ -103,8 +103,8 @@ endfunction
 function! s:process_environments()
   if exists('g:materia#config.environment') &&
     \ type(g:materia#config.environment) == type({})
-    for l:env in keys(g:materia#config.environment)
-      execute 'let $'. l:env . '=' . g:materia#config.environment[s:env]
+    for env in keys(g:materia#config.environment)
+      execute 'let $'. env . '=' . g:materia#config.environment[env]
     endfor
   endif
 endfunction
