@@ -9,7 +9,7 @@
       "prev": "["
     },
     "undo_persistent": 0,
-    "python2_path": "/usr/bin/python",
+    "python2_path": "/usr/bin/python2",
     "python3_path": "/usr/bin/python3",
     "colorscheme": "gruvbox",
     "background": "dark",
