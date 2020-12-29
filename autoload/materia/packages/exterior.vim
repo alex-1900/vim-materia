@@ -179,7 +179,7 @@ call materia#packages#add_package('vim_startify', s:vim_startify)
 let s:gruvbox= {'name': 'gruvbox'}
 function! s:gruvbox.config()
   " medium/soft/hard
-  let g:gruvbox_contrast_dark = 'soft'
+  let g:gruvbox_contrast_dark = 'medium'
 endfunction
 function! s:gruvbox.listener()
   if materia#conf('options.colorscheme') == 'gruvbox'
