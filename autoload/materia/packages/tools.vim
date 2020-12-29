@@ -5,54 +5,6 @@
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => nerdtree
-" The NERDTree is a file system explorer for the Vim editor.
-" https://github.com/preservim/nerdtree
-" https://github.com/PhilRunninger/nerdtree-visual-selection
-"    "nerdtree": {
-"      "basekey": "d",
-"      "visual_selection": 1,
-"      "buffer_ops": 1,
-"      "bookmarks": 0,
-"      "show_line_numbers": 0
-"    },
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let s:nerdtree = {'name': 'nerdtree'}
-" function! s:nerdtree.config()
-"   let g:NERDTreeShowBookmarks = materia#conf('packages.nerdtree.bookmarks')
-"   " let g:NERDTreeWinPos="dark"
-"   let g:NERDTreeShowLineNumbers = materia#conf('packages.nerdtree.show_line_numbers')
-"   let g:NERDTreeAutoCenter=0
-"   let g:NERDTreeHighlightCursorline = 1
-"   let g:NERDTreeShowFiles = 1
-"   " avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window
-"   let g:plug_window = 'noautocmd vertical topleft new'
-"   " hide the boring brackets([ ])
-"   let g:NERDTreeGitStatusConcealBrackets = 1
-
-"   let g:NERDTreeDirArrowExpandable = '▷'
-"   let g:NERDTreeDirArrowCollapsible = '▽'
-" endfunction
-" function! s:nerdtree.listener()
-"   let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdtree.basekey'))
-"   let key_toggle = materia#conf('packages.nerdtree.key_toggle')
-"   let key_focus = materia#conf('packages.nerdtree.key_focus')
-"   execute 'nnoremap <silent> '. key_prefix.edge .'o :<C-u>NERDTreeToggle<CR>'
-"   execute 'nnoremap <silent> '. key_prefix.edge .'f :<C-u>NERDTreeFocus<CR>'
-" endfunction
-" function! s:nerdtree.install(install)
-"   call a:install('preservim/nerdtree')
-"   if materia#conf('packages.nerdtree.visual_selection')
-"     call a:install('PhilRunninger/nerdtree-visual-selection')
-"   endif
-"   if materia#conf('packages.nerdtree.buffer_ops')
-"     call a:install('PhilRunninger/nerdtree-buffer-ops')
-"   endif
-"   \| call a:install('Xuyuanp/nerdtree-git-plugin')
-" endfunction
-" call materia#packages#add_package('nerdtree', s:nerdtree)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => defx
 " The dark powered file explorer implementation
 " https://github.com/Shougo/defx.nvim
@@ -64,7 +16,7 @@ function! s:defx.listener()
 
   call defx#custom#option('_', {
     \ 'columns': 'mark:indent:git:icons:filename',
-    \ 'winwidth': 40,
+    \ 'winwidth': 30,
     \ 'split': 'vertical',
     \ 'direction': "topleft",
     \ 'ignored_files': '*.swp,.git,.svn,.DS_Store',
@@ -300,8 +252,8 @@ endfunction
 call materia#packages#add_package('vim_gitgutter', s:vim_gitgutter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_gitgutter
-" A Vim plugin which shows a git diff in the sign column.
+" => materia_session
+" The automated Vim/Neovim session management for Materia.
 " https://github.com/speed-sonic/vim-materia-session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:materia_session = {'name': 'vim-materia-session'}
@@ -317,7 +269,7 @@ function! s:materia_session.listener()
       call MateriaSessionLoad()
     endif
     if materia#conf('packages.materia_session.autosave')
-      autocmd VimLeavePre * :<C-u>MateriaSessionSave<CR>
+      autocmd VimLeavePre * call MateriaSessionSave()
     endif
   endif
 endfunction
@@ -327,3 +279,26 @@ function! s:materia_session.install(install)
 endfunction
 
 call materia#packages#add_package('materia_session', s:materia_session)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim_virtualenv
+" Vim plugin for working with python virtualenvs.
+" https://github.com/jmcantrell/vim-virtualenv
+"
+" virtualenv -p python envdir_name
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:vim_virtualenv = {'name': 'vim-virtualenv'}
+function! s:vim_virtualenv.config()
+  let conf = materia#conf('packages.vim_virtualenv.virtualenv_directory')
+  if type(conf) == type('')
+    let g:virtualenv_directory = conf
+  else
+    let g:virtualenv_directory = g:materia#path#home
+  endif
+endfunction
+
+function! s:vim_virtualenv.install(install)
+  call a:install('jmcantrell/vim-virtualenv')
+endfunction
+
+call materia#packages#add_package('vim_virtualenv', s:vim_virtualenv)

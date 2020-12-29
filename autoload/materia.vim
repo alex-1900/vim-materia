@@ -83,14 +83,18 @@ function! materia#has_plug(name)
 endfunction
 
 " Get configure
+" Priority return custom option and `dict` type options will be merged
 function! materia#conf(name)
-  if exists('g:materia#config.' . a:name)
-    execute 'let result = g:materia#config.' . a:name
-    return result
-  endif
   if exists('g:materia#default_config.' . a:name)
-    execute 'let result = g:materia#default_config.' . a:name
-    return result
+    execute 'let result_default = g:materia#default_config.' . a:name
+    if exists('g:materia#config.' . a:name)
+      execute 'let result_custom = g:materia#config.' . a:name
+      if type(result_default) == type({})
+        return extend(result_default, result_custom)
+      endif
+      return result_custom
+    endif
+    return result_default
   endif
   return 0
 endfunction

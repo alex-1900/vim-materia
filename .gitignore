@@ -13,3 +13,4 @@ node_modules
 !/custom/.gitkeep
 Session.vim
 /config.json
+/venv*

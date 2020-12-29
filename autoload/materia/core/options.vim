@@ -17,8 +17,6 @@ function! materia#core#options#get()
   set encoding=utf-8
   set termencoding=utf-8
 
-  call materia#strategies#set_pythonenv()
-
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => features
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
