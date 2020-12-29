@@ -61,8 +61,9 @@ let s:defx = {'name': 'defx.nvim'}
 function! s:defx.listener()
   let g:defx_icons_enable_syntax_highlight = 1
   let g:defx_icons_column_length = 1
+
   call defx#custom#option('_', {
-    \ 'columns': 'mark:indent:git:icon:filename:size',
+    \ 'columns': 'mark:indent:git:icons:filename',
     \ 'winwidth': 40,
     \ 'split': 'vertical',
     \ 'direction': "topleft",
@@ -153,6 +154,8 @@ function! s:defx.install(install)
     call a:install('roxma/nvim-yarp')
     call a:install('roxma/vim-hug-neovim-rpc')
   endif
+  call a:install('kristijanhusak/defx-icons')
+  call a:install('kristijanhusak/defx-git')
 endfunction
 call materia#packages#add_package('defx', s:defx)
 

@@ -17,8 +17,22 @@ function! materia#core#options#get()
   set encoding=utf-8
   set termencoding=utf-8
 
-  let g:python_host_prog = materia#conf('options.python2_path')
-  let g:python3_host_prog = materia#conf('options.python3_path')
+  let s:pythonhome = materia#conf('options.python.pythonhome')
+  if s:pythonhome | execute "set pythonhome=". s:pythonhome | endif
+
+  let s:pythonthreehome = materia#conf('options.python.pythonthreehome')
+  if s:pythonthreehome | execute "set pythonthreehome=". s:pythonthreehome | endif
+
+  let s:pythondll = materia#conf('options.python.pythondll')
+  if s:pythondll | execute "set pythondll=". s:pythondll | endif
+
+  let s:pythonthreedll = materia#conf('options.python.pythonthreedll')
+  if s:pythonthreedll | execute "set pythonthreedll=". s:pythonthreedll | endif
+
+  if has('nvim')
+    let g:python_host_prog = materia#conf('options.python.python_host_prog')
+    let g:python3_host_prog = materia#conf('options.python.python3_host_prog')
+  endif
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => features
@@ -87,17 +101,8 @@ function! materia#core#options#get()
     set t_Co=256
   endif
 
-  if has('nvim')
-    set guifont=DroidSansMono\ Nerd\ Font:h14
-    " https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
-    if s:app_system.is_windows
-      set guifont=DroidSansMono\ Nerd\ Font:h10
-    endif
-  else
-    set guifont=DroidSansMono_Nerd_Font:h14
-    if s:app_system.is_windows
-      set guifont=DroidSansMono_Nerd_Font:h10
-    endif
+  if !s:app_system.is_gui
+    execute 'set guifont='. materia#strategies#guifont()
   endif
   " highlight the current line
   set cursorline!

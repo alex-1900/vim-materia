@@ -9,8 +9,14 @@
       "prev": "["
     },
     "undo_persistent": 0,
-    "python2_path": "/usr/bin/python2",
-    "python3_path": "/usr/bin/python3",
+    "python": {
+      "python_host_prog": "/usr/bin/python2",
+      "python3_host_prog": "/usr/bin/python3",
+      "pythonhome": "/usr/bin",
+      "pythonthreehome": "/usr/bin",
+      "pythondll": "libpython2.7.so.1.0",
+      "pythonthreedll": "libpython3.8.so"
+    },
     "colorscheme": "gruvbox",
     "background": "dark",
     "scroll_multiple": 4
