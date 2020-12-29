@@ -17,22 +17,7 @@ function! materia#core#options#get()
   set encoding=utf-8
   set termencoding=utf-8
 
-  let s:pythonhome = materia#conf('options.python.pythonhome')
-  if type(s:pythonhome) == type('') | execute "set pythonhome=". fnameescape(s:pythonhome) | endif
-
-  let s:pythonthreehome = materia#conf('options.python.pythonthreehome')
-  if type(s:pythonthreehome) == type('') | execute "set pythonthreehome=". fnameescape(s:pythonthreehome) | endif
-
-  let s:pythondll = materia#conf('options.python.pythondll')
-  if type(s:pythondll) == type('') | execute "set pythondll=". fnameescape(s:pythondll) | endif
-
-  let s:pythonthreedll = materia#conf('options.python.pythonthreedll')
-  if type(s:pythonthreedll) == type('') | execute "set pythonthreedll=". fnameescape(s:pythonthreedll) | endif
-
-  if has('nvim')
-    let g:python_host_prog = materia#conf('options.python.python_host_prog')
-    let g:python3_host_prog = materia#conf('options.python.python3_host_prog')
-  endif
+  call materia#strategies#set_pythonenv()
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => features

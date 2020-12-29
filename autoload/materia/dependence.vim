@@ -10,7 +10,7 @@ let s:dependencies = {}
 function! materia#dependence#get(name) abort
   if !has_key(s:dependencies, a:name)
     try
-      let s:dependencies[a:name] = materia#dependence#{a:name}#instance()
+      let s:dependencies[a:name] = deepcopy(materia#dependence#{a:name}#instance())
     catch
       return 0
     endtry
