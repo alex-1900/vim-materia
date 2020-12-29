@@ -18,16 +18,16 @@ function! materia#core#options#get()
   set termencoding=utf-8
 
   let s:pythonhome = materia#conf('options.python.pythonhome')
-  if s:pythonhome | execute "set pythonhome=". s:pythonhome | endif
+  if type(s:pythonhome) == type('') | execute "set pythonhome=". s:pythonhome | endif
 
   let s:pythonthreehome = materia#conf('options.python.pythonthreehome')
-  if s:pythonthreehome | execute "set pythonthreehome=". s:pythonthreehome | endif
+  if type(s:pythonthreehome) == type('') | execute "set pythonthreehome=". s:pythonthreehome | endif
 
   let s:pythondll = materia#conf('options.python.pythondll')
-  if s:pythondll | execute "set pythondll=". s:pythondll | endif
+  if type(s:pythondll) == type('') | execute "set pythondll=". s:pythondll | endif
 
   let s:pythonthreedll = materia#conf('options.python.pythonthreedll')
-  if s:pythonthreedll | execute "set pythonthreedll=". s:pythonthreedll | endif
+  if type(s:pythonthreedll) == type('') | execute "set pythonthreedll=". s:pythonthreedll | endif
 
   if has('nvim')
     let g:python_host_prog = materia#conf('options.python.python_host_prog')
