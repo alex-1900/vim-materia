@@ -101,7 +101,7 @@ function! materia#core#options#get()
     set t_Co=256
   endif
 
-  if !s:app_system.is_gui
+  if !s:app_system.is_gui || !has('nvim')
     execute 'set guifont='. materia#strategies#guifont()
   endif
   " highlight the current line
