@@ -174,10 +174,12 @@ call materia#packages#add_package('vim_startify', s:vim_startify)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gruvbox
 " https://github.com/morhetz/gruvbox
+" https://github.com/morhetz/gruvbox/wiki/Configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:gruvbox= {'name': 'gruvbox'}
 function! s:gruvbox.config()
-  let g:gruvbox_contrast_dark = 'hard'
+  " medium/soft/hard
+  let g:gruvbox_contrast_dark = 'soft'
 endfunction
 function! s:gruvbox.listener()
   if materia#conf('options.colorscheme') == 'gruvbox'
