@@ -163,9 +163,6 @@ call materia#packages#add_package('coc_git', s:coc_git)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_go = {'name': 'coc-go'}
 function! s:coc_go.listener()
-  " use `:OR` for organize import of current buffer
-  command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-  autocmd BufWritePre *.go :OR
   " Fixed organize import action not found
   call coc#config('coc.preferences', {
     \ 'messageLevel': 'error',

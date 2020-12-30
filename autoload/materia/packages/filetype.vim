@@ -99,75 +99,49 @@ call materia#packages#add_package('nginx', s:nginx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_go = {'name': 'vim-go'}
 function! s:vim_go.config()
-  let g:go_def_mode='gopls'
+  let g:go_def_mode = 'godef'
   let g:go_info_mode='gopls'
   let g:go_fmt_autosave = 0
   let g:go_fmt_command = 'goimports'
   let g:go_fmt_fail_silently = 1
+  " Status line types/signatures
+  let g:go_auto_type_info = 1
   " this breaks folding on vim < 8.0 or neovim
   if v:version >= 800 || has('nvim')
     let g:go_fmt_experimental = 1
   endif
   let g:go_highlight_build_constraints = 1
   let g:go_highlight_fields = 1
-  let g:go_highlight_functions = 1
+  let g:go_highlight_functions = 0
   let g:go_highlight_generate_tags = 1
   let g:go_highlight_operators = 1
   let g:go_highlight_structs = 1
   let g:go_highlight_types = 1
-  let g:go_highlight_function_calls = 1
+  let g:go_highlight_function_calls = 0
+  let g:go_list_type = "quickfix"
 
   if materia#conf('packages.vim_go.autoimport')
     autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
   endif
 
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_go.basekey'))
+  let akey = materia#conf('packages.vim_go.basekey')
   " executecurrent file(s)
-  execute 'autocmd FileType go nmap '. key_prefix.action .'rr <Plug>(go-run)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'rb <Plug>(go-build)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'ri <Plug>(go-install)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'rg <Plug>(go-generate)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'rd :<C-u>GoDebugStart<CR>'
-  " go run actions
-  if has("nvim") || has("terminal")
-    execute 'autocmd FileType go nmap '. key_prefix.action .'rv <Plug>(go-run-vertical)'
-    execute 'autocmd FileType go nmap '. key_prefix.action .'rs <Plug>(go-run-split)'
-    execute 'autocmd FileType go nmap '. key_prefix.action .'rt <Plug>(go-run-tab)'
-  endif
+  execute 'autocmd FileType go nmap <silent> '. akey .'r <Plug>(go-run)'
   " go test
-  execute 'autocmd FileType go nmap '. key_prefix.action .'tt <Plug>(go-test)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'tf <Plug>(go-test-func)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'tc <Plug>(go-test-compile)'
-  " coverage
-  execute 'autocmd FileType go nmap '. key_prefix.action .'ca <Plug>(go-coverage)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'cx <Plug>(go-coveragee-clear)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'cb <Plug>(go-coveragee-browser)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'cc <Plug>(go-coverage-toggle)'
+  execute 'autocmd FileType go nmap <silent> '. akey .'tt <Plug>(go-test)'
+  execute 'autocmd FileType go nmap <silent> '. akey .'tf <Plug>(go-test-func)'
+  execute 'autocmd FileType go nmap <silent> '. akey .'tc <Plug>(go-test-compile)'
   " Vim go action
-  execute 'autocmd FileType go nmap '. key_prefix.action .'an <Plug>(go-rename)'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'aj :<C-u>CocCommand go.tags.add json<CR>'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'ay :<C-u>CocCommand go.tags.add yaml<CR>'
-  execute 'autocmd FileType go nmap '. key_prefix.action .'ax :<C-u>CocCommand go.tags.clear<CR>'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'ai <Plug>(go-implements)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'ad <Plug>(go-describe)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'ar <Plug>(go-referrers)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'as <Plug>(go-sameids-toggle)'
+  execute 'autocmd FileType go nmap <silent> '. akey .'n <Plug>(go-rename)'
   " Jump to defination
-  execute 'autocmd FileType go nmap '. key_prefix.view .'dd <Plug>(go-def)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'dv <Plug>(go-def-vertical)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'ds <Plug>(go-def-split)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'dt <Plug>(go-def-tab)'
+  execute 'autocmd FileType go nmap <silent> '. akey .'d <Plug>(go-def)'
+  execute 'autocmd FileType go nmap <silent> '. akey .'a <Plug>(go-alternate-edit)'
   " go help doc
-  execute 'autocmd FileType go nmap '. key_prefix.view .'hh <Plug>(go-doc)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'ht <Plug>(go-doc-tab)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'hv <Plug>(go-doc-vertical)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'hs <Plug>(go-doc-split)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'hb <Plug>(go-doc-browser)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'hi <Plug>(go-info)'
-  " Jump to error
-  execute 'autocmd FileType go nmap '. key_prefix.view .'em <Plug>(go-metalinter)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'el <Plug>(go-lint)'
-  execute 'autocmd FileType go nmap '. key_prefix.view .'ev <Plug>(go-vet)'
+  execute 'autocmd FileType go nmap <silent> '. akey .'h <Plug>(go-doc)'
+
+  " auto import and format codes
+  autocmd BufWritePre *.go call go#fmt#Format(1)
 endfunction
 
 function! s:vim_go.install(install)

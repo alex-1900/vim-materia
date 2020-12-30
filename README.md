@@ -1,7 +1,7 @@
 # vim-materia
 The materia vim configuration
 
-![9E9D0FE5-8264-4F57-87DC-B5A84385F6E3](https://user-images.githubusercontent.com/49949411/103301648-c8a9da80-4a3c-11eb-9b4e-3435f9a670b8.png)
+![F7F0CBB1-EF6A-49AA-A6F5-F2D38B8DDB5C](https://user-images.githubusercontent.com/49949411/103366286-2a317e00-4afd-11eb-8dbd-54aa91d125cb.png)
 
 ## First Try
 If you're using vim, link or copy the `init.vim` to `~/.vimrc`, and then, just open your vim/neovim, This will install all plugins (more than 50) into `bundles` directory.

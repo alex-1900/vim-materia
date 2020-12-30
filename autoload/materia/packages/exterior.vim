@@ -232,7 +232,7 @@ function! s:papercolor.config()
 endfunction
 function! s:papercolor.listener()
   if materia#conf('options.colorscheme') == 'papercolor'
-    colorscheme papercolor
+    colorscheme PaperColor
     call airline#switch_theme('papercolor')
   endif
 endfunction
@@ -240,3 +240,25 @@ function! s:papercolor.install(install)
   call a:install('NLKNguyen/papercolor-theme')
 endfunction
 call materia#packages#add_package('papercolor', s:papercolor)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => iceberg
+" THEME
+" https://github.com/cocopon/iceberg.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:iceberg= {'name': 'iceberg.vim'}
+function! s:iceberg.config()
+  if materia#conf('options.colorscheme') == 'iceberg'
+    " let g:lightline = { 'colorscheme': 'iceberg' }
+  endif
+endfunction
+function! s:iceberg.listener()
+  if materia#conf('options.colorscheme') == 'iceberg'
+    colorscheme iceberg
+    call airline#switch_theme('iceberg')
+  endif
+endfunction
+function! s:iceberg.install(install)
+  call a:install('cocopon/iceberg.vim')
+endfunction
+call materia#packages#add_package('iceberg', s:iceberg)

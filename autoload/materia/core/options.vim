@@ -23,7 +23,7 @@ function! materia#core#options#get()
   set ruler
   set number
   set relativenumber
-  set numberwidth=5
+  set numberwidth=4
   " always show statusline
   set laststatus=2
   " don't redraw while executing macros

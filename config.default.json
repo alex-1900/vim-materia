@@ -13,7 +13,7 @@
       "python3_host_prog": 0
     },
     "undo_persistent": 0,
-    "colorscheme": "papercolor",
+    "colorscheme": "iceberg",
     "background": "dark",
     "scroll_multiple": 4
   },
@@ -48,7 +48,7 @@
       "attr_auto_focus": 1
     },
     "defx": {
-      "key_toggle": "<C-e>"
+      "key_toggle": "\\e"
     },
     "editorconfig_vim": {
       "exclude_patterns": ["fugitive://.*", "scp://.*"],
@@ -76,6 +76,7 @@
       "attr_microdata": 1,
       "attr_aria": 1
     },
+    "iceberg": {},
     "limelight_vim": {
       "basekey": "v",
       "conceal_guifg": "#777777",
