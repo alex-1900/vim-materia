@@ -173,13 +173,16 @@ call materia#packages#add_package('vim_startify', s:vim_startify)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gruvbox
+" THEME
 " https://github.com/morhetz/gruvbox
 " https://github.com/morhetz/gruvbox/wiki/Configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:gruvbox= {'name': 'gruvbox'}
 function! s:gruvbox.config()
-  " medium/soft/hard
-  let g:gruvbox_contrast_dark = 'medium'
+  if materia#conf('options.colorscheme') == 'gruvbox'
+    " medium/soft/hard
+    let g:gruvbox_contrast_dark = 'medium'
+  endif
 endfunction
 function! s:gruvbox.listener()
   if materia#conf('options.colorscheme') == 'gruvbox'
@@ -191,3 +194,49 @@ function! s:gruvbox.install(install)
   call a:install('morhetz/gruvbox')
 endfunction
 call materia#packages#add_package('gruvbox', s:gruvbox)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => onedark
+" THEME
+" https://github.com/joshdick/onedark.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:onedark= {'name': 'onedark.vim'}
+function! s:onedark.config()
+  if materia#conf('options.colorscheme') == 'onedark'
+    let g:onedark_termcolors=256
+    let g:lightline = {'colorscheme': 'onedark'}
+  endif
+endfunction
+function! s:onedark.listener()
+  if materia#conf('options.colorscheme') == 'onedark'
+    colorscheme onedark
+    call airline#switch_theme('onedark')
+  endif
+endfunction
+function! s:onedark.install(install)
+  call a:install('joshdick/onedark.vim')
+endfunction
+call materia#packages#add_package('onedark', s:onedark)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => papercolor
+" THEME
+" https://github.com/NLKNguyen/papercolor-theme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:papercolor= {'name': 'papercolor-theme'}
+function! s:papercolor.config()
+  if materia#conf('options.colorscheme') == 'papercolor'
+    let g:PaperColor_Theme_Options = materia#conf('packages.papercolor.attr_theme_options')
+    let g:lightline = { 'colorscheme': 'PaperColor' }
+  endif
+endfunction
+function! s:papercolor.listener()
+  if materia#conf('options.colorscheme') == 'papercolor'
+    colorscheme papercolor
+    call airline#switch_theme('papercolor')
+  endif
+endfunction
+function! s:papercolor.install(install)
+  call a:install('NLKNguyen/papercolor-theme')
+endfunction
+call materia#packages#add_package('papercolor', s:papercolor)

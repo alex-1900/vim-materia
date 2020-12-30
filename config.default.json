@@ -13,7 +13,7 @@
       "python3_host_prog": 0
     },
     "undo_persistent": 0,
-    "colorscheme": "gruvbox",
+    "colorscheme": "papercolor",
     "background": "dark",
     "scroll_multiple": 4
   },
@@ -32,6 +32,21 @@
     "coc_phpls": {},
     "coc_tsserver": {},
     "coc_yaml": {},
+    "ctrlsf": {
+      "basekey": "r",
+      "attr_auto_preview": 1,
+      "attr_case_sensitive": "smart",
+      "attr_ackprg": "ag",
+      "attr_context": "-B 4 -A 4",
+      "attr_default_root": "project",
+      "attr_default_view_mode": "normal",
+      "attr_root_markers": [],
+      "attr_populate_qflist": 0,
+      "attr_regex_pattern": 0,
+      "attr_position": "bottom",
+      "attr_ignore_dir": [],
+      "attr_auto_focus": 1
+    },
     "defx": {
       "key_toggle": "<C-e>"
     },
@@ -54,21 +69,6 @@
       "basekey": "v"
     },
     "gruvbox": {},
-    "ctrlsf": {
-      "basekey": "r",
-      "attr_auto_preview": 1,
-      "attr_case_sensitive": "smart",
-      "attr_ackprg": "ag",
-      "attr_context": "-B 4 -A 4",
-      "attr_default_root": "project",
-      "attr_default_view_mode": "normal",
-      "attr_root_markers": [],
-      "attr_populate_qflist": 0,
-      "attr_regex_pattern": 0,
-      "attr_position": "bottom",
-      "attr_ignore_dir": [],
-      "attr_auto_focus": 1
-    },
     "html5_vim": {
       "filetypes": ["html", "css"],
       "attr_event_handler": 1,
@@ -94,6 +94,10 @@
       "basekey": "c"
     },
     "nginx": {},
+    "onedark": null,
+    "papercolor": {
+      "attr_theme_options": {}
+    },
     "supertab": {
       "scroll": "<c-n>"
     },
