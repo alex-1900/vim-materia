@@ -17,19 +17,9 @@ endfunction
 " Set python enviroment by config.json
 function! materia#strategies#set_pythonenv()
   if has('nvim')
-    let g:python_host_prog = materia#conf('options.python.python_host_prog')
-    let g:python3_host_prog = materia#conf('options.python.python3_host_prog')
-  else
-    let pythonhome = materia#conf('options.python.pythonhome')
-    if type(pythonhome) == type('') | execute "set pythonhome=". fnameescape(pythonhome) | endif
-
-    let pythonthreehome = materia#conf('options.python.pythonthreehome')
-    if type(pythonthreehome) == type('') | execute "set pythonthreehome=". fnameescape(pythonthreehome) | endif
-
-    let pythondll = materia#conf('options.python.pythondll')
-    if type(pythondll) == type('') | execute "set pythondll=". fnameescape(pythondll) | endif
-
-    let pythonthreedll = materia#conf('options.python.pythonthreedll')
-    if type(pythonthreedll) == type('') | execute "set pythonthreedll=". fnameescape(pythonthreedll) | endif
+    let python_host_prog = materia#conf('options.python.python_host_prog')
+    if type(python_host_prog) == type('') | let g:python_host_prog = python_host_prog | endif
+    let python3_host_prog = materia#conf('options.python.python3_host_prog')
+    if type(python3_host_prog) == type('') | let g:python3_host_prog = python3_host_prog | endif
   endif
 endfunction

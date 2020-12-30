@@ -8,6 +8,10 @@
       "next": "]",
       "prev": "["
     },
+    "python": {
+      "python_host_prog": 0,
+      "python3_host_prog": 0
+    },
     "undo_persistent": 0,
     "colorscheme": "gruvbox",
     "background": "dark",
@@ -125,7 +129,21 @@
       "basekey": "h"
     },
     "vim_go": {
-      "basekey": "g"
+      "basekey": "g",
+      "attr_def_mode": "gopls",
+      "attr_info_mode": "gopls",
+      "attr_fmt_autosave": 0,
+      "attr_fmt_command": "goimports",
+      "attr_fmt_fail_silently": 1,
+      "highlight_build_constraints": 1,
+      "highlight_fields": 1,
+      "highlight_functions": 1,
+      "highlight_generate_tags": 1,
+      "highlight_operators": 1,
+      "highlight_structs": 1,
+      "highlight_types": 1,
+      "highlight_function_calls": 0,
+      "autoimport": 1
     },
     "vim_interestingwords": {
       "basekey": "k"
