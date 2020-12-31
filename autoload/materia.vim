@@ -50,18 +50,20 @@ function! materia#loadplugs() abort
   " load plug configures
   let l:custom_packages = materia#packages#get_packages()
   for l:package_name in keys(materia#conf('packages'))
-    if has_key(l:custom_packages, l:package_name)
-      let l:package = l:custom_packages[l:package_name]
-      if HasPlug(l:package.name)
-        let l:execute_vim_enter =  'autocmd VimEnter * nested call materia#packages#get_package("'. l:package_name .'").listener()'
-        if has_key(l:package, 'options')  | call l:package.options() | endif
-        if has_key(l:package, 'config')   | call l:package.config() | endif
-        if has_key(l:package, 'listener') | execute l:execute_vim_enter | endif
+    if materia#conf('packages.'. l:package_name. '.disable') == 0
+      if has_key(l:custom_packages, l:package_name)
+        let l:package = l:custom_packages[l:package_name]
+        if HasPlug(l:package.name)
+          let l:execute_vim_enter =  'autocmd VimEnter * nested call materia#packages#get_package("'. l:package_name .'").listener()'
+          if has_key(l:package, 'options')  | call l:package.options() | endif
+          if has_key(l:package, 'config')   | call l:package.config() | endif
+          if has_key(l:package, 'listener') | execute l:execute_vim_enter | endif
+        endif
+        if has_key(l:package, 'install')  | call l:package.install(s:plug_installer) | endif
+      else
+        let  l:app_message = materia#dependence#get('app#message')
+        call l:app_message.warn('Custom package `'. l:package_name . '` not found.')
       endif
-      if has_key(l:package, 'install')  | call l:package.install(s:plug_installer) | endif
-    else
-      let  l:app_message = materia#dependence#get('app#message')
-      call l:app_message.warn('Custom package `'. l:package_name . '` not found.')
     endif
   endfor
   " Initialize plugin system
@@ -115,7 +117,7 @@ endfunction
 
 " load config from json file
 function! s:process_json_configure()
-  let l:json_parser = materia#dependence#get('coding#json')
+  let l:json_parser = materia#dependence#get('data#json')
   let g:materia#config = {}
   let g:materia#default_config = l:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.default.json'), "\n"))
   if filereadable(g:materia#path#home . '/config.json')

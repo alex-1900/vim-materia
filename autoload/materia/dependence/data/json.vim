@@ -110,6 +110,6 @@ else
   endfunction
 endif
 
-function! materia#dependence#coding#json#instance() abort
+function! materia#dependence#data#json#instance() abort
   return s:self
 endfunction

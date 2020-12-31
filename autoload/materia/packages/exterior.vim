@@ -64,10 +64,16 @@ call materia#packages#add_package('limelight_vim', s:limelight_vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_airline = {'name': 'vim-airline'}
 function ModuleAirLineMateriaAddition(...)
+  let builder = a:1
   let system_serv = materia#dependence#get('app#system')
   highlight UserStatusLine guifg=#EEEEEE ctermfg=7 guibg=#4169E1 ctermbg=24 gui=NONE cterm=NONE
-  call a:1.add_section_spaced('UserStatusLine', system_serv.username)
-  let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+  call builder.add_section_spaced('UserStatusLine', system_serv.username)
+  return 0
+endfunction
+
+function! MyLineNumber()
+  let system_serv = materia#dependence#get('app#system')
+  return system_serv.username
 endfunction
 
 function! s:vim_airline.config()
@@ -76,6 +82,10 @@ function! s:vim_airline.config()
   let g:airline#extensions#tabline#formatter = materia#conf('packages.vim_airline.tabline_formatter')
   let g:airline#extensions#whitespace#enabled=0
   let g:airline_powerline_fonts=1
+  let g:airline_left_sep = "\ue0b8"
+  let g:airline_left_alt_sep = "\ue0b9"
+  let g:airline_right_sep = "\ue0ba"
+  let g:airline_right_alt_sep = "\ue0bb"
   if materia#conf('packages.vim_airline.with_hunks')
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#hunks#coc_git = 1
@@ -89,21 +99,19 @@ function! s:vim_airline.config()
     let g:airline_symbols={}
   endif
 endfunction
+
 function! s:vim_airline.listener()
-  if materia#conf('packages.vim_airline.with_username')
-    call airline#remove_statusline_func('ModuleAirLineMateriaAddition')
-    call airline#add_statusline_func('ModuleAirLineMateriaAddition')
-  endif
   let theme = materia#conf('packages.vim_airline.theme')
   if theme
-    " deus
     call airline#switch_theme(theme)
   endif
 endfunction
+
 function! s:vim_airline.install(install)
   call a:install('vim-airline/vim-airline')
   call a:install('vim-airline/vim-airline-themes')
 endfunction
+
 call materia#packages#add_package('vim_airline', s:vim_airline)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
