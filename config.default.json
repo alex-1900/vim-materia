@@ -1,7 +1,7 @@
 {
   "options": {
     "maps": {
-      "leader": "'",
+      "leader": ";",
       "navigation": "g",
       "action": "<space>",
       "edge": "\\",

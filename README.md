@@ -34,3 +34,6 @@ remove proxy
 ```sh
 git config --global --unset http.proxy
 ```
+
+## Alacritty
+https://github.com/alacritty/alacritty

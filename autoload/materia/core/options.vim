@@ -80,13 +80,18 @@ function! materia#core#options#get()
   " default colorscheme
   colorscheme janah
   " the maximum number of colors
-  if &term == "screen"
-    set t_Co=256
-  endif
+  set t_Co=256
 
   if !s:app_system.is_gui || !has('nvim')
     execute 'set guifont='. materia#strategies#guifont()
   endif
+  " true colors terminal option
+  if !has("nvim")
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  endif
+  set termguicolors
+
   " highlight the current line
   set cursorline!
   highlight Comment cterm=italic
