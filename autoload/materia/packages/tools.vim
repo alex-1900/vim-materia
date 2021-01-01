@@ -201,9 +201,7 @@ call materia#packages#add_package('vista_vim', s:vista_vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_fugitive = {'name': 'vim-fugitive'}
 function! s:undotree.option()
-  if HasPlug('vim-fugitive')
-    set statusline+=%{FugitiveStatusline()}
-  endif
+  set statusline+=%{FugitiveStatusline()}
 endfunction
 
 function! s:vim_fugitive.listener()
