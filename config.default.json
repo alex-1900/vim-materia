@@ -22,6 +22,10 @@
   "environment": {
   },
   "packages": {
+    "airline_weather": {
+      "attr_area": "dalian,cn",
+      "attr_cache_ttl": 3600
+    },
     "auto_pairs": {},
     "coc_css": {},
     "coc_git": {},
@@ -60,7 +64,7 @@
     "emmet_vim": {
       "leader_key": "<C-z>",
       "snippet_path": 0,
-      "filetypes": ["html", "css"]
+      "filetypes": ["html", "css", "javascript", "typescript"]
     },
     "fzf_vim": {
       "basekey": "s",
@@ -105,6 +109,10 @@
     "vim_qf": {},
     "supertab": {
       "scroll": "<c-n>"
+    },
+    "typescript_vim": {
+      "attr_compiler_binary": "tsc",
+      "attr_compiler_options": ""
     },
     "undotree": {
       "basekey": "d"

@@ -213,6 +213,28 @@ endfunction
 call materia#packages#add_package('vim_json', s:vim_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => typescript_vim
+" Typescript syntax files for Vim
+" https://github.com/leafgarland/typescript-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:typescript_vim = {'name': 'typescript-vim'}
+function! s:typescript_vim.config()
+  let g:typescript_compiler_binary = materia#conf('packages.typescript_vim.attr_compiler_binary')
+  let g:typescript_compiler_options = materia#conf('packages.typescript_vim.attr_compiler_options')
+
+  autocmd FileType typescript :set makeprg=tsc
+
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
+endfunction
+
+function! s:typescript_vim.install(install)
+  call a:install('leafgarland/typescript-vim')
+endfunction
+
+call materia#packages#add_package('typescript_vim', s:typescript_vim)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_jsx
 " React JSX syntax highlighting and indenting for vim.
 " https://github.com/mxw/vim-jsx

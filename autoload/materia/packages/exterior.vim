@@ -115,6 +115,29 @@ endfunction
 call materia#packages#add_package('vim_airline', s:vim_airline)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => airline_weather
+" Vim-airline extension to show weather in the status line.
+" https://github.com/Wildog/airline-weather.vim
+" https://github.com/mattn/webapi-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:airline_weather = {'name': 'vim-devicons'}
+function! s:airline_weather.config()
+  let temp_dir = materia#homepath('/temp/airline_weather')
+  if !isdirectory(temp_dir)
+    call mkdir(temp_dir, 'p')
+  endif
+  let g:weather#cache_file = temp_dir . '/cache_file'
+  let g:weather#area = materia#conf('packages.airline_weather.attr_area')
+  let g:weather#cache_ttl = materia#conf('packages.airline_weather.attr_cache_ttl')
+endfunction
+function! s:airline_weather.install(install)
+  call a:install('Wildog/airline-weather.vim')
+  call a:install('mattn/webapi-vim')
+endfunction
+call materia#packages#add_package('airline_weather', s:airline_weather)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_devicons
 " Adds filetype glyphs (icons) to various vim plugins.
 " https://github.com/ryanoasis/vim-devicons
