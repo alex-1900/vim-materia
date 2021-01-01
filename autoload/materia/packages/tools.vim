@@ -329,3 +329,46 @@ function! s:vim_virtualenv.install(install)
 endfunction
 
 call materia#packages#add_package('vim_virtualenv', s:vim_virtualenv)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim_qf
+" Tame the quickfix window
+" https://github.com/romainl/vim-qf
+"
+" virtualenv -p python envdir_name
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:vim_qf = {'name': 'vim-qf'}
+function! s:vim_qf.config()
+
+endfunction
+
+function! s:vim_qf.install(install)
+  call a:install('romainl/vim-qf')
+endfunction
+
+call materia#packages#add_package('vim_qf', s:vim_qf)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => denite
+" Tame the quickfix window
+" https://github.com/Shougo/denite.vim
+"
+" virtualenv -p python envdir_name
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:denite = {'name': 'denite.vim'}
+function! s:denite.config()
+
+endfunction
+
+function! s:denite.install(install)
+  if has('nvim')
+    call a:install('Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' })
+  else
+    call a:install('Shougo/denite.nvim')
+    call a:install('roxma/nvim-yarp')
+    call a:install('roxma/vim-hug-neovim-rpc')
+  endif
+  call a:install('chemzqm/unite-location')
+endfunction
+
+call materia#packages#add_package('denite', s:denite)

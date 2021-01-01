@@ -44,26 +44,14 @@ function! materia#begin() abort
 endfunction
 
 function! materia#loadplugs() abort
-  let s:plug_installer = s:get_materia_plug_install_func()
+  " let s:plug_installer = s:get_materia_plug_install_func()
   " Specify a directory for plugins
   call plug#begin(g:materia#path#bundles)
-  " load plug configures
-  let l:custom_packages = materia#packages#get_packages()
-  for l:package_name in keys(materia#conf('packages'))
-    if materia#conf('packages.'. l:package_name. '.disable') == 0
-      if has_key(l:custom_packages, l:package_name)
-        let l:package = l:custom_packages[l:package_name]
-        if HasPlug(l:package.name)
-          let l:execute_vim_enter =  'autocmd VimEnter * nested call materia#packages#get_package("'. l:package_name .'").listener()'
-          if has_key(l:package, 'options')  | call l:package.options() | endif
-          if has_key(l:package, 'config')   | call l:package.config() | endif
-          if has_key(l:package, 'listener') | execute l:execute_vim_enter | endif
-        endif
-        if has_key(l:package, 'install')  | call l:package.install(s:plug_installer) | endif
-      else
-        let  l:app_message = materia#dependence#get('app#message')
-        call l:app_message.warn('Custom package `'. l:package_name . '` not found.')
-      endif
+  " load plugs
+  for package_name in keys(materia#conf('packages'))
+    " Load enable packages
+    if materia#conf('packages.'. package_name . '.disable') == 0
+      call materia#packages#load_package(package_name)
     endif
   endfor
   " Initialize plugin system

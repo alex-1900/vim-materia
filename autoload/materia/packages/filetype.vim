@@ -99,49 +99,73 @@ call materia#packages#add_package('nginx', s:nginx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_go = {'name': 'vim-go'}
 function! s:vim_go.config()
-  let g:go_def_mode = 'godef'
+  " modes
+  let g:go_def_mode = 'gopls'
   let g:go_info_mode='gopls'
-  let g:go_fmt_autosave = 0
-  let g:go_fmt_command = 'goimports'
+  let g:go_referrers_mode = 'gopls'
+  let g:go_imports_mode = "goimports"
+  let g:go_implements_mode = 'gopls'
+  " commands
+  let g:go_fmt_command='gofmt'
+  let g:go_rename_command = 'gopls'
+  " options
+  let g:go_fmt_options = {}
+  let g:go_gopls_options = ['-remote=auto']
+  " autosave
+  let g:go_fmt_autosave = 1
+  let g:go_mod_fmt_autosave = 1
+  let g:go_imports_autosave = 1
   let g:go_fmt_fail_silently = 1
+  " features
+  let g:go_gopls_enabled = 1
+  let g:go_code_completion_enabled = 1
   " Status line types/signatures
   let g:go_auto_type_info = 1
+  let g:go_doc_popup_window = 1
+  " This is disabled to use coc-go, vim-go just use commands
+  let g:go_def_mapping_enabled = 0
   " this breaks folding on vim < 8.0 or neovim
   if v:version >= 800 || has('nvim')
     let g:go_fmt_experimental = 1
   endif
-  let g:go_highlight_build_constraints = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_functions = 0
-  let g:go_highlight_generate_tags = 1
-  let g:go_highlight_operators = 1
+  " highlight options
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
   let g:go_highlight_structs = 1
-  let g:go_highlight_types = 1
-  let g:go_highlight_function_calls = 0
-  let g:go_list_type = "quickfix"
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
 
-  if materia#conf('packages.vim_go.autoimport')
-    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-  endif
+  " go metalinter
+  let g:go_metalinter_autosave_enabled = ['all']
+  let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+  let g:go_metalinter_command = "golangci-lint"
 
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_go.basekey'))
-  let akey = materia#conf('packages.vim_go.basekey')
-  " executecurrent file(s)
-  execute 'autocmd FileType go nmap <silent> '. akey .'r <Plug>(go-run)'
+  " key mappings
+  let localaction = materia#conf('options.maps.localaction')
+  " executecurrent file(s) gl
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'r <Plug>(go-run)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'b <Plug>(go-build)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'i <Plug>(go-install)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'p <Plug>(go-imports)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'m <Plug>(go-metalinter)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'l <Plug>(go-lint)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'v <Plug>(go-vet)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'e <Plug>(go-alternate-edit)'
   " go test
-  execute 'autocmd FileType go nmap <silent> '. akey .'tt <Plug>(go-test)'
-  execute 'autocmd FileType go nmap <silent> '. akey .'tf <Plug>(go-test-func)'
-  execute 'autocmd FileType go nmap <silent> '. akey .'tc <Plug>(go-test-compile)'
-  " Vim go action
-  execute 'autocmd FileType go nmap <silent> '. akey .'n <Plug>(go-rename)'
-  " Jump to defination
-  execute 'autocmd FileType go nmap <silent> '. akey .'d <Plug>(go-def)'
-  execute 'autocmd FileType go nmap <silent> '. akey .'a <Plug>(go-alternate-edit)'
-  " go help doc
-  execute 'autocmd FileType go nmap <silent> '. akey .'h <Plug>(go-doc)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'tt <Plug>(go-test)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'tf <Plug>(go-test-func)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'tc <Plug>(go-test-compile)'
 
-  " auto import and format codes
-  autocmd BufWritePre *.go call go#fmt#Format(1)
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>f <Plug>(go-files)'
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>i <Plug>(go-describe)'
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>p <Plug>(go-pointsto)'
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>w <Plug>(go-whicherrs)'
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>ce <Plug>(go-callees)'
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>cr <Plug>(go-callees)'
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>d <Plug>(go-doc)'
+  execute 'autocmd FileType go nmap <buffer> <silent> <localleader>b <Plug>(go-browser)'
+  " freevars
+  execute 'autocmd FileType go xmap <buffer> <silent> <localleader>v <Plug>(go-freevars)'
 endfunction
 
 function! s:vim_go.install(install)
@@ -222,8 +246,8 @@ let s:vim_livedown = {'name': 'vim-livedown'}
 function! s:vim_livedown.config()
 endfunction
 function! s:vim_livedown.listener()
-  let okey = materia#conf('packages.vim_livedown.basekey')
-  execute 'nnoremap <silent> <C-'. okey .'> :<C-u>LivedownToggle<CR>'
+  let localaction = materia#conf('options.maps.localaction')
+  execute 'autocmd FileType markdown nnoremap <buffer> <silent> '. localaction .'o :<C-u>LivedownToggle<CR>'
 endfunction
 function! s:vim_livedown.install(install)
   call a:install('shime/vim-livedown', { 'do': 'yarn global add livedown' })

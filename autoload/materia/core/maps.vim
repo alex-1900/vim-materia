@@ -14,10 +14,23 @@ function! materia#core#maps#get()
   inoremap vv <ESC>
 
   " Switch between different windows by their direction`
-  noremap gj <C-w>j
-  noremap gk <C-w>k
-  noremap gl <C-w>l
-  noremap gh <C-w>h
+  map <C-J> <C-W>j<C-W>_
+  map <C-K> <C-W>k<C-W>_
+  map <C-L> <C-W>l<C-W>_
+  map <C-H> <C-W>h<C-W>_
+
+  " Find merge conflict markers
+  map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+  noremap j gj
+  noremap k gk
+  " Easier horizontal scrolling
+  map zl zL
+  map zh zH
+
+  " Visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
 
   " goto or remove buffer
   nnoremap [b :bp!<CR>

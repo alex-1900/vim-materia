@@ -45,13 +45,20 @@ function! s:coc_nvim.listener()
   execute 'nmap <silent> '. key_prefix.view .'t <Plug>(coc-type-definition)'
   execute 'nmap <silent> '. key_prefix.view .'i <Plug>(coc-implementation)'
   execute 'nmap <silent> '. key_prefix.view .'r <Plug>(coc-references)'
+  execute 'nmap <silent> '. key_prefix.view .'u <Plug>(coc-references-used)'
+  execute 'nmap <silent> '. key_prefix.view .'l <Plug>(coc-openlink)'
   " Formatting selected code.
   execute 'xmap <silent> '. key_prefix.action .'f <Plug>(coc-format-selected)'
-  execute 'nmap <silent> '. key_prefix.action .'f <Plug>(coc-format-selected)'
   " Symbol renaming.
   execute 'nmap <silent> '. key_prefix.action .'n <Plug>(coc-rename)'
   " Apply AutoFix to problem on the current line.
-  execute 'nmap <silent> '. key_prefix.action .'v <Plug>(coc-fix-current)'
+  execute 'nmap <silent> '. key_prefix.action .'q <Plug>(coc-fix-current)'
+  " Open a new vsplit window for refactor
+  execute 'nmap <silent> '. key_prefix.action .'r <Plug>(coc-refactor)'
+  " Format selected codes
+  execute 'vmap <silent> '. key_prefix.action .'m <Plug>(coc-format-selected)'
+  " Format current buffer codes
+  execute 'nmap <silent> '. key_prefix.action .'m <Plug>(coc-format)'
 
   " Mappings for CoCList
   " Show all diagnostics.
@@ -87,6 +94,11 @@ function! s:coc_nvim.listener()
   execute 'xmap <silent> '. key_prefix.action .'ac <Plug>(coc-classobj-a)'
   execute 'omap <silent> '. key_prefix.action .'ac <Plug>(coc-classobj-a)'
 
+  execute 'omap <silent> '. key_prefix.action .'co <Plug>(coc-cursors-operator)'
+  execute 'omap <silent> '. key_prefix.action .'cr <Plug>(coc-cursors-range)'
+  execute 'omap <silent> '. key_prefix.action .'cw <Plug>(coc-cursors-word)'
+  execute 'omap <silent> '. key_prefix.action .'cp <Plug>(coc-cursors-position)'
+
   " Remap <C-f> and <C-b> for scroll float windows/popups.
   if has('nvim-0.4.0') || has('patch-8.2.0750')
     execute 'nnoremap <silent><nowait><expr> '. key_prefix.win .'f coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"'
@@ -116,11 +128,11 @@ function! s:coc_nvim.listener()
   execute 'nmap <silent> '. key_prefix.next .'d <Plug>(coc-diagnostic-next)'
 
   " Add `:Format` command to format current buffer.
-  command! -nargs=0 Format :call CocAction('format')
+  command! -nargs=0 Format :call CocActionAsync('format')
   " Add `:Fold` command to fold current buffer.
-  command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+  command! -nargs=? Fold :call CocActionAsync('fold', <f-args>)
   " Add `:OR` command for organize imports of the current buffer.
-  command! -nargs=0 OR   :call     CocAction('runCommand', 'code.action.organizeImport')
+  command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
   augroup materia_cocgroup
     autocmd!
@@ -160,16 +172,17 @@ call materia#packages#add_package('coc_git', s:coc_git)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => coc_go
+" https://github.com/josa42/coc-go
+" Coexists with `fatih/vim-go` by default
+" See: package `vim_go`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_go = {'name': 'coc-go'}
 function! s:coc_go.listener()
   " Fixed organize import action not found
-  call coc#config('coc.preferences', {
-    \ 'messageLevel': 'error',
-  \})
-  autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
-  autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
-  autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+  autocmd FileType go call coc#config('coc.preferences', { 'messageLevel': 'error' })
+  " use `:OR` for organize import of current buffer
+  autocmd BufWritePre *.go if !get(g:, 'go_imports_autosave', 0) | call CocAction('runCommand', 'editor.action.organizeImport') | endif
+  autocmd BufWritePre *.go if !get(g:, 'go_fmt_autosave', 0) | call CocAction('format') | endif
 endfunction
 function! s:coc_go.install(install)
   call a:install('josa42/coc-go', { 'do': 'yarn install --frozen-lockfile' })

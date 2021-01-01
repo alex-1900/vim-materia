@@ -13,6 +13,7 @@ function! materia#core#options#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
   let g:mapleader = materia#conf('options.maps.leader')
+  let g:maplocalleader = materia#conf('options.maps.localleader')
   set nocompatible
   set encoding=utf-8
   set termencoding=utf-8
@@ -20,12 +21,16 @@ function! materia#core#options#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => features
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  set ruler
+  if has('cmdline_info')
+    set ruler
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+    set showcmd
+  endif
   set number
   set relativenumber
+  " Display the current mode
+  set showmode
   set numberwidth=4
-  " always show statusline
-  set laststatus=2
   " don't redraw while executing macros
   set lazyredraw
   " for regular expressions turn magic on
@@ -53,6 +58,31 @@ function! materia#core#options#get()
   set cscopequickfix=s-,c-,d-,i-,t-,e-
   set updatetime=100
   set conceallevel=0
+  " No extra spaces between rows
+  set linespace=0
+  " Lines to scroll when cursor leaves screen
+  set scrolljump=5
+  " Minimum lines to keep above and below cursor
+  set scrolloff=3
+
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " => statusline
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  if has('statusline')
+    " always show statusline
+    set laststatus=2
+    " Broken down into easily includeable segments
+    " Filename
+    set statusline=%<%f\
+    " Options
+    set statusline+=%w%h%m%r
+    if !exists('g:override_spf13_bundles')
+      set statusline+=%{fugitive#statusline()} " Git Hotness
+    endif
+    set statusline+=\ [%{&ff}/%Y]            " Filetype
+    set statusline+=\ [%{getcwd()}]          " Current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+  endif
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => sessions
@@ -95,6 +125,10 @@ function! materia#core#options#get()
   " highlight the current line
   set cursorline!
   highlight Comment cterm=italic
+  " SignColumn should match background
+  highlight clear SignColumn
+  " Current line number row will have same background color in relative mode
+  highlight clear LineNr
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => search
@@ -160,6 +194,8 @@ function! materia#core#options#get()
   set history=500
   " some plugin will use it
   set modifiable
+  " Prevents inserting two spaces after punctuation on a join (J)
+  set nojoinspaces
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => mouse
@@ -197,7 +233,6 @@ function! materia#core#options#get()
     " no toolbar
     set lines=45
     set columns=160
-    " set linespace=0
 
     " end of gui settings
   endif
