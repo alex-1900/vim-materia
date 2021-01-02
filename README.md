@@ -3,7 +3,7 @@ The materia vim configuration
 
 ![18DE2130-7759-4C7F-9758-4977C1B901D9](https://user-images.githubusercontent.com/49949411/103442207-233a7500-4c8f-11eb-9f81-0d0f6b66c72e.png)
 
-## Get start
+# Get start
 If you're using vim, link or copy the `init.vim` to `~/.vimrc`, and then, just open your vim/neovim, This will install all plugins (more than 50) into `bundles` directory.
 
 After all plugins are installed, You need to restart your vim/nvim.
@@ -26,9 +26,9 @@ https://github.com/BurntSushi/ripgrep
 - Bat, supports syntax highlighting for a large number of programming and markup languages:
 https://github.com/sharkdp/bat
 
-## Config
+# Configure
 This object requires more than 50 plugins, and many configuration options, You have two ways to change, add or disable them:
-### The config.json
+### The `config.json`
 The`config.default.json` is used to generate the default options, and you can create a file called `config.json` to replicate it. For example:
 ```json
 {
@@ -47,6 +47,11 @@ The`config.default.json` is used to generate the default options, and you can cr
 }
 ```
 `Materia` will merge the `config.json` with `config.default.json` (merge objects and replace others).
+
+### The `custom` directory
+If you want to add plugins or make more complex custom settings, You can add your own vimscript in the `custom/main.vim`.
+
+## Plugins management
 
 # Mixed
 Some records are used to simplify your setup.
