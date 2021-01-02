@@ -9,7 +9,7 @@ let s:app_system = materia#dependence#get('app#system')
 function! materia#core#options#get()
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => basic
+  " basic
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
   let g:mapleader = materia#conf('options.maps.leader')
@@ -19,7 +19,7 @@ function! materia#core#options#get()
   set termencoding=utf-8
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => features
+  " features
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   if has('cmdline_info')
     set ruler
@@ -66,7 +66,7 @@ function! materia#core#options#get()
   set scrolloff=3
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => statusline
+  " statusline
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   if has('statusline')
     " always show statusline
@@ -85,7 +85,7 @@ function! materia#core#options#get()
   endif
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => sessions
+  " sessions
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " If you don't want help windows to be restored:
   set sessionoptions-=help
@@ -99,7 +99,7 @@ function! materia#core#options#get()
   set sessionoptions-=winsize
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => colors and fonts
+  " colors and fonts
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " enable syntax highlighting
   if &t_Co > 1
@@ -131,7 +131,7 @@ function! materia#core#options#get()
   highlight clear LineNr
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => search
+  " search
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   set hlsearch
   " show the next match while entering a search
@@ -140,7 +140,7 @@ function! materia#core#options#get()
   set wrapscan
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => files
+  " files
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " no need to backup
   set nobackup
@@ -165,13 +165,13 @@ function! materia#core#options#get()
   set autoread
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => command line
+  " command line
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   set cmdheight=1
   set shortmess=at
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => edit
+  " edit
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " to allow backspacing over everything in insert mode
   set backspace=indent,eol,start
@@ -198,24 +198,24 @@ function! materia#core#options#get()
   set nojoinspaces
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => mouse
+  " mouse
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   set mousemodel=extend
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => GUI
+" GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   if s:app_system.is_gui
     " begin of gui settings
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => basic
+    " basic
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " visually selecting text automatically places the text in the clipboard (register *) 
     set guioptions+=a
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => features
+    " features
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " close error bells
     set noerrorbells
@@ -228,7 +228,7 @@ function! materia#core#options#get()
     set guioptions-=T
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => colors and fonts
+    " colors and fonts
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " no toolbar
     set lines=45

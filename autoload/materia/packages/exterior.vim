@@ -5,7 +5,7 @@
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => goyo
+" goyo
 " Distraction-free writing in Vim.
 " https://github.com/junegunn/goyo.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,7 +20,7 @@ endfunction
 call materia#packages#add_package('goyo', s:goyo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => limelight_vim
+" limelight_vim
 " Distraction-free writing in Vim.
 " https://github.com/junegunn/limelight.vim
 "
@@ -56,7 +56,7 @@ endfunction
 call materia#packages#add_package('limelight_vim', s:limelight_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_airline
+" vim_airline
 " Lean & mean status/tabline for vim that's light as air.
 " https://github.com/vim-airline/vim-airline
 " https://github.com/vim-airline/vim-airline-themes
@@ -115,7 +115,7 @@ endfunction
 call materia#packages#add_package('vim_airline', s:vim_airline)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => airline_weather
+" airline_weather
 " Vim-airline extension to show weather in the status line.
 " https://github.com/Wildog/airline-weather.vim
 " https://github.com/mattn/webapi-vim
@@ -138,7 +138,7 @@ call materia#packages#add_package('airline_weather', s:airline_weather)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_devicons
+" vim_devicons
 " Adds filetype glyphs (icons) to various vim plugins.
 " https://github.com/ryanoasis/vim-devicons
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -156,7 +156,7 @@ endfunction
 call materia#packages#add_package('vim_devicons', s:vim_devicons)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_startify
+" vim_startify
 " https://github.com/mhinz/vim-startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_startify = {'name': 'vim-startify'}
@@ -203,7 +203,7 @@ endfunction
 call materia#packages#add_package('vim_startify', s:vim_startify)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => gruvbox
+" gruvbox
 " THEME
 " https://github.com/morhetz/gruvbox
 " https://github.com/morhetz/gruvbox/wiki/Configuration
@@ -227,7 +227,7 @@ endfunction
 call materia#packages#add_package('gruvbox', s:gruvbox)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => onedark
+" onedark
 " THEME
 " https://github.com/joshdick/onedark.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -250,7 +250,7 @@ endfunction
 call materia#packages#add_package('onedark', s:onedark)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => papercolor
+" papercolor
 " THEME
 " https://github.com/NLKNguyen/papercolor-theme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -273,7 +273,7 @@ endfunction
 call materia#packages#add_package('papercolor', s:papercolor)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => iceberg
+" iceberg
 " THEME
 " https://github.com/cocopon/iceberg.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

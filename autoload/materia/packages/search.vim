@@ -5,7 +5,7 @@
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => fzf_vim
+" fzf_vim
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 " Dependencies: https://github.com/junegunn/fzf.vim#dependencies
 "
@@ -90,7 +90,7 @@ endfunction
 call materia#packages#add_package('fzf_vim', s:fzf_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_interestingwords
+" vim_interestingwords
 " A vim plugin for highlighting and navigating through different words in a buffer.
 " https://github.com/lfv89/vim-interestingwords
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -110,7 +110,7 @@ endfunction
 call materia#packages#add_package('vim_interestingwords', s:vim_interestingwords)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_visualstar
+" vim_visualstar
 " *visualstar* is a Vim plugin to provide a |star| feature for |Visual-mode|.
 " In other words, you can search your selection text in |Visual-mode|.
 " https://github.com/thinca/vim-visualstar
@@ -122,7 +122,7 @@ endfunction
 call materia#packages#add_package('vim_visualstar', s:vim_visualstar)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ctrlsf
+" ctrlsf
 " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 " https://github.com/dyng/ctrlsf.vim
 " https://github.com/gabesoft/vim-ags

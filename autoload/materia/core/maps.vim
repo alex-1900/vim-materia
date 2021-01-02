@@ -9,7 +9,7 @@ let s:app_system = materia#dependence#get('app#system')
 function! materia#core#maps#get()
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => features
+  " features
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   inoremap vv <ESC>
 
@@ -43,20 +43,20 @@ function! materia#core#maps#get()
   execute 'nnoremap <nowait> <C-y> '. l:multiple .'<C-y>'
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => files
+  " files
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " save current buffer
   " inoremap <M-w> <ESC>:w<CR>:startinsert<CR>
   " nnoremap<M-w> :w<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => GUI
+" GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   if s:app_system.is_gui
     " begin of gui settings
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => features
+    " features
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " toggle menu bar and tabbar
     map <silent> <F6> :if &guioptions =~# 'T' <Bar>

@@ -11,7 +11,7 @@ endif
 let g:materia_loaded = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => public
+" public
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! materia#init(homepath) abort
@@ -90,7 +90,7 @@ function! materia#conf(name)
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => private
+" private
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " process environments

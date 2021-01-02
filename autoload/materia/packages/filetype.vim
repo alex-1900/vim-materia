@@ -5,7 +5,7 @@
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => html5_vim
+" html5_vim
 " HTML5 + inline SVG omnicomplete function, indent and syntax for Vim. Based on the default htmlcomplete.vim.
 " https://github.com/othree/html5.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -26,7 +26,7 @@ endfunction
 call materia#packages#add_package('html5_vim', s:html5_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => emmet_vim
+" emmet_vim
 " emmet-vim is a vim plug-in which provides support for expanding abbreviations similar to emmet.
 " https://github.com/mattn/emmet-vim
 " snippets.json Doc:
@@ -59,7 +59,7 @@ endfunction
 call materia#packages#add_package('emmet_vim', s:emmet_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => syntastic
+" syntastic
 " Syntastic is a syntax checking plugin for Vim created by Martin Grenfell.
 " It runs files through external syntax checkers and displays any resulting errors to the user.
 " https://github.com/vim-syntastic/syntastic
@@ -82,7 +82,7 @@ endfunction
 call materia#packages#add_package('syntastic', s:syntastic)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => nginx
+" nginx
 " Improved nginx vim plugin (incl. syntax highlighting)
 " https://github.com/chr4/nginx.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,7 +93,7 @@ endfunction
 call materia#packages#add_package('nginx', s:nginx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_go
+" vim_go
 " Go development plugin for Vim
 " https://github.com/fatih/vim-go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -135,6 +135,19 @@ function! s:vim_go.config()
   let g:go_highlight_operators = 1
   let g:go_highlight_build_constraints = 1
 
+  let g:go_highlight_extra_types = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_function_parameters = 1
+  let g:go_highlight_function_calls = 1
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_generate_tags = 1
+  let g:go_highlight_string_spellcheck = 1
+  let g:go_highlight_format_strings = 1
+  let g:go_highlight_variable_declarations = 1
+  let g:go_highlight_variable_assignments = 1
+  
+
   " go metalinter
   let g:go_metalinter_autosave_enabled = ['all']
   let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
@@ -175,7 +188,7 @@ endfunction
 call materia#packages#add_package('vim_go', s:vim_go)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_javascript
+" vim_javascript
 " JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
 " https://github.com/pangloss/vim-javascript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -196,7 +209,7 @@ endfunction
 call materia#packages#add_package('vim_javascript', s:vim_javascript)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_json
+" vim_json
 " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
 " https://github.com/elzr/vim-json
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -213,7 +226,7 @@ endfunction
 call materia#packages#add_package('vim_json', s:vim_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => typescript_vim
+" typescript_vim
 " Typescript syntax files for Vim
 " https://github.com/leafgarland/typescript-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -235,7 +248,7 @@ endfunction
 call materia#packages#add_package('typescript_vim', s:typescript_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_jsx
+" vim_jsx
 " React JSX syntax highlighting and indenting for vim.
 " https://github.com/mxw/vim-jsx
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -246,7 +259,7 @@ endfunction
 call materia#packages#add_package('vim_jsx', s:vim_jsx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_markdown
+" vim_markdown
 " This is the development version of Vim's included syntax highlighting and filetype plugins for Markdown.
 " https://github.com/tpope/vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -261,7 +274,7 @@ endfunction
 call materia#packages#add_package('vim_markdown', s:vim_markdown)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_livedown
+" vim_livedown
 " https://github.com/shime/vim-livedown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_livedown = {'name': 'vim-livedown'}
@@ -277,7 +290,7 @@ endfunction
 call materia#packages#add_package('vim_livedown', s:vim_livedown)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_peekaboo
+" vim_peekaboo
 " Peekaboo will show you the contents of the registers on the sidebar when you hit " or @ in normal mode or <CTRL-R> in insert mode.
 " The sidebar is automatically closed on subsequent key strokes.
 " You can toggle fullscreen mode by pressing spacebar.
@@ -296,7 +309,7 @@ endfunction
 call materia#packages#add_package('vim_peekaboo', s:vim_peekaboo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_floaterm
+" vim_floaterm
 " Use (neo)vim terminal in the floating/popup window.
 " https://github.com/voldikss/vim-floaterm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -334,7 +347,7 @@ endfunction
 call materia#packages#add_package('vim_floaterm', s:vim_floaterm)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_smooth_scroll
+" vim_smooth_scroll
 " Use (neo)vim terminal in the floating/popup window.
 " https://github.com/voldikss/vim-floaterm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -352,7 +365,7 @@ endfunction
 call materia#packages#add_package('vim_smooth_scroll', s:vim_smooth_scroll)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => editorconfig_vim
+" editorconfig_vim
 " This is an EditorConfig plugin for Vim. This plugin can be found on both GitHub and Vim online.
 " https://github.com/editorconfig/editorconfig-vim
 " https://editorconfig.org/

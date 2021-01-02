@@ -6,14 +6,17 @@
 
 let s:packages = {}
 
+" add a package
 function! materia#packages#add_package(name, package) abort
   let s:packages[a:name] = a:package
 endfunction
 
+" get all packages
 function! materia#packages#get_packages() abort
   return s:packages
 endfunction
 
+" get package by name
 function! materia#packages#get_package(name) abort
   return s:packages[a:name]
 endfunction

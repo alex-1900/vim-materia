@@ -15,3 +15,5 @@ node_modules
 Session.vim
 /config.json
 /venv*
+/snippets
+/neosnippets

@@ -5,7 +5,7 @@
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => defx
+" defx
 " The dark powered file explorer implementation
 " https://github.com/Shougo/defx.nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,7 +124,7 @@ endfunction
 call materia#packages#add_package('defx', s:defx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => undotree
+" undotree
 " The plug-in visualizes undo history and makes it easier to browse and switch between different undo branches
 " https://github.com/mbbill/undotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -141,7 +141,7 @@ endfunction
 call materia#packages#add_package('undotree', s:undotree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_tmux_navigator
+" vim_tmux_navigator
 " Seamless navigation between tmux panes and vim splits
 " https://github.com/christoomey/vim-tmux-navigator
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -153,7 +153,7 @@ endfunction
 call materia#packages#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vista_vim
+" vista_vim
 " View and search LSP symbols, tags in Vim/NeoVim.
 " https://github.com/liuchengxu/vista.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -195,7 +195,7 @@ endfunction
 call materia#packages#add_package('vista_vim', s:vista_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_fugitive
+" vim_fugitive
 " Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
 " https://github.com/tpope/vim-fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -226,7 +226,7 @@ endfunction
 call materia#packages#add_package('vim_fugitive', s:vim_fugitive)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_gitgutter
+" vim_gitgutter
 " A Vim plugin which shows a git diff in the sign column.
 " https://github.com/airblade/vim-gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -275,7 +275,7 @@ endfunction
 call materia#packages#add_package('vim_gitgutter', s:vim_gitgutter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => materia_session
+" materia_session
 " The automated Vim/Neovim session management for Materia.
 " https://github.com/speed-sonic/vim-materia-session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -304,7 +304,7 @@ endfunction
 call materia#packages#add_package('materia_session', s:materia_session)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_virtualenv
+" vim_virtualenv
 " Vim plugin for working with python virtualenvs.
 " https://github.com/jmcantrell/vim-virtualenv
 "
@@ -327,7 +327,7 @@ endfunction
 call materia#packages#add_package('vim_virtualenv', s:vim_virtualenv)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ctrlp
+" ctrlp
 " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
 " https://github.com/ctrlpvim/ctrlp.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

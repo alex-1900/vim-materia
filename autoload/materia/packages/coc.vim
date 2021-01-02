@@ -18,7 +18,7 @@
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_nvim
+" coc_nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_nvim = {'name': 'coc.nvim'}
 
@@ -153,7 +153,7 @@ endfunction
 call materia#packages#add_package('coc_nvim', s:coc_nvim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_css
+" coc_css
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_css = {'name': 'coc-css'}
 function! s:coc_css.install(install)
@@ -162,7 +162,7 @@ endfunction
 call materia#packages#add_package('coc_css', s:coc_css)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_git
+" coc_git
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_git = {'name': 'coc-git'}
 function! s:coc_git.install(install)
@@ -171,7 +171,7 @@ endfunction
 call materia#packages#add_package('coc_git', s:coc_git)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_go
+" coc_go
 " https://github.com/josa42/coc-go
 " Coexists with `fatih/vim-go` by default
 " See: package `vim_go`
@@ -190,7 +190,7 @@ endfunction
 call materia#packages#add_package('coc_go', s:coc_go)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_html
+" coc_html
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_html = {'name': 'coc-html'}
 function! s:coc_html.install(install)
@@ -199,7 +199,7 @@ endfunction
 call materia#packages#add_package('coc_html', s:coc_html)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_json
+" coc_json
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_json = {'name': 'coc-json'}
 function! s:coc_json.options()
@@ -211,7 +211,7 @@ endfunction
 call materia#packages#add_package('coc_json', s:coc_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_phpls
+" coc_phpls
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_phpls = {'name': 'coc-phpls'}
 function! s:coc_phpls.install(install)
@@ -220,7 +220,7 @@ endfunction
 call materia#packages#add_package('coc_phpls', s:coc_phpls)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_tsserver
+" coc_tsserver
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_tsserver = {'name': 'coc-tsserver'}
 function! s:coc_tsserver.install(install)
@@ -229,7 +229,7 @@ endfunction
 call materia#packages#add_package('coc_tsserver', s:coc_tsserver)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_vimlsp
+" coc_vimlsp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_vimlsp = {'name': 'coc-vimlsp'}
 function! s:coc_vimlsp.install(install)
@@ -238,7 +238,7 @@ endfunction
 call materia#packages#add_package('coc_vimlsp', s:coc_vimlsp)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_yaml
+" coc_yaml
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_yaml = {'name': 'coc-yaml'}
 function! s:coc_yaml.install(install)
@@ -247,7 +247,7 @@ endfunction
 call materia#packages#add_package('coc_yaml', s:coc_yaml)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => coc_python
+" coc_python
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_python = {'name': 'coc-python'}
 function! s:coc_python.install(install)

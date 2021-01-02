@@ -1211,7 +1211,7 @@ function! s:update_impl(pull, force, args) abort
 
   " Python version requirement (>= 2.7)
   if python && !has('python3') && !ruby && !use_job && s:update.threads > 1
-    redir => pyv
+    redir pyv
     silent python import platform; print platform.python_version()
     redir END
     let python = s:version_requirement(
@@ -2082,7 +2082,7 @@ function! s:update_ruby()
         fd.close
       end
       [$? == 0, data.chomp]
-    rescue Timeout::Error, Interrupt => e
+    rescue Timeout::Error, Interrupt e
       if fd && !fd.closed?
         killall fd.pid
         fd.close

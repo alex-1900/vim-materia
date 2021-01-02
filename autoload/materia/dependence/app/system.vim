@@ -104,7 +104,7 @@ if has('nvim')
   endfunction
 else
   function! s:system.version() abort
-    redir => l:msg
+    redir l:msg
     silent! execute ':version'
     redir END
     return s:parser(matchstr(l:msg,'\(Included\ patches:\ \)\@<=[^\n]*'))

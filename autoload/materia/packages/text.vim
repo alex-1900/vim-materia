@@ -5,7 +5,7 @@
 "=============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => auto_pairs
+" auto_pairs
 " Insert or delete brackets, parens, quotes in pair.
 " https://github.com/jiangmiao/auto-pairs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -16,7 +16,7 @@ endfunction
 call materia#packages#add_package('auto_pairs', s:auto_pairs)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => nerdcommenter
+" nerdcommenter
 " Comment functions so powerful—no comment necessary.
 " https://github.com/preservim/nerdcommenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -43,7 +43,7 @@ endfunction
 call materia#packages#add_package('nerdcommenter', s:nerdcommenter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => supertab
+" supertab
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,7 +57,7 @@ endfunction
 call materia#packages#add_package('supertab', s:supertab)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_easy_align
+" vim_easy_align
 " A simple, easy-to-use Vim alignment plugin.
 " https://github.com/junegunn/vim-easy-align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -74,7 +74,7 @@ endfunction
 call materia#packages#add_package('vim_easy_align', s:vim_easy_align)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_surround
+" vim_surround
 " The plugin provides mappings to easily delete, change and add such surroundings in pairs.
 " https://github.com/tpope/vim-surround
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -84,7 +84,7 @@ function! s:vim_surround.install(install)
 endfunction
 call materia#packages#add_package('vim_surround', s:vim_surround)
 
-" => vim_visual_multi
+" vim_visual_multi
 " It's called vim-visual-multi in analogy with visual-block, but the plugin works mostly from normal mode.
 " https://github.com/mg979/vim-visual-multi
 " https://github.com/mg979/vim-visual-multi/wiki
@@ -105,7 +105,7 @@ endfunction
 call materia#packages#add_package('vim_visual_multi', s:vim_visual_multi)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_better_whitespace
+" vim_better_whitespace
 " This plugin causes all trailing whitespace characters to be highlighted. 
 " https://github.com/ntpeters/vim-better-whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -120,3 +120,31 @@ function! s:vim_better_whitespace.install(install)
   call a:install('ntpeters/vim-better-whitespace')
 endfunction
 call materia#packages#add_package('vim_better_whitespace', s:vim_better_whitespace)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" deoppet
+" The dark powered snippet plugin for neovim
+" https://github.com/Shougo/deoppet.nvim
+"
+" Default snippets for `neosnippets`
+" https://github.com/Shougo/neosnippet-snippets/tree/master/neosnippets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:deoppet = {'name': 'deoppet.nvim'}
+function! s:deoppet.listener()
+  if has('nvim-0.5.0')
+    call deoppet#initialize()
+    call deoppet#custom#option('snippets', map(globpath(&runtimepath, 'neosnippets', 1, 1), "{ 'path': v:val }"))
+
+    imap <C-k>  <Plug>(deoppet_expand)
+    imap <C-f>  <Plug>(deoppet_jump_forward)
+    imap <C-b>  <Plug>(deoppet_jump_backward)
+    smap <C-f>  <Plug>(deoppet_jump_forward)
+    smap <C-b>  <Plug>(deoppet_jump_backward)
+  endif
+endfunction
+function! s:deoppet.install(install)
+  if has('nvim-0.5.0')
+    call a:install('Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' })
+  endif
+endfunction
+call materia#packages#add_package('deoppet', s:deoppet)
