@@ -3,7 +3,6 @@
     "maps": {
       "leader": ";",
       "localleader": ",",
-      "navigation": "g",
       "action": "<space>",
       "localaction": "-",
       "edge": "\\",

@@ -23,9 +23,30 @@ https://github.com/ggreer/the_silver_searcher
 - Ripgrep (Rg), A line-oriented search tool:
 https://github.com/BurntSushi/ripgrep
 
-- Bat, supports syntax highlighting for a large number of programming and markup languages
+- Bat, supports syntax highlighting for a large number of programming and markup languages:
 https://github.com/sharkdp/bat
 
+## Config
+This object requires more than 50 plugins, and many configuration options, You have two ways to change, add or disable them:
+### The config.json
+The`config.default.json` is used to generate the default options, and you can create a file called `config.json` to replicate it. For example:
+```json
+{
+  "environment": {
+    "http_proxy": "'http://localhost:1087'",
+    "https_proxy": "'http://localhost:1087'"
+  },
+  "packages": {
+    "vim_virtualenv": {
+      "directory": "/Users/alex/envs/vim-materia"
+    },
+    "vim_floaterm": {
+      "disable": 1
+    }
+  }
+}
+```
+`Materia` will merge the `config.json` with `config.default.json` (merge objects and replace others).
 
 # Mixed
 Some records are used to simplify your setup.
