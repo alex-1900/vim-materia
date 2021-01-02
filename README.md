@@ -1,4 +1,4 @@
-# vim-materia
+# Vim Materia
 The materia vim configuration
 
 ![18DE2130-7759-4C7F-9758-4977C1B901D9](https://user-images.githubusercontent.com/49949411/103442207-233a7500-4c8f-11eb-9f81-0d0f6b66c72e.png)
