@@ -2,6 +2,7 @@
 /materiel
 /logs
 .env
+coc-settings.json
 .netrwhist
 node_modules
 /.undodir
