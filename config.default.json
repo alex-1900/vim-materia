@@ -10,10 +10,6 @@
       "next": "]",
       "prev": "["
     },
-    "python": {
-      "python_host_prog": 0,
-      "python3_host_prog": 0
-    },
     "undo_persistent": 0,
     "colorscheme": "iceberg",
     "background": "dark",
@@ -41,8 +37,9 @@
     "ctrlsf": {
       "basekey": "r",
       "attr_auto_preview": 1,
+      "attr_preview_position": "outside",
       "attr_case_sensitive": "smart",
-      "attr_ackprg": "ag",
+      "attr_ackprg": 0,
       "attr_context": "-B 4 -A 4",
       "attr_default_root": "project",
       "attr_default_view_mode": "normal",
@@ -53,10 +50,22 @@
       "attr_ignore_dir": [],
       "attr_auto_focus": 1
     },
+    "ctrlp": {
+      "attr_map": "<c-p>",
+      "attr_cmd": "CtrlP",
+      "attr_working_path_mode": "ra",
+      "attr_root_markers": [],
+      "attr_show_hidden": 1,
+      "attr_use_caching": 1,
+      "attr_clear_cache_on_exit": 0,
+      "ignore": {
+        "dir": "\\v[\\/]\\.(git|hg|svn)$",
+        "file": "\\v\\.(exe|so|dll)$"
+      }
+    },
     "defx": {
       "key_toggle": "\\e"
     },
-    "denite": {},
     "editorconfig_vim": {
       "exclude_patterns": ["fugitive://.*", "scp://.*"],
       "disable_types": ["gitcommit", "startify"]
@@ -106,7 +115,6 @@
     "papercolor": {
       "attr_theme_options": {}
     },
-    "vim_qf": {},
     "supertab": {
       "scroll": "<c-n>"
     },

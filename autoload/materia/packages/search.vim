@@ -134,9 +134,11 @@ let s:ctrlsf = {'name': 'ctrlsf.vim'}
 function! s:ctrlsf.config()
   let g:ctrlsf_debug_mode = 0
   let g:ctrlsf_auto_preview = materia#conf('packages.ctrlsf.attr_auto_preview')
+  let g:ctrlsf_preview_position = materia#conf('packages.ctrlsf.attr_preview_position')
   " defines default case-sensitivity in search (yes/no/smart)
   let g:ctrlsf_case_sensitive = materia#conf('packages.ctrlsf.attr_case_sensitive')
-  let g:ctrlsf_ackprg = materia#conf('packages.ctrlsf.attr_ackprg')
+  let ackprg = materia#conf('packages.ctrlsf.attr_ackprg')
+  if ackprg | let g:ctrlsf_ackprg = ackprg | endif
   " defines how many context lines will be printed
   let g:ctrlsf_context = materia#conf('packages.ctrlsf.attr_context')
   " defines how CtrlSF find search root when no explicit path is given. (cwd/project)

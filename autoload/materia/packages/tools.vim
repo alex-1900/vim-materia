@@ -305,8 +305,6 @@ call materia#packages#add_package('materia_session', s:materia_session)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_virtualenv
-" JUST FOR VIM
-"
 " Vim plugin for working with python virtualenvs.
 " https://github.com/jmcantrell/vim-virtualenv
 "
@@ -329,44 +327,26 @@ endfunction
 call materia#packages#add_package('vim_virtualenv', s:vim_virtualenv)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_qf
-" Tame the quickfix window
-" https://github.com/romainl/vim-qf
-"
-" virtualenv -p python envdir_name
+" => ctrlp
+" Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
+" https://github.com/ctrlpvim/ctrlp.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_qf = {'name': 'vim-qf'}
-function! s:vim_qf.config()
-
+let s:ctrlp = {'name': 'ctrlp.vim'}
+function! s:ctrlp.config()
+  let g:ctrlp_map = materia#conf('packages.ctrlp.attr_map')
+  let g:ctrlp_cmd = materia#conf('packages.ctrlp.attr_cmd')
+  let g:ctrlp_working_path_mode = materia#conf('packages.ctrlp.attr_working_path_mode')
+  let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr', '_darcs'] + materia#conf('packages.ctrlp.attr_root_markers')
+  let g:ctrlp_show_hidden = materia#conf('packages.ctrlp.attr_show_hidden')
+  let g:ctrlp_use_caching = materia#conf('packages.ctrlp.attr_use_caching')
+  let g:ctrlp_clear_cache_on_exit = materia#conf('packages.ctrlp.attr_clear_cache_on_exit')
+  let g:ctrlp_cache_dir = materia#homepath('/temp/ctrlp')
+  " ignores
+  let g:ctrlp_custom_ignore = materia#homepath('/temp/ignore')
 endfunction
 
-function! s:vim_qf.install(install)
-  call a:install('romainl/vim-qf')
+function! s:ctrlp.install(install)
+  call a:install('ctrlpvim/ctrlp.vim')
 endfunction
 
-call materia#packages#add_package('vim_qf', s:vim_qf)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => denite
-" Tame the quickfix window
-" https://github.com/Shougo/denite.vim
-"
-" virtualenv -p python envdir_name
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:denite = {'name': 'denite.vim'}
-function! s:denite.config()
-
-endfunction
-
-function! s:denite.install(install)
-  if has('nvim')
-    call a:install('Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' })
-  else
-    call a:install('Shougo/denite.nvim')
-    call a:install('roxma/nvim-yarp')
-    call a:install('roxma/vim-hug-neovim-rpc')
-  endif
-  call a:install('chemzqm/unite-location')
-endfunction
-
-call materia#packages#add_package('denite', s:denite)
+call materia#packages#add_package('ctrlp', s:ctrlp)
