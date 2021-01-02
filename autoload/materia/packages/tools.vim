@@ -277,7 +277,7 @@ call materia#packages#add_package('vim_gitgutter', s:vim_gitgutter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " materia_session
 " The automated Vim/Neovim session management for Materia.
-" https://github.com/speed-sonic/vim-materia-session
+" https://github.com/alex9201/vim-materia-session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:materia_session = {'name': 'vim-materia-session'}
 function! s:materia_session.config()
@@ -298,7 +298,7 @@ function! s:materia_session.listener()
 endfunction
 
 function! s:materia_session.install(install)
-  call a:install('speed-sonic/vim-materia-session')
+  call a:install('alex9201/vim-materia-session')
 endfunction
 
 call materia#packages#add_package('materia_session', s:materia_session)

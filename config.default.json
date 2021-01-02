@@ -72,7 +72,7 @@
     },
     "emmet_vim": {
       "leader_key": "<C-y>",
-      "snippet_path": "/Users/alex/local/github/speed-sonic/vim-materia/snippets/emmet.json",
+      "snippet_path": 0,
       "filetypes": ["html", "css", "javascript", "typescript"]
     },
     "deoppet": {},
