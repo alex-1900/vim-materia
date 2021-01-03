@@ -1,18 +1,18 @@
 {
+  "key": {
+    "leader": ";",
+    "localleader": ",",
+    "action": "<space>",
+    "localaction": "-",
+    "edge": "\\",
+    "next": "]",
+    "prev": "["
+  },
   "options": {
-    "maps": {
-      "leader": ";",
-      "localleader": ",",
-      "action": "<space>",
-      "localaction": "-",
-      "edge": "\\",
-      "next": "]",
-      "prev": "["
-    },
-    "undo_persistent": 0,
-    "colorscheme": "iceberg",
     "background": "dark",
-    "scroll_multiple": 4
+    "colorscheme": "iceberg",
+    "scroll_multiple": 4,
+    "undo_persistent": 0
   },
   "environment": {
   },
@@ -76,6 +76,7 @@
       "disable_types": ["gitcommit", "startify"]
     },
     "emmet_vim": {
+      "key_ctrl": "z",
       "snippet_path": 0,
       "filetypes": ["html", "css", "javascript", "typescript"]
     },

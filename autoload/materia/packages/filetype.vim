@@ -44,6 +44,7 @@ function! s:emmet_vim.config()
       let g:user_emmet_settings = webapi#json#decode(join(readfile(expand(s:snippet_path)), "\n"))
     endif
   endif
+  let g:user_emmet_leader_key = '<C-' . materia#conf('packages.emmet_vim.key_ctrl') . '>'
 endfunction
 function! s:emmet_vim.listener()
   if (exists('g:loaded_emmet_vim') && g:loaded_emmet_vim)
@@ -154,7 +155,7 @@ function! s:vim_go.config()
   let g:go_metalinter_command = "golangci-lint"
 
   " key mappings
-  let localaction = materia#conf('options.maps.localaction')
+  let localaction = materia#conf('key.localaction')
   " executecurrent file(s) gl
   execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'r <Plug>(go-run)'
   execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'b <Plug>(go-build)'
@@ -281,7 +282,7 @@ let s:vim_livedown = {'name': 'vim-livedown'}
 function! s:vim_livedown.config()
 endfunction
 function! s:vim_livedown.listener()
-  let localaction = materia#conf('options.maps.localaction')
+  let localaction = materia#conf('key.localaction')
   execute 'autocmd FileType markdown nnoremap <buffer> <silent> '. localaction .'o :<C-u>LivedownToggle<CR>'
 endfunction
 function! s:vim_livedown.install(install)
@@ -324,8 +325,8 @@ function! s:vim_floaterm.options()
 endfunction
 function! s:vim_floaterm.config()
   let okey = materia#conf('packages.vim_floaterm.basekey')
-  let nkey = materia#conf('options.maps.next')
-  let pkey = materia#conf('options.maps.prev')
+  let nkey = materia#conf('key.next')
+  let pkey = materia#conf('key.prev')
   let key_prefix = GetConfigMapPrefix(okey)
   let g:floaterm_keymap_new = key_prefix.edge . 'n'
   let g:floaterm_keymap_prev = pkey . okey

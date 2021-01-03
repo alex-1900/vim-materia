@@ -12,8 +12,8 @@ function! materia#common#options#get()
   " basic
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
-  let g:mapleader = materia#conf('options.maps.leader')
-  let g:maplocalleader = materia#conf('options.maps.localleader')
+  let g:mapleader = materia#conf('key.leader')
+  let g:maplocalleader = materia#conf('key.localleader')
   set nocompatible
   set encoding=utf-8
   set termencoding=utf-8

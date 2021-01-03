@@ -245,8 +245,8 @@ endfunction
 
 function! s:vim_gitgutter.listener()
   let okey = materia#conf('packages.vim_gitgutter.basekey')
-  let nkey = materia#conf('options.maps.next')
-  let pkey = materia#conf('options.maps.prev')
+  let nkey = materia#conf('key.next')
+  let pkey = materia#conf('key.prev')
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_gitgutter.basekey'))
   highlight! link SignColumn LineNr 
   " Jump to hunks
