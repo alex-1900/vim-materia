@@ -19,6 +19,12 @@ function! materia#init(homepath) abort
   let g:materia#path#home = a:homepath
   let g:materia#path#bundles = g:materia#path#home . '/bundles'
 
+  " create the temp dir
+  let temp_dir = materia#homepath('/temp')
+  if !isdirectory(temp_dir)
+    call mkdir(temp_dir, 'p')
+  endif
+
   " load config from config json file
   call s:process_json_configure()
   " enter the life cycle
@@ -38,8 +44,9 @@ function! materia#begin() abort
   call s:process_environments()
   call s:loaddir(g:materia#path#home . '/autoload/materia/packages')
   " load custom settings
-  if isdirectory(g:materia#path#home . '/custom')
-    call s:loaddir(g:materia#path#home . '/custom')
+  let custom_entry_file = materia#homepath('/custom/main.vim')
+  if filereadable(custom_entry_file)
+    execute 'source ' . custom_entry_file
   endif
 endfunction
 

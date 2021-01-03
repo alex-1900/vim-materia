@@ -8,10 +8,8 @@ node_modules
 /.undodir
 /sessions
 /trance
-/temp/*
-!/temp/.gitkeep
-/custom/*
-!/custom/.gitkeep
+/temp
+/custom
 Session.vim
 /config.json
 /venv*
