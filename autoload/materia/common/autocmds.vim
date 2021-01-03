@@ -4,7 +4,7 @@
 " License: MIT license
 "=============================================================================
 
-function! materia#core#autocmds#get()
+function! materia#common#autocmds#get()
   " Run PlugInstall if there are missing plugins on events stabilize.
   let l:last_event = 'VimEnter *'
   if has_key(materia#conf('packages'), 'materia_session') && HasPlug('vim-materia-session')

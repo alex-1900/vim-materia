@@ -13,7 +13,7 @@ endfunction
 " This function will be invoked just prior to the statusline getting modified.
 function! airline#extensions#username#apply(...)
   let builder = a:1
-  let system_serv = materia#dependence#get('app#system')
+  let system_serv = materia#service#get('system')
   highlight userStatusLine guifg=#EEEEEE ctermfg=7 guibg=#4169E1 ctermbg=24 gui=NONE cterm=NONE
   let username = airline#section#create([system_serv.username])
   call builder.add_section_spaced('UserStatusLine', username)

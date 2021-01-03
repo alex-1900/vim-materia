@@ -35,11 +35,11 @@ endfunction
 
 function! materia#begin() abort
   " load configs
-  call materia#core#options#get()
-  call materia#core#commands#get()
-  call materia#core#maps#get()
-  call materia#core#functions#get()
-  call materia#core#autocmds#get()
+  call materia#common#options#get()
+  call materia#common#commands#get()
+  call materia#common#maps#get()
+  call materia#common#functions#get()
+  call materia#common#autocmds#get()
 
   call s:process_environments()
   call s:loaddir(g:materia#path#home . '/autoload/materia/packages')
@@ -51,14 +51,13 @@ function! materia#begin() abort
 endfunction
 
 function! materia#loadplugs() abort
-  " let s:plug_installer = s:get_materia_plug_install_func()
   " Specify a directory for plugins
   call plug#begin(g:materia#path#bundles)
   " load plugs
   for package_name in keys(materia#conf('packages'))
     " Load enable packages
     if materia#conf('packages.'. package_name . '.disable') == 0
-      call materia#packages#load_package(package_name)
+      call materia#packages#load(package_name)
     endif
   endfor
   " Initialize plugin system
@@ -112,11 +111,10 @@ endfunction
 
 " load config from json file
 function! s:process_json_configure()
-  let l:json_parser = materia#dependence#get('data#json')
   let g:materia#config = {}
-  let g:materia#default_config = l:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.default.json'), "\n"))
+  let g:materia#default_config = json_decode(join(readfile(g:materia#path#home . '/config.default.json'), "\n"))
   if filereadable(g:materia#path#home . '/config.json')
-    let g:materia#config = l:json_parser.json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
+    let g:materia#config = json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
   endif
 endfunction
 

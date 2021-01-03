@@ -4,7 +4,7 @@
 " License: MIT license
 "=============================================================================
 
-function! materia#core#functions#get() abort
+function! materia#common#functions#get() abort
   " return 1 if plug exist
   function! HasPlug(name)
     return isdirectory(g:materia#path#bundles . '/' . a:name)

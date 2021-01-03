@@ -150,7 +150,7 @@ function! s:coc_nvim.install(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
 endfunction
 
-call materia#packages#add_package('coc_nvim', s:coc_nvim)
+call materia#packages#add('coc_nvim', s:coc_nvim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_css
@@ -159,7 +159,7 @@ let s:coc_css = {'name': 'coc-css'}
 function! s:coc_css.install(install)
   call a:install('neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_css', s:coc_css)
+call materia#packages#add('coc_css', s:coc_css)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_git
@@ -168,7 +168,7 @@ let s:coc_git = {'name': 'coc-git'}
 function! s:coc_git.install(install)
   call a:install('neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_git', s:coc_git)
+call materia#packages#add('coc_git', s:coc_git)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_go
@@ -187,7 +187,7 @@ endfunction
 function! s:coc_go.install(install)
   call a:install('josa42/coc-go', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_go', s:coc_go)
+call materia#packages#add('coc_go', s:coc_go)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_html
@@ -196,7 +196,7 @@ let s:coc_html = {'name': 'coc-html'}
 function! s:coc_html.install(install)
   call a:install('neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_html', s:coc_html)
+call materia#packages#add('coc_html', s:coc_html)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_json
@@ -208,7 +208,7 @@ endfunction
 function! s:coc_json.install(install)
   call a:install('neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_json', s:coc_json)
+call materia#packages#add('coc_json', s:coc_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_phpls
@@ -217,7 +217,7 @@ let s:coc_phpls = {'name': 'coc-phpls'}
 function! s:coc_phpls.install(install)
   call a:install('marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_phpls', s:coc_phpls)
+call materia#packages#add('coc_phpls', s:coc_phpls)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_tsserver
@@ -226,7 +226,7 @@ let s:coc_tsserver = {'name': 'coc-tsserver'}
 function! s:coc_tsserver.install(install)
   call a:install('neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_tsserver', s:coc_tsserver)
+call materia#packages#add('coc_tsserver', s:coc_tsserver)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_vimlsp
@@ -235,7 +235,7 @@ let s:coc_vimlsp = {'name': 'coc-vimlsp'}
 function! s:coc_vimlsp.install(install)
   call a:install('iamcco/coc-vimlsp', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_vimlsp', s:coc_vimlsp)
+call materia#packages#add('coc_vimlsp', s:coc_vimlsp)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_yaml
@@ -244,7 +244,7 @@ let s:coc_yaml = {'name': 'coc-yaml'}
 function! s:coc_yaml.install(install)
   call a:install('neoclide/coc-yaml', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_yaml', s:coc_yaml)
+call materia#packages#add('coc_yaml', s:coc_yaml)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_python
@@ -253,4 +253,4 @@ let s:coc_python = {'name': 'coc-python'}
 function! s:coc_python.install(install)
   call a:install('neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
-call materia#packages#add_package('coc_python', s:coc_python)
+call materia#packages#add('coc_python', s:coc_python)

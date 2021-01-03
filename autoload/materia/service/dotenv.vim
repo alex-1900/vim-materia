@@ -30,7 +30,6 @@ function! self.parse_file(filename, ...) abort
   return env
 endfunction
 
-
-function! materia#dependence#data#dotenv#instance() abort
+function! materia#service#dotenv#instance() abort
   return s:self
 endfunction

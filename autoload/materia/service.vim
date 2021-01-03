@@ -7,13 +7,20 @@ scriptencoding utf-8
 
 let s:dependencies = {}
 
-function! materia#dependence#get(name) abort
+" Get service by name
+function! materia#service#get(name) abort
   if !has_key(s:dependencies, a:name)
     try
-      let s:dependencies[a:name] = deepcopy(materia#dependence#{a:name}#instance())
+      let entity = deepcopy(materia#service#{a:name}#instance())
+      call materia#service#add(a:name, entity)
     catch
       return 0
     endtry
   endif
   return s:dependencies[a:name]
+endfunction
+
+" Add the service with name
+function! materia#service#add(name, entity) abort
+  let s:dependencies[a:name] = a:entity
 endfunction

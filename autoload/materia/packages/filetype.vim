@@ -23,7 +23,7 @@ endfunction
 function! s:html5_vim.install(install)
   call a:install('othree/html5.vim')
 endfunction
-call materia#packages#add_package('html5_vim', s:html5_vim)
+call materia#packages#add('html5_vim', s:html5_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " emmet_vim
@@ -56,7 +56,7 @@ function! s:emmet_vim.install(install)
   call a:install('mattn/emmet-vim')
   call a:install('mattn/webapi-vim')
 endfunction
-call materia#packages#add_package('emmet_vim', s:emmet_vim)
+call materia#packages#add('emmet_vim', s:emmet_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
@@ -79,7 +79,7 @@ endfunction
 function! s:syntastic.install(install)
   call a:install('vim-syntastic/syntastic')
 endfunction
-call materia#packages#add_package('syntastic', s:syntastic)
+call materia#packages#add('syntastic', s:syntastic)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nginx
@@ -90,7 +90,7 @@ let s:nginx = {'name': 'nginx.vim'}
 function! s:nginx.install(install)
   call a:install('chr4/nginx.vim')
 endfunction
-call materia#packages#add_package('nginx', s:nginx)
+call materia#packages#add('nginx', s:nginx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_go
@@ -185,7 +185,7 @@ function! s:vim_go.install(install)
   call a:install('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
 endfunction
 
-call materia#packages#add_package('vim_go', s:vim_go)
+call materia#packages#add('vim_go', s:vim_go)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_javascript
@@ -206,7 +206,7 @@ endfunction
 function! s:vim_javascript.install(install)
   call a:install('pangloss/vim-javascript')
 endfunction
-call materia#packages#add_package('vim_javascript', s:vim_javascript)
+call materia#packages#add('vim_javascript', s:vim_javascript)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_json
@@ -223,7 +223,7 @@ endfunction
 function! s:vim_json.install(install)
   call a:install('elzr/vim-json')
 endfunction
-call materia#packages#add_package('vim_json', s:vim_json)
+call materia#packages#add('vim_json', s:vim_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " typescript_vim
@@ -245,7 +245,7 @@ function! s:typescript_vim.install(install)
   call a:install('leafgarland/typescript-vim')
 endfunction
 
-call materia#packages#add_package('typescript_vim', s:typescript_vim)
+call materia#packages#add('typescript_vim', s:typescript_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_jsx
@@ -256,7 +256,7 @@ let s:vim_jsx = {'name': 'vim-jsx'}
 function! s:vim_jsx.install(install)
   call a:install('mxw/vim-jsx')
 endfunction
-call materia#packages#add_package('vim_jsx', s:vim_jsx)
+call materia#packages#add('vim_jsx', s:vim_jsx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_markdown
@@ -271,7 +271,7 @@ endfunction
 function! s:vim_markdown.install(install)
   call a:install('tpope/vim-markdown')
 endfunction
-call materia#packages#add_package('vim_markdown', s:vim_markdown)
+call materia#packages#add('vim_markdown', s:vim_markdown)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_livedown
@@ -287,7 +287,7 @@ endfunction
 function! s:vim_livedown.install(install)
   call a:install('shime/vim-livedown', { 'do': 'yarn global add livedown' })
 endfunction
-call materia#packages#add_package('vim_livedown', s:vim_livedown)
+call materia#packages#add('vim_livedown', s:vim_livedown)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_peekaboo
@@ -306,7 +306,7 @@ endfunction
 function! s:vim_peekaboo.install(install)
   call a:install('junegunn/vim-peekaboo')
 endfunction
-call materia#packages#add_package('vim_peekaboo', s:vim_peekaboo)
+call materia#packages#add('vim_peekaboo', s:vim_peekaboo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_floaterm
@@ -344,7 +344,7 @@ endfunction
 function! s:vim_floaterm.install(install)
   call a:install('voldikss/vim-floaterm')
 endfunction
-call materia#packages#add_package('vim_floaterm', s:vim_floaterm)
+call materia#packages#add('vim_floaterm', s:vim_floaterm)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_smooth_scroll
@@ -362,7 +362,7 @@ endfunction
 function! s:vim_smooth_scroll.install(install)
   call a:install('terryma/vim-smooth-scroll')
 endfunction
-call materia#packages#add_package('vim_smooth_scroll', s:vim_smooth_scroll)
+call materia#packages#add('vim_smooth_scroll', s:vim_smooth_scroll)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " editorconfig_vim
@@ -382,4 +382,4 @@ endfunction
 function! s:editorconfig_vim.install(install)
   call a:install('editorconfig/editorconfig-vim')
 endfunction
-call materia#packages#add_package('editorconfig_vim', s:editorconfig_vim)
+call materia#packages#add('editorconfig_vim', s:editorconfig_vim)

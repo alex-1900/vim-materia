@@ -17,7 +17,7 @@ endfunction
 function! s:goyo.install(install)
   call a:install('junegunn/goyo.vim')
 endfunction
-call materia#packages#add_package('goyo', s:goyo)
+call materia#packages#add('goyo', s:goyo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " limelight_vim
@@ -53,7 +53,7 @@ endfunction
 function! s:limelight_vim.install(install)
   call a:install('junegunn/limelight.vim')
 endfunction
-call materia#packages#add_package('limelight_vim', s:limelight_vim)
+call materia#packages#add('limelight_vim', s:limelight_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_airline
@@ -65,14 +65,14 @@ call materia#packages#add_package('limelight_vim', s:limelight_vim)
 let s:vim_airline = {'name': 'vim-airline'}
 function ModuleAirLineMateriaAddition(...)
   let builder = a:1
-  let system_serv = materia#dependence#get('app#system')
+  let system_serv = materia#service#get('system')
   highlight UserStatusLine guifg=#EEEEEE ctermfg=7 guibg=#4169E1 ctermbg=24 gui=NONE cterm=NONE
   call builder.add_section_spaced('UserStatusLine', system_serv.username)
   return 0
 endfunction
 
 function! MyLineNumber()
-  let system_serv = materia#dependence#get('app#system')
+  let system_serv = materia#service#get('system')
   return system_serv.username
 endfunction
 
@@ -112,7 +112,7 @@ function! s:vim_airline.install(install)
   call a:install('vim-airline/vim-airline-themes')
 endfunction
 
-call materia#packages#add_package('vim_airline', s:vim_airline)
+call materia#packages#add('vim_airline', s:vim_airline)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline_weather
@@ -134,7 +134,7 @@ function! s:airline_weather.install(install)
   call a:install('Wildog/airline-weather.vim')
   call a:install('mattn/webapi-vim')
 endfunction
-call materia#packages#add_package('airline_weather', s:airline_weather)
+call materia#packages#add('airline_weather', s:airline_weather)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -144,7 +144,7 @@ call materia#packages#add_package('airline_weather', s:airline_weather)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_devicons = {'name': 'vim-devicons'}
 function! s:vim_devicons.config()
-  let app_system = materia#dependence#get('app#system')
+  let app_system = materia#service#get('system')
   let g:webdevicons_enable = 1
   if !app_system.is_gui
     let g:webdevicons_enable = 0
@@ -153,7 +153,7 @@ endfunction
 function! s:vim_devicons.install(install)
   call a:install('ryanoasis/vim-devicons')
 endfunction
-call materia#packages#add_package('vim_devicons', s:vim_devicons)
+call materia#packages#add('vim_devicons', s:vim_devicons)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_startify
@@ -200,7 +200,7 @@ endfunction
 function! s:vim_startify.install(install)
   call a:install('mhinz/vim-startify')
 endfunction
-call materia#packages#add_package('vim_startify', s:vim_startify)
+call materia#packages#add('vim_startify', s:vim_startify)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gruvbox
@@ -224,7 +224,7 @@ endfunction
 function! s:gruvbox.install(install)
   call a:install('morhetz/gruvbox')
 endfunction
-call materia#packages#add_package('gruvbox', s:gruvbox)
+call materia#packages#add('gruvbox', s:gruvbox)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " onedark
@@ -247,7 +247,7 @@ endfunction
 function! s:onedark.install(install)
   call a:install('joshdick/onedark.vim')
 endfunction
-call materia#packages#add_package('onedark', s:onedark)
+call materia#packages#add('onedark', s:onedark)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " papercolor
@@ -270,7 +270,7 @@ endfunction
 function! s:papercolor.install(install)
   call a:install('NLKNguyen/papercolor-theme')
 endfunction
-call materia#packages#add_package('papercolor', s:papercolor)
+call materia#packages#add('papercolor', s:papercolor)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " iceberg
@@ -292,4 +292,4 @@ endfunction
 function! s:iceberg.install(install)
   call a:install('cocopon/iceberg.vim')
 endfunction
-call materia#packages#add_package('iceberg', s:iceberg)
+call materia#packages#add('iceberg', s:iceberg)

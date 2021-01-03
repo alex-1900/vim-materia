@@ -4,7 +4,7 @@
 " License: MIT license
 "=============================================================================
 
-let s:app_system = materia#dependence#get('app#system')
+let s:app_system = materia#service#get('system')
 
 " Select gui font by system informations.
 " https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip

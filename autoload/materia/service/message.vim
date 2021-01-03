@@ -60,6 +60,6 @@ function! s:self.confirm(msg) abort
   endif
 endfunction
 
-function! materia#dependence#app#message#instance() abort
+function! materia#service#message#instance() abort
   return s:self
 endfunction

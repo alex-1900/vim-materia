@@ -4,6 +4,6 @@
 " License: MIT license
 "=============================================================================
 
-function! materia#core#commands#get()
+function! materia#common#commands#get()
 
 endfunction

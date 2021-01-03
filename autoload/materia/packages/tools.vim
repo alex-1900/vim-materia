@@ -121,7 +121,7 @@ function! s:defx.install(install)
   call a:install('kristijanhusak/defx-git')
 endfunction
 
-call materia#packages#add_package('defx', s:defx)
+call materia#packages#add('defx', s:defx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " undotree
@@ -138,7 +138,7 @@ function! s:undotree.install(install)
   call a:install('mbbill/undotree')
 endfunction
 
-call materia#packages#add_package('undotree', s:undotree)
+call materia#packages#add('undotree', s:undotree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_tmux_navigator
@@ -150,7 +150,7 @@ function! s:vim_tmux_navigator.install(install)
   call a:install('christoomey/vim-tmux-navigator')
 endfunction
 
-call materia#packages#add_package('vim_tmux_navigator', s:vim_tmux_navigator)
+call materia#packages#add('vim_tmux_navigator', s:vim_tmux_navigator)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vista_vim
@@ -192,7 +192,7 @@ function! s:vista_vim.install(install)
   call a:install('liuchengxu/vista.vim')
 endfunction
 
-call materia#packages#add_package('vista_vim', s:vista_vim)
+call materia#packages#add('vista_vim', s:vista_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_fugitive
@@ -223,7 +223,7 @@ function! s:vim_fugitive.install(install)
   call a:install('tpope/vim-fugitive')
 endfunction
 
-call materia#packages#add_package('vim_fugitive', s:vim_fugitive)
+call materia#packages#add('vim_fugitive', s:vim_fugitive)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_gitgutter
@@ -272,7 +272,7 @@ function! s:vim_gitgutter.install(install)
   call a:install('airblade/vim-gitgutter')
 endfunction
 
-call materia#packages#add_package('vim_gitgutter', s:vim_gitgutter)
+call materia#packages#add('vim_gitgutter', s:vim_gitgutter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " materia_session
@@ -301,7 +301,7 @@ function! s:materia_session.install(install)
   call a:install('alex9201/vim-materia-session')
 endfunction
 
-call materia#packages#add_package('materia_session', s:materia_session)
+call materia#packages#add('materia_session', s:materia_session)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_virtualenv
@@ -324,7 +324,7 @@ function! s:vim_virtualenv.install(install)
   call a:install('jmcantrell/vim-virtualenv')
 endfunction
 
-call materia#packages#add_package('vim_virtualenv', s:vim_virtualenv)
+call materia#packages#add('vim_virtualenv', s:vim_virtualenv)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlp
@@ -349,4 +349,4 @@ function! s:ctrlp.install(install)
   call a:install('ctrlpvim/ctrlp.vim')
 endfunction
 
-call materia#packages#add_package('ctrlp', s:ctrlp)
+call materia#packages#add('ctrlp', s:ctrlp)

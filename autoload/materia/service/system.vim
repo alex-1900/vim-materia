@@ -137,6 +137,6 @@ else
   endfunction
 endif
 
-function! materia#dependence#app#system#instance() abort
+function! materia#service#system#instance() abort
   return s:system
 endfunction

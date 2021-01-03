@@ -4,9 +4,9 @@
 " License: MIT license
 "=============================================================================
 
-let s:app_system = materia#dependence#get('app#system')
+let s:app_system = materia#service#get('system')
 
-function! materia#core#options#get()
+function! materia#common#options#get()
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " basic

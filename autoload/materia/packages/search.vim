@@ -87,7 +87,7 @@ function! s:fzf_vim.install(install)
   call a:install('junegunn/fzf.vim')
 endfunction
 
-call materia#packages#add_package('fzf_vim', s:fzf_vim)
+call materia#packages#add('fzf_vim', s:fzf_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_interestingwords
@@ -107,7 +107,7 @@ endfunction
 function! s:vim_interestingwords.install(install)
   call a:install('lfv89/vim-interestingwords')
 endfunction
-call materia#packages#add_package('vim_interestingwords', s:vim_interestingwords)
+call materia#packages#add('vim_interestingwords', s:vim_interestingwords)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_visualstar
@@ -119,7 +119,7 @@ let s:vim_visualstar = {'name': 'vim-visualstar'}
 function! s:vim_visualstar.install(install)
   call a:install('thinca/vim-visualstar')
 endfunction
-call materia#packages#add_package('vim_visualstar', s:vim_visualstar)
+call materia#packages#add('vim_visualstar', s:vim_visualstar)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlsf
@@ -176,4 +176,4 @@ endfunction
 function! s:ctrlsf.install(install)
   call a:install('dyng/ctrlsf.vim')
 endfunction
-call materia#packages#add_package('ctrlsf', s:ctrlsf)
+call materia#packages#add('ctrlsf', s:ctrlsf)
