@@ -50,8 +50,8 @@ function! s:defx.listener()
     \ 'max_width': 1000,
   \ })
 
-  let key_toggle = materia#conf('packages.defx.key_toggle')
-  execute 'nnoremap <silent> '. key_toggle .' :<C-u>Defx -buffer-name=tab`tabpagenr()` `getcwd()`<CR>'
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.defx.key_edge'))
+  execute 'nnoremap <silent> '. key_prefix.edge .' :<C-u>Defx -buffer-name=tab`tabpagenr()` `getcwd()`<CR>'
 
   function! s:defx_mappings() abort
       nnoremap <silent><buffer><expr> o
@@ -130,8 +130,8 @@ call materia#packages#add('defx', s:defx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:undotree = {'name': 'undotree'}
 function! s:undotree.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.undotree.basekey'))
-  execute 'nnoremap <silent> '. key_prefix.edge .'u :<C-u>UndotreeToggle<CR>'
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.undotree.key_edge'))
+  execute 'nnoremap <silent> '. key_prefix.edge .' :<C-u>UndotreeToggle<CR>'
 endfunction
 
 function! s:undotree.install(install)
@@ -161,13 +161,15 @@ let s:vista_vim = {'name': 'vista.vim'}
 function! s:vista_vim.config()
   let g:vista_sidebar_width = materia#conf('packages.vista_vim.attr_sidebar_width')
   let g:vista#renderer#enable_icon = materia#conf('packages.vista_vim.attr_enable_icon')
-  let g:vista_icon_indent = materia#conf('packages.vista_vim.attr_icon_indent')
+  let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
   let g:vista_default_executive = materia#conf('packages.vista_vim.attr_default_executive')
-  let g:vista#executives = materia#conf('packages.vista_vim.attr_executives')
-  let g:vista_executive_for = materia#conf('packages.vista_vim.attr_executive_for')
-  let g:vista_fold_toggle_icons = materia#conf('packages.vista_vim.fold_toggle_icons')
+  let g:vista_executive_for = {}
+  let g:vista_fzf_preview = ['right:50%']
+  let g:vista_fold_toggle_icons = ["▼", "▶"]
   let g:vista#finders = materia#conf('packages.vista_vim.attr_finders')
   let g:vista_echo_cursor_strategy = 'floating_win'
+  let g:vista_update_on_text_changed = 1
+  let g:vista_update_on_text_changed_delay = 2000
   " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
   let g:vista#renderer#icons = {
   \   "function": "\uf794",
@@ -178,9 +180,9 @@ function! s:vista_vim.config()
 endfunction
 
 function! s:vista_vim.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vista_vim.basekey'))
-  execute 'nnoremap <silent> '. key_prefix.view .'v :<C-u>Vista!!<CR>'
-  execute 'nnoremap <silent> '. key_prefix.view .'f :<C-u>Vista finder<CR>'
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vista_vim.key_edge'))
+  execute 'nnoremap <silent> '. key_prefix.edge .'v :<C-u>Vista!!<CR>'
+  execute 'nnoremap <silent> '. key_prefix.edge .'f :<C-u>Vista finder<CR>'
 
   function! NearestMethodOrFunction() abort
     return get(b:, 'vista_nearest_method_or_function', '')
@@ -211,10 +213,10 @@ function! s:vim_fugitive.listener()
   execute 'nnoremap <silent> '. key_prefix.view .'l :<C-u>Git log<CR>'
   execute 'nnoremap <silent> '. key_prefix.view .'r :<C-u>Git reflog<CR>'
   execute 'nnoremap <silent> '. key_prefix.view .'b :<C-u>Git blame<CR>'
-  execute 'nnoremap <silent> '. key_prefix.win .'m :<C-u>Git mergetool<CR>'
-  execute 'nnoremap <silent> '. key_prefix.win .'d :<C-u>Git difftool<CR>'
-  execute 'nnoremap <silent> '. key_prefix.win .'s :<C-u>Gdiffsplit<CR>'
-  execute 'nnoremap <silent> '. key_prefix.win .'o :<C-u>GBrowse<CR>'
+  execute 'nnoremap <silent> '. key_prefix.edge .'m :<C-u>Git mergetool<CR>'
+  execute 'nnoremap <silent> '. key_prefix.edge .'d :<C-u>Git difftool<CR>'
+  execute 'nnoremap <silent> '. key_prefix.edge .'s :<C-u>Gdiffsplit<CR>'
+  execute 'nnoremap <silent> '. key_prefix.edge .'o :<C-u>GBrowse<CR>'
   execute 'nnoremap <silent> '. key_prefix.action .'r :<C-u>Gread<CR>'
   execute 'nnoremap <silent> '. key_prefix.action .'w :<C-u>Gwrite<CR>'
 endfunction
@@ -333,7 +335,8 @@ call materia#packages#add('vim_virtualenv', s:vim_virtualenv)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:ctrlp = {'name': 'ctrlp.vim'}
 function! s:ctrlp.config()
-  let g:ctrlp_map = materia#conf('packages.ctrlp.attr_map')
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlp.key_edge'))
+  let g:ctrlp_map = key_prefix.edge
   let g:ctrlp_cmd = materia#conf('packages.ctrlp.attr_cmd')
   let g:ctrlp_working_path_mode = materia#conf('packages.ctrlp.attr_working_path_mode')
   let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr', '_darcs'] + materia#conf('packages.ctrlp.attr_root_markers')

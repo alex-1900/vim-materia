@@ -10,10 +10,6 @@
 " https://github.com/junegunn/goyo.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:goyo = {'name': 'goyo.vim'}
-function! s:goyo.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.goyo.basekey'))
-  execute 'nnoremap <silent> '. key_prefix.view .'g :<C-u>Goyo<CR>'
-endfunction
 function! s:goyo.install(install)
   call a:install('junegunn/goyo.vim')
 endfunction

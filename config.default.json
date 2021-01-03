@@ -22,20 +22,25 @@
       "attr_area": "dalian,cn",
       "attr_cache_ttl": 3600
     },
-    "auto_pairs": {},
-    "coc_css": {},
-    "coc_git": {},
-    "coc_go": {},
-    "coc_html": {},
-    "coc_json": {},
+    "auto_pairs": null,
+    "coc_css": null,
+    "coc_git": null,
+    "coc_go": {
+      "fmt_autosave": 1,
+      "imports_autosave": 1
+    },
+    "coc_html": null,
+    "coc_json": {
+      "conceallevel": 0
+    },
     "coc_nvim": {
       "basekey": "a"
     },
-    "coc_phpls": {},
-    "coc_tsserver": {},
-    "coc_yaml": {},
+    "coc_phpls": null,
+    "coc_tsserver": null,
+    "coc_yaml": null,
     "ctrlsf": {
-      "basekey": "r",
+      "basekey": "s",
       "attr_auto_preview": 1,
       "attr_preview_position": "outside",
       "attr_case_sensitive": "smart",
@@ -51,7 +56,7 @@
       "attr_auto_focus": 1
     },
     "ctrlp": {
-      "attr_map": "<c-p>",
+      "key_edge": "p",
       "attr_cmd": "CtrlP",
       "attr_working_path_mode": "ra",
       "attr_root_markers": [],
@@ -64,27 +69,24 @@
       }
     },
     "defx": {
-      "key_toggle": "\\e"
+      "key_edge": "e"
     },
     "editorconfig_vim": {
       "exclude_patterns": ["fugitive://.*", "scp://.*"],
       "disable_types": ["gitcommit", "startify"]
     },
     "emmet_vim": {
-      "leader_key": "<C-y>",
       "snippet_path": 0,
       "filetypes": ["html", "css", "javascript", "typescript"]
     },
     "deoppet": {},
     "fzf_vim": {
-      "basekey": "s",
+      "basekey": "f",
       "preview_window": ["right:50%", "ctrl-/"],
       "preview_options": {"options": ["--layout=reverse", "--info=inline"]},
       "command_prefix": "Fzf"
     },
-    "goyo": {
-      "basekey": "v"
-    },
+    "goyo": null,
     "gruvbox": null,
     "html5_vim": {
       "filetypes": ["html", "css"],
@@ -95,7 +97,7 @@
     },
     "iceberg": {},
     "limelight_vim": {
-      "basekey": "v",
+      "basekey": "l",
       "conceal_guifg": "#777777",
       "conceal_ctermfg": "gray",
       "default_coefficient": 0.8,
@@ -109,7 +111,7 @@
       "autosave_on_actions": 1
     },
     "nerdcommenter": {
-      "basekey": "c"
+      "key_action": "c"
     },
     "nginx": {},
     "onedark": null,
@@ -124,7 +126,7 @@
       "attr_compiler_options": ""
     },
     "undotree": {
-      "basekey": "d"
+      "key_edge": "u"
     },
     "vim_airline": {
       "with_username": 1,
@@ -140,7 +142,9 @@
       "guicolor": "yellow"
     },
     "vim_devicons": null,
-    "vim_easy_align": null,
+    "vim_easy_align": {
+      "key_action": "e"
+    },
     "vim_floaterm": {
       "basekey": "t",
       "title": "Terminal [$1|$2]",
@@ -155,23 +159,13 @@
       "basekey": "h"
     },
     "vim_go": {
-      "attr_def_mode": "gopls",
-      "attr_info_mode": "gopls",
-      "attr_fmt_autosave": 0,
-      "attr_fmt_command": "goimports",
-      "attr_fmt_fail_silently": 1,
-      "highlight_build_constraints": 1,
-      "highlight_fields": 1,
-      "highlight_functions": 1,
-      "highlight_generate_tags": 1,
-      "highlight_operators": 1,
-      "highlight_structs": 1,
-      "highlight_types": 1,
-      "highlight_function_calls": 0,
-      "autoimport": 1
+      "fmt_autosave": 1,
+      "mod_fmt_autosave": 1,
+      "imports_autosave": 1,
+      "extra_highlight": 1
     },
     "vim_interestingwords": {
-      "basekey": "k"
+      "basekey": "i"
     },
     "vim_javascript": {
       "attr_plugin_jsdoc": 1,
@@ -213,15 +207,11 @@
       "virtualenv_directory": "~/.virtualenvs"
     },
     "vista_vim": {
-      "basekey": "v",
+      "key_edge": "v",
       "attr_sidebar_width": 35,
       "attr_enable_icon": 1,
-      "attr_icon_indent": ["╰─▸ ", "├─▸ "],
-      "attr_executives": ["coc"],
       "attr_default_executive": "coc",
-      "attr_executive_for": {},
-      "attr_finders": ["fzf"],
-      "fold_toggle_icons": ["▼", "▶"]
+      "attr_finders": ["fzf"]
     }
   },
   "filetype": {

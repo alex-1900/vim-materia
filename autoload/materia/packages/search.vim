@@ -33,8 +33,11 @@ function! s:fzf_vim.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.fzf_vim.basekey'))
   let command_prefix = materia#conf('packages.fzf_vim.command_prefix')
   " Mapping selecting mappings
+  " normal mod maps
   execute 'nmap <silent> '. key_prefix.view . 'n <plug>(fzf-maps-n)'
+  " xmode maps
   execute 'xmap <silent> '. key_prefix.view . 'x <plug>(fzf-maps-x)'
+  " history
   execute 'omap <silent> '. key_prefix.view . 'o <plug>(fzf-maps-o)'
   " Insert mode completion
   execute 'imap <silent> '. key_prefix.win . 'w <plug>(fzf-complete-word)'
@@ -100,7 +103,7 @@ function! s:vim_interestingwords.listener()
   " vim-interestingwords
   execute 'nnoremap <silent> '. key_prefix.view ." :<C-u>call InterestingWords('n')<CR>"
   execute 'vnoremap <silent> '. key_prefix.view ." :<C-u>call InterestingWords('v')<CR>"
-  execute 'nnoremap <silent> '. key_prefix.edge .' :<C-u>call UncolorAllWords()<CR>'
+  execute 'nnoremap <silent> '. key_prefix.action .' :<C-u>call UncolorAllWords()<CR>'
   execute 'nnoremap <silent> '. key_prefix.prev .' :<C-u>call WordNavigation(0)<CR>'
   execute 'nnoremap <silent> '. key_prefix.next .' :<C-u>call WordNavigation(1)<CR>'
 endfunction
@@ -166,7 +169,7 @@ endfunction
 function! s:ctrlsf.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlsf.basekey'))
   execute 'nmap '. key_prefix.view .'f <Plug>CtrlSFPrompt'
-  execute 'nmap '. key_prefix.view .'o :<C-u>CtrlSFToggle<CR>'
+  execute 'nmap '. key_prefix.edge . ' :<C-u>CtrlSFToggle<CR>'
   execute 'nmap '. key_prefix.view .'s <Plug>CtrlSFPrompt'
   execute 'vmap '. key_prefix.view .'s <Plug>CtrlSFVwordPath'
   execute 'nmap '. key_prefix.view .'w <Plug>CtrlSFCwordPath'

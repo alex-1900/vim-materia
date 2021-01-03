@@ -23,7 +23,7 @@ call materia#packages#add('auto_pairs', s:auto_pairs)
 let s:nerdcommenter = {'name': 'nerdcommenter'}
 function! s:nerdcommenter.config()
   " Create default mappings
-  let g:NERDCreateDefaultMappings = 1
+  let g:NERDCreateDefaultMappings = 0
   " Add spaces after comment delimiters by default
   let g:NERDSpaceDelims = 1
   " Use compact syntax for prettified multi-line comments
@@ -37,6 +37,35 @@ function! s:nerdcommenter.config()
   " Enable NERDCommenterToggle to check all selected lines is commented or not 
   let g:NERDToggleCheckAllLines = 1
 endfunction
+
+function! s:nerdcommenter.listener()
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdcommenter.key_action'))
+  execute 'nmap <silent> '. key_prefix.action .'c <Plug>NERDCommenterComment'
+  execute 'xmap <silent> '. key_prefix.action .'c <Plug>NERDCommenterComment'
+  execute 'nmap <silent> '. key_prefix.action .'t <Plug>NERDCommenterToggle'
+  execute 'xmap <silent> '. key_prefix.action .'t <Plug>NERDCommenterToggle'
+  execute 'nmap <silent> '. key_prefix.action .'m <Plug>NERDCommenterMinimal'
+  execute 'xmap <silent> '. key_prefix.action .'m <Plug>NERDCommenterMinimal'
+  execute 'nmap <silent> '. key_prefix.action .'n <Plug>NERDCommenterNested'
+  execute 'xmap <silent> '. key_prefix.action .'n <Plug>NERDCommenterNested'
+  execute 'nmap <silent> '. key_prefix.action .'$ <Plug>NERDCommenterToEOL'
+  execute 'nmap <silent> '. key_prefix.action .'i <Plug>NERDCommenterInvert'
+  execute 'xmap <silent> '. key_prefix.action .'i <Plug>NERDCommenterInvert'
+  execute 'nmap <silent> '. key_prefix.action .'s <Plug>NERDCommenterSexy'
+  execute 'xmap <silent> '. key_prefix.action .'s <Plug>NERDCommenterSexy'
+  execute 'nmap <silent> '. key_prefix.action .'y <Plug>NERDCommenterYank'
+  execute 'xmap <silent> '. key_prefix.action .'y <Plug>NERDCommenterYank'
+  execute 'nmap <silent> '. key_prefix.action .'A <Plug>NERDCommenterAppend'
+  execute 'nmap <silent> '. key_prefix.action .'l <Plug>NERDCommenterAlignLeft'
+  execute 'xmap <silent> '. key_prefix.action .'l <Plug>NERDCommenterAlignLeft'
+  execute 'nmap <silent> '. key_prefix.action .'b <Plug>NERDCommenterAlignBoth'
+  execute 'xmap <silent> '. key_prefix.action .'b <Plug>NERDCommenterAlignBoth'
+  execute 'nmap <silent> '. key_prefix.action .'u <Plug>NERDCommenterUncomment'
+  execute 'xmap <silent> '. key_prefix.action .'u <Plug>NERDCommenterUncomment'
+  execute 'nmap <silent> '. key_prefix.action .'a <Plug>NERDCommenterAltDelims'
+  execute 'imap <silent> <C-_> <Plug>NERDCommenterInsert'
+endfunction
+
 function! s:nerdcommenter.install(install)
   call a:install('preservim/nerdcommenter')
 endfunction
@@ -63,10 +92,11 @@ call materia#packages#add('supertab', s:supertab)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_easy_align = {'name': 'vim-easy-align'}
 function! s:vim_easy_align.listener()
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_easy_align.key_action'))
   " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap ga <Plug>(EasyAlign)
+  execute 'xmap '. key_prefix.action .' <Plug>(EasyAlign)'
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap ga <Plug>(EasyAlign)
+  execute 'nmap '. key_prefix.action .' <Plug>(EasyAlign)'
 endfunction
 function! s:vim_easy_align.install(install)
   call a:install('junegunn/vim-easy-align')

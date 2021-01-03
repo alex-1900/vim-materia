@@ -26,7 +26,7 @@ https://github.com/BurntSushi/ripgrep
 - Bat, supports syntax highlighting for a large number of programming and markup languages:
 https://github.com/sharkdp/bat
 
-You also need to install a `Powerline font` to display Unicode icons, I’m using the [`SourceCodePro`](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip), You can also find other fonts at https://github.com/ryanoasis/nerd-fonts
+You also need to install a `Powerline font` to display Unicode icons, I’m using the [`SourceCodePro`](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip), You can find other fonts at https://github.com/ryanoasis/nerd-fonts
 
 # Configure
 This object requires more than 50 plugins, and many configuration options, You have two ways to change, add or disable them:

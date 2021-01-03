@@ -39,7 +39,6 @@ let s:emmet_vim = {'name': 'emmet-vim'}
 function! s:emmet_vim.config()
   if materia#conf('html.snippet_path')
     let g:user_emmet_install_global = 0
-    let g:user_emmet_leader_key = materia#conf('packages.emmet_vim.leader_key')
     let snippet_path = materia#conf('packages.emmet_vim.snippet_path')
     if snippet_path
       let g:user_emmet_settings = webapi#json#decode(join(readfile(expand(s:snippet_path)), "\n"))
@@ -112,9 +111,9 @@ function! s:vim_go.config()
   let g:go_fmt_options = {}
   let g:go_gopls_options = ['-remote=auto']
   " autosave
-  let g:go_fmt_autosave = 1
-  let g:go_mod_fmt_autosave = 1
-  let g:go_imports_autosave = 1
+  let g:go_fmt_autosave = materia#conf('packages.vim_go.fmt_autosave')
+  let g:go_mod_fmt_autosave = materia#conf('packages.vim_go.mod_fmt_autosave')
+  let g:go_imports_autosave = materia#conf('packages.vim_go.imports_autosave')
   let g:go_fmt_fail_silently = 1
   " features
   let g:go_gopls_enabled = 1
@@ -135,18 +134,19 @@ function! s:vim_go.config()
   let g:go_highlight_operators = 1
   let g:go_highlight_build_constraints = 1
 
-  let g:go_highlight_extra_types = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_function_parameters = 1
-  let g:go_highlight_function_calls = 1
-  let g:go_highlight_types = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_generate_tags = 1
-  let g:go_highlight_string_spellcheck = 1
-  let g:go_highlight_format_strings = 1
-  let g:go_highlight_variable_declarations = 1
-  let g:go_highlight_variable_assignments = 1
-  
+  if materia#conf('packages.vim_go.extra_highlight')
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_function_parameters = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_generate_tags = 1
+    let g:go_highlight_string_spellcheck = 1
+    let g:go_highlight_format_strings = 1
+    let g:go_highlight_variable_declarations = 1
+    let g:go_highlight_variable_assignments = 1
+  endif
 
   " go metalinter
   let g:go_metalinter_autosave_enabled = ['all']
@@ -330,7 +330,7 @@ function! s:vim_floaterm.config()
   let g:floaterm_keymap_new = key_prefix.edge . 'n'
   let g:floaterm_keymap_prev = pkey . okey
   let g:floaterm_keymap_next = nkey . okey
-  let g:floaterm_keymap_toggle = key_prefix.edge . okey
+  let g:floaterm_keymap_toggle = key_prefix.edge . 't'
   let g:floaterm_keymap_kill = '<C-d>'
   let g:floaterm_title = materia#conf('packages.vim_floaterm.title')
   let g:floaterm_width = materia#conf('packages.vim_floaterm.width')
