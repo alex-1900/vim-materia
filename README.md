@@ -54,6 +54,43 @@ The`config.default.json` is used to generate the default options, and you can cr
 If you want to add plugins or make more complex custom settings, You can add your own vimscript in the `custom/main.vim`.
 
 ## Plugins management
+Materia manages plugins in a unified way, ensure that you will not add the same plugin repeatedly:
+```vim
+let nord_vim = {'name': 'nord-vim'}
+
+if materia#conf('options.colorscheme') == 'nord'
+  function! nord_vim.config()
+    let g:nord_cursor_line_number_background = 1
+    let g:nord_uniform_status_lines = 1
+    let g:nord_bold = 0
+    let g:nord_italic = 1
+  endfunction
+
+  function! nord_vim.listener()
+    colorscheme nord
+    call airline#switch_theme('nord')
+  endfunction
+endif
+
+function! nord_vim.install(install)
+  call a:install('arcticicestudio/nord-vim', { 'branch': 'develop' })
+endfunction
+
+call materia#packages#add('nord_vim', nord_vim)
+```
+
+In config.json you should:
+```json
+{
+  "options" {
+    "colorscheme": "nord"
+  },
+  "packages": {
+    "nord_vim": {}
+  }
+}
+```
+And then, you can change the json field `packages.nord_vim.disable` to enable/disable this theme.
 
 # Mixed
 Some records are used to simplify your setup.
