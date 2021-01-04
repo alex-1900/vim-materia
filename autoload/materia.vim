@@ -36,9 +36,9 @@ endfunction
 function! materia#begin() abort
   " load configs
   call materia#common#options#get()
+  call materia#common#functions#get()
   call materia#common#commands#get()
   call materia#common#maps#get()
-  call materia#common#functions#get()
   call materia#common#autocmds#get()
 
   call s:process_environments()

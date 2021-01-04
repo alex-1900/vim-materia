@@ -213,7 +213,10 @@
       "attr_enable_icon": 1,
       "attr_default_executive": "coc",
       "attr_finders": ["fzf"]
-    }
+    },
+    "vim_cutlass": null,
+    "vim_yoink": null,
+    "vim_subversive": null
   },
   "filetype": {
 

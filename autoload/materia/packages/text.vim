@@ -178,3 +178,69 @@ function! s:deoppet.install(install)
   endif
 endfunction
 call materia#packages#add('deoppet', s:deoppet)
+
+" old_easyclip {
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " vim_cutlass
+    " Plugin that adds a 'cut' operation separate from 'delete'
+    " https://github.com/svermeulen/vim-cutlass
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:vim_cutlass = {'name': 'vim-cutlass'}
+    function! s:vim_cutlass.listener()
+
+    endfunction
+    function! s:vim_cutlass.install(install)
+      call a:install('svermeulen/vim-cutlass')
+    endfunction
+
+    call materia#packages#add('vim_cutlass', s:vim_cutlass)
+
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " vim_yoink
+    " Vim plugin that maintains a yank history to cycle between when pasting
+    " https://github.com/svermeulen/vim-yoink
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:vim_yoink = {'name': 'vim-yoink'}
+    function! s:vim_yoink.config()
+      let g:yoinkIncludeDeleteOperations = 1
+    endfunction
+    function! s:vim_yoink.listener()
+      nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+      nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+      nmap p <plug>(YoinkPaste_p)
+      nmap P <plug>(YoinkPaste_P)
+      nmap [y <plug>(YoinkRotateBack)
+      nmap ]y <plug>(YoinkRotateForward)
+      nmap y <plug>(YoinkYankPreserveCursorPosition)
+      xmap y <plug>(YoinkYankPreserveCursorPosition)
+      nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
+    endfunction
+    function! s:vim_yoink.install(install)
+      call a:install('svermeulen/vim-yoink')
+    endfunction
+
+    call materia#packages#add('vim_yoink', s:vim_yoink)
+
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " vim_subversive
+    " Plugin that adds a 'cut' operation separate from 'delete'
+    " https://github.com/svermeulen/vim-cutlass
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:vim_subversive = {'name': 'vim-subversive'}
+    function! s:vim_subversive.listener()
+      nmap s <plug>(SubversiveSubstitute)
+      xmap s <plug>(SubversiveSubstitute)
+      nmap ss <plug>(SubversiveSubstituteLine)
+      nmap S <plug>(SubversiveSubstituteToEndOfLine)
+      nmap <space>s <plug>(SubversiveSubstituteRange)
+      xmap <space>s <plug>(SubversiveSubstituteRange)
+      nmap <space>ss <plug>(SubversiveSubstituteWordRange)
+      xmap p <plug>(SubversiveSubstitute)
+      xmap P <plug>(SubversiveSubstitute)
+    endfunction
+    function! s:vim_subversive.install(install)
+      call a:install('svermeulen/vim-subversive')
+    endfunction
+
+    call materia#packages#add('vim_subversive', s:vim_subversive)
+"}

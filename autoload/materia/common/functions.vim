@@ -9,7 +9,15 @@ function! materia#common#functions#get() abort
   function! HasPlug(name)
     return isdirectory(g:materia#path#bundles . '/' . a:name)
   endfunction
-  
+
+  " bind keys
+  function! Mapping(modes, nore, key, command) abort
+    for mode in a:modes
+      execute mode . (a:nore ? 'nore' : '') .' <silent> ' . a:key .' '. a:command
+    endfor
+  endfunction
+
+  " Get map keys
   let s:lkey = '<leader>'
   let s:akey = materia#conf('key.action')
   let s:lakey = materia#conf('key.localaction')
