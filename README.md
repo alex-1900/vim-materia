@@ -31,7 +31,7 @@ You also need to install a `Powerline font` to display Unicode icons, I’m usin
 ### coc-clangd
 Need to install [`clangd language server.`](https://github.com/clangd/clangd) to get C/C++/Objective-C surport. Please read the [Quick Start](https://github.com/clangd/coc-clangd#quick-start) section and the clangd document about [Project setup](https://clangd.llvm.org/installation.html#project-setup).
 
-Note that [SIP Issue](https://github.com/rizsotto/Bear/issues/108) for macos users.
+Note that [SIP Issue](https://github.com/rizsotto/Bear/issues/108) for `MacOS` users.
 
 # Configure
 This object requires more than 50 plugins, and many configuration options, You have two ways to change, add or disable them:
