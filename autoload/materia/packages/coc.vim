@@ -127,6 +127,21 @@ endfunction
 call materia#packages#add('coc_nvim', s:coc_nvim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc_clangd
+" clangd extension for coc.nvim
+" https://github.com/clangd/coc-clangd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:coc_clangd = {'name': 'coc-clangd'}
+function! s:coc_clangd.install(install)
+  call a:install('neoclide/coc.nvim', { 'branch': 'release' })
+  call a:install('clangd/coc-clangd', {
+    \ 'do': "yarn install --frozen-lockfile"
+  \ })
+endfunction
+call materia#packages#add('coc_clangd', s:coc_clangd)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc_css
 " https://github.com/neoclide/coc-css
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

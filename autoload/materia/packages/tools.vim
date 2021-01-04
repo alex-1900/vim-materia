@@ -277,6 +277,81 @@ endfunction
 call materia#packages#add('vim_gitgutter', s:vim_gitgutter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim_smooth_scroll
+" Use (neo)vim terminal in the floating/popup window.
+" https://github.com/voldikss/vim-floaterm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:vim_smooth_scroll = {'name': 'vim-smooth-scroll'}
+function! s:vim_smooth_scroll.listener()
+  let speed = materia#conf('packages.vim_smooth_scroll.speed')
+  execute 'noremap <silent> <c-u> :call smooth_scroll#up(&scroll, '. speed .', 1)<CR>'
+  execute 'noremap <silent> <c-d> :call smooth_scroll#down(&scroll, '. speed .', 1)<CR>'
+  execute 'noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, '. speed .', 1)<CR>'
+  execute 'noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, '. speed .', 1)<CR>'
+endfunction
+function! s:vim_smooth_scroll.install(install)
+  call a:install('terryma/vim-smooth-scroll')
+endfunction
+call materia#packages#add('vim_smooth_scroll', s:vim_smooth_scroll)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim_floaterm
+" Use (neo)vim terminal in the floating/popup window.
+" https://github.com/voldikss/vim-floaterm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:vim_floaterm = {'name': 'vim-floaterm'}
+function! s:vim_floaterm.options()
+  " Set floaterm window's background to black
+  hi Floaterm guibg=black
+  " Set floating window border line color to cyan, and background to orange
+  hi FloatermBorder guibg=orange guifg=cyan
+  " Set floaterm window background to gray once the cursor moves out from it
+  hi FloatermNC guibg=gray
+endfunction
+function! s:vim_floaterm.config()
+  let okey = materia#conf('packages.vim_floaterm.basekey')
+  let nkey = materia#conf('key.next')
+  let pkey = materia#conf('key.prev')
+  let key_prefix = GetConfigMapPrefix(okey)
+  let g:floaterm_keymap_new = key_prefix.edge . 'n'
+  let g:floaterm_keymap_prev = pkey . okey
+  let g:floaterm_keymap_next = nkey . okey
+  let g:floaterm_keymap_toggle = key_prefix.edge . 't'
+  let g:floaterm_keymap_kill = '<C-d>'
+  let g:floaterm_title = materia#conf('packages.vim_floaterm.title')
+  let g:floaterm_width = materia#conf('packages.vim_floaterm.width')
+  let g:floaterm_height = materia#conf('packages.vim_floaterm.height')
+  let g:floaterm_rootmarkers = materia#conf('packages.vim_floaterm.rootmarkers')
+  " Close window if the job exits normally, otherwise stay it with messages like [Process exited 101]
+  let g:floaterm_autoclose = 0
+endfunction
+function! s:vim_floaterm.listener()
+endfunction
+function! s:vim_floaterm.install(install)
+  call a:install('voldikss/vim-floaterm')
+endfunction
+call materia#packages#add('vim_floaterm', s:vim_floaterm)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim_peekaboo
+" Peekaboo will show you the contents of the registers on the sidebar when you hit " or @ in normal mode or <CTRL-R> in insert mode.
+" The sidebar is automatically closed on subsequent key strokes.
+" You can toggle fullscreen mode by pressing spacebar.
+" https://github.com/junegunn/vim-peekaboo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:vim_peekaboo = {'name': 'vim-peekaboo'}
+function! s:vim_peekaboo.config()
+  let g:peekaboo_delay = materia#conf('packages.vim_peekaboo.attr_delay')
+  let g:peekaboo_compact = materia#conf('packages.vim_peekaboo.attr_compact')
+  let g:peekaboo_prefix = materia#conf('packages.vim_peekaboo.attr_prefix')
+  let g:peekaboo_ins_prefix = materia#conf('packages.vim_peekaboo.attr_ins_prefix')
+endfunction
+function! s:vim_peekaboo.install(install)
+  call a:install('junegunn/vim-peekaboo')
+endfunction
+call materia#packages#add('vim_peekaboo', s:vim_peekaboo)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " materia_session
 " The automated Vim/Neovim session management for Materia.
 " https://github.com/alex9201/vim-materia-session

@@ -152,6 +152,27 @@ endfunction
 call materia#packages#add('vim_better_whitespace', s:vim_better_whitespace)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" editorconfig_vim
+" This is an EditorConfig plugin for Vim. This plugin can be found on both GitHub and Vim online.
+" https://github.com/editorconfig/editorconfig-vim
+" https://editorconfig.org/
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:editorconfig_vim = {'name': 'editorconfig-vim'}
+function! s:editorconfig_vim.config()
+  let g:EditorConfig_exclude_patterns = materia#conf('packages.editorconfig_vim.exclude_patterns')
+endfunction
+function! s:editorconfig_vim.listener()
+  " disable this plugin for a specific buffer
+  let types = materia#conf('packages.editorconfig_vim.disable_types')
+  execute 'autocmd FileType '. join(types, ',') .' let b:EditorConfig_disable = 1'
+endfunction
+function! s:editorconfig_vim.install(install)
+  call a:install('editorconfig/editorconfig-vim')
+endfunction
+call materia#packages#add('editorconfig_vim', s:editorconfig_vim)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " deoppet
 " The dark powered snippet plugin for neovim
 " https://github.com/Shougo/deoppet.nvim

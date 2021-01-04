@@ -24,6 +24,7 @@
     },
     "auto_pairs": null,
     "coc_css": null,
+    "coc_clangd": null,
     "coc_git": null,
     "coc_go": {
       "fmt_autosave": 1,
@@ -177,11 +178,6 @@
       "syntax_conceal": 0
     },
     "vim_jsx": {},
-    "vim_livedown": {
-      "attr_autorun": 0,
-      "attr_open": 1,
-      "attr_port": 1337
-    },
     "vim_markdown": {
       "attr_fenced_languages": ["bash=sh"],
       "attr_minlines": 60
