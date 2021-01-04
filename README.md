@@ -51,7 +51,7 @@ The`config.default.json` is used to generate the default options, and you can cr
 `Materia` will merge the `config.json` with `config.default.json` (merge objects and replace others).
 
 ### The `custom` directory
-If you want to add plugins or make more complex custom settings, You can add your own vimscript in the `custom/main.vim`.
+If you want to add plugins or make more complex custom settings, You can add your own vimscript in the `custom/main.vim` to add or override the default options and settings.
 
 ## Plugins management
 Materia manages plugins in a unified way, ensure that you will not add the same plugin repeatedly:
