@@ -80,7 +80,7 @@ if materia#conf('options.colorscheme') == 'nord'
 endif
 
 function! nord_vim.install(install)
-  call a:install('arcticicestudio/nord-vim', { 'branch': 'develop' })
+  call a:install('arcticicestudio/nord-vim')
 endfunction
 
 call materia#packages#add('nord_vim', nord_vim)
