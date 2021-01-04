@@ -29,9 +29,9 @@ https://github.com/sharkdp/bat
 You also need to install a `Powerline font` to display Unicode icons, I’m using the [`SourceCodePro`](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip), You can find other fonts at https://github.com/ryanoasis/nerd-fonts
 
 ### coc-clangd
-Need to install [`clangd language server.`](https://github.com/clangd/clangd) for C/C++/Objective-C surport, read [Quick Start](https://github.com/clangd/coc-clangd#quick-start) section and [Project setup](https://clangd.llvm.org/installation.html#project-setup) with clangd.
+Need to install [`clangd language server.`](https://github.com/clangd/clangd) to get C/C++/Objective-C surport. Please read the [Quick Start](https://github.com/clangd/coc-clangd#quick-start) section and the clangd document about [Project setup](https://clangd.llvm.org/installation.html#project-setup).
 
-Please note that [SIP Issue](https://github.com/rizsotto/Bear/issues/108) for macos users.
+Note that [SIP Issue](https://github.com/rizsotto/Bear/issues/108) for macos users.
 
 # Configure
 This object requires more than 50 plugins, and many configuration options, You have two ways to change, add or disable them:
