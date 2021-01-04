@@ -56,6 +56,8 @@ If you want to add plugins or make more complex custom settings, You can add you
 ## Plugins management
 Materia manages plugins in a unified way, ensure that you will not add the same plugin repeatedly:
 ```vim
+" custom/main.vim
+
 let nord_vim = {'name': 'nord-vim'}
 
 if materia#conf('options.colorscheme') == 'nord'
