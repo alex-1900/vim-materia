@@ -82,7 +82,7 @@ call materia#packages#add('nord_vim', nord_vim)
 In config.json you should:
 ```json
 {
-  "options" {
+  "options": {
     "colorscheme": "nord"
   },
   "packages": {
