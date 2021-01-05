@@ -42,7 +42,7 @@ function! materia#begin() abort
   call materia#common#autocmds#get()
 
   call s:process_environments()
-  call s:loaddir(g:materia#path#home . '/autoload/materia/packages')
+  call s:loaddir(g:materia#path#home . '/packages')
   " load custom settings
   let custom_entry_file = materia#homepath('/custom/main.vim')
   if filereadable(custom_entry_file)

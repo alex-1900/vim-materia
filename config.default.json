@@ -11,7 +11,7 @@
   },
   "options": {
     "background": "dark",
-    "colorscheme": "material-theme",
+    "colorscheme": 0,
     "clipboard_catch": 1,
     "scroll_multiple": 4,
     "undo_persistent": 0
@@ -113,6 +113,7 @@
       "autosave": 1,
       "autosave_on_actions": 1
     },
+    "material_theme": null,
     "nerdcommenter": {
       "key_writer": "c"
     },

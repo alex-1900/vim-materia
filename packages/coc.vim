@@ -21,12 +21,13 @@ function! s:show_documentation()
   endif
 endfunction
 
-function! s:coc_nvim.options()
+function! s:coc_nvim.preloader()
+  " options
   set shortmess+=c
   set updatetime=300
 endfunction
 
-function! s:coc_nvim.listener()
+function! s:coc_nvim.loader()
   " Mappings for CoCList
   " GoTo code navigation.
   let key_prefix = GetConfigMapPrefix(materia#conf('key.coding'))
@@ -120,7 +121,7 @@ function! s:coc_nvim.listener()
   autocmd CursorHold * silent call CocActionAsync('highlight')
 endfunction
 
-function! s:coc_nvim.install(install)
+function! s:coc_nvim.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
 endfunction
 
@@ -132,7 +133,7 @@ call materia#packages#add('coc_nvim', s:coc_nvim)
 " https://github.com/clangd/coc-clangd
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_clangd = {'name': 'coc-clangd'}
-function! s:coc_clangd.install(install)
+function! s:coc_clangd.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('clangd/coc-clangd', {
     \ 'do': "yarn install --frozen-lockfile"
@@ -146,7 +147,7 @@ call materia#packages#add('coc_clangd', s:coc_clangd)
 " https://github.com/neoclide/coc-css
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_css = {'name': 'coc-css'}
-function! s:coc_css.install(install)
+function! s:coc_css.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -157,7 +158,7 @@ call materia#packages#add('coc_css', s:coc_css)
 " https://github.com/neoclide/coc-git
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_git = {'name': 'coc-git'}
-function! s:coc_git.install(install)
+function! s:coc_git.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -170,7 +171,7 @@ call materia#packages#add('coc_git', s:coc_git)
 " See: package `vim_go`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_go = {'name': 'coc-go'}
-function! s:coc_go.listener()
+function! s:coc_go.loader()
   " Fixed organize import action not found
   autocmd FileType go call coc#config('coc.preferences', { 'messageLevel': 'error' })
   " use `:OR` for organize import of current buffer
@@ -181,7 +182,7 @@ function! s:coc_go.listener()
     autocmd BufWritePre *.go if !get(g:, 'go_fmt_autosave', 0) | call CocAction('format') | endif
   endif
 endfunction
-function! s:coc_go.install(install)
+function! s:coc_go.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('josa42/coc-go', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -192,7 +193,7 @@ call materia#packages#add('coc_go', s:coc_go)
 " https://github.com/neoclide/coc-html
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_html = {'name': 'coc-html'}
-function! s:coc_html.install(install)
+function! s:coc_html.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -203,10 +204,10 @@ call materia#packages#add('coc_html', s:coc_html)
 " https://github.com/neoclide/coc-json
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_json = {'name': 'coc-json'}
-function! s:coc_json.options()
+function! s:coc_json.preloader()
   execute 'set conceallevel='. materia#conf('packages.coc_json.conceallevel')
 endfunction
-function! s:coc_json.install(install)
+function! s:coc_json.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -218,7 +219,7 @@ call materia#packages#add('coc_json', s:coc_json)
 " https://github.com/marlonfan/coc-phpls/issues/41#issuecomment-570176547
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_phpls = {'name': 'coc-phpls'}
-function! s:coc_phpls.install(install)
+function! s:coc_phpls.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -229,7 +230,7 @@ call materia#packages#add('coc_phpls', s:coc_phpls)
 " https://github.com/neoclide/coc-tsserver
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_tsserver = {'name': 'coc-tsserver'}
-function! s:coc_tsserver.install(install)
+function! s:coc_tsserver.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -240,7 +241,7 @@ call materia#packages#add('coc_tsserver', s:coc_tsserver)
 " https://github.com/iamcco/coc-vimlsp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_vimlsp = {'name': 'coc-vimlsp'}
-function! s:coc_vimlsp.install(install)
+function! s:coc_vimlsp.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('iamcco/coc-vimlsp', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -251,7 +252,7 @@ call materia#packages#add('coc_vimlsp', s:coc_vimlsp)
 " https://github.com/neoclide/coc-yaml
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_yaml = {'name': 'coc-yaml'}
-function! s:coc_yaml.install(install)
+function! s:coc_yaml.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('neoclide/coc-yaml', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
@@ -265,7 +266,7 @@ call materia#packages#add('coc_yaml', s:coc_yaml)
 " https://github.com/neoclide/coc-python#coc-python
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:coc_pyright = {'name': 'coc-pyright'}
-function! s:coc_pyright.install(install)
+function! s:coc_pyright.installer(install)
   call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('fannheyward/coc-pyright', { 'do': 'yarn install --frozen-lockfile' })
 endfunction

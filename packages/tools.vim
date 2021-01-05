@@ -10,7 +10,7 @@
 " https://github.com/Shougo/defx.nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:defx = {'name': 'defx.nvim'}
-function! s:defx.config()
+function! s:defx.preloader()
   let g:defx_icons_enable_syntax_highlight = 1
   let g:defx_icons_column_length = 1
 
@@ -25,7 +25,7 @@ function! s:defx.config()
   hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
 
-function! s:defx.listener()
+function! s:defx.loader()
   call defx#custom#option('_', {
     \ 'columns': 'mark:indent:git:icons:filename',
     \ 'winwidth': 30,
@@ -111,7 +111,7 @@ function! s:defx.listener()
   autocmd BufEnter * call s:open_defx_if_directory()
 endfunction
 
-function! s:defx.install(install)
+function! s:defx.installer(install)
   if has('nvim')
     call a:install('Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' })
   else
@@ -131,12 +131,12 @@ call materia#packages#add('defx', s:defx)
 " https://github.com/mbbill/undotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:undotree = {'name': 'undotree'}
-function! s:undotree.listener()
+function! s:undotree.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.undotree.key_state'))
   execute 'nnoremap <silent> '. key_prefix.state .' :<C-u>UndotreeToggle<CR>'
 endfunction
 
-function! s:undotree.install(install)
+function! s:undotree.installer(install)
   call a:install('mbbill/undotree')
 endfunction
 
@@ -148,7 +148,7 @@ call materia#packages#add('undotree', s:undotree)
 " https://github.com/christoomey/vim-tmux-navigator
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_tmux_navigator = {'name': 'vim-tmux-navigator'}
-function! s:vim_tmux_navigator.install(install)
+function! s:vim_tmux_navigator.installer(install)
   call a:install('christoomey/vim-tmux-navigator')
 endfunction
 
@@ -160,7 +160,7 @@ call materia#packages#add('vim_tmux_navigator', s:vim_tmux_navigator)
 " https://github.com/liuchengxu/vista.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vista_vim = {'name': 'vista.vim'}
-function! s:vista_vim.config()
+function! s:vista_vim.preloader()
   let g:vista_sidebar_width = materia#conf('packages.vista_vim.attr_sidebar_width')
   let g:vista#renderer#enable_icon = materia#conf('packages.vista_vim.attr_enable_icon')
   let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
@@ -181,7 +181,7 @@ function! s:vista_vim.config()
   autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 endfunction
 
-function! s:vista_vim.listener()
+function! s:vista_vim.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vista_vim.key_state'))
   execute 'nnoremap <silent> '. key_prefix.state .'v :<C-u>Vista!!<CR>'
   execute 'nnoremap <silent> '. key_prefix.state .'f :<C-u>Vista finder<CR>'
@@ -192,7 +192,7 @@ function! s:vista_vim.listener()
   set statusline+=%{NearestMethodOrFunction()}
 endfunction
 
-function! s:vista_vim.install(install)
+function! s:vista_vim.installer(install)
   call a:install('liuchengxu/vista.vim')
 endfunction
 
@@ -208,7 +208,7 @@ function! s:undotree.option()
   set statusline+=%{FugitiveStatusline()}
 endfunction
 
-function! s:vim_fugitive.listener()
+function! s:vim_fugitive.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_fugitive.basekey'))
   execute 'nnoremap <silent> '. key_prefix.reader .'g :<C-u>Git --paginate<CR>'
   execute 'nnoremap <silent> '. key_prefix.reader .'d :<C-u>Git diff<CR>'
@@ -223,7 +223,7 @@ function! s:vim_fugitive.listener()
   execute 'nnoremap <silent> '. key_prefix.writer .'w :<C-u>Gwrite<CR>'
 endfunction
 
-function! s:vim_fugitive.install(install)
+function! s:vim_fugitive.installer(install)
   call a:install('tpope/vim-fugitive')
 endfunction
 
@@ -239,13 +239,13 @@ function! s:vim_gitgutter.option()
   set foldtext=gitgutter#fold#foldtext()
 endfunction
 
-function! s:vim_gitgutter.config()
+function! s:vim_gitgutter.preloader()
   let g:gitgutter_max_signs = -1
   let g:gitgutter_map_keys = 0
   let g:gitgutter_preview_win_floating = 1
 endfunction
 
-function! s:vim_gitgutter.listener()
+function! s:vim_gitgutter.loader()
   let okey = materia#conf('packages.vim_gitgutter.basekey')
   let nkey = materia#conf('key.next')
   let pkey = materia#conf('key.prev')
@@ -272,7 +272,7 @@ function! s:vim_gitgutter.listener()
   set statusline+=%{GitStatus()}
 endfunction
 
-function! s:vim_gitgutter.install(install)
+function! s:vim_gitgutter.installer(install)
   call a:install('airblade/vim-gitgutter')
 endfunction
 
@@ -284,14 +284,14 @@ call materia#packages#add('vim_gitgutter', s:vim_gitgutter)
 " https://github.com/terryma/vim-smooth-scroll
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_smooth_scroll = {'name': 'vim-smooth-scroll'}
-function! s:vim_smooth_scroll.listener()
+function! s:vim_smooth_scroll.loader()
   let speed = materia#conf('packages.vim_smooth_scroll.speed')
   execute 'noremap <silent> <c-u> :call smooth_scroll#up(&scroll, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-d> :call smooth_scroll#down(&scroll, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, '. speed .', 1)<CR>'
 endfunction
-function! s:vim_smooth_scroll.install(install)
+function! s:vim_smooth_scroll.installer(install)
   call a:install('terryma/vim-smooth-scroll')
 endfunction
 call materia#packages#add('vim_smooth_scroll', s:vim_smooth_scroll)
@@ -302,15 +302,15 @@ call materia#packages#add('vim_smooth_scroll', s:vim_smooth_scroll)
 " https://github.com/voldikss/vim-floaterm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_floaterm = {'name': 'vim-floaterm'}
-function! s:vim_floaterm.options()
+
+function! s:vim_floaterm.preloader()
   " Set floaterm window's background to black
   hi Floaterm guibg=black
   " Set floating window border line color to cyan, and background to orange
   hi FloatermBorder guibg=orange guifg=cyan
   " Set floaterm window background to gray once the cursor moves out from it
   hi FloatermNC guibg=gray
-endfunction
-function! s:vim_floaterm.config()
+
   let okey = materia#conf('packages.vim_floaterm.basekey')
   let nkey = materia#conf('key.next')
   let pkey = materia#conf('key.prev')
@@ -327,11 +327,11 @@ function! s:vim_floaterm.config()
   " Close window if the job exits normally, otherwise stay it with messages like [Process exited 101]
   let g:floaterm_autoclose = 0
 endfunction
-function! s:vim_floaterm.listener()
-endfunction
-function! s:vim_floaterm.install(install)
+
+function! s:vim_floaterm.installer(install)
   call a:install('voldikss/vim-floaterm')
 endfunction
+
 call materia#packages#add('vim_floaterm', s:vim_floaterm)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -342,13 +342,13 @@ call materia#packages#add('vim_floaterm', s:vim_floaterm)
 " https://github.com/junegunn/vim-peekaboo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_peekaboo = {'name': 'vim-peekaboo'}
-function! s:vim_peekaboo.config()
+function! s:vim_peekaboo.preloader()
   let g:peekaboo_delay = materia#conf('packages.vim_peekaboo.attr_delay')
   let g:peekaboo_compact = materia#conf('packages.vim_peekaboo.attr_compact')
   let g:peekaboo_prefix = materia#conf('packages.vim_peekaboo.attr_prefix')
   let g:peekaboo_ins_prefix = materia#conf('packages.vim_peekaboo.attr_ins_prefix')
 endfunction
-function! s:vim_peekaboo.install(install)
+function! s:vim_peekaboo.installer(install)
   call a:install('junegunn/vim-peekaboo')
 endfunction
 call materia#packages#add('vim_peekaboo', s:vim_peekaboo)
@@ -359,13 +359,13 @@ call materia#packages#add('vim_peekaboo', s:vim_peekaboo)
 " https://github.com/alex9201/vim-materia-session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:materia_session = {'name': 'vim-materia-session'}
-function! s:materia_session.config()
+function! s:materia_session.preloader()
   let g:materia_session_mode = materia#conf('packages.materia_session.mode')
   let g:materia_session_directory = materia#homepath('/temp/sessions')
   let g:session_autosave_on_actions = materia#conf('packages.materia_session.autosave_on_actions')
 endfunction
 
-function! s:materia_session.listener()
+function! s:materia_session.loader()
   if g:loaded_materia_session
     if materia#conf('packages.materia_session.autoload')
       call MateriaSessionLoad()
@@ -376,7 +376,7 @@ function! s:materia_session.listener()
   endif
 endfunction
 
-function! s:materia_session.install(install)
+function! s:materia_session.installer(install)
   call a:install('alex9201/vim-materia-session')
 endfunction
 
@@ -390,7 +390,7 @@ call materia#packages#add('materia_session', s:materia_session)
 " virtualenv -p python envdir_name
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_virtualenv = {'name': 'vim-virtualenv'}
-function! s:vim_virtualenv.config()
+function! s:vim_virtualenv.preloader()
   let conf = materia#conf('packages.vim_virtualenv.virtualenv_directory')
   if type(conf) == type('')
     let g:virtualenv_directory = conf
@@ -399,7 +399,7 @@ function! s:vim_virtualenv.config()
   endif
 endfunction
 
-function! s:vim_virtualenv.install(install)
+function! s:vim_virtualenv.installer(install)
   call a:install('jmcantrell/vim-virtualenv')
 endfunction
 
@@ -411,7 +411,7 @@ call materia#packages#add('vim_virtualenv', s:vim_virtualenv)
 " https://github.com/ctrlpvim/ctrlp.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:ctrlp = {'name': 'ctrlp.vim'}
-function! s:ctrlp.config()
+function! s:ctrlp.preloader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlp.key_state'))
   let g:ctrlp_map = key_prefix.state
   let g:ctrlp_cmd = materia#conf('packages.ctrlp.attr_cmd')
@@ -425,7 +425,7 @@ function! s:ctrlp.config()
   let g:ctrlp_custom_ignore = materia#homepath('/temp/ignore')
 endfunction
 
-function! s:ctrlp.install(install)
+function! s:ctrlp.installer(install)
   call a:install('ctrlpvim/ctrlp.vim')
 endfunction
 

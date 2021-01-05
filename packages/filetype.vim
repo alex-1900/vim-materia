@@ -10,17 +10,17 @@
 " https://github.com/othree/html5.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:html5_vim = {'name': 'html5.vim'}
-function! s:html5_vim.config()
+function! s:html5_vim.preloader()
   let g:html5_event_handler_attributes_complete = materia#conf('packages.html5_vim.attr_event_handler')
   let g:html5_rdfa_attributes_complete = materia#conf('packages.html5_vim.attr_rdfa')
   let g:html5_microdata_attributes_complete = materia#conf('packages.html5_vim.attr_microdata')
   let g:html5_aria_attributes_complete = materia#conf('packages.html5_vim.attr_aria')
 endfunction
-function! s:html5_vim.listener()
+function! s:html5_vim.loader()
   let filetypes = materia#conf('packages.html5_vim.filetypes')
   execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
 endfunction
-function! s:html5_vim.install(install)
+function! s:html5_vim.installer(install)
   call a:install('othree/html5.vim')
 endfunction
 call materia#packages#add('html5_vim', s:html5_vim)
@@ -36,7 +36,7 @@ call materia#packages#add('html5_vim', s:html5_vim)
 " https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:emmet_vim = {'name': 'emmet-vim'}
-function! s:emmet_vim.config()
+function! s:emmet_vim.preloader()
   if materia#conf('html.snippet_path')
     let g:user_emmet_install_global = 0
     let snippet_path = materia#conf('packages.emmet_vim.snippet_path')
@@ -46,13 +46,13 @@ function! s:emmet_vim.config()
   endif
   let g:user_emmet_leader_key = '<C-' . materia#conf('packages.emmet_vim.key_ctrl') . '>'
 endfunction
-function! s:emmet_vim.listener()
+function! s:emmet_vim.loader()
   if (exists('g:loaded_emmet_vim') && g:loaded_emmet_vim)
     let filetypes = materia#conf('packages.emmet_vim.filetypes')
     execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
   endif
 endfunction
-function! s:emmet_vim.install(install)
+function! s:emmet_vim.installer(install)
   call a:install('mattn/emmet-vim')
   call a:install('mattn/webapi-vim')
 endfunction
@@ -65,18 +65,20 @@ call materia#packages#add('emmet_vim', s:emmet_vim)
 " https://github.com/vim-syntastic/syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:syntastic = {'name': 'syntastic'}
-function! s:syntastic.options()
+
+function! s:syntastic.preloader()
+  " status line
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
-endfunction
-function! s:syntastic.config()
+
   let g:syntastic_always_populate_loc_list = 1
   let g:syntastic_auto_loc_list = 1
   let g:syntastic_check_on_open = 1
   let g:syntastic_check_on_wq = 0
 endfunction
-function! s:syntastic.install(install)
+
+function! s:syntastic.installer(install)
   call a:install('vim-syntastic/syntastic')
 endfunction
 call materia#packages#add('syntastic', s:syntastic)
@@ -87,7 +89,7 @@ call materia#packages#add('syntastic', s:syntastic)
 " https://github.com/chr4/nginx.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:nginx = {'name': 'nginx.vim'}
-function! s:nginx.install(install)
+function! s:nginx.installer(install)
   call a:install('chr4/nginx.vim')
 endfunction
 call materia#packages#add('nginx', s:nginx)
@@ -98,7 +100,7 @@ call materia#packages#add('nginx', s:nginx)
 " https://github.com/fatih/vim-go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_go = {'name': 'vim-go'}
-function! s:vim_go.config()
+function! s:vim_go.preloader()
   " modes
   let g:go_def_mode = 'gopls'
   let g:go_info_mode='gopls'
@@ -186,7 +188,7 @@ function! s:vim_go.config()
   execute 'autocmd FileType go xmap <buffer> <silent> <localleader>v <Plug>(go-freevars)'
 endfunction
 
-function! s:vim_go.install(install)
+function! s:vim_go.installer(install)
   call a:install('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
 endfunction
 
@@ -198,7 +200,7 @@ call materia#packages#add('vim_go', s:vim_go)
 " https://github.com/pangloss/vim-javascript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_javascript = {'name': 'vim-javascript'}
-function! s:vim_javascript.config()
+function! s:vim_javascript.preloader()
   let g:javascript_plugin_jsdoc = materia#conf('packages.vim_javascript.attr_plugin_jsdoc')
   let g:javascript_plugin_ngdoc = materia#conf('packages.vim_javascript.attr_plugin_ngdoc')
   let g:javascript_plugin_flow = materia#conf('packages.vim_javascript.attr_plugin_flow')
@@ -208,7 +210,7 @@ function! s:vim_javascript.config()
     au FileType javascript setlocal foldmethod=syntax
   augroup END
 endfunction
-function! s:vim_javascript.install(install)
+function! s:vim_javascript.installer(install)
   call a:install('pangloss/vim-javascript')
 endfunction
 call materia#packages#add('vim_javascript', s:vim_javascript)
@@ -219,15 +221,16 @@ call materia#packages#add('vim_javascript', s:vim_javascript)
 " https://github.com/elzr/vim-json
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_json = {'name': 'vim-json'}
-function! s:vim_json.options()
+
+function! s:vim_json.preloader()
   set conceallevel=0
-endfunction
-function! s:vim_json.config()
   let g:vim_json_syntax_conceal = materia#conf('packages.vim_json.syntax_conceal')
 endfunction
-function! s:vim_json.install(install)
+
+function! s:vim_json.installer(install)
   call a:install('elzr/vim-json')
 endfunction
+
 call materia#packages#add('vim_json', s:vim_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -236,7 +239,7 @@ call materia#packages#add('vim_json', s:vim_json)
 " https://github.com/leafgarland/typescript-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:typescript_vim = {'name': 'typescript-vim'}
-function! s:typescript_vim.config()
+function! s:typescript_vim.preloader()
   let g:typescript_compiler_binary = materia#conf('packages.typescript_vim.attr_compiler_binary')
   let g:typescript_compiler_options = materia#conf('packages.typescript_vim.attr_compiler_options')
 
@@ -246,7 +249,7 @@ function! s:typescript_vim.config()
   autocmd QuickFixCmdPost    l* nested lwindow
 endfunction
 
-function! s:typescript_vim.install(install)
+function! s:typescript_vim.installer(install)
   call a:install('leafgarland/typescript-vim')
 endfunction
 
@@ -258,7 +261,7 @@ call materia#packages#add('typescript_vim', s:typescript_vim)
 " https://github.com/mxw/vim-jsx
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_jsx = {'name': 'vim-jsx'}
-function! s:vim_jsx.install(install)
+function! s:vim_jsx.installer(install)
   call a:install('mxw/vim-jsx')
 endfunction
 call materia#packages#add('vim_jsx', s:vim_jsx)
@@ -269,11 +272,11 @@ call materia#packages#add('vim_jsx', s:vim_jsx)
 " https://github.com/tpope/vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_markdown = {'name': 'vim-markdown'}
-function! s:vim_markdown.config()
+function! s:vim_markdown.preloader()
   let g:markdown_fenced_languages = materia#conf('packages.vim_markdown.attr_fenced_languages')
   let g:markdown_minlines = materia#conf('packages.vim_markdown.attr_minlines')
 endfunction
-function! s:vim_markdown.install(install)
+function! s:vim_markdown.installer(install)
   call a:install('tpope/vim-markdown')
 endfunction
 call materia#packages#add('vim_markdown', s:vim_markdown)
@@ -284,14 +287,14 @@ call materia#packages#add('vim_markdown', s:vim_markdown)
 " https://github.com/octol/vim-cpp-enhanced-highlight
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:cpp_enhanced_highlight = {'name': 'vim-cpp-enhanced-highlight'}
-function! s:cpp_enhanced_highlight.config()
+function! s:cpp_enhanced_highlight.preloader()
   let g:cpp_class_scope_highlight = 1
   let g:cpp_member_variable_highlight = 1
   let g:cpp_class_decl_highlight = 1
   let g:cpp_experimental_template_highlight = 1
   let c_no_curly_error=1
 endfunction
-function! s:cpp_enhanced_highlight.install(install)
+function! s:cpp_enhanced_highlight.installer(install)
   call a:install('octol/vim-cpp-enhanced-highlight')
 endfunction
 call materia#packages#add('cpp_enhanced_highlight', s:cpp_enhanced_highlight)

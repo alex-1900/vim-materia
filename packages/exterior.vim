@@ -10,7 +10,7 @@
 " https://github.com/junegunn/goyo.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:goyo = {'name': 'goyo.vim'}
-function! s:goyo.install(install)
+function! s:goyo.installer(install)
   call a:install('junegunn/goyo.vim')
 endfunction
 call materia#packages#add('goyo', s:goyo)
@@ -24,7 +24,7 @@ call materia#packages#add('goyo', s:goyo)
 " https://github.com/junegunn/limelight.vim/issues/39
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:limelight_vim = {'name': 'limelight.vim'}
-function! s:limelight_vim.config()
+function! s:limelight_vim.preloader()
   " Color name (:help cterm-colors) or ANSI code
   let g:limelight_conceal_ctermfg = materia#conf('packages.limelight_vim.conceal_ctermfg')
   " Color name (:help gui-colors) or RGB color
@@ -38,7 +38,7 @@ function! s:limelight_vim.config()
   let g:limelight_priority = materia#conf('packages.limelight_vim.priority')
 endfunction
 
-function! s:limelight_vim.listener()
+function! s:limelight_vim.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.limelight_vim.basekey'))
   execute 'nnoremap <silent> '. key_prefix.reader .'l :<C-u>Limelight!!<CR>'
   for n in range(0, 9)
@@ -46,7 +46,7 @@ function! s:limelight_vim.listener()
   endfor
 endfunction
 
-function! s:limelight_vim.install(install)
+function! s:limelight_vim.installer(install)
   call a:install('junegunn/limelight.vim')
 endfunction
 call materia#packages#add('limelight_vim', s:limelight_vim)
@@ -72,16 +72,17 @@ function! MyLineNumber()
   return system_serv.username
 endfunction
 
-function! s:vim_airline.config()
+function! s:vim_airline.preloader()
   " Automatically displays all buffers when there's only one tab open.
   let g:airline#extensions#tabline#enabled = materia#conf('packages.vim_airline.with_tabline')
   let g:airline#extensions#tabline#formatter = materia#conf('packages.vim_airline.tabline_formatter')
   let g:airline#extensions#whitespace#enabled=0
   let g:airline_powerline_fonts=1
-  let g:airline_left_sep = "\ue0b8"
-  let g:airline_left_alt_sep = "\ue0b9"
-  let g:airline_right_sep = "\ue0ba"
-  let g:airline_right_alt_sep = "\ue0bb"
+  let g:airline_left_sep = "\ue0b0"
+  let g:airline_left_alt_sep = "\ue0b1"
+  " \ue0ba \ue0bb
+  let g:airline_right_sep = "\ue0b2"
+  let g:airline_right_alt_sep = "\ue0b3"
   if materia#conf('packages.vim_airline.with_hunks')
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#hunks#coc_git = 1
@@ -96,14 +97,14 @@ function! s:vim_airline.config()
   endif
 endfunction
 
-function! s:vim_airline.listener()
+function! s:vim_airline.loader()
   let theme = materia#conf('packages.vim_airline.theme')
   if type(theme) == type('')
     call airline#switch_theme(theme)
   endif
 endfunction
 
-function! s:vim_airline.install(install)
+function! s:vim_airline.installer(install)
   call a:install('vim-airline/vim-airline')
   call a:install('vim-airline/vim-airline-themes')
 endfunction
@@ -117,7 +118,7 @@ call materia#packages#add('vim_airline', s:vim_airline)
 " https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:airline_weather = {'name': 'vim-devicons'}
-function! s:airline_weather.config()
+function! s:airline_weather.preloader()
   let temp_dir = materia#homepath('/temp/airline_weather')
   if !isdirectory(temp_dir)
     call mkdir(temp_dir, 'p')
@@ -126,7 +127,7 @@ function! s:airline_weather.config()
   let g:weather#area = materia#conf('packages.airline_weather.attr_area')
   let g:weather#cache_ttl = materia#conf('packages.airline_weather.attr_cache_ttl')
 endfunction
-function! s:airline_weather.install(install)
+function! s:airline_weather.installer(install)
   call a:install('Wildog/airline-weather.vim')
   call a:install('mattn/webapi-vim')
 endfunction
@@ -139,14 +140,14 @@ call materia#packages#add('airline_weather', s:airline_weather)
 " https://github.com/ryanoasis/vim-devicons
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_devicons = {'name': 'vim-devicons'}
-function! s:vim_devicons.config()
+function! s:vim_devicons.preloader()
   let app_system = materia#service#get('system')
   let g:webdevicons_enable = 1
   if !app_system.is_gui
     let g:webdevicons_enable = 0
   endif
 endfunction
-function! s:vim_devicons.install(install)
+function! s:vim_devicons.installer(install)
   call a:install('ryanoasis/vim-devicons')
 endfunction
 call materia#packages#add('vim_devicons', s:vim_devicons)
@@ -156,7 +157,7 @@ call materia#packages#add('vim_devicons', s:vim_devicons)
 " https://github.com/mhinz/vim-startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_startify = {'name': 'vim-startify'}
-function! s:vim_startify.config()
+function! s:vim_startify.preloader()
   let g:startify_change_to_vcs_root = 1
   let g:startify_session_dir = materia#homepath('/sessions/custom')
 
@@ -171,7 +172,7 @@ function! s:vim_startify.config()
   let g:startify_custom_header_quotes = materia#conf('packages.vim_startify.header_quotes')
 endfunction
 
-function! s:vim_startify.listener()
+function! s:vim_startify.loader()
   " autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
   if has('nvim')
     autocmd TabNewEntered * Startify
@@ -193,101 +194,7 @@ function! s:vim_startify.listener()
   endif
 endfunction
 
-function! s:vim_startify.install(install)
+function! s:vim_startify.installer(install)
   call a:install('mhinz/vim-startify')
 endfunction
 call materia#packages#add('vim_startify', s:vim_startify)
-
-" Color Themes {
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " gruvbox
-    " THEME
-    " https://github.com/morhetz/gruvbox
-    " https://github.com/morhetz/gruvbox/wiki/Configuration
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    let s:gruvbox= {'name': 'gruvbox'}
-    function! s:gruvbox.config()
-      if materia#conf('options.colorscheme') == 'gruvbox'
-        " medium/soft/hard
-        let g:gruvbox_contrast_dark = 'medium'
-      endif
-    endfunction
-    function! s:gruvbox.listener()
-      if materia#conf('options.colorscheme') == 'gruvbox'
-        colorscheme gruvbox
-        call airline#switch_theme('gruvbox')
-      endif
-    endfunction
-    function! s:gruvbox.install(install)
-      call a:install('morhetz/gruvbox')
-    endfunction
-    call materia#packages#add('gruvbox', s:gruvbox)
-
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " onedark
-    " THEME
-    " https://github.com/joshdick/onedark.vim
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    let s:onedark= {'name': 'onedark.vim'}
-    function! s:onedark.config()
-      if materia#conf('options.colorscheme') == 'onedark'
-        let g:onedark_termcolors=256
-        let g:lightline = {'colorscheme': 'onedark'}
-      endif
-    endfunction
-    function! s:onedark.listener()
-      if materia#conf('options.colorscheme') == 'onedark'
-        colorscheme onedark
-        call airline#switch_theme('onedark')
-      endif
-    endfunction
-    function! s:onedark.install(install)
-      call a:install('joshdick/onedark.vim')
-    endfunction
-    call materia#packages#add('onedark', s:onedark)
-
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " papercolor
-    " THEME
-    " https://github.com/NLKNguyen/papercolor-theme
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    let s:papercolor= {'name': 'papercolor-theme'}
-    function! s:papercolor.config()
-      if materia#conf('options.colorscheme') == 'papercolor'
-        let g:PaperColor_Theme_Options = materia#conf('packages.papercolor.attr_theme_options')
-        let g:lightline = { 'colorscheme': 'PaperColor' }
-      endif
-    endfunction
-    function! s:papercolor.listener()
-      if materia#conf('options.colorscheme') == 'papercolor'
-        colorscheme PaperColor
-        call airline#switch_theme('papercolor')
-      endif
-    endfunction
-    function! s:papercolor.install(install)
-      call a:install('NLKNguyen/papercolor-theme')
-    endfunction
-    call materia#packages#add('papercolor', s:papercolor)
-
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " iceberg
-    " THEME
-    " https://github.com/cocopon/iceberg.vim
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    let s:iceberg= {'name': 'iceberg.vim'}
-    function! s:iceberg.config()
-      if materia#conf('options.colorscheme') == 'iceberg'
-        " let g:lightline = { 'colorscheme': 'iceberg' }
-      endif
-    endfunction
-    function! s:iceberg.listener()
-      if materia#conf('options.colorscheme') == 'iceberg'
-        colorscheme iceberg
-        call airline#switch_theme('iceberg')
-      endif
-    endfunction
-    function! s:iceberg.install(install)
-      call a:install('cocopon/iceberg.vim')
-    endfunction
-    call materia#packages#add('iceberg', s:iceberg)
-" }

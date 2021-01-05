@@ -16,7 +16,7 @@
 " https://github.com/sharkdp/bat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:fzf_vim = {'name': 'fzf.vim'}
-function! s:fzf_vim.config()
+function! s:fzf_vim.preloader()
   " give the same prefix to the commands
   let g:fzf_command_prefix = materia#conf('packages.fzf_vim.command_prefix')
   " Preview window on the right with 50% width
@@ -29,7 +29,7 @@ function! s:fzf_vim.config()
   let g:fzf_history_dir = materia#homepath('/temp/fzf_history')
 endfunction
 
-function! s:fzf_vim.listener()
+function! s:fzf_vim.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.fzf_vim.basekey'))
   let command_prefix = materia#conf('packages.fzf_vim.command_prefix')
   " Mapping selecting mappings
@@ -85,7 +85,7 @@ function! s:fzf_vim.listener()
 
 endfunction
 
-function! s:fzf_vim.install(install)
+function! s:fzf_vim.installer(install)
   call a:install('junegunn/fzf', { 'do': 'call fzf#install()' })
   call a:install('junegunn/fzf.vim')
 endfunction
@@ -98,7 +98,7 @@ call materia#packages#add('fzf_vim', s:fzf_vim)
 " https://github.com/lfv89/vim-interestingwords
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_interestingwords = {'name': 'vim-interestingwords'}
-function! s:vim_interestingwords.listener()
+function! s:vim_interestingwords.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_interestingwords.basekey'))
   " vim-interestingwords
   execute 'nnoremap <silent> '. key_prefix.reader ." :<C-u>call InterestingWords('n')<CR>"
@@ -107,7 +107,7 @@ function! s:vim_interestingwords.listener()
   execute 'nnoremap <silent> '. key_prefix.prev .' :<C-u>call WordNavigation(0)<CR>'
   execute 'nnoremap <silent> '. key_prefix.next .' :<C-u>call WordNavigation(1)<CR>'
 endfunction
-function! s:vim_interestingwords.install(install)
+function! s:vim_interestingwords.installer(install)
   call a:install('lfv89/vim-interestingwords')
 endfunction
 call materia#packages#add('vim_interestingwords', s:vim_interestingwords)
@@ -119,7 +119,7 @@ call materia#packages#add('vim_interestingwords', s:vim_interestingwords)
 " https://github.com/thinca/vim-visualstar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_visualstar = {'name': 'vim-visualstar'}
-function! s:vim_visualstar.install(install)
+function! s:vim_visualstar.installer(install)
   call a:install('thinca/vim-visualstar')
 endfunction
 call materia#packages#add('vim_visualstar', s:vim_visualstar)
@@ -134,7 +134,7 @@ call materia#packages#add('vim_visualstar', s:vim_visualstar)
 " https://github.com/dyng/ctrlsf.vim/issues/272
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:ctrlsf = {'name': 'ctrlsf.vim'}
-function! s:ctrlsf.config()
+function! s:ctrlsf.preloader()
   let g:ctrlsf_debug_mode = 0
   let g:ctrlsf_auto_preview = materia#conf('packages.ctrlsf.attr_auto_preview')
   let g:ctrlsf_preview_position = materia#conf('packages.ctrlsf.attr_preview_position')
@@ -166,7 +166,7 @@ function! s:ctrlsf.config()
   endif
   let g:ctrlsf_ignore_dir = materia#conf('packages.ctrlsf.attr_ignore_dir')
 endfunction
-function! s:ctrlsf.listener()
+function! s:ctrlsf.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlsf.basekey'))
   execute 'nmap '. key_prefix.reader .'f <Plug>CtrlSFPrompt'
   execute 'nmap '. key_prefix.state . ' :<C-u>CtrlSFToggle<CR>'
@@ -176,7 +176,7 @@ function! s:ctrlsf.listener()
   execute 'nmap '. key_prefix.reader .'c <Plug>CtrlSFCCwordPath'
   execute 'nmap '. key_prefix.reader .'l <Plug>CtrlSFPwordPath'
 endfunction
-function! s:ctrlsf.install(install)
+function! s:ctrlsf.installer(install)
   call a:install('dyng/ctrlsf.vim')
 endfunction
 call materia#packages#add('ctrlsf', s:ctrlsf)

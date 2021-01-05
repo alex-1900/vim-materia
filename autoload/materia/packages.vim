@@ -6,6 +6,8 @@
 
 let s:packages = {}
 
+let s:themes = {}
+
 " add a package
 function! materia#packages#add(name, package) abort
   let s:packages[a:name] = a:package
@@ -35,18 +37,25 @@ endfunction
 
 let s:plug_installer = s:get_materia_plug_install_func()
 
-function! materia#packages#load(name) abort
+" load a package by name
+function! materia#packages#load(name, ...) abort
   if has_key(s:packages, a:name)
     let package = s:packages[a:name]
-    if HasPlug(package.name)
-      let execute_vim_enter =  'autocmd VimEnter * nested call materia#packages#get("'. a:name .'").listener()'
-      if has_key(package, 'options')  | call package.options() | endif
-      if has_key(package, 'config')   | call package.config() | endif
-      if has_key(package, 'listener') | execute execute_vim_enter | endif
+    let tag = get(package, 'tag', 'normal')
+    if exists('*materia#strategies#package_tag_'. tag)
+      let without_condition = get(a:, 1, 0)
+      call materia#strategies#package_tag_{tag}(a:name, package, s:plug_installer, without_condition)
     endif
-    if has_key(package, 'install')  | call package.install(s:plug_installer) | endif
   else
     let  l:app_message = materia#service#get('message')
     call l:app_message.warn('Custom package `'. a:name . '` not found.')
   endif
+endfunction
+
+function! materia#packages#bind_theme(name, package_name)
+  let s:themes[a:name] = a:package_name
+endfunction
+
+function! materia#packages#get_themes()
+  return s:themes
 endfunction
