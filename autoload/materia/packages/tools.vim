@@ -15,12 +15,14 @@ function! s:defx.config()
   let g:defx_icons_column_length = 1
 
   " highlight groups for defx-icons
-  " hi DefxIconsDirectory        guifg=#FF0000
-  " hi DefxIconsParentDirectory  guifg=#FF0000
-  " hi DefxIconsSymlinkDirectory guifg=#FF0000
-  " hi DefxIconsOpenedTreeIcon   guifg=#FF0000
-  " hi DefxIconsNestedTreeIcon   guifg=#FF0000
-  " hi DefxIconsClosedTreeIcon   guifg=#FF0000
+  hi DefxIconsDirectory        guifg=#F0E68C
+  hi DefxIconsParentDirectory  guifg=#EEE8AA
+  hi DefxIconsSymlinkDirectory guifg=#FF0000
+  hi DefxIconsOpenedTreeIcon   guifg=#F0E68C
+  hi DefxIconsNestedTreeIcon   guifg=#BDB76B
+  hi DefxIconsClosedTreeIcon   guifg=#F0E68C
+  hi Defx_filename_root        guifg=#F5F5DC
+  hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
 
 function! s:defx.listener()
