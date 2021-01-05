@@ -273,3 +273,21 @@ function! s:vim_markdown.install(install)
   call a:install('tpope/vim-markdown')
 endfunction
 call materia#packages#add('vim_markdown', s:vim_markdown)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cpp_enhanced_highlight
+" Additional Vim syntax highlighting for C++ (including C++11/14/17)
+" https://github.com/octol/vim-cpp-enhanced-highlight
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:cpp_enhanced_highlight = {'name': 'vim-cpp-enhanced-highlight'}
+function! s:cpp_enhanced_highlight.config()
+  let g:cpp_class_scope_highlight = 1
+  let g:cpp_member_variable_highlight = 1
+  let g:cpp_class_decl_highlight = 1
+  let g:cpp_experimental_template_highlight = 1
+  let c_no_curly_error=1
+endfunction
+function! s:cpp_enhanced_highlight.install(install)
+  call a:install('octol/vim-cpp-enhanced-highlight')
+endfunction
+call materia#packages#add('cpp_enhanced_highlight', s:cpp_enhanced_highlight)

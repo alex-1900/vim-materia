@@ -171,7 +171,6 @@ function! s:editorconfig_vim.install(install)
 endfunction
 call materia#packages#add('editorconfig_vim', s:editorconfig_vim)
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " deoppet
 " The dark powered snippet plugin for neovim
