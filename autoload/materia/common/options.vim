@@ -64,6 +64,10 @@ function! materia#common#options#get()
   set scrolljump=5
   " Minimum lines to keep above and below cursor
   set scrolloff=3
+  " registor * -> clipboard
+  if materia#conf('options.clipboard_catch')
+    set clipboard^=unnamed
+  endif
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " statusline

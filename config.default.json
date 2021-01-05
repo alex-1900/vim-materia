@@ -12,6 +12,7 @@
   "options": {
     "background": "dark",
     "colorscheme": "material-theme",
+    "clipboard_catch": 1,
     "scroll_multiple": 4,
     "undo_persistent": 0
   },
