@@ -163,8 +163,7 @@
     "vim_go": {
       "fmt_autosave": 1,
       "mod_fmt_autosave": 1,
-      "imports_autosave": 1,
-      "extra_highlight": 1
+      "imports_autosave": 1
     },
     "vim_interestingwords": {
       "basekey": "i"
