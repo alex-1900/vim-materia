@@ -29,60 +29,60 @@ endfunction
 function! s:coc_nvim.listener()
   " Mappings for CoCList
   " GoTo code navigation.
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.coc_nvim.basekey'))
-  execute 'nmap <silent> '. key_prefix.view .'d <Plug>(coc-definition)'
-  execute 'nmap <silent> '. key_prefix.view .'t <Plug>(coc-type-definition)'
-  execute 'nmap <silent> '. key_prefix.view .'i <Plug>(coc-implementation)'
-  execute 'nmap <silent> '. key_prefix.view .'r <Plug>(coc-references)'
-  execute 'nmap <silent> '. key_prefix.view .'u <Plug>(coc-references-used)'
-  execute 'nmap <silent> '. key_prefix.edge .'l <Plug>(coc-openlink)'
+  let key_prefix = GetConfigMapPrefix(materia#conf('key.coding'))
+  execute 'nmap <silent> '. key_prefix.reader .'d <Plug>(coc-definition)'
+  execute 'nmap <silent> '. key_prefix.reader .'t <Plug>(coc-type-definition)'
+  execute 'nmap <silent> '. key_prefix.reader .'i <Plug>(coc-implementation)'
+  execute 'nmap <silent> '. key_prefix.reader .'r <Plug>(coc-references)'
+  execute 'nmap <silent> '. key_prefix.reader .'u <Plug>(coc-references-used)'
+  execute 'nmap <silent> '. key_prefix.state .'l <Plug>(coc-openlink)'
   " Formatting selected code.
-  execute 'xmap <silent> '. key_prefix.action .'f <Plug>(coc-format-selected)'
+  execute 'xmap <silent> '. key_prefix.writer .'f <Plug>(coc-format-selected)'
   " Symbol renaming.
-  execute 'nmap <silent> '. key_prefix.action .'n <Plug>(coc-rename)'
+  execute 'nmap <silent> '. key_prefix.writer .'n <Plug>(coc-rename)'
   " Apply AutoFix to problem on the current line.
-  execute 'nmap <silent> '. key_prefix.action .'q <Plug>(coc-fix-current)'
+  execute 'nmap <silent> '. key_prefix.writer .'q <Plug>(coc-fix-current)'
   " Open a new vsplit window for refactor
-  execute 'nmap <silent> '. key_prefix.edge .'r <Plug>(coc-refactor)'
+  execute 'nmap <silent> '. key_prefix.state .'r <Plug>(coc-refactor)'
   " Format selected codes
-  execute 'vmap <silent> '. key_prefix.action .'m <Plug>(coc-format-selected)'
+  execute 'vmap <silent> '. key_prefix.writer .'m <Plug>(coc-format-selected)'
   " Format current buffer codes
-  execute 'nmap <silent> '. key_prefix.action .'m <Plug>(coc-format)'
+  execute 'nmap <silent> '. key_prefix.writer .'m <Plug>(coc-format)'
   " Show all diagnostics.
-  execute 'nnoremap <silent><nowait> '. key_prefix.view .'a :<C-u>CocList diagnostics<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.reader .'a :<C-u>CocList diagnostics<cr>'
   " Manage extensions.
-  execute 'nnoremap <silent><nowait> '. key_prefix.view .'e :<C-u>CocList extensions<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.reader .'e :<C-u>CocList extensions<cr>'
   " Show commands.
-  execute 'nnoremap <silent><nowait> '. key_prefix.view .'c :<C-u>CocList commands<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.reader .'c :<C-u>CocList commands<cr>'
   " Find symbol of current document.
-  execute 'nnoremap <silent><nowait> '. key_prefix.view .'o :<C-u>CocList outline<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.reader .'o :<C-u>CocList outline<cr>'
   " Search workspace symbols.
-  execute 'nnoremap <silent><nowait> '. key_prefix.view .'s :<C-u>CocList -I symbols<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.reader .'s :<C-u>CocList -I symbols<cr>'
   " Do default action for next item.
   execute 'nnoremap <silent><nowait> '. key_prefix.next .'c :<C-u>CocNext<cr>'
   " Do default action for previous item.
   execute 'nnoremap <silent><nowait> '. key_prefix.prev .'c :<C-u>CocPrev<cr>'
   " Resume latest coc list.
-  execute 'nnoremap <silent><nowait> '. key_prefix.view .'m :<C-u>CocListResume<cr>'
+  execute 'nnoremap <silent><nowait> '. key_prefix.reader .'m :<C-u>CocListResume<cr>'
   " Show documentation in preview window.
-  execute 'nnoremap <silent> '. key_prefix.view .'p :call <SID>show_documentation()<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader .'p :call <SID>show_documentation()<CR>'
   " Requires 'textDocument/selectionRange' support of language server.
-  execute 'nmap <silent> '. key_prefix.action .'s <Plug>(coc-range-select)'
-  execute 'xmap <silent> '. key_prefix.action .'s <Plug>(coc-range-select)'
+  execute 'nmap <silent> '. key_prefix.writer .'s <Plug>(coc-range-select)'
+  execute 'xmap <silent> '. key_prefix.writer .'s <Plug>(coc-range-select)'
   " Map function and class text objects
   " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-  execute 'xmap <silent> '. key_prefix.action .'if <Plug>(coc-funcobj-i)'
-  execute 'omap <silent> '. key_prefix.action .'if <Plug>(coc-funcobj-i)'
-  execute 'xmap <silent> '. key_prefix.action .'af <Plug>(coc-funcobj-a)'
-  execute 'omap <silent> '. key_prefix.action .'af <Plug>(coc-funcobj-a)'
-  execute 'xmap <silent> '. key_prefix.action .'ic <Plug>(coc-classobj-i)'
-  execute 'omap <silent> '. key_prefix.action .'ic <Plug>(coc-classobj-i)'
-  execute 'xmap <silent> '. key_prefix.action .'ac <Plug>(coc-classobj-a)'
-  execute 'omap <silent> '. key_prefix.action .'ac <Plug>(coc-classobj-a)'
-  execute 'omap <silent> '. key_prefix.action .'co <Plug>(coc-cursors-operator)'
-  execute 'omap <silent> '. key_prefix.action .'cr <Plug>(coc-cursors-range)'
-  execute 'omap <silent> '. key_prefix.action .'cw <Plug>(coc-cursors-word)'
-  execute 'omap <silent> '. key_prefix.action .'cp <Plug>(coc-cursors-position)'
+  execute 'xmap <silent> '. key_prefix.writer .'if <Plug>(coc-funcobj-i)'
+  execute 'omap <silent> '. key_prefix.writer .'if <Plug>(coc-funcobj-i)'
+  execute 'xmap <silent> '. key_prefix.writer .'af <Plug>(coc-funcobj-a)'
+  execute 'omap <silent> '. key_prefix.writer .'af <Plug>(coc-funcobj-a)'
+  execute 'xmap <silent> '. key_prefix.writer .'ic <Plug>(coc-classobj-i)'
+  execute 'omap <silent> '. key_prefix.writer .'ic <Plug>(coc-classobj-i)'
+  execute 'xmap <silent> '. key_prefix.writer .'ac <Plug>(coc-classobj-a)'
+  execute 'omap <silent> '. key_prefix.writer .'ac <Plug>(coc-classobj-a)'
+  execute 'omap <silent> '. key_prefix.writer .'co <Plug>(coc-cursors-operator)'
+  execute 'omap <silent> '. key_prefix.writer .'cr <Plug>(coc-cursors-range)'
+  execute 'omap <silent> '. key_prefix.writer .'cw <Plug>(coc-cursors-word)'
+  execute 'omap <silent> '. key_prefix.writer .'cp <Plug>(coc-cursors-position)'
   " Trigger completion.
   execute 'inoremap <silent><expr> '. key_prefix.win .'r coc#refresh()'
   " Make <CR> auto-select the first completion item and notify coc.nvim to

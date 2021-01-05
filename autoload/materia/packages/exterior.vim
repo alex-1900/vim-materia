@@ -40,9 +40,9 @@ endfunction
 
 function! s:limelight_vim.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.limelight_vim.basekey'))
-  execute 'nnoremap <silent> '. key_prefix.view .'l :<C-u>Limelight!!<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader .'l :<C-u>Limelight!!<CR>'
   for n in range(0, 9)
-    execute 'nnoremap <silent> '. key_prefix.view . n .' :<C-u>Limelight 0.'. n .'<CR>'
+    execute 'nnoremap <silent> '. key_prefix.reader . n .' :<C-u>Limelight 0.'. n .'<CR>'
   endfor
 endfunction
 
@@ -98,7 +98,7 @@ endfunction
 
 function! s:vim_airline.listener()
   let theme = materia#conf('packages.vim_airline.theme')
-  if theme
+  if type(theme) == type('')
     call airline#switch_theme(theme)
   endif
 endfunction
@@ -198,94 +198,96 @@ function! s:vim_startify.install(install)
 endfunction
 call materia#packages#add('vim_startify', s:vim_startify)
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" gruvbox
-" THEME
-" https://github.com/morhetz/gruvbox
-" https://github.com/morhetz/gruvbox/wiki/Configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:gruvbox= {'name': 'gruvbox'}
-function! s:gruvbox.config()
-  if materia#conf('options.colorscheme') == 'gruvbox'
-    " medium/soft/hard
-    let g:gruvbox_contrast_dark = 'medium'
-  endif
-endfunction
-function! s:gruvbox.listener()
-  if materia#conf('options.colorscheme') == 'gruvbox'
-    colorscheme gruvbox
-    call airline#switch_theme('gruvbox')
-  endif
-endfunction
-function! s:gruvbox.install(install)
-  call a:install('morhetz/gruvbox')
-endfunction
-call materia#packages#add('gruvbox', s:gruvbox)
+" Color Themes {
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " gruvbox
+    " THEME
+    " https://github.com/morhetz/gruvbox
+    " https://github.com/morhetz/gruvbox/wiki/Configuration
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:gruvbox= {'name': 'gruvbox'}
+    function! s:gruvbox.config()
+      if materia#conf('options.colorscheme') == 'gruvbox'
+        " medium/soft/hard
+        let g:gruvbox_contrast_dark = 'medium'
+      endif
+    endfunction
+    function! s:gruvbox.listener()
+      if materia#conf('options.colorscheme') == 'gruvbox'
+        colorscheme gruvbox
+        call airline#switch_theme('gruvbox')
+      endif
+    endfunction
+    function! s:gruvbox.install(install)
+      call a:install('morhetz/gruvbox')
+    endfunction
+    call materia#packages#add('gruvbox', s:gruvbox)
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" onedark
-" THEME
-" https://github.com/joshdick/onedark.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:onedark= {'name': 'onedark.vim'}
-function! s:onedark.config()
-  if materia#conf('options.colorscheme') == 'onedark'
-    let g:onedark_termcolors=256
-    let g:lightline = {'colorscheme': 'onedark'}
-  endif
-endfunction
-function! s:onedark.listener()
-  if materia#conf('options.colorscheme') == 'onedark'
-    colorscheme onedark
-    call airline#switch_theme('onedark')
-  endif
-endfunction
-function! s:onedark.install(install)
-  call a:install('joshdick/onedark.vim')
-endfunction
-call materia#packages#add('onedark', s:onedark)
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " onedark
+    " THEME
+    " https://github.com/joshdick/onedark.vim
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:onedark= {'name': 'onedark.vim'}
+    function! s:onedark.config()
+      if materia#conf('options.colorscheme') == 'onedark'
+        let g:onedark_termcolors=256
+        let g:lightline = {'colorscheme': 'onedark'}
+      endif
+    endfunction
+    function! s:onedark.listener()
+      if materia#conf('options.colorscheme') == 'onedark'
+        colorscheme onedark
+        call airline#switch_theme('onedark')
+      endif
+    endfunction
+    function! s:onedark.install(install)
+      call a:install('joshdick/onedark.vim')
+    endfunction
+    call materia#packages#add('onedark', s:onedark)
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" papercolor
-" THEME
-" https://github.com/NLKNguyen/papercolor-theme
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:papercolor= {'name': 'papercolor-theme'}
-function! s:papercolor.config()
-  if materia#conf('options.colorscheme') == 'papercolor'
-    let g:PaperColor_Theme_Options = materia#conf('packages.papercolor.attr_theme_options')
-    let g:lightline = { 'colorscheme': 'PaperColor' }
-  endif
-endfunction
-function! s:papercolor.listener()
-  if materia#conf('options.colorscheme') == 'papercolor'
-    colorscheme PaperColor
-    call airline#switch_theme('papercolor')
-  endif
-endfunction
-function! s:papercolor.install(install)
-  call a:install('NLKNguyen/papercolor-theme')
-endfunction
-call materia#packages#add('papercolor', s:papercolor)
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " papercolor
+    " THEME
+    " https://github.com/NLKNguyen/papercolor-theme
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:papercolor= {'name': 'papercolor-theme'}
+    function! s:papercolor.config()
+      if materia#conf('options.colorscheme') == 'papercolor'
+        let g:PaperColor_Theme_Options = materia#conf('packages.papercolor.attr_theme_options')
+        let g:lightline = { 'colorscheme': 'PaperColor' }
+      endif
+    endfunction
+    function! s:papercolor.listener()
+      if materia#conf('options.colorscheme') == 'papercolor'
+        colorscheme PaperColor
+        call airline#switch_theme('papercolor')
+      endif
+    endfunction
+    function! s:papercolor.install(install)
+      call a:install('NLKNguyen/papercolor-theme')
+    endfunction
+    call materia#packages#add('papercolor', s:papercolor)
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" iceberg
-" THEME
-" https://github.com/cocopon/iceberg.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:iceberg= {'name': 'iceberg.vim'}
-function! s:iceberg.config()
-  if materia#conf('options.colorscheme') == 'iceberg'
-    " let g:lightline = { 'colorscheme': 'iceberg' }
-  endif
-endfunction
-function! s:iceberg.listener()
-  if materia#conf('options.colorscheme') == 'iceberg'
-    colorscheme iceberg
-    call airline#switch_theme('iceberg')
-  endif
-endfunction
-function! s:iceberg.install(install)
-  call a:install('cocopon/iceberg.vim')
-endfunction
-call materia#packages#add('iceberg', s:iceberg)
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " iceberg
+    " THEME
+    " https://github.com/cocopon/iceberg.vim
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:iceberg= {'name': 'iceberg.vim'}
+    function! s:iceberg.config()
+      if materia#conf('options.colorscheme') == 'iceberg'
+        " let g:lightline = { 'colorscheme': 'iceberg' }
+      endif
+    endfunction
+    function! s:iceberg.listener()
+      if materia#conf('options.colorscheme') == 'iceberg'
+        colorscheme iceberg
+        call airline#switch_theme('iceberg')
+      endif
+    endfunction
+    function! s:iceberg.install(install)
+      call a:install('cocopon/iceberg.vim')
+    endfunction
+    call materia#packages#add('iceberg', s:iceberg)
+" }

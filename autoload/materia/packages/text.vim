@@ -39,30 +39,30 @@ function! s:nerdcommenter.config()
 endfunction
 
 function! s:nerdcommenter.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdcommenter.key_action'))
-  execute 'nmap <silent> '. key_prefix.action .'c <Plug>NERDCommenterComment'
-  execute 'xmap <silent> '. key_prefix.action .'c <Plug>NERDCommenterComment'
-  execute 'nmap <silent> '. key_prefix.action .'t <Plug>NERDCommenterToggle'
-  execute 'xmap <silent> '. key_prefix.action .'t <Plug>NERDCommenterToggle'
-  execute 'nmap <silent> '. key_prefix.action .'m <Plug>NERDCommenterMinimal'
-  execute 'xmap <silent> '. key_prefix.action .'m <Plug>NERDCommenterMinimal'
-  execute 'nmap <silent> '. key_prefix.action .'n <Plug>NERDCommenterNested'
-  execute 'xmap <silent> '. key_prefix.action .'n <Plug>NERDCommenterNested'
-  execute 'nmap <silent> '. key_prefix.action .'$ <Plug>NERDCommenterToEOL'
-  execute 'nmap <silent> '. key_prefix.action .'i <Plug>NERDCommenterInvert'
-  execute 'xmap <silent> '. key_prefix.action .'i <Plug>NERDCommenterInvert'
-  execute 'nmap <silent> '. key_prefix.action .'s <Plug>NERDCommenterSexy'
-  execute 'xmap <silent> '. key_prefix.action .'s <Plug>NERDCommenterSexy'
-  execute 'nmap <silent> '. key_prefix.action .'y <Plug>NERDCommenterYank'
-  execute 'xmap <silent> '. key_prefix.action .'y <Plug>NERDCommenterYank'
-  execute 'nmap <silent> '. key_prefix.action .'A <Plug>NERDCommenterAppend'
-  execute 'nmap <silent> '. key_prefix.action .'l <Plug>NERDCommenterAlignLeft'
-  execute 'xmap <silent> '. key_prefix.action .'l <Plug>NERDCommenterAlignLeft'
-  execute 'nmap <silent> '. key_prefix.action .'b <Plug>NERDCommenterAlignBoth'
-  execute 'xmap <silent> '. key_prefix.action .'b <Plug>NERDCommenterAlignBoth'
-  execute 'nmap <silent> '. key_prefix.action .'u <Plug>NERDCommenterUncomment'
-  execute 'xmap <silent> '. key_prefix.action .'u <Plug>NERDCommenterUncomment'
-  execute 'nmap <silent> '. key_prefix.action .'a <Plug>NERDCommenterAltDelims'
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdcommenter.key_writer'))
+  execute 'nmap <silent> '. key_prefix.writer .'c <Plug>NERDCommenterComment'
+  execute 'xmap <silent> '. key_prefix.writer .'c <Plug>NERDCommenterComment'
+  execute 'nmap <silent> '. key_prefix.writer .'t <Plug>NERDCommenterToggle'
+  execute 'xmap <silent> '. key_prefix.writer .'t <Plug>NERDCommenterToggle'
+  execute 'nmap <silent> '. key_prefix.writer .'m <Plug>NERDCommenterMinimal'
+  execute 'xmap <silent> '. key_prefix.writer .'m <Plug>NERDCommenterMinimal'
+  execute 'nmap <silent> '. key_prefix.writer .'n <Plug>NERDCommenterNested'
+  execute 'xmap <silent> '. key_prefix.writer .'n <Plug>NERDCommenterNested'
+  execute 'nmap <silent> '. key_prefix.writer .'$ <Plug>NERDCommenterToEOL'
+  execute 'nmap <silent> '. key_prefix.writer .'i <Plug>NERDCommenterInvert'
+  execute 'xmap <silent> '. key_prefix.writer .'i <Plug>NERDCommenterInvert'
+  execute 'nmap <silent> '. key_prefix.writer .'s <Plug>NERDCommenterSexy'
+  execute 'xmap <silent> '. key_prefix.writer .'s <Plug>NERDCommenterSexy'
+  execute 'nmap <silent> '. key_prefix.writer .'y <Plug>NERDCommenterYank'
+  execute 'xmap <silent> '. key_prefix.writer .'y <Plug>NERDCommenterYank'
+  execute 'nmap <silent> '. key_prefix.writer .'A <Plug>NERDCommenterAppend'
+  execute 'nmap <silent> '. key_prefix.writer .'l <Plug>NERDCommenterAlignLeft'
+  execute 'xmap <silent> '. key_prefix.writer .'l <Plug>NERDCommenterAlignLeft'
+  execute 'nmap <silent> '. key_prefix.writer .'b <Plug>NERDCommenterAlignBoth'
+  execute 'xmap <silent> '. key_prefix.writer .'b <Plug>NERDCommenterAlignBoth'
+  execute 'nmap <silent> '. key_prefix.writer .'u <Plug>NERDCommenterUncomment'
+  execute 'xmap <silent> '. key_prefix.writer .'u <Plug>NERDCommenterUncomment'
+  execute 'nmap <silent> '. key_prefix.writer .'a <Plug>NERDCommenterAltDelims'
   execute 'imap <silent> <C-_> <Plug>NERDCommenterInsert'
 endfunction
 
@@ -92,11 +92,11 @@ call materia#packages#add('supertab', s:supertab)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_easy_align = {'name': 'vim-easy-align'}
 function! s:vim_easy_align.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_easy_align.key_action'))
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_easy_align.key_writer'))
   " Start interactive EasyAlign in visual mode (e.g. vipga)
-  execute 'xmap '. key_prefix.action .' <Plug>(EasyAlign)'
+  execute 'xmap '. key_prefix.writer .' <Plug>(EasyAlign)'
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  execute 'nmap '. key_prefix.action .' <Plug>(EasyAlign)'
+  execute 'nmap '. key_prefix.writer .' <Plug>(EasyAlign)'
 endfunction
 function! s:vim_easy_align.install(install)
   call a:install('junegunn/vim-easy-align')
@@ -180,8 +180,9 @@ call materia#packages#add('editorconfig_vim', s:editorconfig_vim)
 " https://github.com/Shougo/neosnippet-snippets/tree/master/neosnippets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:deoppet = {'name': 'deoppet.nvim'}
-function! s:deoppet.listener()
-  if has('nvim-0.5.0')
+
+if has('nvim-0.5.0')
+  function! s:deoppet.listener()
     call deoppet#initialize()
     call deoppet#custom#option('snippets', map(globpath(&runtimepath, 'neosnippets', 1, 1), "{ 'path': v:val }"))
 
@@ -190,8 +191,9 @@ function! s:deoppet.listener()
     imap <C-b>  <Plug>(deoppet_jump_backward)
     smap <C-f>  <Plug>(deoppet_jump_forward)
     smap <C-b>  <Plug>(deoppet_jump_backward)
-  endif
-endfunction
+  endfunction
+endif
+
 function! s:deoppet.install(install)
   if has('nvim-0.5.0')
     call a:install('Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' })

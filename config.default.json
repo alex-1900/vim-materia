@@ -2,15 +2,16 @@
   "key": {
     "leader": ";",
     "localleader": ",",
-    "action": "<space>",
-    "localaction": "-",
-    "edge": "\\",
+    "writer": "<space>",
+    "runner": "-",
+    "state": "\\",
     "next": "]",
-    "prev": "["
+    "prev": "[",
+    "coding": "a"
   },
   "options": {
     "background": "dark",
-    "colorscheme": "iceberg",
+    "colorscheme": "material-theme",
     "scroll_multiple": 4,
     "undo_persistent": 0
   },
@@ -34,9 +35,7 @@
     "coc_json": {
       "conceallevel": 0
     },
-    "coc_nvim": {
-      "basekey": "a"
-    },
+    "coc_nvim": null,
     "coc_phpls": null,
     "coc_tsserver": null,
     "coc_yaml": null,
@@ -58,7 +57,7 @@
       "attr_auto_focus": 1
     },
     "ctrlp": {
-      "key_edge": "p",
+      "key_state": "p",
       "attr_cmd": "CtrlP",
       "attr_working_path_mode": "ra",
       "attr_root_markers": [],
@@ -71,7 +70,7 @@
       }
     },
     "defx": {
-      "key_edge": "e"
+      "key_state": "e"
     },
     "editorconfig_vim": {
       "exclude_patterns": ["fugitive://.*", "scp://.*"],
@@ -114,7 +113,7 @@
       "autosave_on_actions": 1
     },
     "nerdcommenter": {
-      "key_action": "c"
+      "key_writer": "c"
     },
     "nginx": {},
     "onedark": null,
@@ -129,7 +128,7 @@
       "attr_compiler_options": ""
     },
     "undotree": {
-      "key_edge": "u"
+      "key_state": "u"
     },
     "vim_airline": {
       "with_username": 1,
@@ -137,7 +136,7 @@
       "with_hunks": 1,
       "with_tabline": 1,
       "tabline_formatter": "unique_tail",
-      "theme": 0
+      "theme": "wombat"
     },
     "vim_better_whitespace": {
       "strip_on_save": 1,
@@ -146,7 +145,7 @@
     },
     "vim_devicons": null,
     "vim_easy_align": {
-      "key_action": "e"
+      "key_writer": "e"
     },
     "vim_floaterm": {
       "basekey": "t",
@@ -205,7 +204,7 @@
       "virtualenv_directory": "~/.virtualenvs"
     },
     "vista_vim": {
-      "key_edge": "v",
+      "key_state": "v",
       "attr_sidebar_width": 35,
       "attr_enable_icon": 1,
       "attr_default_executive": "coc",

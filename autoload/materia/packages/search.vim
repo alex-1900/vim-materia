@@ -34,39 +34,39 @@ function! s:fzf_vim.listener()
   let command_prefix = materia#conf('packages.fzf_vim.command_prefix')
   " Mapping selecting mappings
   " normal mod maps
-  execute 'nmap <silent> '. key_prefix.view . 'n <plug>(fzf-maps-n)'
+  execute 'nmap <silent> '. key_prefix.reader . 'n <plug>(fzf-maps-n)'
   " xmode maps
-  execute 'xmap <silent> '. key_prefix.view . 'x <plug>(fzf-maps-x)'
+  execute 'xmap <silent> '. key_prefix.reader . 'x <plug>(fzf-maps-x)'
   " history
-  execute 'omap <silent> '. key_prefix.view . 'o <plug>(fzf-maps-o)'
+  execute 'omap <silent> '. key_prefix.reader . 'o <plug>(fzf-maps-o)'
   " Insert mode completion
   execute 'imap <silent> '. key_prefix.win . 'w <plug>(fzf-complete-word)'
   execute 'imap <silent> '. key_prefix.win . 'p <plug>(fzf-complete-path)'
   execute 'imap <silent> '. key_prefix.win . 'l <plug>(fzf-complete-line)'
   execute 'imap <silent> '. key_prefix.win . 'f <plug>(fzf-complete-file)'
   " Files (runs $FZF_DEFAULT_COMMAND if defined)
-  execute 'nnoremap <silent> '. key_prefix.view . 'f :<C-u>'.command_prefix.'Files<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'f :<C-u>'.command_prefix.'Files<CR>'
   " Git files (git status)
-  execute 'nnoremap <silent> '. key_prefix.view . 'g :<C-u>'.command_prefix.'GFiles<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'g :<C-u>'.command_prefix.'GFiles<CR>'
   " Open buffers
-  execute 'nnoremap <silent> '. key_prefix.view . 'b :<C-u>'.command_prefix.'Buffers<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'b :<C-u>'.command_prefix.'Buffers<CR>'
   " ag search result (ALT-A to select all, ALT-D to deselect all)
-  execute 'nnoremap <silent> '. key_prefix.view . 'a :<C-u>'.command_prefix.'Ag<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'a :<C-u>'.command_prefix.'Ag<CR>'
   " rg search result (ALT-A to select all, ALT-D to deselect all)
-  execute 'nnoremap <silent> '. key_prefix.view . 'r :<C-u>'.command_prefix.'Rg<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'r :<C-u>'.command_prefix.'Rg<CR>'
   " Lines in loaded buffers
-  execute 'nnoremap <silent> '. key_prefix.view . 'l :<C-u>'.command_prefix.'Lines<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'l :<C-u>'.command_prefix.'Lines<CR>'
   " Windows
-  execute 'nnoremap <silent> '. key_prefix.view . 'w :<C-u>'.command_prefix.'Windows<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'w :<C-u>'.command_prefix.'Windows<CR>'
   " Marks
-  execute 'nnoremap <silent> '. key_prefix.view . 'm :<C-u>'.command_prefix.'Marks<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'm :<C-u>'.command_prefix.'Marks<CR>'
   " v:oldfiles and open buffers
-  execute 'nnoremap <silent> '. key_prefix.view . 'o :<C-u>'.command_prefix.'History<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'o :<C-u>'.command_prefix.'History<CR>'
   " Help tags
-  execute 'nnoremap <silent> '. key_prefix.view . 'h :<C-u>'.command_prefix.'Helptags<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'h :<C-u>'.command_prefix.'Helptags<CR>'
   if has_key(materia#conf('packages'), 'vim_fugitive')
     " Git commits (requires fugitive.vim)
-    execute 'nnoremap <silent> '. key_prefix.view . 'c :<C-u>'.command_prefix.'Commits<CR>'
+    execute 'nnoremap <silent> '. key_prefix.reader . 'c :<C-u>'.command_prefix.'Commits<CR>'
   endif
 
   " Override statusline as you like
@@ -101,9 +101,9 @@ let s:vim_interestingwords = {'name': 'vim-interestingwords'}
 function! s:vim_interestingwords.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_interestingwords.basekey'))
   " vim-interestingwords
-  execute 'nnoremap <silent> '. key_prefix.view ." :<C-u>call InterestingWords('n')<CR>"
-  execute 'vnoremap <silent> '. key_prefix.view ." :<C-u>call InterestingWords('v')<CR>"
-  execute 'nnoremap <silent> '. key_prefix.action .' :<C-u>call UncolorAllWords()<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader ." :<C-u>call InterestingWords('n')<CR>"
+  execute 'vnoremap <silent> '. key_prefix.reader ." :<C-u>call InterestingWords('v')<CR>"
+  execute 'nnoremap <silent> '. key_prefix.writer .' :<C-u>call UncolorAllWords()<CR>'
   execute 'nnoremap <silent> '. key_prefix.prev .' :<C-u>call WordNavigation(0)<CR>'
   execute 'nnoremap <silent> '. key_prefix.next .' :<C-u>call WordNavigation(1)<CR>'
 endfunction
@@ -168,13 +168,13 @@ function! s:ctrlsf.config()
 endfunction
 function! s:ctrlsf.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlsf.basekey'))
-  execute 'nmap '. key_prefix.view .'f <Plug>CtrlSFPrompt'
-  execute 'nmap '. key_prefix.edge . ' :<C-u>CtrlSFToggle<CR>'
-  execute 'nmap '. key_prefix.view .'s <Plug>CtrlSFPrompt'
-  execute 'vmap '. key_prefix.view .'s <Plug>CtrlSFVwordPath'
-  execute 'nmap '. key_prefix.view .'w <Plug>CtrlSFCwordPath'
-  execute 'nmap '. key_prefix.view .'c <Plug>CtrlSFCCwordPath'
-  execute 'nmap '. key_prefix.view .'l <Plug>CtrlSFPwordPath'
+  execute 'nmap '. key_prefix.reader .'f <Plug>CtrlSFPrompt'
+  execute 'nmap '. key_prefix.state . ' :<C-u>CtrlSFToggle<CR>'
+  execute 'nmap '. key_prefix.reader .'s <Plug>CtrlSFPrompt'
+  execute 'vmap '. key_prefix.reader .'s <Plug>CtrlSFVwordPath'
+  execute 'nmap '. key_prefix.reader .'w <Plug>CtrlSFCwordPath'
+  execute 'nmap '. key_prefix.reader .'c <Plug>CtrlSFCCwordPath'
+  execute 'nmap '. key_prefix.reader .'l <Plug>CtrlSFPwordPath'
 endfunction
 function! s:ctrlsf.install(install)
   call a:install('dyng/ctrlsf.vim')

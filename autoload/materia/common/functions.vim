@@ -18,19 +18,17 @@ function! materia#common#functions#get() abort
   endfunction
 
   " Get map keys
-  let s:lkey = '<leader>'
-  let s:akey = materia#conf('key.action')
-  let s:lakey = materia#conf('key.localaction')
-  let s:ekey = materia#conf('key.edge')
+  let s:rkey = '<leader>'
+  let s:wkey = materia#conf('key.writer')
+  let s:skey = materia#conf('key.state')
   let s:nkey = materia#conf('key.next')
   let s:pkey = materia#conf('key.prev')
   function! GetConfigMapPrefix(okey) abort
     return {
-      \ 'view': s:lkey . a:okey,
-      \ 'action': s:akey . a:okey,
-      \ 'localaction': s:lakey,
+      \ 'reader': s:rkey . a:okey,
+      \ 'writer': s:wkey . a:okey,
       \ 'win': '<C-' . a:okey. '>',
-      \ 'edge': s:ekey . a:okey,
+      \ 'state': s:skey . a:okey,
       \ 'next': s:nkey . a:okey,
       \ 'prev': s:pkey . a:okey
     \ }

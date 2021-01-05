@@ -155,20 +155,22 @@ function! s:vim_go.config()
   let g:go_metalinter_command = "golangci-lint"
 
   " key mappings
-  let localaction = materia#conf('key.localaction')
+  let runner = materia#conf('key.runner')
+  let coding = materia#conf('key.coding')
+  let writer = materia#conf('key.writer')
   " executecurrent file(s) gl
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'r <Plug>(go-run)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'b <Plug>(go-build)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'i <Plug>(go-install)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'p <Plug>(go-imports)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'m <Plug>(go-metalinter)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'l <Plug>(go-lint)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'v <Plug>(go-vet)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'e <Plug>(go-alternate-edit)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'r <Plug>(go-run)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'b <Plug>(go-build)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'i <Plug>(go-install)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. writer . coding .'p <Plug>(go-imports)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'m <Plug>(go-metalinter)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'l <Plug>(go-lint)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'v <Plug>(go-vet)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'e <Plug>(go-alternate-edit)'
   " go test
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'tt <Plug>(go-test)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'tf <Plug>(go-test-func)'
-  execute 'autocmd FileType go nmap <buffer> <silent> '. localaction .'tc <Plug>(go-test-compile)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'tt <Plug>(go-test)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'tf <Plug>(go-test-func)'
+  execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'tc <Plug>(go-test-compile)'
 
   execute 'autocmd FileType go nmap <buffer> <silent> <localleader>f <Plug>(go-files)'
   execute 'autocmd FileType go nmap <buffer> <silent> <localleader>i <Plug>(go-describe)'

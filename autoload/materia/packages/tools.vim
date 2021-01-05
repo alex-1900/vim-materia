@@ -14,13 +14,6 @@ function! s:defx.config()
   let g:defx_icons_enable_syntax_highlight = 1
   let g:defx_icons_column_length = 1
 
-  " highlight groups for defx-icons
-  hi DefxIconsDirectory        guifg=#FF0000
-  hi DefxIconsParentDirectory  guifg=#FF0000
-  hi DefxIconsSymlinkDirectory guifg=#FF0000
-  hi DefxIconsOpenedTreeIcon   guifg=#FF0000
-  hi DefxIconsNestedTreeIcon   guifg=#FF0000
-  hi DefxIconsClosedTreeIcon   guifg=#FF0000
 endfunction
 
 function! s:defx.listener()
@@ -50,8 +43,8 @@ function! s:defx.listener()
     \ 'max_width': 1000,
   \ })
 
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.defx.key_edge'))
-  execute 'nnoremap <silent> '. key_prefix.edge .' :<C-u>Defx -buffer-name=tab`tabpagenr()` `getcwd()`<CR>'
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.defx.key_state'))
+  execute 'nnoremap <silent> '. key_prefix.state .' :<C-u>Defx -buffer-name=tab`tabpagenr()` `getcwd()`<CR>'
 
   function! s:defx_mappings() abort
       nnoremap <silent><buffer><expr> o
@@ -130,8 +123,8 @@ call materia#packages#add('defx', s:defx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:undotree = {'name': 'undotree'}
 function! s:undotree.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.undotree.key_edge'))
-  execute 'nnoremap <silent> '. key_prefix.edge .' :<C-u>UndotreeToggle<CR>'
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.undotree.key_state'))
+  execute 'nnoremap <silent> '. key_prefix.state .' :<C-u>UndotreeToggle<CR>'
 endfunction
 
 function! s:undotree.install(install)
@@ -180,9 +173,9 @@ function! s:vista_vim.config()
 endfunction
 
 function! s:vista_vim.listener()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vista_vim.key_edge'))
-  execute 'nnoremap <silent> '. key_prefix.edge .'v :<C-u>Vista!!<CR>'
-  execute 'nnoremap <silent> '. key_prefix.edge .'f :<C-u>Vista finder<CR>'
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vista_vim.key_state'))
+  execute 'nnoremap <silent> '. key_prefix.state .'v :<C-u>Vista!!<CR>'
+  execute 'nnoremap <silent> '. key_prefix.state .'f :<C-u>Vista finder<CR>'
 
   function! NearestMethodOrFunction() abort
     return get(b:, 'vista_nearest_method_or_function', '')
@@ -208,17 +201,17 @@ endfunction
 
 function! s:vim_fugitive.listener()
   let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_fugitive.basekey'))
-  execute 'nnoremap <silent> '. key_prefix.view .'g :<C-u>Git --paginate<CR>'
-  execute 'nnoremap <silent> '. key_prefix.view .'d :<C-u>Git diff<CR>'
-  execute 'nnoremap <silent> '. key_prefix.view .'l :<C-u>Git log<CR>'
-  execute 'nnoremap <silent> '. key_prefix.view .'r :<C-u>Git reflog<CR>'
-  execute 'nnoremap <silent> '. key_prefix.view .'b :<C-u>Git blame<CR>'
-  execute 'nnoremap <silent> '. key_prefix.edge .'m :<C-u>Git mergetool<CR>'
-  execute 'nnoremap <silent> '. key_prefix.edge .'d :<C-u>Git difftool<CR>'
-  execute 'nnoremap <silent> '. key_prefix.edge .'s :<C-u>Gdiffsplit<CR>'
-  execute 'nnoremap <silent> '. key_prefix.edge .'o :<C-u>GBrowse<CR>'
-  execute 'nnoremap <silent> '. key_prefix.action .'r :<C-u>Gread<CR>'
-  execute 'nnoremap <silent> '. key_prefix.action .'w :<C-u>Gwrite<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader .'g :<C-u>Git --paginate<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader .'d :<C-u>Git diff<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader .'l :<C-u>Git log<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader .'r :<C-u>Git reflog<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader .'b :<C-u>Git blame<CR>'
+  execute 'nnoremap <silent> '. key_prefix.state .'m :<C-u>Git mergetool<CR>'
+  execute 'nnoremap <silent> '. key_prefix.state .'d :<C-u>Git difftool<CR>'
+  execute 'nnoremap <silent> '. key_prefix.state .'s :<C-u>Gdiffsplit<CR>'
+  execute 'nnoremap <silent> '. key_prefix.state .'o :<C-u>GBrowse<CR>'
+  execute 'nnoremap <silent> '. key_prefix.writer .'r :<C-u>Gread<CR>'
+  execute 'nnoremap <silent> '. key_prefix.writer .'w :<C-u>Gwrite<CR>'
 endfunction
 
 function! s:vim_fugitive.install(install)
@@ -253,15 +246,15 @@ function! s:vim_gitgutter.listener()
   execute 'nmap '. key_prefix.next .' <Plug>(GitGutterNextHunk)'
   execute 'nmap '. key_prefix.prev .' <Plug>(GitGutterPrevHunk)'
 
-  execute 'nmap '. key_prefix.view .'h :<C-u>GitGutterToggle<CR>'
-  execute 'nmap '. key_prefix.view .'b :<C-u>GitGutterBufferToggle<CR>'
-  execute 'nmap '. key_prefix.view .'i :<C-u>GitGutterSignsToggle<CR>'
-  execute 'nmap '. key_prefix.view .'l :<C-u>GitGutterLineHighlightsToggle<CR>'
-  execute 'nmap '. key_prefix.view .'n :<C-u>GitGutterLineNrHighlightsToggle<CR>'
-  execute 'nmap '. key_prefix.view .'f :<C-u>GitGutterFold<CR>'
-  execute 'nmap '. key_prefix.view .'p :<C-u>GitGutterPreviewHunk<CR>'
-  execute 'nmap '. key_prefix.action .'s <Plug>(GitGutterStageHunk)'
-  execute 'nmap '. key_prefix.action .'u <Plug>(GitGutterUndoHunk)'
+  execute 'nmap '. key_prefix.reader .'h :<C-u>GitGutterToggle<CR>'
+  execute 'nmap '. key_prefix.reader .'b :<C-u>GitGutterBufferToggle<CR>'
+  execute 'nmap '. key_prefix.reader .'i :<C-u>GitGutterSignsToggle<CR>'
+  execute 'nmap '. key_prefix.reader .'l :<C-u>GitGutterLineHighlightsToggle<CR>'
+  execute 'nmap '. key_prefix.reader .'n :<C-u>GitGutterLineNrHighlightsToggle<CR>'
+  execute 'nmap '. key_prefix.reader .'f :<C-u>GitGutterFold<CR>'
+  execute 'nmap '. key_prefix.reader .'p :<C-u>GitGutterPreviewHunk<CR>'
+  execute 'nmap '. key_prefix.writer .'s <Plug>(GitGutterStageHunk)'
+  execute 'nmap '. key_prefix.writer .'u <Plug>(GitGutterUndoHunk)'
 
   function! GitStatus()
     let [a,m,r] = GitGutterGetHunkSummary()
@@ -278,8 +271,8 @@ call materia#packages#add('vim_gitgutter', s:vim_gitgutter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_smooth_scroll
-" Use (neo)vim terminal in the floating/popup window.
-" https://github.com/voldikss/vim-floaterm
+" Make scrolling in Vim more pleasant
+" https://github.com/terryma/vim-smooth-scroll
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:vim_smooth_scroll = {'name': 'vim-smooth-scroll'}
 function! s:vim_smooth_scroll.listener()
@@ -313,10 +306,10 @@ function! s:vim_floaterm.config()
   let nkey = materia#conf('key.next')
   let pkey = materia#conf('key.prev')
   let key_prefix = GetConfigMapPrefix(okey)
-  let g:floaterm_keymap_new = key_prefix.edge . 'n'
+  let g:floaterm_keymap_new = key_prefix.state . 'n'
   let g:floaterm_keymap_prev = pkey . okey
   let g:floaterm_keymap_next = nkey . okey
-  let g:floaterm_keymap_toggle = key_prefix.edge . 't'
+  let g:floaterm_keymap_toggle = key_prefix.state . 't'
   let g:floaterm_keymap_kill = '<C-d>'
   let g:floaterm_title = materia#conf('packages.vim_floaterm.title')
   let g:floaterm_width = materia#conf('packages.vim_floaterm.width')
@@ -410,8 +403,8 @@ call materia#packages#add('vim_virtualenv', s:vim_virtualenv)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:ctrlp = {'name': 'ctrlp.vim'}
 function! s:ctrlp.config()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlp.key_edge'))
-  let g:ctrlp_map = key_prefix.edge
+  let key_prefix = GetConfigMapPrefix(materia#conf('packages.ctrlp.key_state'))
+  let g:ctrlp_map = key_prefix.state
   let g:ctrlp_cmd = materia#conf('packages.ctrlp.attr_cmd')
   let g:ctrlp_working_path_mode = materia#conf('packages.ctrlp.attr_working_path_mode')
   let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr', '_darcs'] + materia#conf('packages.ctrlp.attr_root_markers')
