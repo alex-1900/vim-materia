@@ -20,7 +20,9 @@ function! s:gruvbox.preloader()
 endfunction
 function! s:gruvbox.loader()
   colorscheme gruvbox
-  call airline#switch_theme('gruvbox')
+  if exists('*airline#switch_theme')
+    call airline#switch_theme('gruvbox')
+  endif
 endfunction
 
 function! s:gruvbox.installer(install)
@@ -46,7 +48,9 @@ endfunction
 
 function! s:onedark.loader()
   colorscheme onedark
-  call airline#switch_theme('onedark')
+  if exists('*airline#switch_theme')
+    call airline#switch_theme('onedark')
+  endif
 endfunction
 
 function! s:onedark.installer(install)
@@ -71,7 +75,9 @@ endfunction
 
 function! s:papercolor.loader()
   colorscheme PaperColor
-  call airline#switch_theme('papercolor')
+  if exists('*airline#switch_theme')
+    call airline#switch_theme('papercolor')
+  endif
 endfunction
 
 function! s:papercolor.installer(install)
@@ -92,7 +98,9 @@ endfunction
 
 function! s:iceberg.loader()
   colorscheme iceberg
-  call airline#switch_theme('iceberg')
+  if exists('*airline#switch_theme')
+    call airline#switch_theme('iceberg')
+  endif
 endfunction
 
 function! s:iceberg.installer(install)
