@@ -28,37 +28,37 @@ function! materia#common#maps#get()
       let pkey = materia#conf('key.prev')
       " buffers
       let modes = ['n']
-      call Mapping(modes, 1, nkey .'b', ':<c-u>bprevious!<cr>')
-      call Mapping(modes, 1, pkey .'b', ':<c-u>bnext!<cr>')
-      call Mapping(modes, 1, nkey .'B', ':<c-u>bfirst!<cr>')
-      call Mapping(modes, 1, pkey .'B', ':<c-u>blast!<cr>')
+      call Mapping(modes, 1, pkey .'b', ':<c-u>bprevious!<cr>')
+      call Mapping(modes, 1, nkey .'b', ':<c-u>bnext!<cr>')
+      call Mapping(modes, 1, pkey .'B', ':<c-u>bfirst!<cr>')
+      call Mapping(modes, 1, nkey .'B', ':<c-u>blast!<cr>')
       " file list
-      call Mapping(modes, 1, nkey .'f', ':<c-u>previous!<cr>')
-      call Mapping(modes, 1, pkey .'f', ':<c-u>next!<cr>')
-      call Mapping(modes, 1, nkey .'F', ':<c-u>first!<cr>')
-      call Mapping(modes, 1, pkey .'F', ':<c-u>last!<cr>')
+      call Mapping(modes, 1, pkey .'f', ':<c-u>previous!<cr>')
+      call Mapping(modes, 1, nkey .'f', ':<c-u>next!<cr>')
+      call Mapping(modes, 1, pkey .'F', ':<c-u>first!<cr>')
+      call Mapping(modes, 1, nkey .'F', ':<c-u>last!<cr>')
       " location list
-      call Mapping(modes, 1, nkey .'l', ':<c-u>lprevious!<cr>')
-      call Mapping(modes, 1, pkey .'l', ':<c-u>lnext!<cr>')
-      call Mapping(modes, 1, nkey .'L', ':<c-u>lfirst!<cr>')
-      call Mapping(modes, 1, pkey .'L', ':<c-u>llast!<cr>')
-      call Mapping(modes, 1, nkey .'<C-L>', ':<c-u>lpfile!<cr>')
-      call Mapping(modes, 1, pkey .'<C-L>', ':<c-u>lnfile!<cr>')
+      call Mapping(modes, 1, pkey .'l', ':<c-u>lprevious!<cr>')
+      call Mapping(modes, 1, nkey .'l', ':<c-u>lnext!<cr>')
+      call Mapping(modes, 1, pkey .'L', ':<c-u>lfirst!<cr>')
+      call Mapping(modes, 1, nkey .'L', ':<c-u>llast!<cr>')
+      call Mapping(modes, 1, pkey .'<C-L>', ':<c-u>lpfile!<cr>')
+      call Mapping(modes, 1, nkey .'<C-L>', ':<c-u>lnfile!<cr>')
       " quickfix list
-      call Mapping(modes, 1, nkey .'q', ':<c-u>cprevious!<cr>')
-      call Mapping(modes, 1, pkey .'q', ':<c-u>cnext!<cr>')
-      call Mapping(modes, 1, nkey .'Q', ':<c-u>cfirst!<cr>')
-      call Mapping(modes, 1, pkey .'Q', ':<c-u>clast!<cr>')
-      call Mapping(modes, 1, nkey .'<C-Q>', ':<c-u>cpfile!<cr>')
-      call Mapping(modes, 1, pkey .'<C-Q>', ':<c-u>cnfile!<cr>')
+      call Mapping(modes, 1, pkey .'q', ':<c-u>cprevious!<cr>')
+      call Mapping(modes, 1, nkey .'q', ':<c-u>cnext!<cr>')
+      call Mapping(modes, 1, pkey .'Q', ':<c-u>cfirst!<cr>')
+      call Mapping(modes, 1, nkey .'Q', ':<c-u>clast!<cr>')
+      call Mapping(modes, 1, pkey .'<C-Q>', ':<c-u>cpfile!<cr>')
+      call Mapping(modes, 1, nkey .'<C-Q>', ':<c-u>cnfile!<cr>')
       " UI theme
       call Mapping(modes, 1, nkey .'u', ':<c-u>NextTheme<cr>')
       call Mapping(modes, 1, pkey .'u', ':<c-u>PrevTheme<cr>')
       " git conflict (try `d[n` to remove a conflict)
-      call Mapping(['n', 'o'], 1, nkey .'c', '<C-U>call s:search_conflict(1)<cr>')
-      call Mapping(['n', 'o'], 1, pkey .'c', '<C-U>call s:search_conflict(0)<cr>')
-      call Mapping(['x'], 1, nkey .'c', "<C-U>exe 'normal! gv'<Bar>call s:search_conflict(1)<cr>")
-      call Mapping(['x'], 1, pkey .'c', "<C-U>exe 'normal! gv'<Bar>call s:search_conflict(0)<cr>")
+      call Mapping(['n', 'o'], 1, pkey .'c', '<C-U>call s:search_conflict(1)<cr>')
+      call Mapping(['n', 'o'], 1, nkey .'c', '<C-U>call s:search_conflict(0)<cr>')
+      call Mapping(['x'], 1, pkey .'c', "<C-U>exe 'normal! gv'<Bar>call s:search_conflict(1)<cr>")
+      call Mapping(['x'], 1, nkey .'c', "<C-U>exe 'normal! gv'<Bar>call s:search_conflict(0)<cr>")
 
       function! s:search_conflict(reverse) abort
         call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
@@ -99,6 +99,12 @@ function! materia#common#maps#get()
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " save current buffer
   " inoremap <M-w> <ESC>:w<CR>:startinsert<CR>
+
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " terminal
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-x>t :bd!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GUI

@@ -150,6 +150,7 @@
       "key_writer": "e"
     },
     "vim_floaterm": {
+      "disable": 1,
       "basekey": "t",
       "title": "Terminal [$1|$2]",
       "width": 0.8,
