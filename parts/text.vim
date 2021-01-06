@@ -9,18 +9,18 @@
 " Insert or delete brackets, parens, quotes in pair.
 " https://github.com/jiangmiao/auto-pairs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:auto_pairs = {'name': 'auto-pairs'}
+let s:auto_pairs = {'directory': 'auto-pairs'}
 function! s:auto_pairs.installer(install)
   call a:install('jiangmiao/auto-pairs')
 endfunction
-call materia#packages#add('auto_pairs', s:auto_pairs)
+call materia#part#add('auto_pairs', s:auto_pairs)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter
 " Comment functions so powerful—no comment necessary.
 " https://github.com/preservim/nerdcommenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:nerdcommenter = {'name': 'nerdcommenter'}
+let s:nerdcommenter = {'directory': 'nerdcommenter'}
 function! s:nerdcommenter.preloader()
   " Create default mappings
   let g:NERDCreateDefaultMappings = 0
@@ -39,7 +39,7 @@ function! s:nerdcommenter.preloader()
 endfunction
 
 function! s:nerdcommenter.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.nerdcommenter.key_writer'))
+  let key_prefix = GetConfigMapPrefix(materia#conf('parts.nerdcommenter.key_writer'))
   execute 'nmap <silent> '. key_prefix.writer .'c <Plug>NERDCommenterComment'
   execute 'xmap <silent> '. key_prefix.writer .'c <Plug>NERDCommenterComment'
   execute 'nmap <silent> '. key_prefix.writer .'t <Plug>NERDCommenterToggle'
@@ -69,30 +69,30 @@ endfunction
 function! s:nerdcommenter.installer(install)
   call a:install('preservim/nerdcommenter')
 endfunction
-call materia#packages#add('nerdcommenter', s:nerdcommenter)
+call materia#part#add('nerdcommenter', s:nerdcommenter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " supertab
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:supertab = {'name': 'supertab'}
+let s:supertab = {'directory': 'supertab'}
 function! s:supertab.preloader()
-  let g:SuperTabDefaultCompletionType = materia#conf('packages.supertab.scroll')
+  let g:SuperTabDefaultCompletionType = materia#conf('parts.supertab.scroll')
 endfunction
 function! s:supertab.installer(install)
   call a:install('ervandew/supertab')
 endfunction
-call materia#packages#add('supertab', s:supertab)
+call materia#part#add('supertab', s:supertab)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_easy_align
 " A simple, easy-to-use Vim alignment plugin.
 " https://github.com/junegunn/vim-easy-align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_easy_align = {'name': 'vim-easy-align'}
+let s:vim_easy_align = {'directory': 'vim-easy-align'}
 function! s:vim_easy_align.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('packages.vim_easy_align.key_writer'))
+  let key_prefix = GetConfigMapPrefix(materia#conf('parts.vim_easy_align.key_writer'))
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   execute 'xmap '. key_prefix.writer .' <Plug>(EasyAlign)'
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -101,25 +101,25 @@ endfunction
 function! s:vim_easy_align.installer(install)
   call a:install('junegunn/vim-easy-align')
 endfunction
-call materia#packages#add('vim_easy_align', s:vim_easy_align)
+call materia#part#add('vim_easy_align', s:vim_easy_align)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_surround
 " The plugin provides mappings to easily delete, change and add such surroundings in pairs.
 " https://github.com/tpope/vim-surround
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_surround = {'name': 'vim-surround'}
+let s:vim_surround = {'directory': 'vim-surround'}
 function! s:vim_surround.installer(install)
   call a:install('tpope/vim-surround')
 endfunction
-call materia#packages#add('vim_surround', s:vim_surround)
+call materia#part#add('vim_surround', s:vim_surround)
 
 " vim_visual_multi
 " It's called vim-visual-multi in analogy with visual-block, but the plugin works mostly from normal mode.
 " https://github.com/mg979/vim-visual-multi
 " https://github.com/mg979/vim-visual-multi/wiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_visual_multi = {'name': 'vim-visual-multi'}
+let s:vim_visual_multi = {'directory': 'vim-visual-multi'}
 function! s:vim_visual_multi.preloader()
   " vim-visual-multi
   let g:VM_leader = "'"
@@ -132,24 +132,24 @@ endfunction
 function! s:vim_visual_multi.installer(install)
   call a:install('mg979/vim-visual-multi')
 endfunction
-call materia#packages#add('vim_visual_multi', s:vim_visual_multi)
+call materia#part#add('vim_visual_multi', s:vim_visual_multi)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_better_whitespace
 " This plugin causes all trailing whitespace characters to be highlighted. 
 " https://github.com/ntpeters/vim-better-whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_better_whitespace = {'name': 'vim-better-whitespace'}
+let s:vim_better_whitespace = {'directory': 'vim-better-whitespace'}
 function! s:vim_better_whitespace.preloader()
   let g:better_whitespace_enabled = 1
-  let g:strip_whitespace_on_save = materia#conf('packages.vim_better_whitespace.strip_on_save')
-  let g:better_whitespace_ctermcolor = materia#conf('packages.vim_better_whitespace.ctermcolor')
-  let g:better_whitespace_guicolor = materia#conf('packages.vim_better_whitespace.guicolor')
+  let g:strip_whitespace_on_save = materia#conf('parts.vim_better_whitespace.strip_on_save')
+  let g:better_whitespace_ctermcolor = materia#conf('parts.vim_better_whitespace.ctermcolor')
+  let g:better_whitespace_guicolor = materia#conf('parts.vim_better_whitespace.guicolor')
 endfunction
 function! s:vim_better_whitespace.installer(install)
   call a:install('ntpeters/vim-better-whitespace')
 endfunction
-call materia#packages#add('vim_better_whitespace', s:vim_better_whitespace)
+call materia#part#add('vim_better_whitespace', s:vim_better_whitespace)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " editorconfig_vim
@@ -157,19 +157,19 @@ call materia#packages#add('vim_better_whitespace', s:vim_better_whitespace)
 " https://github.com/editorconfig/editorconfig-vim
 " https://editorconfig.org/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:editorconfig_vim = {'name': 'editorconfig-vim'}
+let s:editorconfig_vim = {'directory': 'editorconfig-vim'}
 function! s:editorconfig_vim.preloader()
-  let g:EditorConfig_exclude_patterns = materia#conf('packages.editorconfig_vim.exclude_patterns')
+  let g:EditorConfig_exclude_patterns = materia#conf('parts.editorconfig_vim.exclude_patterns')
 endfunction
 function! s:editorconfig_vim.loader()
   " disable this plugin for a specific buffer
-  let types = materia#conf('packages.editorconfig_vim.disable_types')
+  let types = materia#conf('parts.editorconfig_vim.disable_types')
   execute 'autocmd FileType '. join(types, ',') .' let b:EditorConfig_disable = 1'
 endfunction
 function! s:editorconfig_vim.installer(install)
   call a:install('editorconfig/editorconfig-vim')
 endfunction
-call materia#packages#add('editorconfig_vim', s:editorconfig_vim)
+call materia#part#add('editorconfig_vim', s:editorconfig_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " deoppet
@@ -179,7 +179,7 @@ call materia#packages#add('editorconfig_vim', s:editorconfig_vim)
 " Default snippets for `neosnippets`
 " https://github.com/Shougo/neosnippet-snippets/tree/master/neosnippets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:deoppet = {'name': 'deoppet.nvim'}
+let s:deoppet = {'directory': 'deoppet.nvim'}
 
 function! s:deoppet.condition()
   return has('nvim-0.5.0')
@@ -201,7 +201,7 @@ function! s:deoppet.installer(install)
     call a:install('Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' })
   endif
 endfunction
-call materia#packages#add('deoppet', s:deoppet)
+call materia#part#add('deoppet', s:deoppet)
 
 " old_easyclip {
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,7 +209,7 @@ call materia#packages#add('deoppet', s:deoppet)
     " Plugin that adds a 'cut' operation separate from 'delete'
     " https://github.com/svermeulen/vim-cutlass
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    let s:vim_cutlass = {'name': 'vim-cutlass'}
+    let s:vim_cutlass = {'directory': 'vim-cutlass'}
     function! s:vim_cutlass.loader()
 
     endfunction
@@ -217,14 +217,14 @@ call materia#packages#add('deoppet', s:deoppet)
       call a:install('svermeulen/vim-cutlass')
     endfunction
 
-    call materia#packages#add('vim_cutlass', s:vim_cutlass)
+    call materia#part#add('vim_cutlass', s:vim_cutlass)
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " vim_yoink
     " Vim plugin that maintains a yank history to cycle between when pasting
     " https://github.com/svermeulen/vim-yoink
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    let s:vim_yoink = {'name': 'vim-yoink'}
+    let s:vim_yoink = {'directory': 'vim-yoink'}
     function! s:vim_yoink.preloader()
       let g:yoinkIncludeDeleteOperations = 1
     endfunction
@@ -243,14 +243,14 @@ call materia#packages#add('deoppet', s:deoppet)
       call a:install('svermeulen/vim-yoink')
     endfunction
 
-    call materia#packages#add('vim_yoink', s:vim_yoink)
+    call materia#part#add('vim_yoink', s:vim_yoink)
 
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " vim_subversive
     " Plugin that adds a 'cut' operation separate from 'delete'
     " https://github.com/svermeulen/vim-cutlass
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    let s:vim_subversive = {'name': 'vim-subversive'}
+    let s:vim_subversive = {'directory': 'vim-subversive'}
     function! s:vim_subversive.loader()
       nmap s <plug>(SubversiveSubstitute)
       xmap s <plug>(SubversiveSubstitute)
@@ -266,5 +266,5 @@ call materia#packages#add('deoppet', s:deoppet)
       call a:install('svermeulen/vim-subversive')
     endfunction
 
-    call materia#packages#add('vim_subversive', s:vim_subversive)
+    call materia#part#add('vim_subversive', s:vim_subversive)
 "}

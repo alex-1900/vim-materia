@@ -4,7 +4,7 @@ scriptencoding utf-8
 
 " First we define an init function that will be invoked from extensions.vim
 function! airline#extensions#username#init(ext)
-  if materia#conf('packages.vim_airline.with_username')
+  if materia#conf('parts.vim_airline.with_username')
     call a:ext.add_statusline_func('airline#extensions#username#apply')
     call a:ext.add_inactive_statusline_func('airline#extensions#username#apply')
   endif

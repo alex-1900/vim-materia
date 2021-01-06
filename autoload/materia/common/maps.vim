@@ -51,14 +51,19 @@ function! materia#common#maps#get()
       call Mapping(modes, 1, pkey .'Q', ':<c-u>clast!<cr>')
       call Mapping(modes, 1, nkey .'<C-Q>', ':<c-u>cpfile!<cr>')
       call Mapping(modes, 1, pkey .'<C-Q>', ':<c-u>cnfile!<cr>')
-      " theme
-      call Mapping(modes, 1, nkey .'t', ':<c-u>NextTheme<cr>')
-      call Mapping(modes, 1, pkey .'t', ':<c-u>PrevTheme<cr>')
+      " UI theme
+      call Mapping(modes, 1, nkey .'u', ':<c-u>NextTheme<cr>')
+      call Mapping(modes, 1, pkey .'u', ':<c-u>PrevTheme<cr>')
       " git conflict (try `d[n` to remove a conflict)
       call Mapping(['n', 'o'], 1, nkey .'c', '<C-U>call s:search_conflict(1)<cr>')
       call Mapping(['n', 'o'], 1, pkey .'c', '<C-U>call s:search_conflict(0)<cr>')
       call Mapping(['x'], 1, nkey .'c', "<C-U>exe 'normal! gv'<Bar>call s:search_conflict(1)<cr>")
       call Mapping(['x'], 1, pkey .'c', "<C-U>exe 'normal! gv'<Bar>call s:search_conflict(0)<cr>")
+
+      function! s:search_conflict(reverse) abort
+        call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
+      endfunction
+
   " }
 
   " Basic moving {
@@ -116,8 +121,4 @@ function! materia#common#maps#get()
     " end of gui settings
   endif
 
-endfunction
-
-function! s:search_conflict(reverse) abort
-  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
 endfunction

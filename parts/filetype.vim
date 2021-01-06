@@ -9,21 +9,21 @@
 " HTML5 + inline SVG omnicomplete function, indent and syntax for Vim. Based on the default htmlcomplete.vim.
 " https://github.com/othree/html5.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:html5_vim = {'name': 'html5.vim'}
+let s:html5_vim = {'directory': 'html5.vim'}
 function! s:html5_vim.preloader()
-  let g:html5_event_handler_attributes_complete = materia#conf('packages.html5_vim.attr_event_handler')
-  let g:html5_rdfa_attributes_complete = materia#conf('packages.html5_vim.attr_rdfa')
-  let g:html5_microdata_attributes_complete = materia#conf('packages.html5_vim.attr_microdata')
-  let g:html5_aria_attributes_complete = materia#conf('packages.html5_vim.attr_aria')
+  let g:html5_event_handler_attributes_complete = materia#conf('parts.html5_vim.attr_event_handler')
+  let g:html5_rdfa_attributes_complete = materia#conf('parts.html5_vim.attr_rdfa')
+  let g:html5_microdata_attributes_complete = materia#conf('parts.html5_vim.attr_microdata')
+  let g:html5_aria_attributes_complete = materia#conf('parts.html5_vim.attr_aria')
 endfunction
 function! s:html5_vim.loader()
-  let filetypes = materia#conf('packages.html5_vim.filetypes')
+  let filetypes = materia#conf('parts.html5_vim.filetypes')
   execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
 endfunction
 function! s:html5_vim.installer(install)
   call a:install('othree/html5.vim')
 endfunction
-call materia#packages#add('html5_vim', s:html5_vim)
+call materia#part#add('html5_vim', s:html5_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " emmet_vim
@@ -35,20 +35,20 @@ call materia#packages#add('html5_vim', s:html5_vim)
 " An Interface to WEB APIs.
 " https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:emmet_vim = {'name': 'emmet-vim'}
+let s:emmet_vim = {'directory': 'emmet-vim'}
 function! s:emmet_vim.preloader()
   if materia#conf('html.snippet_path')
     let g:user_emmet_install_global = 0
-    let snippet_path = materia#conf('packages.emmet_vim.snippet_path')
+    let snippet_path = materia#conf('parts.emmet_vim.snippet_path')
     if snippet_path
       let g:user_emmet_settings = webapi#json#decode(join(readfile(expand(s:snippet_path)), "\n"))
     endif
   endif
-  let g:user_emmet_leader_key = '<C-' . materia#conf('packages.emmet_vim.key_ctrl') . '>'
+  let g:user_emmet_leader_key = '<C-' . materia#conf('parts.emmet_vim.key_ctrl') . '>'
 endfunction
 function! s:emmet_vim.loader()
   if (exists('g:loaded_emmet_vim') && g:loaded_emmet_vim)
-    let filetypes = materia#conf('packages.emmet_vim.filetypes')
+    let filetypes = materia#conf('parts.emmet_vim.filetypes')
     execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
   endif
 endfunction
@@ -56,7 +56,7 @@ function! s:emmet_vim.installer(install)
   call a:install('mattn/emmet-vim')
   call a:install('mattn/webapi-vim')
 endfunction
-call materia#packages#add('emmet_vim', s:emmet_vim)
+call materia#part#add('emmet_vim', s:emmet_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
@@ -64,7 +64,7 @@ call materia#packages#add('emmet_vim', s:emmet_vim)
 " It runs files through external syntax checkers and displays any resulting errors to the user.
 " https://github.com/vim-syntastic/syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:syntastic = {'name': 'syntastic'}
+let s:syntastic = {'directory': 'syntastic'}
 
 function! s:syntastic.preloader()
   " status line
@@ -81,25 +81,25 @@ endfunction
 function! s:syntastic.installer(install)
   call a:install('vim-syntastic/syntastic')
 endfunction
-call materia#packages#add('syntastic', s:syntastic)
+call materia#part#add('syntastic', s:syntastic)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nginx
 " Improved nginx vim plugin (incl. syntax highlighting)
 " https://github.com/chr4/nginx.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:nginx = {'name': 'nginx.vim'}
+let s:nginx = {'directory': 'nginx.vim'}
 function! s:nginx.installer(install)
   call a:install('chr4/nginx.vim')
 endfunction
-call materia#packages#add('nginx', s:nginx)
+call materia#part#add('nginx', s:nginx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_go
 " Go development plugin for Vim
 " https://github.com/fatih/vim-go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_go = {'name': 'vim-go'}
+let s:vim_go = {'directory': 'vim-go'}
 function! s:vim_go.preloader()
   " modes
   let g:go_def_mode = 'gopls'
@@ -114,9 +114,9 @@ function! s:vim_go.preloader()
   let g:go_fmt_options = {}
   let g:go_gopls_options = ['-remote=auto']
   " autosave
-  let g:go_fmt_autosave = materia#conf('packages.vim_go.fmt_autosave')
-  let g:go_mod_fmt_autosave = materia#conf('packages.vim_go.mod_fmt_autosave')
-  let g:go_imports_autosave = materia#conf('packages.vim_go.imports_autosave')
+  let g:go_fmt_autosave = materia#conf('parts.vim_go.fmt_autosave')
+  let g:go_mod_fmt_autosave = materia#conf('parts.vim_go.mod_fmt_autosave')
+  let g:go_imports_autosave = materia#conf('parts.vim_go.imports_autosave')
   let g:go_fmt_fail_silently = 1
   " features
   let g:go_gopls_enabled = 1
@@ -192,18 +192,18 @@ function! s:vim_go.installer(install)
   call a:install('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
 endfunction
 
-call materia#packages#add('vim_go', s:vim_go)
+call materia#part#add('vim_go', s:vim_go)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_javascript
 " JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
 " https://github.com/pangloss/vim-javascript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_javascript = {'name': 'vim-javascript'}
+let s:vim_javascript = {'directory': 'vim-javascript'}
 function! s:vim_javascript.preloader()
-  let g:javascript_plugin_jsdoc = materia#conf('packages.vim_javascript.attr_plugin_jsdoc')
-  let g:javascript_plugin_ngdoc = materia#conf('packages.vim_javascript.attr_plugin_ngdoc')
-  let g:javascript_plugin_flow = materia#conf('packages.vim_javascript.attr_plugin_flow')
+  let g:javascript_plugin_jsdoc = materia#conf('parts.vim_javascript.attr_plugin_jsdoc')
+  let g:javascript_plugin_ngdoc = materia#conf('parts.vim_javascript.attr_plugin_ngdoc')
+  let g:javascript_plugin_flow = materia#conf('parts.vim_javascript.attr_plugin_flow')
 
   augroup javascript_folding
     au!
@@ -213,35 +213,35 @@ endfunction
 function! s:vim_javascript.installer(install)
   call a:install('pangloss/vim-javascript')
 endfunction
-call materia#packages#add('vim_javascript', s:vim_javascript)
+call materia#part#add('vim_javascript', s:vim_javascript)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_json
 " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
 " https://github.com/elzr/vim-json
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_json = {'name': 'vim-json'}
+let s:vim_json = {'directory': 'vim-json'}
 
 function! s:vim_json.preloader()
   set conceallevel=0
-  let g:vim_json_syntax_conceal = materia#conf('packages.vim_json.syntax_conceal')
+  let g:vim_json_syntax_conceal = materia#conf('parts.vim_json.syntax_conceal')
 endfunction
 
 function! s:vim_json.installer(install)
   call a:install('elzr/vim-json')
 endfunction
 
-call materia#packages#add('vim_json', s:vim_json)
+call materia#part#add('vim_json', s:vim_json)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " typescript_vim
 " Typescript syntax files for Vim
 " https://github.com/leafgarland/typescript-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:typescript_vim = {'name': 'typescript-vim'}
+let s:typescript_vim = {'directory': 'typescript-vim'}
 function! s:typescript_vim.preloader()
-  let g:typescript_compiler_binary = materia#conf('packages.typescript_vim.attr_compiler_binary')
-  let g:typescript_compiler_options = materia#conf('packages.typescript_vim.attr_compiler_options')
+  let g:typescript_compiler_binary = materia#conf('parts.typescript_vim.attr_compiler_binary')
+  let g:typescript_compiler_options = materia#conf('parts.typescript_vim.attr_compiler_options')
 
   autocmd FileType typescript :set makeprg=tsc
 
@@ -253,40 +253,40 @@ function! s:typescript_vim.installer(install)
   call a:install('leafgarland/typescript-vim')
 endfunction
 
-call materia#packages#add('typescript_vim', s:typescript_vim)
+call materia#part#add('typescript_vim', s:typescript_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_jsx
 " React JSX syntax highlighting and indenting for vim.
 " https://github.com/mxw/vim-jsx
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_jsx = {'name': 'vim-jsx'}
+let s:vim_jsx = {'directory': 'vim-jsx'}
 function! s:vim_jsx.installer(install)
   call a:install('mxw/vim-jsx')
 endfunction
-call materia#packages#add('vim_jsx', s:vim_jsx)
+call materia#part#add('vim_jsx', s:vim_jsx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_markdown
 " This is the development version of Vim's included syntax highlighting and filetype plugins for Markdown.
 " https://github.com/tpope/vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_markdown = {'name': 'vim-markdown'}
+let s:vim_markdown = {'directory': 'vim-markdown'}
 function! s:vim_markdown.preloader()
-  let g:markdown_fenced_languages = materia#conf('packages.vim_markdown.attr_fenced_languages')
-  let g:markdown_minlines = materia#conf('packages.vim_markdown.attr_minlines')
+  let g:markdown_fenced_languages = materia#conf('parts.vim_markdown.attr_fenced_languages')
+  let g:markdown_minlines = materia#conf('parts.vim_markdown.attr_minlines')
 endfunction
 function! s:vim_markdown.installer(install)
   call a:install('tpope/vim-markdown')
 endfunction
-call materia#packages#add('vim_markdown', s:vim_markdown)
+call materia#part#add('vim_markdown', s:vim_markdown)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cpp_enhanced_highlight
 " Additional Vim syntax highlighting for C++ (including C++11/14/17)
 " https://github.com/octol/vim-cpp-enhanced-highlight
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:cpp_enhanced_highlight = {'name': 'vim-cpp-enhanced-highlight'}
+let s:cpp_enhanced_highlight = {'directory': 'vim-cpp-enhanced-highlight'}
 function! s:cpp_enhanced_highlight.preloader()
   let g:cpp_class_scope_highlight = 1
   let g:cpp_member_variable_highlight = 1
@@ -297,4 +297,4 @@ endfunction
 function! s:cpp_enhanced_highlight.installer(install)
   call a:install('octol/vim-cpp-enhanced-highlight')
 endfunction
-call materia#packages#add('cpp_enhanced_highlight', s:cpp_enhanced_highlight)
+call materia#part#add('cpp_enhanced_highlight', s:cpp_enhanced_highlight)

@@ -42,7 +42,7 @@ function! materia#begin() abort
   call materia#common#autocmds#get()
 
   call s:process_environments()
-  call s:loaddir(g:materia#path#home . '/packages')
+  call s:loaddir(g:materia#path#home . '/parts')
   " load custom settings
   let custom_entry_file = materia#homepath('/custom/main.vim')
   if filereadable(custom_entry_file)
@@ -54,10 +54,10 @@ function! materia#loadplugs() abort
   " Specify a directory for plugins
   call plug#begin(g:materia#path#bundles)
   " load plugs
-  for package_name in keys(materia#conf('packages'))
-    " Load enable packages
-    if materia#conf('packages.'. package_name . '.disable') == 0
-      call materia#packages#load(package_name)
+  for part_name in keys(materia#conf('parts'))
+    " Load enable parts
+    if materia#conf('parts.'. part_name . '.disable') == 0
+      call materia#part#load(part_name)
     endif
   endfor
   " Initialize plugin system
@@ -120,11 +120,11 @@ endfunction
 
 " get the plug installer.
 function! s:get_materia_plug_install_func()
-  let s:packages = {}
+  let s:parts = {}
   function! s:materia_plug_install(repo, ...)
-    if !has_key(s:packages, a:repo)
+    if !has_key(s:parts, a:repo)
       call plug#(a:repo, get(a:, 1, {}))
-      let s:packages[a:repo] = 1
+      let s:parts[a:repo] = 1
     endif
   endfunction
   return function('s:materia_plug_install')

@@ -43,7 +43,7 @@ The`config.default.json` is used to generate the default options, and you can cr
     "http_proxy": "'http://localhost:1087'",
     "https_proxy": "'http://localhost:1087'"
   },
-  "packages": {
+  "parts": {
     "vim_virtualenv": {
       "directory": "/Users/alex/envs/vim-materia"
     },
@@ -63,7 +63,7 @@ Materia manages plugins in a unified way, ensure that you will not add the same 
 ```vim
 " custom/main.vim
 
-let nord_vim = {'name': 'nord-vim'}
+let nord_vim = {'directory': 'nord-vim'}
 
 if materia#conf('options.colorscheme') == 'nord'
   function! nord_vim.config()
@@ -83,7 +83,7 @@ function! nord_vim.install(install)
   call a:install('arcticicestudio/nord-vim')
 endfunction
 
-call materia#packages#add('nord_vim', nord_vim)
+call materia#part#add('nord_vim', nord_vim)
 ```
 
 In config.json you should:
@@ -92,12 +92,12 @@ In config.json you should:
   "options": {
     "colorscheme": "nord"
   },
-  "packages": {
+  "parts": {
     "nord_vim": {}
   }
 }
 ```
-And then, you can change the json field `packages.nord_vim.disable` to enable/disable this theme.
+And then, you can change the json field `parts.nord_vim.disable` to enable/disable this theme.
 
 # Mixed
 Some records are used to simplify your setup.

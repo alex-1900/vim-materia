@@ -18,7 +18,7 @@
   },
   "environment": {
   },
-  "packages": {
+  "parts": {
     "airline_weather": {
       "disable": 1,
       "attr_area": "dalian,cn",
