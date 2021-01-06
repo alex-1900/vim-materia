@@ -86,6 +86,8 @@ function! papercolor.loader()
   if exists('*airline#switch_theme')
     call airline#switch_theme('papercolor')
   endif
+  hi Defx_filename_root        guifg=#F5F5DC
+  hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
 
 function! papercolor.installer(install)
@@ -111,6 +113,8 @@ function! iceberg.loader()
   if exists('*airline#switch_theme')
     call airline#switch_theme('iceberg')
   endif
+  hi Defx_filename_root        guifg=#F5F5DC
+  hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
 
 function! iceberg.installer(install)
@@ -137,6 +141,8 @@ function! material_theme.loader()
   if exists('*airline#switch_theme')
     call airline#switch_theme('wombat')
   endif
+  hi Defx_filename_root        guifg=#F5F5DC
+  hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
 
 function! material_theme.installer(install)

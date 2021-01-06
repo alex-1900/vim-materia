@@ -11,7 +11,7 @@
   },
   "options": {
     "background": "dark",
-    "colorscheme": 0,
+    "colorscheme": "material",
     "clipboard_catch": 1,
     "scroll_multiple": 4,
     "undo_persistent": 0
