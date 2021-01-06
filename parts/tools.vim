@@ -9,8 +9,8 @@
 " The dark powered file explorer implementation
 " https://github.com/Shougo/defx.nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:defx = {'directory': 'defx.nvim'}
-function! s:defx.preloader()
+let defx = {'id': 'defx', 'directory': 'defx.nvim'}
+function! defx.preloader()
   let g:defx_icons_enable_syntax_highlight = 1
   let g:defx_icons_column_length = 1
 
@@ -25,7 +25,7 @@ function! s:defx.preloader()
   hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
 
-function! s:defx.loader()
+function! defx.loader()
   call defx#custom#option('_', {
     \ 'columns': 'mark:indent:git:icons:filename',
     \ 'winwidth': 30,
@@ -111,7 +111,7 @@ function! s:defx.loader()
   autocmd BufEnter * call s:open_defx_if_directory()
 endfunction
 
-function! s:defx.installer(install)
+function! defx.installer(install)
   if has('nvim')
     call a:install('Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' })
   else
@@ -123,44 +123,44 @@ function! s:defx.installer(install)
   call a:install('kristijanhusak/defx-git')
 endfunction
 
-call materia#part#add('defx', s:defx)
+call materia#part#add(defx)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " undotree
 " The plug-in visualizes undo history and makes it easier to browse and switch between different undo branches
 " https://github.com/mbbill/undotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:undotree = {'directory': 'undotree'}
-function! s:undotree.loader()
+let undotree = {'id': 'undotree', 'directory': 'undotree'}
+function! undotree.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.undotree.key_state'))
   execute 'nnoremap <silent> '. key_prefix.state .' :<C-u>UndotreeToggle<CR>'
 endfunction
 
-function! s:undotree.installer(install)
+function! undotree.installer(install)
   call a:install('mbbill/undotree')
 endfunction
 
-call materia#part#add('undotree', s:undotree)
+call materia#part#add(undotree)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_tmux_navigator
 " Seamless navigation between tmux panes and vim splits
 " https://github.com/christoomey/vim-tmux-navigator
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_tmux_navigator = {'directory': 'vim-tmux-navigator'}
-function! s:vim_tmux_navigator.installer(install)
+let vim_tmux_navigator = {'id': 'vim_tmux_navigator', 'directory': 'vim-tmux-navigator'}
+function! vim_tmux_navigator.installer(install)
   call a:install('christoomey/vim-tmux-navigator')
 endfunction
 
-call materia#part#add('vim_tmux_navigator', s:vim_tmux_navigator)
+call materia#part#add(vim_tmux_navigator)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vista_vim
 " View and search LSP symbols, tags in Vim/NeoVim.
 " https://github.com/liuchengxu/vista.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vista_vim = {'directory': 'vista.vim'}
-function! s:vista_vim.preloader()
+let vista_vim = {'id': 'vista_vim', 'directory': 'vista.vim'}
+function! vista_vim.preloader()
   let g:vista_sidebar_width = materia#conf('parts.vista_vim.attr_sidebar_width')
   let g:vista#renderer#enable_icon = materia#conf('parts.vista_vim.attr_enable_icon')
   let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
@@ -181,7 +181,7 @@ function! s:vista_vim.preloader()
   autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 endfunction
 
-function! s:vista_vim.loader()
+function! vista_vim.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.vista_vim.key_state'))
   execute 'nnoremap <silent> '. key_prefix.state .'v :<C-u>Vista!!<CR>'
   execute 'nnoremap <silent> '. key_prefix.state .'f :<C-u>Vista finder<CR>'
@@ -192,23 +192,23 @@ function! s:vista_vim.loader()
   set statusline+=%{NearestMethodOrFunction()}
 endfunction
 
-function! s:vista_vim.installer(install)
+function! vista_vim.installer(install)
   call a:install('liuchengxu/vista.vim')
 endfunction
 
-call materia#part#add('vista_vim', s:vista_vim)
+call materia#part#add(vista_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_fugitive
 " Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
 " https://github.com/tpope/vim-fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_fugitive = {'directory': 'vim-fugitive'}
-function! s:undotree.option()
+let vim_fugitive = {'id': 'vim_fugitive', 'directory': 'vim-fugitive'}
+function! undotree.option()
   set statusline+=%{FugitiveStatusline()}
 endfunction
 
-function! s:vim_fugitive.loader()
+function! vim_fugitive.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.vim_fugitive.basekey'))
   execute 'nnoremap <silent> '. key_prefix.reader .'g :<C-u>Git --paginate<CR>'
   execute 'nnoremap <silent> '. key_prefix.reader .'d :<C-u>Git diff<CR>'
@@ -223,29 +223,29 @@ function! s:vim_fugitive.loader()
   execute 'nnoremap <silent> '. key_prefix.writer .'w :<C-u>Gwrite<CR>'
 endfunction
 
-function! s:vim_fugitive.installer(install)
+function! vim_fugitive.installer(install)
   call a:install('tpope/vim-fugitive')
 endfunction
 
-call materia#part#add('vim_fugitive', s:vim_fugitive)
+call materia#part#add(vim_fugitive)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_gitgutter
 " A Vim plugin which shows a git diff in the sign column.
 " https://github.com/airblade/vim-gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_gitgutter = {'directory': 'vim-gitgutter'}
-function! s:vim_gitgutter.option()
+let vim_gitgutter = {'id': 'vim_gitgutter', 'directory': 'vim-gitgutter'}
+function! vim_gitgutter.option()
   set foldtext=gitgutter#fold#foldtext()
 endfunction
 
-function! s:vim_gitgutter.preloader()
+function! vim_gitgutter.preloader()
   let g:gitgutter_max_signs = -1
   let g:gitgutter_map_keys = 0
   let g:gitgutter_preview_win_floating = 1
 endfunction
 
-function! s:vim_gitgutter.loader()
+function! vim_gitgutter.loader()
   let okey = materia#conf('parts.vim_gitgutter.basekey')
   let nkey = materia#conf('key.next')
   let pkey = materia#conf('key.prev')
@@ -272,38 +272,38 @@ function! s:vim_gitgutter.loader()
   set statusline+=%{GitStatus()}
 endfunction
 
-function! s:vim_gitgutter.installer(install)
+function! vim_gitgutter.installer(install)
   call a:install('airblade/vim-gitgutter')
 endfunction
 
-call materia#part#add('vim_gitgutter', s:vim_gitgutter)
+call materia#part#add(vim_gitgutter)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_smooth_scroll
 " Make scrolling in Vim more pleasant
 " https://github.com/terryma/vim-smooth-scroll
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_smooth_scroll = {'directory': 'vim-smooth-scroll'}
-function! s:vim_smooth_scroll.loader()
+let vim_smooth_scroll = {'id': 'vim_smooth_scroll', 'directory': 'vim-smooth-scroll'}
+function! vim_smooth_scroll.loader()
   let speed = materia#conf('parts.vim_smooth_scroll.speed')
   execute 'noremap <silent> <c-u> :call smooth_scroll#up(&scroll, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-d> :call smooth_scroll#down(&scroll, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, '. speed .', 1)<CR>'
 endfunction
-function! s:vim_smooth_scroll.installer(install)
+function! vim_smooth_scroll.installer(install)
   call a:install('terryma/vim-smooth-scroll')
 endfunction
-call materia#part#add('vim_smooth_scroll', s:vim_smooth_scroll)
+call materia#part#add(vim_smooth_scroll)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_floaterm
 " Use (neo)vim terminal in the floating/popup window.
 " https://github.com/voldikss/vim-floaterm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_floaterm = {'directory': 'vim-floaterm'}
+let vim_floaterm = {'id': 'vim_floaterm', 'directory': 'vim-floaterm'}
 
-function! s:vim_floaterm.preloader()
+function! vim_floaterm.preloader()
   " Set floaterm window's background to black
   hi Floaterm guibg=black
   " Set floating window border line color to cyan, and background to orange
@@ -328,11 +328,11 @@ function! s:vim_floaterm.preloader()
   let g:floaterm_autoclose = 0
 endfunction
 
-function! s:vim_floaterm.installer(install)
+function! vim_floaterm.installer(install)
   call a:install('voldikss/vim-floaterm')
 endfunction
 
-call materia#part#add('vim_floaterm', s:vim_floaterm)
+call materia#part#add(vim_floaterm)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_peekaboo
@@ -341,31 +341,31 @@ call materia#part#add('vim_floaterm', s:vim_floaterm)
 " You can toggle fullscreen mode by pressing spacebar.
 " https://github.com/junegunn/vim-peekaboo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_peekaboo = {'directory': 'vim-peekaboo'}
-function! s:vim_peekaboo.preloader()
+let vim_peekaboo = {'id': 'vim_peekaboo', 'directory': 'vim-peekaboo'}
+function! vim_peekaboo.preloader()
   let g:peekaboo_delay = materia#conf('parts.vim_peekaboo.attr_delay')
   let g:peekaboo_compact = materia#conf('parts.vim_peekaboo.attr_compact')
   let g:peekaboo_prefix = materia#conf('parts.vim_peekaboo.attr_prefix')
   let g:peekaboo_ins_prefix = materia#conf('parts.vim_peekaboo.attr_ins_prefix')
 endfunction
-function! s:vim_peekaboo.installer(install)
+function! vim_peekaboo.installer(install)
   call a:install('junegunn/vim-peekaboo')
 endfunction
-call materia#part#add('vim_peekaboo', s:vim_peekaboo)
+call materia#part#add(vim_peekaboo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " materia_session
 " The automated Vim/Neovim session management for Materia.
 " https://github.com/alex9201/vim-materia-session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:materia_session = {'directory': 'vim-materia-session'}
-function! s:materia_session.preloader()
+let materia_session = {'id': 'materia_session', 'directory': 'vim-materia-session'}
+function! materia_session.preloader()
   let g:materia_session_mode = materia#conf('parts.materia_session.mode')
   let g:materia_session_directory = materia#homepath('/temp/sessions')
   let g:session_autosave_on_actions = materia#conf('parts.materia_session.autosave_on_actions')
 endfunction
 
-function! s:materia_session.loader()
+function! materia_session.loader()
   if g:loaded_materia_session
     if materia#conf('parts.materia_session.autoload')
       call MateriaSessionLoad()
@@ -376,11 +376,11 @@ function! s:materia_session.loader()
   endif
 endfunction
 
-function! s:materia_session.installer(install)
+function! materia_session.installer(install)
   call a:install('alex9201/vim-materia-session')
 endfunction
 
-call materia#part#add('materia_session', s:materia_session)
+call materia#part#add(materia_session)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_virtualenv
@@ -389,8 +389,8 @@ call materia#part#add('materia_session', s:materia_session)
 "
 " virtualenv -p python envdir_name
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_virtualenv = {'directory': 'vim-virtualenv'}
-function! s:vim_virtualenv.preloader()
+let vim_virtualenv = {'id': 'vim_virtualenv', 'directory': 'vim-virtualenv'}
+function! vim_virtualenv.preloader()
   let conf = materia#conf('parts.vim_virtualenv.virtualenv_directory')
   if type(conf) == type('')
     let g:virtualenv_directory = conf
@@ -399,19 +399,19 @@ function! s:vim_virtualenv.preloader()
   endif
 endfunction
 
-function! s:vim_virtualenv.installer(install)
+function! vim_virtualenv.installer(install)
   call a:install('jmcantrell/vim-virtualenv')
 endfunction
 
-call materia#part#add('vim_virtualenv', s:vim_virtualenv)
+call materia#part#add(vim_virtualenv)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlp
 " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
 " https://github.com/ctrlpvim/ctrlp.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:ctrlp = {'directory': 'ctrlp.vim'}
-function! s:ctrlp.preloader()
+let ctrlp = {'id': 'ctrlp', 'directory': 'ctrlp.vim'}
+function! ctrlp.preloader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.ctrlp.key_state'))
   let g:ctrlp_map = key_prefix.state
   let g:ctrlp_cmd = materia#conf('parts.ctrlp.attr_cmd')
@@ -425,8 +425,8 @@ function! s:ctrlp.preloader()
   let g:ctrlp_custom_ignore = materia#homepath('/temp/ignore')
 endfunction
 
-function! s:ctrlp.installer(install)
+function! ctrlp.installer(install)
   call a:install('ctrlpvim/ctrlp.vim')
 endfunction
 
-call materia#part#add('ctrlp', s:ctrlp)
+call materia#part#add(ctrlp)

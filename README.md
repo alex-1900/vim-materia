@@ -63,14 +63,14 @@ Materia manages plugins in a unified way, ensure that you will not add the same 
 ```vim
 " custom/main.vim
 
-let nord_vim = {'directory': 'nord-vim'}
+let nord_vim = {'id': 'nord_vim', 'directory': 'nord-vim'}
 
 if materia#conf('options.colorscheme') == 'nord'
   function! nord_vim.config()
     let g:nord_cursor_line_number_background = 1
     let g:nord_uniform_status_lines = 1
-    let g:nord_bold = 0
-    let g:nord_italic = 1
+    let g:nord_bold = materia#conf('parts.nord_vim.bold')
+    let g:nord_italic = materia#conf('parts.nord_vim.italic')
   endfunction
 
   function! nord_vim.listener()
@@ -83,7 +83,7 @@ function! nord_vim.install(install)
   call a:install('arcticicestudio/nord-vim')
 endfunction
 
-call materia#part#add('nord_vim', nord_vim)
+call materia#part#add(nord_vim)
 ```
 
 In config.json you should:
@@ -93,11 +93,14 @@ In config.json you should:
     "colorscheme": "nord"
   },
   "parts": {
-    "nord_vim": {}
+    "nord_vim": {
+      "bold": 0,
+      "italic": 1
+    }
   }
 }
 ```
-And then, you can change the json field `parts.nord_vim.disable` to enable/disable this theme.
+You can change the json field `parts.nord_vim.disable` to enable/disable this theme.
 
 # Mixed
 Some records are used to simplify your setup.

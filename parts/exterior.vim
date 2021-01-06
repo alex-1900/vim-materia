@@ -9,11 +9,11 @@
 " Distraction-free writing in Vim.
 " https://github.com/junegunn/goyo.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:goyo = {'directory': 'goyo.vim'}
-function! s:goyo.installer(install)
+let goyo = {'id': 'goyo', 'directory': 'goyo.vim'}
+function! goyo.installer(install)
   call a:install('junegunn/goyo.vim')
 endfunction
-call materia#part#add('goyo', s:goyo)
+call materia#part#add(goyo)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " limelight_vim
@@ -23,8 +23,8 @@ call materia#part#add('goyo', s:goyo)
 " Error: `Cannot calculate background color`:
 " https://github.com/junegunn/limelight.vim/issues/39
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:limelight_vim = {'directory': 'limelight.vim'}
-function! s:limelight_vim.preloader()
+let limelight_vim = {'id': 'limelight_vim', 'directory': 'limelight.vim'}
+function! limelight_vim.preloader()
   " Color name (:help cterm-colors) or ANSI code
   let g:limelight_conceal_ctermfg = materia#conf('parts.limelight_vim.conceal_ctermfg')
   " Color name (:help gui-colors) or RGB color
@@ -38,7 +38,7 @@ function! s:limelight_vim.preloader()
   let g:limelight_priority = materia#conf('parts.limelight_vim.priority')
 endfunction
 
-function! s:limelight_vim.loader()
+function! limelight_vim.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.limelight_vim.basekey'))
   execute 'nnoremap <silent> '. key_prefix.reader .'l :<C-u>Limelight!!<CR>'
   for n in range(0, 9)
@@ -46,10 +46,10 @@ function! s:limelight_vim.loader()
   endfor
 endfunction
 
-function! s:limelight_vim.installer(install)
+function! limelight_vim.installer(install)
   call a:install('junegunn/limelight.vim')
 endfunction
-call materia#part#add('limelight_vim', s:limelight_vim)
+call materia#part#add(limelight_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_airline
@@ -58,7 +58,7 @@ call materia#part#add('limelight_vim', s:limelight_vim)
 " https://github.com/vim-airline/vim-airline-themes
 " https://github.com/vim-airline/vim-airline/wiki/FAQ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_airline = {'directory': 'vim-airline'}
+let vim_airline = {'id': 'vim_airline', 'directory': 'vim-airline'}
 function ModuleAirLineMateriaAddition(...)
   let builder = a:1
   let system_serv = materia#service#get('system')
@@ -72,7 +72,7 @@ function! MyLineNumber()
   return system_serv.username
 endfunction
 
-function! s:vim_airline.preloader()
+function! vim_airline.preloader()
   " Automatically displays all buffers when there's only one tab open.
   let g:airline#extensions#tabline#enabled = materia#conf('parts.vim_airline.with_tabline')
   let g:airline#extensions#tabline#formatter = materia#conf('parts.vim_airline.tabline_formatter')
@@ -103,12 +103,12 @@ function! s:vim_airline.preloader()
   endif
 endfunction
 
-function! s:vim_airline.installer(install)
+function! vim_airline.installer(install)
   call a:install('vim-airline/vim-airline')
   call a:install('vim-airline/vim-airline-themes')
 endfunction
 
-call materia#part#add('vim_airline', s:vim_airline)
+call materia#part#add(vim_airline)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline_weather
@@ -116,8 +116,8 @@ call materia#part#add('vim_airline', s:vim_airline)
 " https://github.com/Wildog/airline-weather.vim
 " https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:airline_weather = {'directory': 'vim-devicons'}
-function! s:airline_weather.preloader()
+let airline_weather = {'id': 'airline_weather', 'directory': 'vim-devicons'}
+function! airline_weather.preloader()
   let temp_dir = materia#homepath('/temp/airline_weather')
   if !isdirectory(temp_dir)
     call mkdir(temp_dir, 'p')
@@ -126,11 +126,11 @@ function! s:airline_weather.preloader()
   let g:weather#area = materia#conf('parts.airline_weather.attr_area')
   let g:weather#cache_ttl = materia#conf('parts.airline_weather.attr_cache_ttl')
 endfunction
-function! s:airline_weather.installer(install)
+function! airline_weather.installer(install)
   call a:install('Wildog/airline-weather.vim')
   call a:install('mattn/webapi-vim')
 endfunction
-call materia#part#add('airline_weather', s:airline_weather)
+call materia#part#add(airline_weather)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -138,25 +138,25 @@ call materia#part#add('airline_weather', s:airline_weather)
 " Adds filetype glyphs (icons) to various vim plugins.
 " https://github.com/ryanoasis/vim-devicons
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_devicons = {'directory': 'vim-devicons'}
-function! s:vim_devicons.preloader()
+let vim_devicons = {'id': 'vim_devicons', 'directory': 'vim-devicons'}
+function! vim_devicons.preloader()
   let app_system = materia#service#get('system')
   let g:webdevicons_enable = 1
   if !app_system.is_gui
     let g:webdevicons_enable = 0
   endif
 endfunction
-function! s:vim_devicons.installer(install)
+function! vim_devicons.installer(install)
   call a:install('ryanoasis/vim-devicons')
 endfunction
-call materia#part#add('vim_devicons', s:vim_devicons)
+call materia#part#add(vim_devicons)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_startify
 " https://github.com/mhinz/vim-startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_startify = {'directory': 'vim-startify'}
-function! s:vim_startify.preloader()
+let vim_startify = {'id': 'vim_startify', 'directory': 'vim-startify'}
+function! vim_startify.preloader()
   let g:startify_change_to_vcs_root = 1
   let g:startify_session_dir = materia#homepath('/sessions/custom')
 
@@ -171,7 +171,7 @@ function! s:vim_startify.preloader()
   let g:startify_custom_header_quotes = materia#conf('parts.vim_startify.header_quotes')
 endfunction
 
-function! s:vim_startify.loader()
+function! vim_startify.loader()
   " autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
   if has('nvim')
     autocmd TabNewEntered * Startify
@@ -193,7 +193,7 @@ function! s:vim_startify.loader()
   endif
 endfunction
 
-function! s:vim_startify.installer(install)
+function! vim_startify.installer(install)
   call a:install('mhinz/vim-startify')
 endfunction
-call materia#part#add('vim_startify', s:vim_startify)
+call materia#part#add(vim_startify)

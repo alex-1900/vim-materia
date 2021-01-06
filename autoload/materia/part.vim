@@ -9,8 +9,8 @@ let s:parts = {}
 let s:themes = {}
 
 " add a part
-function! materia#part#add(name, part) abort
-  let s:parts[a:name] = a:part
+function! materia#part#add(part) abort
+  let s:parts[a:part.id] = a:part
 endfunction
 
 " get all part

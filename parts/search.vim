@@ -15,8 +15,8 @@
 " https://github.com/BurntSushi/ripgrep
 " https://github.com/sharkdp/bat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:fzf_vim = {'directory': 'fzf.vim'}
-function! s:fzf_vim.preloader()
+let fzf_vim = {'id': 'fzf_vim', 'directory': 'fzf.vim'}
+function! fzf_vim.preloader()
   " give the same prefix to the commands
   let g:fzf_command_prefix = materia#conf('parts.fzf_vim.command_prefix')
   " Preview window on the right with 50% width
@@ -29,7 +29,7 @@ function! s:fzf_vim.preloader()
   let g:fzf_history_dir = materia#homepath('/temp/fzf_history')
 endfunction
 
-function! s:fzf_vim.loader()
+function! fzf_vim.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.fzf_vim.basekey'))
   let command_prefix = materia#conf('parts.fzf_vim.command_prefix')
   " Mapping selecting mappings
@@ -85,20 +85,20 @@ function! s:fzf_vim.loader()
 
 endfunction
 
-function! s:fzf_vim.installer(install)
+function! fzf_vim.installer(install)
   call a:install('junegunn/fzf', { 'do': 'call fzf#install()' })
   call a:install('junegunn/fzf.vim')
 endfunction
 
-call materia#part#add('fzf_vim', s:fzf_vim)
+call materia#part#add(fzf_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_interestingwords
 " A vim plugin for highlighting and navigating through different words in a buffer.
 " https://github.com/lfv89/vim-interestingwords
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_interestingwords = {'directory': 'vim-interestingwords'}
-function! s:vim_interestingwords.loader()
+let vim_interestingwords = {'id': 'vim_interestingwords', 'directory': 'vim-interestingwords'}
+function! vim_interestingwords.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.vim_interestingwords.basekey'))
   " vim-interestingwords
   execute 'nnoremap <silent> '. key_prefix.reader ." :<C-u>call InterestingWords('n')<CR>"
@@ -107,10 +107,10 @@ function! s:vim_interestingwords.loader()
   execute 'nnoremap <silent> '. key_prefix.prev .' :<C-u>call WordNavigation(0)<CR>'
   execute 'nnoremap <silent> '. key_prefix.next .' :<C-u>call WordNavigation(1)<CR>'
 endfunction
-function! s:vim_interestingwords.installer(install)
+function! vim_interestingwords.installer(install)
   call a:install('lfv89/vim-interestingwords')
 endfunction
-call materia#part#add('vim_interestingwords', s:vim_interestingwords)
+call materia#part#add(vim_interestingwords)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_visualstar
@@ -118,11 +118,11 @@ call materia#part#add('vim_interestingwords', s:vim_interestingwords)
 " In other words, you can search your selection text in |Visual-mode|.
 " https://github.com/thinca/vim-visualstar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:vim_visualstar = {'directory': 'vim-visualstar'}
-function! s:vim_visualstar.installer(install)
+let vim_visualstar = {'id': 'vim_visualstar', 'directory': 'vim-visualstar'}
+function! vim_visualstar.installer(install)
   call a:install('thinca/vim-visualstar')
 endfunction
-call materia#part#add('vim_visualstar', s:vim_visualstar)
+call materia#part#add(vim_visualstar)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlsf
@@ -133,8 +133,8 @@ call materia#part#add('vim_visualstar', s:vim_visualstar)
 " how to change highlight color in result windows
 " https://github.com/dyng/ctrlsf.vim/issues/272
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:ctrlsf = {'directory': 'ctrlsf.vim'}
-function! s:ctrlsf.preloader()
+let ctrlsf = {'id': 'ctrlsf', 'directory': 'ctrlsf.vim'}
+function! ctrlsf.preloader()
   let g:ctrlsf_debug_mode = 0
   let g:ctrlsf_auto_preview = materia#conf('parts.ctrlsf.attr_auto_preview')
   let g:ctrlsf_preview_position = materia#conf('parts.ctrlsf.attr_preview_position')
@@ -166,7 +166,8 @@ function! s:ctrlsf.preloader()
   endif
   let g:ctrlsf_ignore_dir = materia#conf('parts.ctrlsf.attr_ignore_dir')
 endfunction
-function! s:ctrlsf.loader()
+
+function! ctrlsf.loader()
   let key_prefix = GetConfigMapPrefix(materia#conf('parts.ctrlsf.basekey'))
   execute 'nmap '. key_prefix.reader .'f <Plug>CtrlSFPrompt'
   execute 'nmap '. key_prefix.state . ' :<C-u>CtrlSFToggle<CR>'
@@ -176,7 +177,9 @@ function! s:ctrlsf.loader()
   execute 'nmap '. key_prefix.reader .'c <Plug>CtrlSFCCwordPath'
   execute 'nmap '. key_prefix.reader .'l <Plug>CtrlSFPwordPath'
 endfunction
-function! s:ctrlsf.installer(install)
+
+function! ctrlsf.installer(install)
   call a:install('dyng/ctrlsf.vim')
 endfunction
-call materia#part#add('ctrlsf', s:ctrlsf)
+
+call materia#part#add(ctrlsf)
