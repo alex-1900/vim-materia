@@ -5,8 +5,12 @@
 "=============================================================================
 
 function! materia#common#commands#get()
+  let s:service_theme = materia#service#get('theme')
+
+  " Select UI theme by key
+  command! -nargs=1 LoadUI call s:service_theme.load(<f-args>)
   " Select next UI theme
-  command! -nargs=0 NextTheme call AroundUiTheme(1)
+  command! -nargs=0 NextUI call s:service_theme.load_offset(1)
   " Select prev UI theme
-  command! -nargs=0 PrevTheme call AroundUiTheme(-1)
+  command! -nargs=0 PrevUI call s:service_theme.load_offset(-1)
 endfunction

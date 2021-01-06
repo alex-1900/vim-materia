@@ -13,8 +13,7 @@ let gruvbox= {
   \ 'id': 'gruvbox',
   \ 'directory': 'gruvbox',
   \ 'tag': 'theme',
-  \ 'title': 'Gruvbox',
-  \ 'key': 'gruvbox'
+  \ 'title': 'Gruvbox'
 \ }
 
 function! gruvbox.preloader()
@@ -43,13 +42,11 @@ let onedark= {
   \ 'id': 'onedark',
   \ 'directory': 'onedark.vim',
   \ 'tag': 'theme',
-  \ 'title': 'Onedark',
-  \ 'key': 'onedark'
+  \ 'title': 'Onedark'
 \ }
 
 function! onedark.preloader()
   let g:onedark_termcolors=256
-  let g:lightline = {'colorscheme': 'onedark'}
 endfunction
 
 function! onedark.loader()
@@ -72,8 +69,7 @@ let papercolor= {
   \ 'id': 'papercolor',
   \ 'directory': 'papercolor-theme',
   \ 'tag': 'theme',
-  \ 'title': 'PaperColor',
-  \ 'key': 'papercolor'
+  \ 'title': 'PaperColor'
 \ }
 
 function! papercolor.preloader()
@@ -97,42 +93,14 @@ endfunction
 call materia#part#add(papercolor)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" iceberg
-" https://github.com/cocopon/iceberg.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let iceberg= {
-  \ 'id': 'iceberg',
-  \ 'directory': 'iceberg.vim',
-  \ 'tag': 'theme',
-  \ 'title': 'Iceberg',
-  \ 'key': 'iceberg'
-\ }
-
-function! iceberg.loader()
-  colorscheme iceberg
-  if exists('*airline#switch_theme')
-    call airline#switch_theme('iceberg')
-  endif
-  hi Defx_filename_root        guifg=#F5F5DC
-  hi Defx_filename_directory   guifg=#F5F5DC
-endfunction
-
-function! iceberg.installer(install)
-  call a:install('cocopon/iceberg.vim')
-endfunction
-
-call materia#part#add(iceberg)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " material_theme
 " https://github.com/jdkanani/vim-material-theme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let material_theme= {
-  \ 'id': 'material_theme',
+  \ 'id': 'material',
   \ 'directory': 'vim-material-theme',
   \ 'tag': 'theme',
-  \ 'title': 'Material',
-  \ 'key': 'material'
+  \ 'title': 'Material'
 \ }
 
 function! material_theme.loader()
@@ -150,3 +118,29 @@ function! material_theme.installer(install)
 endfunction
 
 call materia#part#add(material_theme)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" iceberg
+" https://github.com/cocopon/iceberg.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let iceberg= {
+  \ 'id': 'iceberg',
+  \ 'directory': 'iceberg.vim',
+  \ 'tag': 'theme',
+  \ 'title': 'Iceberg'
+\ }
+
+function! iceberg.loader()
+  colorscheme iceberg
+  if exists('*airline#switch_theme')
+    call airline#switch_theme('iceberg')
+  endif
+  hi Defx_filename_root        guifg=#F5F5DC
+  hi Defx_filename_directory   guifg=#F5F5DC
+endfunction
+
+function! iceberg.installer(install)
+  call a:install('cocopon/iceberg.vim')
+endfunction
+
+call materia#part#add(iceberg)

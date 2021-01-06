@@ -5,6 +5,7 @@
 "=============================================================================
 
 let s:app_system = materia#service#get('system')
+let s:service_theme = materia#service#get('theme')
 
 " Select gui font by system informations.
 " https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
@@ -15,31 +16,33 @@ function! materia#strategies#guifont()
 endfunction
 
 " Process [normal] part
-function! materia#strategies#part_tag_normal(name, part, plug_installer)
+function! materia#strategies#part_tag_normal(part, plug_installer)
   let part = a:part
   if (has_key(part, 'condition') && part.condition()) || !has_key(part, 'condition')
     if HasPlug(part.directory)
-      let execute_vim_enter =  'autocmd VimEnter * nested call materia#part#get("'. a:name .'").loader()'
-      if has_key(part, 'preloader')   | call part.preloader() | endif
-      if has_key(part, 'loader') | execute execute_vim_enter | endif
+      call s:active_part(part)
     endif
     if has_key(part, 'installer')  | call part.installer(a:plug_installer) | endif
   endif
 endfunction
 
 " Process [theme] part
-let s:current_colorscheme = materia#conf('options.colorscheme')
-function! materia#strategies#part_tag_theme(name, part, plug_installer)
+let g:current_colorscheme = materia#conf('options.colorscheme')
+function! materia#strategies#part_tag_theme(part, plug_installer)
   let part = a:part
+  call s:service_theme.add(a:part.id)
   if (has_key(part, 'condition') && part.condition()) || !has_key(part, 'condition')
-    if s:current_colorscheme == part.key
-      if HasPlug(part.directory)
-        let execute_vim_enter =  'autocmd VimEnter * nested call materia#part#get("'. a:name .'").loader()'
-        if has_key(part, 'preloader')   | call part.preloader() | endif
-        if has_key(part, 'loader') | execute execute_vim_enter | endif
-      endif
+    if type(g:current_colorscheme) == type('') && g:current_colorscheme == part.id && HasPlug(part.directory)
+      call s:active_part(part)
+      let s:service_theme.current_theme_id = part.id
     endif
   endif
-  call materia#part#bind_theme(part.directory, a:name)
   if has_key(part, 'installer')  | call part.installer(a:plug_installer) | endif
+endfunction
+
+" Active a part
+function! s:active_part(part)
+  let execute_vim_enter =  'autocmd VimEnter * nested call materia#part#get("'. a:part.id .'").loader()'
+  if has_key(a:part, 'preloader')   | call a:part.preloader() | endif
+  if has_key(a:part, 'loader') | execute execute_vim_enter | endif
 endfunction

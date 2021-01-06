@@ -18,9 +18,14 @@ function! materia#part#get_all() abort
   return s:parts
 endfunction
 
-" get part by name
-function! materia#part#get(name) abort
-  return s:parts[a:name]
+" get part by id
+function! materia#part#get(id) abort
+  return s:parts[a:id]
+endfunction
+
+" has part
+function! materia#part#has(id) abort
+  return has_key(s:parts, a:id)
 endfunction
 
 " get the plug installer.
@@ -38,23 +43,15 @@ endfunction
 let s:plug_installer = s:get_materia_plug_install_func()
 
 " load a part by name
-function! materia#part#load(name) abort
-  if has_key(s:parts, a:name)
-    let part = s:parts[a:name]
+function! materia#part#load(id) abort
+  if has_key(s:parts, a:id)
+    let part = s:parts[a:id]
     let tag = get(part, 'tag', 'normal')
     if exists('*materia#strategies#part_tag_'. tag)
-      call materia#strategies#part_tag_{tag}(a:name, part, s:plug_installer)
+      call materia#strategies#part_tag_{tag}(part, s:plug_installer)
     endif
   else
     let  l:app_message = materia#service#get('message')
-    call l:app_message.warn('Custom part `'. a:name . '` not found.')
+    call l:app_message.warn('Custom part `'. a:id . '` not found.')
   endif
-endfunction
-
-function! materia#part#bind_theme(name, part_name)
-  let s:themes[a:name] = a:part_name
-endfunction
-
-function! materia#part#get_themes()
-  return s:themes
 endfunction

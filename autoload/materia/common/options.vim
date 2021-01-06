@@ -112,7 +112,7 @@ function! materia#common#options#get()
   " default theme
   execute 'set background='. materia#conf('options.background')
   " default colorscheme
-  colorscheme material-theme
+  " colorscheme material-theme
   " the maximum number of colors
   set t_Co=256
 
