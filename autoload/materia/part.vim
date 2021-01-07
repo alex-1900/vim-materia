@@ -6,11 +6,15 @@
 
 let s:parts = {}
 
-let s:themes = {}
+let s:processed_depends = {}
 
 " add a part
 function! materia#part#add(part) abort
   let s:parts[a:part.id] = a:part
+  let parts_conf = materia#conf('parts')
+  if !materia#conf('excludes.'. a:part.id)
+    let s:processed_depends[a:part.id] = 1
+  endif
 endfunction
 
 " get all part
@@ -46,6 +50,16 @@ let s:plug_installer = s:get_materia_plug_install_func()
 function! materia#part#load(id) abort
   if has_key(s:parts, a:id)
     let part = s:parts[a:id]
+
+    " Depends process
+    for part_id in get(part, 'includes', [])
+      if !has_key(s:processed_depends, part_id)
+        let s:processed_depends[part_id] = 1
+        call materia#part#load(part_id)
+      endif
+    endfor
+
+    " Tag process
     let tag = get(part, 'tag', 'normal')
     if exists('*materia#strategies#part_tag_'. tag)
       call materia#strategies#part_tag_{tag}(part, s:plug_installer)

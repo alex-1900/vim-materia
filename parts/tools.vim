@@ -430,3 +430,16 @@ function! ctrlp.installer(install)
 endfunction
 
 call materia#part#add(ctrlp)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" webapi
+" vim interface to Web API
+" https://github.com/mattn/webapi-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let webapi = {'id': 'webapi', 'directory': 'webapi-vim'}
+
+function! webapi.installer(install)
+  call a:install('mattn/webapi-vim')
+endfunction
+
+call materia#part#add(webapi)

@@ -31,11 +31,8 @@ call materia#part#add(html5_vim)
 " https://github.com/mattn/emmet-vim
 " snippets.json Doc:
 " https://docs.emmet.io/customization/snippets/
-"
-" An Interface to WEB APIs.
-" https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let emmet_vim = {'id': 'emmet_vim', 'directory': 'emmet-vim'}
+let emmet_vim = {'id': 'emmet_vim', 'directory': 'emmet-vim', 'includes': ['webapi']}
 function! emmet_vim.preloader()
   if materia#conf('html.snippet_path')
     let g:user_emmet_install_global = 0
@@ -54,7 +51,6 @@ function! emmet_vim.loader()
 endfunction
 function! emmet_vim.installer(install)
   call a:install('mattn/emmet-vim')
-  call a:install('mattn/webapi-vim')
 endfunction
 call materia#part#add(emmet_vim)
 
@@ -195,27 +191,6 @@ endfunction
 call materia#part#add(vim_go)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim_javascript
-" JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
-" https://github.com/pangloss/vim-javascript
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vim_javascript = {'id': 'vim_javascript', 'directory': 'vim-javascript'}
-function! vim_javascript.preloader()
-  let g:javascript_plugin_jsdoc = materia#conf('parts.vim_javascript.attr_plugin_jsdoc')
-  let g:javascript_plugin_ngdoc = materia#conf('parts.vim_javascript.attr_plugin_ngdoc')
-  let g:javascript_plugin_flow = materia#conf('parts.vim_javascript.attr_plugin_flow')
-
-  augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-  augroup END
-endfunction
-function! vim_javascript.installer(install)
-  call a:install('pangloss/vim-javascript')
-endfunction
-call materia#part#add(vim_javascript)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_json
 " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
 " https://github.com/elzr/vim-json
@@ -232,6 +207,20 @@ function! vim_json.installer(install)
 endfunction
 
 call materia#part#add(vim_json)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" javascript_syntax
+" Enhanced javascript syntax file for Vim
+" https://github.com/pangloss/vim-javascript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let javascript_syntax = {'id': 'javascript_syntax', 'directory': 'vim-javascript-syntax'}
+function! javascript_syntax.preloader()
+  
+endfunction
+function! javascript_syntax.installer(install)
+  call a:install('jelera/vim-javascript-syntax')
+endfunction
+call materia#part#add(javascript_syntax)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " typescript_vim
@@ -256,15 +245,15 @@ endfunction
 call materia#part#add(typescript_vim)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim_jsx
-" React JSX syntax highlighting and indenting for vim.
+" jsx_highlight
+" JSX and TSX syntax pretty highlighting for vim.
 " https://github.com/mxw/vim-jsx
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vim_jsx = {'id': 'vim_jsx', 'directory': 'vim-jsx'}
-function! vim_jsx.installer(install)
-  call a:install('mxw/vim-jsx')
+let jsx_highlight = {'id': 'jsx_highlight', 'directory': 'vim-jsx-pretty'}
+function! jsx_highlight.installer(install)
+  call a:install('maxmellon/vim-jsx-pretty')
 endfunction
-call materia#part#add(vim_jsx)
+call materia#part#add(jsx_highlight)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_markdown

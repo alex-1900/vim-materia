@@ -171,15 +171,11 @@
     "vim_interestingwords": {
       "basekey": "i"
     },
-    "vim_javascript": {
-      "attr_plugin_jsdoc": 1,
-      "attr_plugin_ngdoc": 0,
-      "attr_plugin_flow": 0
-    },
+    "javascript_syntax": {},
+    "jsx_highlight": {},
     "vim_json": {
       "syntax_conceal": 0
     },
-    "vim_jsx": {},
     "vim_markdown": {
       "attr_fenced_languages": ["bash=sh"],
       "attr_minlines": 60
@@ -216,7 +212,9 @@
     "vim_yoink": null,
     "vim_subversive": null
   },
-  "filetype": {
-
+  "excludes": {
+    "coc_pyright": 1,
+    "airline_weather": 1,
+    "coc_nvim": 1
   }
 }

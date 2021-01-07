@@ -58,19 +58,7 @@ call materia#part#add(limelight_vim)
 " https://github.com/vim-airline/vim-airline-themes
 " https://github.com/vim-airline/vim-airline/wiki/FAQ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vim_airline = {'id': 'vim_airline', 'directory': 'vim-airline'}
-function ModuleAirLineMateriaAddition(...)
-  let builder = a:1
-  let system_serv = materia#service#get('system')
-  highlight UserStatusLine guifg=#EEEEEE ctermfg=7 guibg=#4169E1 ctermbg=24 gui=NONE cterm=NONE
-  call builder.add_section_spaced('UserStatusLine', system_serv.username)
-  return 0
-endfunction
-
-function! MyLineNumber()
-  let system_serv = materia#service#get('system')
-  return system_serv.username
-endfunction
+let vim_airline = {'id': 'vim_airline', 'directory': 'vim-airline', 'includes': ['airline_themes']}
 
 function! vim_airline.preloader()
   " Automatically displays all buffers when there's only one tab open.
@@ -95,28 +83,40 @@ function! vim_airline.preloader()
   if !exists('g:airline_symbols')
     let g:airline_symbols={}
   endif
+endfunction
 
-  " theme
+function! vim_airline.installer(install)
+  call a:install('vim-airline/vim-airline')
+endfunction
+
+call materia#part#add(vim_airline)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" airline_themes
+" A collection of themes for vim-airline
+" https://github.com/vim-airline/vim-airline-themes
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let airline_themes = {'id': 'airline_themes', 'directory': 'vim-airline-themes', 'includes': ['vim_airline']}
+
+function! airline_themes.preloader()
   let theme = materia#conf('parts.vim_airline.theme')
   if type(theme) == type('')
     let g:airline_theme = theme
   endif
 endfunction
 
-function! vim_airline.installer(install)
-  call a:install('vim-airline/vim-airline')
+function! airline_themes.installer(install)
   call a:install('vim-airline/vim-airline-themes')
 endfunction
 
-call materia#part#add(vim_airline)
+call materia#part#add(airline_themes)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline_weather
 " Vim-airline extension to show weather in the status line.
 " https://github.com/Wildog/airline-weather.vim
-" https://github.com/mattn/webapi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let airline_weather = {'id': 'airline_weather', 'directory': 'vim-devicons'}
+let airline_weather = {'id': 'airline_weather', 'directory': 'vim-devicons', 'includes': ['webapi']}
 function! airline_weather.preloader()
   let temp_dir = materia#homepath('/temp/airline_weather')
   if !isdirectory(temp_dir)
@@ -128,10 +128,8 @@ function! airline_weather.preloader()
 endfunction
 function! airline_weather.installer(install)
   call a:install('Wildog/airline-weather.vim')
-  call a:install('mattn/webapi-vim')
 endfunction
 call materia#part#add(airline_weather)
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_devicons

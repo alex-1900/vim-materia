@@ -54,9 +54,9 @@ function! materia#loadplugs() abort
   " Specify a directory for plugins
   call plug#begin(g:materia#path#bundles)
   " load plugs
-  for part_id in keys(materia#conf('parts'))
-    " Load enable parts
-    if materia#conf('parts.'. part_id . '.disable') == 0
+  let excludes = materia#conf('excludes')
+  for part_id in keys(materia#part#get_all())
+    if !get(excludes, part_id, 0)
       call materia#part#load(part_id)
     endif
   endfor
