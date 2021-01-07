@@ -291,16 +291,33 @@ function! easymotion.preloader()
   " Disable default mappings
   let g:EasyMotion_do_mapping = 0
   " Turn on case-insensitive feature
-  let g:EasyMotion_smartcase = 1
+  let g:EasyMotion_smartcase = materia#config#get('parts.easymotion.attr_smartcase')
+  " keep cursor column when JK motion
+  let g:EasyMotion_startofline = 0
 endfunction
 
 function! easymotion.loader()
   " `s{char}{char}{label}`
   " Need one more keystroke, but on average, it may be more comfortable.
-  nmap f <Plug>(easymotion-overwin-f2)
+  let okey = materia#config#get('parts.easymotion.prefix_key')
+  execute 'nmap '. okey .'f <Plug>(easymotion-overwin-f)'
+  execute 'nmap '. okey .'s <Plug>(easymotion-overwin-f2)'
+  execute 'nmap '. okey .'w <Plug>(easymotion-overwin-w)'
+  execute 'nmap '. okey .'r <Plug>(easymotion-repeat)'
   " JK motions: Line motions
-  map <space>j <Plug>(easymotion-j)
-  map <space>k <Plug>(easymotion-k)
+  execute 'map '. okey .'j <Plug>(easymotion-j)'
+  execute 'map '. okey .'k <Plug>(easymotion-k)'
+  execute 'map '. okey .'l <Plug>(easymotion-lineforward)'
+  execute 'map '. okey .'h <Plug>(easymotion-linebackward)'
+
+  " Gif config
+  map  / <Plug>(easymotion-sn)
+  omap / <Plug>(easymotion-tn)
+  " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+  " Without these mappings, `n` & `N` works fine. (These mappings just provide
+  " different highlight method and have some other features )
+  map  n <Plug>(easymotion-next)
+  map  N <Plug>(easymotion-prev)
   " https://github.com/neoclide/coc.nvim/issues/110#issuecomment-631868877
   if g:did_coc_loaded
     let g:easymotion#is_active = 0

@@ -63,6 +63,10 @@
     "defx": {
       "key_state": "e"
     },
+    "easymotion": {
+      "prefix_key": "f",
+      "attr_smartcase": 1
+    },
     "editorconfig_vim": {
       "exclude_patterns": ["fugitive://.*", "scp://.*"],
       "disable_types": ["gitcommit", "startify"]
