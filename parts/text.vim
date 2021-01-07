@@ -280,3 +280,47 @@ call materia#part#add(deoppet)
 
     call materia#part#add(vim_subversive)
 "}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" easymotion
+" Vim motions on speed!
+" https://github.com/easymotion/vim-easymotion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let easymotion = {'id': 'easymotion', 'directory': 'vim-easymotion'}
+function! easymotion.preloader()
+  " Disable default mappings
+  let g:EasyMotion_do_mapping = 0
+  " Turn on case-insensitive feature
+  let g:EasyMotion_smartcase = 1
+endfunction
+
+function! easymotion.loader()
+  " `s{char}{char}{label}`
+  " Need one more keystroke, but on average, it may be more comfortable.
+  nmap f <Plug>(easymotion-overwin-f2)
+  " JK motions: Line motions
+  map <space>j <Plug>(easymotion-j)
+  map <space>k <Plug>(easymotion-k)
+  " https://github.com/neoclide/coc.nvim/issues/110#issuecomment-631868877
+  if g:did_coc_loaded
+    let g:easymotion#is_active = 0
+    function! EasyMotionCoc() abort
+      if EasyMotion#is_active()
+        let g:easymotion#is_active = 1
+        silent! CocDisable
+      else
+        if g:easymotion#is_active == 1
+          let g:easymotion#is_active = 0
+          silent! CocEnable
+        endif
+      endif
+    endfunction
+    autocmd TextChanged,CursorMoved * call EasyMotionCoc()
+  endif
+endfunction
+
+function! easymotion.installer(install)
+  call a:install('easymotion/vim-easymotion')
+endfunction
+
+call materia#part#add(easymotion)

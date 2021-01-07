@@ -10,7 +10,7 @@ let s:processed_depends = {}
 
 augroup materia_parts_group
   autocmd!
-  autocmd VimEnter * unlet s:processed_depends
+  autocmd VimEnter * let s:processed_depends = {}
 augroup end
 
 " add a part
