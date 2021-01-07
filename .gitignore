@@ -15,3 +15,4 @@ Session.vim
 /venv*
 /snippets
 /neosnippets
+.DS_Store
