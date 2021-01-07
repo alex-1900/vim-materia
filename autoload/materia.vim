@@ -35,13 +35,14 @@ endfunction
 
 function! materia#begin() abort
   " load configs
+  call materia#config#load_environments()
+  " load common
   call materia#common#options#get()
   call materia#common#functions#get()
   call materia#common#commands#get()
   call materia#common#maps#get()
   call materia#common#autocmds#get()
-
-  call s:process_environments()
+  " regist parts
   call s:loaddir(g:materia#path#home . '/parts')
   " load custom settings
   let custom_entry_file = materia#homepath('/custom/main.vim')
@@ -54,12 +55,7 @@ function! materia#loadplugs() abort
   " Specify a directory for plugins
   call plug#begin(g:materia#path#bundles)
   " load plugs
-  let excludes = materia#conf('excludes')
-  for part_id in keys(materia#part#get_all())
-    if !get(excludes, part_id, 0)
-      call materia#part#load(part_id)
-    endif
-  endfor
+  call materia#part#load_all_available()
   " Initialize plugin system
   call plug#end()
 endfunction
@@ -69,13 +65,6 @@ endfunction
 
 function! materia#homepath(...) abort
   return g:materia#path#home . get(a:, 1, '')
-endfunction
-
-function! materia#has_plug(name)
-  if exists('g:loaded_plug')
-    return isdirectory(g:materia#path#bundles . '/' . a:name)
-  endif
-  return 0
 endfunction
 
 " Get configure
@@ -116,18 +105,6 @@ function! s:process_json_configure()
   if filereadable(g:materia#path#home . '/config.json')
     let g:materia#config = json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
   endif
-endfunction
-
-" get the plug installer.
-function! s:get_materia_plug_install_func()
-  let s:parts = {}
-  function! s:materia_plug_install(repo, ...)
-    if !has_key(s:parts, a:repo)
-      call plug#(a:repo, get(a:, 1, {}))
-      let s:parts[a:repo] = 1
-    endif
-  endfunction
-  return function('s:materia_plug_install')
 endfunction
 
 " load all vim files from dir

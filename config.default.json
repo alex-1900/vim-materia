@@ -24,23 +24,13 @@
       "attr_area": "dalian,cn",
       "attr_cache_ttl": 3600
     },
-    "auto_pairs": null,
-    "coc_css": null,
-    "coc_clangd": null,
-    "coc_git": null,
     "coc_go": {
       "fmt_autosave": 1,
       "imports_autosave": 1
     },
-    "coc_html": null,
     "coc_json": {
       "conceallevel": 0
     },
-    "coc_nvim": null,
-    "coc_phpls": null,
-    "coc_tsserver": null,
-    "coc_yaml": null,
-    "cpp_enhanced_highlight": null,
     "ctrlsf": {
       "basekey": "s",
       "attr_auto_preview": 1,
@@ -98,7 +88,6 @@
       "attr_microdata": 1,
       "attr_aria": 1
     },
-    "iceberg": {},
     "limelight_vim": {
       "basekey": "l",
       "conceal_guifg": "#777777",
@@ -117,7 +106,6 @@
     "nerdcommenter": {
       "key_writer": "c"
     },
-    "nginx": {},
     "onedark": null,
     "papercolor": {
       "attr_theme_options": {}
@@ -171,8 +159,6 @@
     "vim_interestingwords": {
       "basekey": "i"
     },
-    "javascript_syntax": {},
-    "jsx_highlight": {},
     "vim_json": {
       "syntax_conceal": 0
     },
@@ -194,10 +180,7 @@
         ["The Materia vim configuration is on the way..."]
       ]
     },
-    "vim_surround": null,
-    "vim_tmux_navigator": null,
     "vim_visual_multi": null,
-    "vim_visualstar": null,
     "vim_virtualenv": {
       "virtualenv_directory": "~/.virtualenvs"
     },

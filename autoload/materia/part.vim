@@ -8,6 +8,11 @@ let s:parts = {}
 
 let s:processed_depends = {}
 
+augroup materia_parts_group
+  autocmd!
+  autocmd VimEnter * unlet s:processed_depends
+augroup end
+
 " add a part
 function! materia#part#add(part) abort
   let s:parts[a:part.id] = a:part
@@ -30,6 +35,16 @@ endfunction
 " has part
 function! materia#part#has(id) abort
   return has_key(s:parts, a:id)
+endfunction
+
+" Load all available plugs
+function! materia#part#load_all_available() abort
+  let excludes = materia#conf('excludes')
+  for part_id in keys(s:parts)
+    if !get(excludes, part_id, 0)
+      call materia#part#load(part_id)
+    endif
+  endfor
 endfunction
 
 " get the plug installer.
