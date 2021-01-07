@@ -39,7 +39,7 @@ function! nerdcommenter.preloader()
 endfunction
 
 function! nerdcommenter.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.nerdcommenter.key_writer'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.nerdcommenter.key_writer'))
   execute 'nmap <silent> '. key_prefix.writer .'c <Plug>NERDCommenterComment'
   execute 'xmap <silent> '. key_prefix.writer .'c <Plug>NERDCommenterComment'
   execute 'nmap <silent> '. key_prefix.writer .'t <Plug>NERDCommenterToggle'
@@ -78,7 +78,7 @@ call materia#part#add(nerdcommenter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let supertab = {'id': 'supertab', 'directory': 'supertab'}
 function! supertab.preloader()
-  let g:SuperTabDefaultCompletionType = materia#conf('parts.supertab.scroll')
+  let g:SuperTabDefaultCompletionType = materia#config#get('parts.supertab.scroll')
 endfunction
 function! supertab.installer(install)
   call a:install('ervandew/supertab')
@@ -92,7 +92,7 @@ call materia#part#add(supertab)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vim_easy_align = {'id': 'vim_easy_align', 'directory': 'vim-easy-align'}
 function! vim_easy_align.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.vim_easy_align.key_writer'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.vim_easy_align.key_writer'))
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   execute 'xmap '. key_prefix.writer .' <Plug>(EasyAlign)'
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -144,9 +144,9 @@ call materia#part#add(vim_visual_multi)
 let vim_better_whitespace = {'id': 'vim_better_whitespace', 'directory': 'vim-better-whitespace'}
 function! vim_better_whitespace.preloader()
   let g:better_whitespace_enabled = 1
-  let g:strip_whitespace_on_save = materia#conf('parts.vim_better_whitespace.strip_on_save')
-  let g:better_whitespace_ctermcolor = materia#conf('parts.vim_better_whitespace.ctermcolor')
-  let g:better_whitespace_guicolor = materia#conf('parts.vim_better_whitespace.guicolor')
+  let g:strip_whitespace_on_save = materia#config#get('parts.vim_better_whitespace.strip_on_save')
+  let g:better_whitespace_ctermcolor = materia#config#get('parts.vim_better_whitespace.ctermcolor')
+  let g:better_whitespace_guicolor = materia#config#get('parts.vim_better_whitespace.guicolor')
 endfunction
 
 function! vim_better_whitespace.installer(install)
@@ -163,12 +163,12 @@ call materia#part#add(vim_better_whitespace)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let editorconfig_vim = {'id': 'editorconfig_vim', 'directory': 'editorconfig-vim'}
 function! editorconfig_vim.preloader()
-  let g:EditorConfig_exclude_patterns = materia#conf('parts.editorconfig_vim.exclude_patterns')
+  let g:EditorConfig_exclude_patterns = materia#config#get('parts.editorconfig_vim.exclude_patterns')
 endfunction
 
 function! editorconfig_vim.loader()
   " disable this plugin for a specific buffer
-  let types = materia#conf('parts.editorconfig_vim.disable_types')
+  let types = materia#config#get('parts.editorconfig_vim.disable_types')
   execute 'autocmd FileType '. join(types, ',') .' let b:EditorConfig_disable = 1'
 endfunction
 

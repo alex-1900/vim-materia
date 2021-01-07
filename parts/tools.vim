@@ -52,7 +52,7 @@ function! defx.loader()
     \ 'max_width': 1000,
   \ })
 
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.defx.key_state'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.defx.key_state'))
   execute 'nnoremap <silent> '. key_prefix.state .' :<C-u>Defx -buffer-name=tab`tabpagenr()` `getcwd()`<CR>'
 
   function! s:defx_mappings() abort
@@ -132,7 +132,7 @@ call materia#part#add(defx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let undotree = {'id': 'undotree', 'directory': 'undotree'}
 function! undotree.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.undotree.key_state'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.undotree.key_state'))
   execute 'nnoremap <silent> '. key_prefix.state .' :<C-u>UndotreeToggle<CR>'
 endfunction
 
@@ -161,14 +161,14 @@ call materia#part#add(vim_tmux_navigator)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vista_vim = {'id': 'vista_vim', 'directory': 'vista.vim'}
 function! vista_vim.preloader()
-  let g:vista_sidebar_width = materia#conf('parts.vista_vim.attr_sidebar_width')
-  let g:vista#renderer#enable_icon = materia#conf('parts.vista_vim.attr_enable_icon')
+  let g:vista_sidebar_width = materia#config#get('parts.vista_vim.attr_sidebar_width')
+  let g:vista#renderer#enable_icon = materia#config#get('parts.vista_vim.attr_enable_icon')
   let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
-  let g:vista_default_executive = materia#conf('parts.vista_vim.attr_default_executive')
+  let g:vista_default_executive = materia#config#get('parts.vista_vim.attr_default_executive')
   let g:vista_executive_for = {}
   let g:vista_fzf_preview = ['right:50%']
   let g:vista_fold_toggle_icons = ["▼", "▶"]
-  let g:vista#finders = materia#conf('parts.vista_vim.attr_finders')
+  let g:vista#finders = materia#config#get('parts.vista_vim.attr_finders')
   let g:vista_echo_cursor_strategy = 'floating_win'
   let g:vista_update_on_text_changed = 1
   let g:vista_update_on_text_changed_delay = 2000
@@ -182,7 +182,7 @@ function! vista_vim.preloader()
 endfunction
 
 function! vista_vim.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.vista_vim.key_state'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.vista_vim.key_state'))
   execute 'nnoremap <silent> '. key_prefix.state .'v :<C-u>Vista!!<CR>'
   execute 'nnoremap <silent> '. key_prefix.state .'f :<C-u>Vista finder<CR>'
 
@@ -209,7 +209,7 @@ function! undotree.option()
 endfunction
 
 function! vim_fugitive.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.vim_fugitive.basekey'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.vim_fugitive.basekey'))
   execute 'nnoremap <silent> '. key_prefix.reader .'g :<C-u>Git --paginate<CR>'
   execute 'nnoremap <silent> '. key_prefix.reader .'d :<C-u>Git diff<CR>'
   execute 'nnoremap <silent> '. key_prefix.reader .'l :<C-u>Git log<CR>'
@@ -246,10 +246,10 @@ function! vim_gitgutter.preloader()
 endfunction
 
 function! vim_gitgutter.loader()
-  let okey = materia#conf('parts.vim_gitgutter.basekey')
-  let nkey = materia#conf('key.next')
-  let pkey = materia#conf('key.prev')
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.vim_gitgutter.basekey'))
+  let okey = materia#config#get('parts.vim_gitgutter.basekey')
+  let nkey = materia#config#get('key.next')
+  let pkey = materia#config#get('key.prev')
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.vim_gitgutter.basekey'))
   highlight! link SignColumn LineNr 
   " Jump to hunks
   execute 'nmap '. key_prefix.next .' <Plug>(GitGutterNextHunk)'
@@ -285,7 +285,7 @@ call materia#part#add(vim_gitgutter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vim_smooth_scroll = {'id': 'vim_smooth_scroll', 'directory': 'vim-smooth-scroll'}
 function! vim_smooth_scroll.loader()
-  let speed = materia#conf('parts.vim_smooth_scroll.speed')
+  let speed = materia#config#get('parts.vim_smooth_scroll.speed')
   execute 'noremap <silent> <c-u> :call smooth_scroll#up(&scroll, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-d> :call smooth_scroll#down(&scroll, '. speed .', 1)<CR>'
   execute 'noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, '. speed .', 1)<CR>'
@@ -311,19 +311,19 @@ function! vim_floaterm.preloader()
   " Set floaterm window background to gray once the cursor moves out from it
   hi FloatermNC guibg=gray
 
-  let okey = materia#conf('parts.vim_floaterm.basekey')
-  let nkey = materia#conf('key.next')
-  let pkey = materia#conf('key.prev')
+  let okey = materia#config#get('parts.vim_floaterm.basekey')
+  let nkey = materia#config#get('key.next')
+  let pkey = materia#config#get('key.prev')
   let key_prefix = GetConfigMapPrefix(okey)
   let g:floaterm_keymap_new = key_prefix.state . 'n'
   let g:floaterm_keymap_prev = pkey . okey
   let g:floaterm_keymap_next = nkey . okey
   let g:floaterm_keymap_toggle = key_prefix.state . 't'
   let g:floaterm_keymap_kill = '<C-d>'
-  let g:floaterm_title = materia#conf('parts.vim_floaterm.title')
-  let g:floaterm_width = materia#conf('parts.vim_floaterm.width')
-  let g:floaterm_height = materia#conf('parts.vim_floaterm.height')
-  let g:floaterm_rootmarkers = materia#conf('parts.vim_floaterm.rootmarkers')
+  let g:floaterm_title = materia#config#get('parts.vim_floaterm.title')
+  let g:floaterm_width = materia#config#get('parts.vim_floaterm.width')
+  let g:floaterm_height = materia#config#get('parts.vim_floaterm.height')
+  let g:floaterm_rootmarkers = materia#config#get('parts.vim_floaterm.rootmarkers')
   " Close window if the job exits normally, otherwise stay it with messages like [Process exited 101]
   let g:floaterm_autoclose = 0
 endfunction
@@ -343,10 +343,10 @@ call materia#part#add(vim_floaterm)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vim_peekaboo = {'id': 'vim_peekaboo', 'directory': 'vim-peekaboo'}
 function! vim_peekaboo.preloader()
-  let g:peekaboo_delay = materia#conf('parts.vim_peekaboo.attr_delay')
-  let g:peekaboo_compact = materia#conf('parts.vim_peekaboo.attr_compact')
-  let g:peekaboo_prefix = materia#conf('parts.vim_peekaboo.attr_prefix')
-  let g:peekaboo_ins_prefix = materia#conf('parts.vim_peekaboo.attr_ins_prefix')
+  let g:peekaboo_delay = materia#config#get('parts.vim_peekaboo.attr_delay')
+  let g:peekaboo_compact = materia#config#get('parts.vim_peekaboo.attr_compact')
+  let g:peekaboo_prefix = materia#config#get('parts.vim_peekaboo.attr_prefix')
+  let g:peekaboo_ins_prefix = materia#config#get('parts.vim_peekaboo.attr_ins_prefix')
 endfunction
 function! vim_peekaboo.installer(install)
   call a:install('junegunn/vim-peekaboo')
@@ -360,17 +360,17 @@ call materia#part#add(vim_peekaboo)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let materia_session = {'id': 'materia_session', 'directory': 'vim-materia-session'}
 function! materia_session.preloader()
-  let g:materia_session_mode = materia#conf('parts.materia_session.mode')
+  let g:materia_session_mode = materia#config#get('parts.materia_session.mode')
   let g:materia_session_directory = materia#homepath('/temp/sessions')
-  let g:session_autosave_on_actions = materia#conf('parts.materia_session.autosave_on_actions')
+  let g:session_autosave_on_actions = materia#config#get('parts.materia_session.autosave_on_actions')
 endfunction
 
 function! materia_session.loader()
   if g:loaded_materia_session
-    if materia#conf('parts.materia_session.autoload')
+    if materia#config#get('parts.materia_session.autoload')
       call MateriaSessionLoad()
     endif
-    if materia#conf('parts.materia_session.autosave')
+    if materia#config#get('parts.materia_session.autosave')
       autocmd VimLeavePre * call MateriaSessionSave()
     endif
   endif
@@ -391,7 +391,7 @@ call materia#part#add(materia_session)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vim_virtualenv = {'id': 'vim_virtualenv', 'directory': 'vim-virtualenv'}
 function! vim_virtualenv.preloader()
-  let conf = materia#conf('parts.vim_virtualenv.virtualenv_directory')
+  let conf = materia#config#get('parts.vim_virtualenv.virtualenv_directory')
   if type(conf) == type('')
     let g:virtualenv_directory = conf
   else
@@ -412,14 +412,14 @@ call materia#part#add(vim_virtualenv)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let ctrlp = {'id': 'ctrlp', 'directory': 'ctrlp.vim'}
 function! ctrlp.preloader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.ctrlp.key_state'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.ctrlp.key_state'))
   let g:ctrlp_map = key_prefix.state
-  let g:ctrlp_cmd = materia#conf('parts.ctrlp.attr_cmd')
-  let g:ctrlp_working_path_mode = materia#conf('parts.ctrlp.attr_working_path_mode')
-  let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr', '_darcs'] + materia#conf('parts.ctrlp.attr_root_markers')
-  let g:ctrlp_show_hidden = materia#conf('parts.ctrlp.attr_show_hidden')
-  let g:ctrlp_use_caching = materia#conf('parts.ctrlp.attr_use_caching')
-  let g:ctrlp_clear_cache_on_exit = materia#conf('parts.ctrlp.attr_clear_cache_on_exit')
+  let g:ctrlp_cmd = materia#config#get('parts.ctrlp.attr_cmd')
+  let g:ctrlp_working_path_mode = materia#config#get('parts.ctrlp.attr_working_path_mode')
+  let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr', '_darcs'] + materia#config#get('parts.ctrlp.attr_root_markers')
+  let g:ctrlp_show_hidden = materia#config#get('parts.ctrlp.attr_show_hidden')
+  let g:ctrlp_use_caching = materia#config#get('parts.ctrlp.attr_use_caching')
+  let g:ctrlp_clear_cache_on_exit = materia#config#get('parts.ctrlp.attr_clear_cache_on_exit')
   let g:ctrlp_cache_dir = materia#homepath('/temp/ctrlp')
   " ignores
   let g:ctrlp_custom_ignore = materia#homepath('/temp/ignore')

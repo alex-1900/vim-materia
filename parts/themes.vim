@@ -73,7 +73,7 @@ let papercolor= {
 \ }
 
 function! papercolor.preloader()
-  let g:PaperColor_Theme_Options = materia#conf('parts.papercolor.attr_theme_options')
+  let g:PaperColor_Theme_Options = materia#config#get('parts.papercolor.attr_theme_options')
   let g:lightline = { 'colorscheme': 'PaperColor' }
 endfunction
 

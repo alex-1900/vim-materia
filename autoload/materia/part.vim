@@ -16,8 +16,8 @@ augroup end
 " add a part
 function! materia#part#add(part) abort
   let s:parts[a:part.id] = a:part
-  let parts_conf = materia#conf('parts')
-  if !materia#conf('excludes.'. a:part.id)
+  let parts_conf = materia#config#get('parts')
+  if !materia#config#get('excludes.'. a:part.id)
     let s:processed_depends[a:part.id] = 1
   endif
 endfunction
@@ -39,7 +39,7 @@ endfunction
 
 " Load all available plugs
 function! materia#part#load_all_available() abort
-  let excludes = materia#conf('excludes')
+  let excludes = materia#config#get('excludes')
   for part_id in keys(s:parts)
     if !get(excludes, part_id, 0)
       call materia#part#load(part_id)

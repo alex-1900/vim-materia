@@ -24,8 +24,8 @@ function! materia#common#maps#get()
 
   " Bracket navigate maps {
       " using `[` and `]` to navigate
-      let nkey = materia#conf('key.next')
-      let pkey = materia#conf('key.prev')
+      let nkey = materia#config#get('key.next')
+      let pkey = materia#config#get('key.prev')
       " buffers
       let modes = ['n']
       call Mapping(modes, 1, pkey .'b', ':<c-u>bprevious!<cr>')
@@ -81,7 +81,7 @@ function! materia#common#maps#get()
   nnoremap <C-x>b :bdelete<CR>
 
   " Move mutiple lines
-  let l:multiple = materia#conf('options.scroll_multiple')
+  let l:multiple = materia#config#get('options.scroll_multiple')
   execute 'nnoremap <nowait> <C-e> '. l:multiple .'<C-e>'
   execute 'nnoremap <nowait> <C-y> '. l:multiple .'<C-y>'
 

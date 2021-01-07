@@ -12,8 +12,8 @@ function! materia#common#options#get()
   " basic
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " set <leader>
-  let g:mapleader = materia#conf('key.leader')
-  let g:maplocalleader = materia#conf('key.localleader')
+  let g:mapleader = materia#config#get('key.leader')
+  let g:maplocalleader = materia#config#get('key.localleader')
   set nocompatible
   set encoding=utf-8
   set termencoding=utf-8
@@ -65,7 +65,7 @@ function! materia#common#options#get()
   " Minimum lines to keep above and below cursor
   set scrolloff=3
   " registor * -> clipboard
-  if materia#conf('options.clipboard_catch')
+  if materia#config#get('options.clipboard_catch')
     set clipboard^=unnamed
   endif
 
@@ -110,7 +110,7 @@ function! materia#common#options#get()
     syntax enable
   endif
   " default theme
-  execute 'set background='. materia#conf('options.background')
+  execute 'set background='. materia#config#get('options.background')
   " default colorscheme
   " colorscheme material-theme
   " the maximum number of colors
@@ -150,7 +150,7 @@ function! materia#common#options#get()
   set nobackup
   set nowritebackup
   set noswapfile
-  if materia#conf('options.undo_persistent')
+  if materia#config#get('options.undo_persistent')
     " persistent undo
     let s:undodir = materia#homepath("/temp/undodir")
     execute 'set undodir=' . s:undodir

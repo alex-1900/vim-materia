@@ -8,8 +8,8 @@ function! materia#common#functions#get() abort
   let s:app_message = materia#service#get('message')
 
   " return 1 if plug exist
-  function! HasPlug(name)
-    return isdirectory(g:materia#path#bundles . '/' . a:name)
+  function! HasPlug(directory)
+    return isdirectory(g:materia#path#bundles . '/' . a:directory)
   endfunction
 
   " bind keys
@@ -21,10 +21,10 @@ function! materia#common#functions#get() abort
 
   " Get map keys
   let s:rkey = '<leader>'
-  let s:wkey = materia#conf('key.writer')
-  let s:skey = materia#conf('key.state')
-  let s:nkey = materia#conf('key.next')
-  let s:pkey = materia#conf('key.prev')
+  let s:wkey = materia#config#get('key.writer')
+  let s:skey = materia#config#get('key.state')
+  let s:nkey = materia#config#get('key.next')
+  let s:pkey = materia#config#get('key.prev')
   function! GetConfigMapPrefix(okey) abort
     return {
       \ 'reader': s:rkey . a:okey,

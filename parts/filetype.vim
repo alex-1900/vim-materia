@@ -11,13 +11,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let html5_vim = {'id': 'html5_vim', 'directory': 'html5.vim'}
 function! html5_vim.preloader()
-  let g:html5_event_handler_attributes_complete = materia#conf('parts.html5_vim.attr_event_handler')
-  let g:html5_rdfa_attributes_complete = materia#conf('parts.html5_vim.attr_rdfa')
-  let g:html5_microdata_attributes_complete = materia#conf('parts.html5_vim.attr_microdata')
-  let g:html5_aria_attributes_complete = materia#conf('parts.html5_vim.attr_aria')
+  let g:html5_event_handler_attributes_complete = materia#config#get('parts.html5_vim.attr_event_handler')
+  let g:html5_rdfa_attributes_complete = materia#config#get('parts.html5_vim.attr_rdfa')
+  let g:html5_microdata_attributes_complete = materia#config#get('parts.html5_vim.attr_microdata')
+  let g:html5_aria_attributes_complete = materia#config#get('parts.html5_vim.attr_aria')
 endfunction
 function! html5_vim.loader()
-  let filetypes = materia#conf('parts.html5_vim.filetypes')
+  let filetypes = materia#config#get('parts.html5_vim.filetypes')
   execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
 endfunction
 function! html5_vim.installer(install)
@@ -34,18 +34,18 @@ call materia#part#add(html5_vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let emmet_vim = {'id': 'emmet_vim', 'directory': 'emmet-vim', 'includes': ['webapi']}
 function! emmet_vim.preloader()
-  if materia#conf('html.snippet_path')
+  if materia#config#get('html.snippet_path')
     let g:user_emmet_install_global = 0
-    let snippet_path = materia#conf('parts.emmet_vim.snippet_path')
+    let snippet_path = materia#config#get('parts.emmet_vim.snippet_path')
     if snippet_path
       let g:user_emmet_settings = webapi#json#decode(join(readfile(expand(snippet_path)), "\n"))
     endif
   endif
-  let g:user_emmet_leader_key = '<C-' . materia#conf('parts.emmet_vim.key_ctrl') . '>'
+  let g:user_emmet_leader_key = '<C-' . materia#config#get('parts.emmet_vim.key_ctrl') . '>'
 endfunction
 function! emmet_vim.loader()
   if (exists('g:loaded_emmet_vim') && g:loaded_emmet_vim)
-    let filetypes = materia#conf('parts.emmet_vim.filetypes')
+    let filetypes = materia#config#get('parts.emmet_vim.filetypes')
     execute 'autocmd FileType '. join(filetypes, ',') .' EmmetInstall'
   endif
 endfunction
@@ -110,9 +110,9 @@ function! vim_go.preloader()
   let g:go_fmt_options = {}
   let g:go_gopls_options = ['-remote=auto']
   " autosave
-  let g:go_fmt_autosave = materia#conf('parts.vim_go.fmt_autosave')
-  let g:go_mod_fmt_autosave = materia#conf('parts.vim_go.mod_fmt_autosave')
-  let g:go_imports_autosave = materia#conf('parts.vim_go.imports_autosave')
+  let g:go_fmt_autosave = materia#config#get('parts.vim_go.fmt_autosave')
+  let g:go_mod_fmt_autosave = materia#config#get('parts.vim_go.mod_fmt_autosave')
+  let g:go_imports_autosave = materia#config#get('parts.vim_go.imports_autosave')
   let g:go_fmt_fail_silently = 1
   " features
   let g:go_gopls_enabled = 1
@@ -155,9 +155,9 @@ function! vim_go.preloader()
   let g:go_metalinter_command = "golangci-lint"
 
   " key mappings
-  let runner = materia#conf('key.runner')
-  let coding = materia#conf('key.coding')
-  let writer = materia#conf('key.writer')
+  let runner = materia#config#get('key.runner')
+  let coding = materia#config#get('key.coding')
+  let writer = materia#config#get('key.writer')
   " executecurrent file(s) gl
   execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'r <Plug>(go-run)'
   execute 'autocmd FileType go nmap <buffer> <silent> '. runner .'b <Plug>(go-build)'
@@ -199,7 +199,7 @@ let vim_json = {'id': 'vim_json', 'directory': 'vim-json'}
 
 function! vim_json.preloader()
   set conceallevel=0
-  let g:vim_json_syntax_conceal = materia#conf('parts.vim_json.syntax_conceal')
+  let g:vim_json_syntax_conceal = materia#config#get('parts.vim_json.syntax_conceal')
 endfunction
 
 function! vim_json.installer(install)
@@ -229,8 +229,8 @@ call materia#part#add(javascript_syntax)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let typescript_vim = {'id': 'typescript_vim', 'directory': 'typescript-vim'}
 function! typescript_vim.preloader()
-  let g:typescript_compiler_binary = materia#conf('parts.typescript_vim.attr_compiler_binary')
-  let g:typescript_compiler_options = materia#conf('parts.typescript_vim.attr_compiler_options')
+  let g:typescript_compiler_binary = materia#config#get('parts.typescript_vim.attr_compiler_binary')
+  let g:typescript_compiler_options = materia#config#get('parts.typescript_vim.attr_compiler_options')
 
   autocmd FileType typescript :set makeprg=tsc
 
@@ -262,8 +262,8 @@ call materia#part#add(jsx_highlight)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vim_markdown = {'id': 'vim_markdown', 'directory': 'vim-markdown'}
 function! vim_markdown.preloader()
-  let g:markdown_fenced_languages = materia#conf('parts.vim_markdown.attr_fenced_languages')
-  let g:markdown_minlines = materia#conf('parts.vim_markdown.attr_minlines')
+  let g:markdown_fenced_languages = materia#config#get('parts.vim_markdown.attr_fenced_languages')
+  let g:markdown_minlines = materia#config#get('parts.vim_markdown.attr_minlines')
 endfunction
 function! vim_markdown.installer(install)
   call a:install('tpope/vim-markdown')

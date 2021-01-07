@@ -18,9 +18,9 @@
 let fzf_vim = {'id': 'fzf_vim', 'directory': 'fzf.vim'}
 function! fzf_vim.preloader()
   " give the same prefix to the commands
-  let g:fzf_command_prefix = materia#conf('parts.fzf_vim.command_prefix')
+  let g:fzf_command_prefix = materia#config#get('parts.fzf_vim.command_prefix')
   " Preview window on the right with 50% width
-  let g:fzf_preview_window = materia#conf('parts.fzf_vim.preview_window')
+  let g:fzf_preview_window = materia#config#get('parts.fzf_vim.preview_window')
   " [Buffers] Jump to the existing window if possible
   let g:fzf_buffers_jump = 1
   " [[B]Commits] Customize the options used by 'git log':
@@ -30,8 +30,8 @@ function! fzf_vim.preloader()
 endfunction
 
 function! fzf_vim.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.fzf_vim.basekey'))
-  let command_prefix = materia#conf('parts.fzf_vim.command_prefix')
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.fzf_vim.basekey'))
+  let command_prefix = materia#config#get('parts.fzf_vim.command_prefix')
   " Mapping selecting mappings
   " normal mod maps
   execute 'nmap <silent> '. key_prefix.reader . 'n <plug>(fzf-maps-n)'
@@ -64,7 +64,7 @@ function! fzf_vim.loader()
   execute 'nnoremap <silent> '. key_prefix.reader . 'o :<C-u>'.command_prefix.'History<CR>'
   " Help tags
   execute 'nnoremap <silent> '. key_prefix.reader . 'h :<C-u>'.command_prefix.'Helptags<CR>'
-  if has_key(materia#conf('parts'), 'vim_fugitive')
+  if has_key(materia#config#get('parts'), 'vim_fugitive')
     " Git commits (requires fugitive.vim)
     execute 'nnoremap <silent> '. key_prefix.reader . 'c :<C-u>'.command_prefix.'Commits<CR>'
   endif
@@ -79,7 +79,7 @@ function! fzf_vim.loader()
   autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
   " Customizing Files command
-  let preview_options = materia#conf('parts.fzf_vim.preview_options')
+  let preview_options = materia#config#get('parts.fzf_vim.preview_options')
   command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(preview_options), <bang>0)
 
@@ -99,7 +99,7 @@ call materia#part#add(fzf_vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vim_interestingwords = {'id': 'vim_interestingwords', 'directory': 'vim-interestingwords'}
 function! vim_interestingwords.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.vim_interestingwords.basekey'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.vim_interestingwords.basekey'))
   " vim-interestingwords
   execute 'nnoremap <silent> '. key_prefix.reader ." :<C-u>call InterestingWords('n')<CR>"
   execute 'vnoremap <silent> '. key_prefix.reader ." :<C-u>call InterestingWords('v')<CR>"
@@ -136,39 +136,39 @@ call materia#part#add(vim_visualstar)
 let ctrlsf = {'id': 'ctrlsf', 'directory': 'ctrlsf.vim'}
 function! ctrlsf.preloader()
   let g:ctrlsf_debug_mode = 0
-  let g:ctrlsf_auto_preview = materia#conf('parts.ctrlsf.attr_auto_preview')
-  let g:ctrlsf_preview_position = materia#conf('parts.ctrlsf.attr_preview_position')
+  let g:ctrlsf_auto_preview = materia#config#get('parts.ctrlsf.attr_auto_preview')
+  let g:ctrlsf_preview_position = materia#config#get('parts.ctrlsf.attr_preview_position')
   " defines default case-sensitivity in search (yes/no/smart)
-  let g:ctrlsf_case_sensitive = materia#conf('parts.ctrlsf.attr_case_sensitive')
-  let ackprg = materia#conf('parts.ctrlsf.attr_ackprg')
+  let g:ctrlsf_case_sensitive = materia#config#get('parts.ctrlsf.attr_case_sensitive')
+  let ackprg = materia#config#get('parts.ctrlsf.attr_ackprg')
   if ackprg | let g:ctrlsf_ackprg = ackprg | endif
   " defines how many context lines will be printed
-  let g:ctrlsf_context = materia#conf('parts.ctrlsf.attr_context')
+  let g:ctrlsf_context = materia#config#get('parts.ctrlsf.attr_context')
   " defines how CtrlSF find search root when no explicit path is given. (cwd/project)
-  let g:ctrlsf_default_root = materia#conf('parts.ctrlsf.attr_default_root')
+  let g:ctrlsf_default_root = materia#config#get('parts.ctrlsf.attr_default_root')
   " defines default view mode which CtrlSF will use. (compact/normal)
-  let g:ctrlsf_default_view_mode = materia#conf('parts.ctrlsf.attr_default_view_mode')
+  let g:ctrlsf_default_view_mode = materia#config#get('parts.ctrlsf.attr_default_view_mode')
   " a list contains custom root markers.
-  let g:ctrlsf_extra_root_markers = materia#conf('parts.ctrlsf.attr_root_markers')
+  let g:ctrlsf_extra_root_markers = materia#config#get('parts.ctrlsf.attr_root_markers')
   " defines if CtrlSF will also feed quickfix and location list with search result.
-  let g:ctrlsf_populate_qflist = materia#conf('parts.ctrlsf.attr_populate_qflist')
+  let g:ctrlsf_populate_qflist = materia#config#get('parts.ctrlsf.attr_populate_qflist')
   " defines CtrlSF using literal pattern or regular expression pattern as default.
-  let g:ctrlsf_regex_pattern = materia#conf('parts.ctrlsf.attr_regex_pattern')
+  let g:ctrlsf_regex_pattern = materia#config#get('parts.ctrlsf.attr_regex_pattern')
   " defines whether CtrlSF works in synchronous or asynchronous way.
   let g:ctrlsf_search_mode = 'async'
   " defines where CtrlSf places its window. Possible values are left (default), right, top and bottom.
-  let g:ctrlsf_position = materia#conf('parts.ctrlsf.attr_position')
+  let g:ctrlsf_position = materia#config#get('parts.ctrlsf.attr_position')
   " defines how CtrlSF focuses result pane when working in async search mode.
-  if materia#conf('parts.ctrlsf.attr_auto_focus')
+  if materia#config#get('parts.ctrlsf.attr_auto_focus')
     let g:ctrlsf_auto_focus = {
       \ "at": "start"
     \ }
   endif
-  let g:ctrlsf_ignore_dir = materia#conf('parts.ctrlsf.attr_ignore_dir')
+  let g:ctrlsf_ignore_dir = materia#config#get('parts.ctrlsf.attr_ignore_dir')
 endfunction
 
 function! ctrlsf.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.ctrlsf.basekey'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.ctrlsf.basekey'))
   execute 'nmap '. key_prefix.reader .'f <Plug>CtrlSFPrompt'
   execute 'nmap '. key_prefix.state . ' :<C-u>CtrlSFToggle<CR>'
   execute 'nmap '. key_prefix.reader .'s <Plug>CtrlSFPrompt'

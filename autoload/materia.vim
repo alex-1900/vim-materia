@@ -25,8 +25,6 @@ function! materia#init(homepath) abort
     call mkdir(temp_dir, 'p')
   endif
 
-  " load config from config json file
-  call s:process_json_configure()
   " enter the life cycle
   call materia#begin()
   call materia#loadplugs()
@@ -67,45 +65,9 @@ function! materia#homepath(...) abort
   return g:materia#path#home . get(a:, 1, '')
 endfunction
 
-" Get configure
-" Priority return custom option and `dict` type options will be merged
-function! materia#conf(name)
-  if exists('g:materia#default_config.' . a:name)
-    execute 'let result_default = g:materia#default_config.' . a:name
-    if exists('g:materia#config.' . a:name)
-      execute 'let result_custom = g:materia#config.' . a:name
-      if type(result_default) == type({})
-        return extend(result_default, result_custom)
-      endif
-      return result_custom
-    endif
-    return result_default
-  endif
-  return 0
-endfunction
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " private
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" process environments
-function! s:process_environments()
-  if exists('g:materia#config.environment') &&
-    \ type(g:materia#config.environment) == type({})
-    for env in keys(g:materia#config.environment)
-      execute 'let $'. env . '=' . g:materia#config.environment[env]
-    endfor
-  endif
-endfunction
-
-" load config from json file
-function! s:process_json_configure()
-  let g:materia#config = {}
-  let g:materia#default_config = json_decode(join(readfile(g:materia#path#home . '/config.default.json'), "\n"))
-  if filereadable(g:materia#path#home . '/config.json')
-    let g:materia#config = json_decode(join(readfile(g:materia#path#home . '/config.json'), "\n"))
-  endif
-endfunction
 
 " load all vim files from dir
 function! s:loaddir(dirpath)

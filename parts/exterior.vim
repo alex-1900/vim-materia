@@ -26,20 +26,20 @@ call materia#part#add(goyo)
 let limelight_vim = {'id': 'limelight_vim', 'directory': 'limelight.vim'}
 function! limelight_vim.preloader()
   " Color name (:help cterm-colors) or ANSI code
-  let g:limelight_conceal_ctermfg = materia#conf('parts.limelight_vim.conceal_ctermfg')
+  let g:limelight_conceal_ctermfg = materia#config#get('parts.limelight_vim.conceal_ctermfg')
   " Color name (:help gui-colors) or RGB color
-  let g:limelight_conceal_guifg = materia#conf('parts.limelight_vim.conceal_guifg')
+  let g:limelight_conceal_guifg = materia#config#get('parts.limelight_vim.conceal_guifg')
   " Default: 0.5
-  let g:limelight_default_coefficient = materia#conf('parts.limelight_vim.default_coefficient')
+  let g:limelight_default_coefficient = materia#config#get('parts.limelight_vim.default_coefficient')
   " Number of preceding/following paragraphs to include (default: 0)
-  let g:limelight_paragraph_span = materia#conf('parts.limelight_vim.paragraph_span')
+  let g:limelight_paragraph_span = materia#config#get('parts.limelight_vim.paragraph_span')
   " Highlighting priority (default: 10)
   "   Set it to -1 not to overrule hlsearch
-  let g:limelight_priority = materia#conf('parts.limelight_vim.priority')
+  let g:limelight_priority = materia#config#get('parts.limelight_vim.priority')
 endfunction
 
 function! limelight_vim.loader()
-  let key_prefix = GetConfigMapPrefix(materia#conf('parts.limelight_vim.basekey'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('parts.limelight_vim.basekey'))
   execute 'nnoremap <silent> '. key_prefix.reader .'l :<C-u>Limelight!!<CR>'
   for n in range(0, 9)
     execute 'nnoremap <silent> '. key_prefix.reader . n .' :<C-u>Limelight 0.'. n .'<CR>'
@@ -62,8 +62,8 @@ let vim_airline = {'id': 'vim_airline', 'directory': 'vim-airline', 'includes': 
 
 function! vim_airline.preloader()
   " Automatically displays all buffers when there's only one tab open.
-  let g:airline#extensions#tabline#enabled = materia#conf('parts.vim_airline.with_tabline')
-  let g:airline#extensions#tabline#formatter = materia#conf('parts.vim_airline.tabline_formatter')
+  let g:airline#extensions#tabline#enabled = materia#config#get('parts.vim_airline.with_tabline')
+  let g:airline#extensions#tabline#formatter = materia#config#get('parts.vim_airline.tabline_formatter')
   let g:airline#extensions#whitespace#enabled=0
   let g:airline_powerline_fonts=1
   let g:airline_left_sep = "\ue0b0"
@@ -71,11 +71,11 @@ function! vim_airline.preloader()
   " \ue0ba \ue0bb
   let g:airline_right_sep = "\ue0b2"
   let g:airline_right_alt_sep = "\ue0b3"
-  if materia#conf('parts.vim_airline.with_hunks')
+  if materia#config#get('parts.vim_airline.with_hunks')
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#hunks#coc_git = 1
   endif
-  if materia#conf('parts.vim_airline.with_branch')
+  if materia#config#get('parts.vim_airline.with_branch')
     let g:airline#extensions#branch#enabled = 1
   endif
   let g:airline_skip_empty_sections = 1
@@ -99,7 +99,7 @@ call materia#part#add(vim_airline)
 let airline_themes = {'id': 'airline_themes', 'directory': 'vim-airline-themes', 'includes': ['vim_airline']}
 
 function! airline_themes.preloader()
-  let theme = materia#conf('parts.vim_airline.theme')
+  let theme = materia#config#get('parts.vim_airline.theme')
   if type(theme) == type('')
     let g:airline_theme = theme
   endif
@@ -123,8 +123,8 @@ function! airline_weather.preloader()
     call mkdir(temp_dir, 'p')
   endif
   let g:weather#cache_file = temp_dir . '/cache_file'
-  let g:weather#area = materia#conf('parts.airline_weather.attr_area')
-  let g:weather#cache_ttl = materia#conf('parts.airline_weather.attr_cache_ttl')
+  let g:weather#area = materia#config#get('parts.airline_weather.attr_area')
+  let g:weather#cache_ttl = materia#config#get('parts.airline_weather.attr_cache_ttl')
 endfunction
 function! airline_weather.installer(install)
   call a:install('Wildog/airline-weather.vim')
@@ -166,7 +166,7 @@ function! vim_startify.preloader()
     \ { 'type': 'commands',  'header': ['   Commands']       },
   \ ]
 
-  let g:startify_custom_header_quotes = materia#conf('parts.vim_startify.header_quotes')
+  let g:startify_custom_header_quotes = materia#config#get('parts.vim_startify.header_quotes')
 endfunction
 
 function! vim_startify.loader()

@@ -27,7 +27,7 @@ function! materia#strategies#part_tag_normal(part, plug_installer)
 endfunction
 
 " Process [theme] part
-let g:current_colorscheme = materia#conf('options.colorscheme')
+let g:current_colorscheme = materia#config#get('options.colorscheme')
 function! materia#strategies#part_tag_theme(part, plug_installer)
   let part = a:part
   call s:service_theme.add(a:part.id)

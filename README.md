@@ -65,12 +65,12 @@ Materia manages plugins in a unified way, ensure that you will not add the same 
 
 let nord_vim = {'id': 'nord_vim', 'directory': 'nord-vim'}
 
-if materia#conf('options.colorscheme') == 'nord'
+if materia#config#get('options.colorscheme') == 'nord'
   function! nord_vim.config()
     let g:nord_cursor_line_number_background = 1
     let g:nord_uniform_status_lines = 1
-    let g:nord_bold = materia#conf('parts.nord_vim.bold')
-    let g:nord_italic = materia#conf('parts.nord_vim.italic')
+    let g:nord_bold = materia#config#get('parts.nord_vim.bold')
+    let g:nord_italic = materia#config#get('parts.nord_vim.italic')
   endfunction
 
   function! nord_vim.listener()

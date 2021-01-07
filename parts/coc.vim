@@ -30,7 +30,7 @@ endfunction
 function! coc_nvim.loader()
   " Mappings for CoCList
   " GoTo code navigation.
-  let key_prefix = GetConfigMapPrefix(materia#conf('key.coding'))
+  let key_prefix = GetConfigMapPrefix(materia#config#get('key.coding'))
   execute 'nmap <silent> '. key_prefix.reader .'d <Plug>(coc-definition)'
   execute 'nmap <silent> '. key_prefix.reader .'t <Plug>(coc-type-definition)'
   execute 'nmap <silent> '. key_prefix.reader .'i <Plug>(coc-implementation)'
@@ -181,10 +181,10 @@ function! coc_go.loader()
   " Fixed organize import action not found
   autocmd FileType go call coc#config('coc.preferences', { 'messageLevel': 'error' })
   " use `:OR` for organize import of current buffer
-  if materia#conf('parts.coc_go.imports_autosave')
+  if materia#config#get('parts.coc_go.imports_autosave')
     autocmd BufWritePre *.go if !get(g:, 'go_imports_autosave', 0) | call CocAction('runCommand', 'editor.action.organizeImport') | endif
   endif
-  if materia#conf('parts.coc_go.fmt_autosave')
+  if materia#config#get('parts.coc_go.fmt_autosave')
     autocmd BufWritePre *.go if !get(g:, 'go_fmt_autosave', 0) | call CocAction('format') | endif
   endif
 endfunction
@@ -209,7 +209,7 @@ call materia#part#add(coc_html)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let coc_json = {'id': 'coc_json', 'directory': 'coc-json', 'includes': ['coc_nvim']}
 function! coc_json.preloader()
-  execute 'set conceallevel='. materia#conf('parts.coc_json.conceallevel')
+  execute 'set conceallevel='. materia#config#get('parts.coc_json.conceallevel')
 endfunction
 function! coc_json.installer(install)
   call a:install('neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' })
@@ -273,3 +273,18 @@ function! coc_pyright.installer(install)
   call a:install('fannheyward/coc-pyright', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
 call materia#part#add(coc_pyright)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc_emmet
+" Emmet extension for coc.nvim
+" https://github.com/neoclide/coc-emmet
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let coc_emmet = {
+  \ 'id': 'coc_emmet',
+  \ 'directory': 'coc-emmet',
+  \ 'includes': ['emmet_vim']
+\ }
+function! coc_emmet.installer(install)
+  call a:install('neoclide/coc-emmet', { 'do': 'yarn install --frozen-lockfile' })
+endfunction
+call materia#part#add(coc_emmet)
