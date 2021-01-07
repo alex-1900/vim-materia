@@ -195,9 +195,5 @@
     "vim_yoink": null,
     "vim_subversive": null
   },
-  "excludes": {
-    "coc_pyright": 1,
-    "airline_weather": 1,
-    "coc_nvim": 1
-  }
+  "excludes": {}
 }
