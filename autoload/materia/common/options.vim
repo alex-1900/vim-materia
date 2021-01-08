@@ -80,7 +80,7 @@ function! materia#common#options#get()
     set statusline=%<%f\
     " Options
     set statusline+=%w%h%m%r
-    if !exists('g:override_spf13_bundles')
+    if exists('*fugitive#statusline')
       set statusline+=%{fugitive#statusline()} " Git Hotness
     endif
     set statusline+=\ [%{&ff}/%Y]            " Filetype
@@ -116,7 +116,7 @@ function! materia#common#options#get()
   " the maximum number of colors
   set t_Co=256
 
-  if !s:app_system.is_gui || !has('nvim')
+  if !s:app_system.is_gui() || !has('nvim')
     execute 'set guifont='. materia#strategies#guifont()
   endif
   " true colors terminal option
@@ -205,41 +205,5 @@ function! materia#common#options#get()
   " mouse
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   set mousemodel=extend
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GUI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  if s:app_system.is_gui
-    " begin of gui settings
-
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " basic
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " visually selecting text automatically places the text in the clipboard (register *) 
-    set guioptions+=a
-
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " features
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " close error bells
-    set noerrorbells
-    set novisualbell
-    set vb t_vb=
-    au GUIEnter * set t_vb=
-    " remove menu bar
-    set guioptions-=m
-    " remove toolbar
-    set guioptions-=T
-
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " colors and fonts
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " no toolbar
-    set lines=45
-    set columns=160
-
-    " end of gui settings
-  endif
-
 
 endfunction

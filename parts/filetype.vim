@@ -214,9 +214,6 @@ call materia#part#add(vim_json)
 " https://github.com/pangloss/vim-javascript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let javascript_syntax = {'id': 'javascript_syntax', 'directory': 'vim-javascript-syntax'}
-function! javascript_syntax.preloader()
-  
-endfunction
 function! javascript_syntax.installer(install)
   call a:install('jelera/vim-javascript-syntax')
 endfunction

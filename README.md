@@ -46,9 +46,6 @@ The`config.default.json` is used to generate the default options, and you can cr
   "parts": {
     "vim_virtualenv": {
       "directory": "/Users/alex/envs/vim-materia"
-    },
-    "vim_floaterm": {
-      "disable": 1
     }
   }
 }

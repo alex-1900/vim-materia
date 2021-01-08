@@ -58,7 +58,7 @@ call materia#part#add(limelight_vim)
 " https://github.com/vim-airline/vim-airline-themes
 " https://github.com/vim-airline/vim-airline/wiki/FAQ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vim_airline = {'id': 'vim_airline', 'directory': 'vim-airline', 'includes': ['airline_themes']}
+let vim_airline = {'id': 'vim_airline', 'directory': 'vim-airline'}
 
 function! vim_airline.preloader()
   " Automatically displays all buffers when there's only one tab open.
@@ -96,7 +96,11 @@ call materia#part#add(vim_airline)
 " A collection of themes for vim-airline
 " https://github.com/vim-airline/vim-airline-themes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let airline_themes = {'id': 'airline_themes', 'directory': 'vim-airline-themes', 'includes': ['vim_airline']}
+let airline_themes = {
+  \ 'id': 'airline_themes',
+  \ 'directory': 'vim-airline-themes',
+  \ 'includes': ['vim_airline']
+\ }
 
 function! airline_themes.preloader()
   let theme = materia#config#get('parts.vim_airline.theme')
@@ -120,7 +124,9 @@ let vim_devicons = {'id': 'vim_devicons', 'directory': 'vim-devicons'}
 function! vim_devicons.preloader()
   let app_system = materia#service#get('system')
   let g:webdevicons_enable = 1
-  if !app_system.is_gui
+  let g:webdevicons_enable_airline_tabline = materia#config#get('parts.vim_devicons.attr_airline_tabline')
+  let g:webdevicons_enable_airline_statusline = materia#config#get('parts.vim_devicons.attr_airline_statusline')
+  if !app_system.is_gui()
     let g:webdevicons_enable = 0
   endif
 endfunction

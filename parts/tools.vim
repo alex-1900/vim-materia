@@ -297,44 +297,6 @@ endfunction
 call materia#part#add(vim_smooth_scroll)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim_floaterm
-" Use (neo)vim terminal in the floating/popup window.
-" https://github.com/voldikss/vim-floaterm
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vim_floaterm = {'id': 'vim_floaterm', 'directory': 'vim-floaterm'}
-
-function! vim_floaterm.preloader()
-  " Set floaterm window's background to black
-  hi Floaterm guibg=black
-  " Set floating window border line color to cyan, and background to orange
-  hi FloatermBorder guibg=orange guifg=cyan
-  " Set floaterm window background to gray once the cursor moves out from it
-  hi FloatermNC guibg=gray
-
-  let okey = materia#config#get('parts.vim_floaterm.basekey')
-  let nkey = materia#config#get('key.next')
-  let pkey = materia#config#get('key.prev')
-  let key_prefix = GetConfigMapPrefix(okey)
-  let g:floaterm_keymap_new = key_prefix.state . 'n'
-  let g:floaterm_keymap_prev = pkey . okey
-  let g:floaterm_keymap_next = nkey . okey
-  let g:floaterm_keymap_toggle = key_prefix.state . 't'
-  let g:floaterm_keymap_kill = '<C-d>'
-  let g:floaterm_title = materia#config#get('parts.vim_floaterm.title')
-  let g:floaterm_width = materia#config#get('parts.vim_floaterm.width')
-  let g:floaterm_height = materia#config#get('parts.vim_floaterm.height')
-  let g:floaterm_rootmarkers = materia#config#get('parts.vim_floaterm.rootmarkers')
-  " Close window if the job exits normally, otherwise stay it with messages like [Process exited 101]
-  let g:floaterm_autoclose = 0
-endfunction
-
-function! vim_floaterm.installer(install)
-  call a:install('voldikss/vim-floaterm')
-endfunction
-
-call materia#part#add(vim_floaterm)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim_peekaboo
 " Peekaboo will show you the contents of the registers on the sidebar when you hit " or @ in normal mode or <CTRL-R> in insert mode.
 " The sidebar is automatically closed on subsequent key strokes.

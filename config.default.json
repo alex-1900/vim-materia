@@ -11,7 +11,7 @@
   },
   "options": {
     "background": "dark",
-    "colorscheme": "onedark",
+    "colorscheme": "material",
     "clipboard_catch": 1,
     "scroll_multiple": 4,
     "undo_persistent": 0
@@ -130,24 +130,19 @@
       "with_hunks": 1,
       "with_tabline": 1,
       "tabline_formatter": "unique_tail",
-      "theme": "wombat"
+      "theme": "bubblegum"
     },
     "vim_better_whitespace": {
       "strip_on_save": 1,
       "ctermcolor": "yellow",
       "guicolor": "yellow"
     },
-    "vim_devicons": null,
+    "vim_devicons": {
+      "attr_airline_tabline": 1,
+      "attr_airline_statusline": 1
+    },
     "vim_easy_align": {
       "key_writer": "e"
-    },
-    "vim_floaterm": {
-      "disable": 1,
-      "basekey": "t",
-      "title": "Terminal [$1|$2]",
-      "width": 0.8,
-      "height": 0.8,
-      "rootmarkers": [".project", ".git", ".svn", ".hg", ".root"]
     },
     "vim_fugitive": {
       "basekey": "g"

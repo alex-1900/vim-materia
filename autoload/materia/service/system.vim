@@ -53,10 +53,17 @@ function! s:get_gui_mode()
   return 'cterm'
 endfunction
 
-let s:system['gui_mode'] = s:get_gui_mode()
+function! s:system.gui_mode() abort
+  if (exists('+termguicolors') && &termguicolors) || has('gui_running')
+    return 'gui'
+  endif
+  return 'cterm'
+endfunction
 
 " is gui
-let s:system['is_gui'] = s:system['gui_mode'] ==# 'gui'
+function! s:system.is_gui() abort
+  return s:system.gui_mode() ==# 'gui'
+endfunction
 
 " system.has()
 function! s:system.has(feature) abort

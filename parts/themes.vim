@@ -46,14 +46,13 @@ let onedark= {
 \ }
 
 function! onedark.preloader()
+  syntax enable
+  syntax on
   let g:onedark_termcolors=256
 endfunction
 
 function! onedark.loader()
   colorscheme onedark
-  if exists('*airline#switch_theme')
-    call airline#switch_theme('onedark')
-  endif
 endfunction
 
 function! onedark.installer(install)
@@ -73,15 +72,14 @@ let papercolor= {
 \ }
 
 function! papercolor.preloader()
+  syntax enable
+  syntax on
   let g:PaperColor_Theme_Options = materia#config#get('parts.papercolor.attr_theme_options')
   let g:lightline = { 'colorscheme': 'PaperColor' }
 endfunction
 
 function! papercolor.loader()
   colorscheme PaperColor
-  if exists('*airline#switch_theme')
-    call airline#switch_theme('papercolor')
-  endif
   hi Defx_filename_root        guifg=#F5F5DC
   hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
@@ -105,10 +103,8 @@ let material_theme= {
 
 function! material_theme.loader()
   syntax enable
+  syntax on
   colorscheme material-theme
-  if exists('*airline#switch_theme')
-    call airline#switch_theme('wombat')
-  endif
   hi Defx_filename_root        guifg=#F5F5DC
   hi Defx_filename_directory   guifg=#F5F5DC
 endfunction
@@ -131,10 +127,9 @@ let iceberg= {
 \ }
 
 function! iceberg.loader()
+  syntax enable
+  syntax on
   colorscheme iceberg
-  if exists('*airline#switch_theme')
-    call airline#switch_theme('iceberg')
-  endif
   hi Defx_filename_root        guifg=#F5F5DC
   hi Defx_filename_directory   guifg=#F5F5DC
 endfunction

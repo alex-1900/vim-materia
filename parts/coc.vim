@@ -282,9 +282,24 @@ call materia#part#add(coc_pyright)
 let coc_emmet = {
   \ 'id': 'coc_emmet',
   \ 'directory': 'coc-emmet',
-  \ 'includes': ['emmet_vim']
+  \ 'includes': ['emmet_vim', 'coc_nvim']
 \ }
 function! coc_emmet.installer(install)
   call a:install('neoclide/coc-emmet', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
 call materia#part#add(coc_emmet)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc_highlight
+" Emmet extension for coc.nvim
+" https://github.com/neoclide/coc-highlight
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let coc_highlight = {
+  \ 'id': 'coc_highlight',
+  \ 'directory': 'coc-highlight',
+  \ 'includes': ['coc_nvim', 'emmet_vim']
+\ }
+function! coc_highlight.installer(install)
+  call a:install('neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' })
+endfunction
+call materia#part#add(coc_highlight)
