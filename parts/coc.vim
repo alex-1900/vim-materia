@@ -138,7 +138,6 @@ let coc_clangd = {
   \ 'includes': ['coc_nvim']
 \ }
 function! coc_clangd.installer(install)
-  call a:install('neoclide/coc.nvim', { 'branch': 'release' })
   call a:install('clangd/coc-clangd', {
     \ 'do': "yarn install --frozen-lockfile"
   \ })
