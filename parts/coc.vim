@@ -233,7 +233,7 @@ call materia#part#add(coc_phpls)
 let coc_tsserver = {
   \ 'id': 'coc_tsserver',
   \ 'directory': 'coc-tsserver',
-  \ 'includes': ['coc_nvim', 'typescript_vim', 'typescript_vim']
+  \ 'includes': ['coc_nvim']
 \ }
 function! coc_tsserver.installer(install)
   call a:install('neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' })
@@ -296,7 +296,7 @@ call materia#part#add(coc_emmet)
 let coc_highlight = {
   \ 'id': 'coc_highlight',
   \ 'directory': 'coc-highlight',
-  \ 'includes': ['coc_nvim', 'emmet_vim']
+  \ 'includes': ['coc_nvim']
 \ }
 function! coc_highlight.installer(install)
   call a:install('neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' })
