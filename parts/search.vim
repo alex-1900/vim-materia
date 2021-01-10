@@ -16,6 +16,15 @@
 " https://github.com/sharkdp/bat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let fzf_vim = {'id': 'fzf_vim', 'directory': 'fzf.vim'}
+
+function! s:ripgrep_fzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
 function! fzf_vim.preloader()
   " give the same prefix to the commands
   let g:fzf_command_prefix = materia#config#get('parts.fzf_vim.command_prefix')
@@ -27,6 +36,13 @@ function! fzf_vim.preloader()
   let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
   " Enable per-command history
   let g:fzf_history_dir = materia#homepath('/temp/fzf_history')
+  let g:fzf_layout = { 'down': '70%' }
+
+  if has('nvim')
+    autocmd! FileType fzf
+    autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  endif
 endfunction
 
 function! fzf_vim.loader()
@@ -53,7 +69,7 @@ function! fzf_vim.loader()
   " ag search result (ALT-A to select all, ALT-D to deselect all)
   execute 'nnoremap <silent> '. key_prefix.reader . 'a :<C-u>'.command_prefix.'Ag<CR>'
   " rg search result (ALT-A to select all, ALT-D to deselect all)
-  execute 'nnoremap <silent> '. key_prefix.reader . 'r :<C-u>'.command_prefix.'Rg<CR>'
+  execute 'nnoremap <silent> '. key_prefix.reader . 'r :<C-u>'.command_prefix.'RG<CR>'
   " Lines in loaded buffers
   execute 'nnoremap <silent> '. key_prefix.reader . 'l :<C-u>'.command_prefix.'Lines<CR>'
   " Windows
@@ -82,6 +98,8 @@ function! fzf_vim.loader()
   let preview_options = materia#config#get('parts.fzf_vim.preview_options')
   command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(preview_options), <bang>0)
+
+  execute 'command! -nargs=* -bang '. command_prefix . 'RG call s:ripgrep_fzf(<q-args>, <bang>0)'
 
 endfunction
 

@@ -302,3 +302,18 @@ function! coc_highlight.installer(install)
   call a:install('neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' })
 endfunction
 call materia#part#add(coc_highlight)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc_lists
+" Common lists for coc.nvim
+" https://github.com/neoclide/coc-lists
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let coc_lists = {
+  \ 'id': 'coc_lists',
+  \ 'directory': 'coc-lists',
+  \ 'includes': ['coc_nvim']
+\ }
+function! coc_lists.installer(install)
+  call a:install('neoclide/coc-lists', { 'do': 'yarn install --frozen-lockfile' })
+endfunction
+call materia#part#add(coc_lists)
